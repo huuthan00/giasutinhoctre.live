@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mục lục bài giảng Python tư duy</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="../index.html#pathways">GiaSuTHT · Khóa Python</a>
+      <div class="nav">
+        <a href="../index.html">Trang chủ</a>
+        <a href="../index.html#pathways">Khóa học</a>
+      </div>
+    </div>
+    <header class="hero">
+      <span class="badge">Bộ bài giảng HTML</span>
+      <h1>Lập Trình Python Tư Duy</h1>
+      <p class="note">Bộ 32 bài giảng chi tiết cho học sinh 11-12 tuổi, đi từ những dòng Python đầu tiên đến mini app và sản phẩm demo cuối khóa.</p>
+    </header>
+    <section>
+      <h2>Mục lục</h2>
+      <table class="lesson-index-table">
+        <thead><tr><th>Buổi</th><th>Bài học</th><th>Giai đoạn</th></tr></thead>
+        <tbody><tr><td>Buổi 01</td><td><a href="buoi-01-python-la-gi-va-chuong-trinh-dau-tien.html">Python là gì và chương trình đầu tiên</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 02</td><td><a href="buoi-02-bien-va-du-lieu-trong-python.html">Biến và dữ liệu trong Python</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 03</td><td><a href="buoi-03-nhap-du-lieu-voi-input.html">Nhập dữ liệu với input()</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 04</td><td><a href="buoi-04-phep-tinh-so-hoc-va-bieu-thuc.html">Phép tính số học và biểu thức</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 05</td><td><a href="buoi-05-dieu-kien-if-else-co-ban.html">Điều kiện if/else cơ bản</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 06</td><td><a href="buoi-06-else-if-voi-elif-va-dieu-kien-nhieu-nhanh.html">else-if với elif và điều kiện nhiều nhánh</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 07</td><td><a href="buoi-07-vong-lap-for-va-lap-biet-truoc-so-lan.html">Vòng lặp for và lặp biết trước số lần</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 08</td><td><a href="buoi-08-while-va-lap-den-khi-dung-dieu-kien.html">while và lặp đến khi đúng điều kiện</a></td><td>Giai đoạn 1 - Làm quen Python và tư duy code</td></tr><tr><td>Buổi 09</td><td><a href="buoi-09-list-co-ban.html">List cơ bản</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 10</td><td><a href="buoi-10-xu-ly-list-so.html">Xử lý list số</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 11</td><td><a href="buoi-11-chuoi-string-co-ban.html">Chuỗi string cơ bản</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 12</td><td><a href="buoi-12-xu-ly-chuoi-ung-dung.html">Xử lý chuỗi ứng dụng</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 13</td><td><a href="buoi-13-ham-function-co-ban.html">Hàm (Function) cơ bản</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 14</td><td><a href="buoi-14-turtle-ve-hinh-bang-code.html">Turtle: Vẽ hình bằng code</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 15</td><td><a href="buoi-15-turtle-va-hoa-van-lap-lai.html">Turtle và hoa văn lặp lại</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 16</td><td><a href="buoi-16-on-tap-giai-doan-1-2-va-mini-project-turtle.html">Ôn tập giai đoạn 1-2 và Mini project Turtle</a></td><td>Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</td></tr><tr><td>Buổi 17</td><td><a href="buoi-17-random-va-tro-choi-may-man.html">Random và trò chơi may mắn</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 18</td><td><a href="buoi-18-game-keo-bua-bao-co-tinh-diem.html">Game Kéo-Búa-Bao có tính điểm</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 19</td><td><a href="buoi-19-dictionary-co-ban.html">Dictionary cơ bản</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 20</td><td><a href="buoi-20-quan-ly-du-lieu-nho-bang-list-va-dictionary.html">Quản lý dữ liệu nhỏ bằng list và dictionary</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 21</td><td><a href="buoi-21-tim-kiem-va-loc-du-lieu-co-ban.html">Tìm kiếm và lọc dữ liệu cơ bản</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 22</td><td><a href="buoi-22-sap-xep-co-ban-trong-python.html">Sắp xếp cơ bản trong Python</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 23</td><td><a href="buoi-23-file-text-co-ban.html">File text cơ bản</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 24</td><td><a href="buoi-24-luu-va-doc-du-lieu-ung-dung-voi-json.html">Lưu và đọc dữ liệu ứng dụng với JSON</a></td><td>Giai đoạn 3 - Game, dữ liệu và file cơ bản</td></tr><tr><td>Buổi 25</td><td><a href="buoi-25-menu-console-va-cau-truc-chuong-trinh.html">Menu console và cấu trúc chương trình</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 26</td><td><a href="buoi-26-mini-app-quan-ly-danh-sach-hoc-tap-to-do-list.html">Mini app quản lý danh sách học tập (To-do List)</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 27</td><td><a href="buoi-27-nang-cap-mini-app-thong-ke-va-sap-xep.html">Nâng cấp mini app - Thống kê và Sắp xếp</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 28</td><td><a href="buoi-28-kiem-tra-du-lieu-nhap-va-sua-loi-try-except.html">Kiểm tra dữ liệu nhập và sửa lỗi (Try-Except)</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 29</td><td><a href="buoi-29-chon-de-tai-va-lap-ke-hoach-san-pham-cuoi-khoa.html">Chọn đề tài và lập kế hoạch sản phẩm cuối khóa</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 30</td><td><a href="buoi-30-xay-dung-san-pham-cuoi-khoa-phan-1-chuc-nang-cot-loi.html">Xây dựng sản phẩm cuối khóa (Phần 1 - Chức năng cốt lõi)</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 31</td><td><a href="buoi-31-xay-dung-san-pham-cuoi-khoa-phan-2-nang-cap-luu-file.html">Xây dựng sản phẩm cuối khóa (Phần 2 - Nâng cấp &amp; Lưu file)</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 32</td><td><a href="buoi-32-demo-va-bao-ve-san-pham.html">Demo và bảo vệ sản phẩm</a></td><td>Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</td></tr></tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>

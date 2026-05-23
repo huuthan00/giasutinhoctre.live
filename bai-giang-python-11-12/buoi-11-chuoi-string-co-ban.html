@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 11 - Chuỗi string cơ bản</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
+      <div class="nav">
+        <a href="../index.html#pathways">Khóa Python</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</span>
+      <h1>Buổi 11: Chuỗi string cơ bản</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh 11-12 tuổi.</div>
+        <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu bài học</h2>
+<ul>
+<li>Hiểu bản chất chuỗi (string) thực ra là một dãy các ký tự xếp liền nhau (Rất giống List).</li>
+<li>Biết đo độ dài chuỗi bằng len() và lấy từng chữ cái ra bằng chỉ số (index).</li>
+<li>Biết thực hiện nối chuỗi (+), lặp chuỗi (*).</li>
+<li>Sử dụng các hàm xử lý chuỗi: lower() (viết thường), upper() (viết hoa), strip() (cắt khoảng trắng).</li>
+<li>Viết chương trình chuẩn hóa tên người dùng.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Chuỗi cũng là một đoàn tàu: Chữ &quot;PYTHON&quot; thực chất là một đoàn tàu gồm 6 toa, toa số 0 chở chữ &#x27;P&#x27;, toa số 1 chở chữ &#x27;Y&#x27;... Giống hệt như List, ta có thể dùng chỉ số [ ] để lấy từng chữ cái ra.</li>
+<li>Tính toán với chữ?</li>
+<li>Phép +: Dùng để dán hai chuỗi lại với nhau (ví dụ: &quot;A&quot; + &quot;B&quot; = &quot;AB&quot;).</li>
+<li>Phép *: Dùng để nhân bản chuỗi lên nhiều lần (ví dụ: &quot;Ha&quot; * 3 = &quot;HaHaHa&quot;).</li>
+<li>Hàm làm đẹp chuỗi: Đôi khi người dùng nhập tên rất lộn xộn (chữ hoa chữ thường lẫn lộn, phím Space bị kẹt). Python có các &quot;thợ trang điểm&quot; cho chuỗi:</li>
+<li>upper(): Biến TẤT CẢ thành CHỮ HOA.</li>
+<li>lower(): Biến tất cả thành chữ thường.</li>
+<li>strip(): Gọt bỏ những dấu cách (space) thừa ở hai đầu của chuỗi.</li>
+</ul>
+<h2>3. Ví dụ minh họa (Gõ code cùng giáo viên)</h2>
+<h3 class="example-title">Ví dụ 1: Lấy chữ cái từ chuỗi</h3>
+<pre><code class="language-python">chu_oi = &quot;HELLO&quot;
+print(&quot;Chữ cái đầu tiên:&quot;, chu_oi[0])
+print(&quot;Chữ cái cuối cùng:&quot;, chu_oi[4])</code></pre>
+<p>Hoạt động y hệt như list. [0] lấy ra &#x27;H&#x27;, [4] lấy ra &#x27;O&#x27;. Độ dài chuỗi là 5.</p>
+<h3 class="example-title">Ví dụ 2: Duyệt qua từng chữ cái</h3>
+<pre><code class="language-python">ten = &quot;BIN&quot;
+for chu_cai in ten:
+print(chu_cai)</code></pre>
+<p>Vòng lặp for cũng chạy được trên chuỗi. Nó sẽ in ra chữ &#x27;B&#x27;, rồi xuống dòng in &#x27;I&#x27;, rồi in &#x27;N&#x27;.</p>
+<h3 class="example-title">Ví dụ 3: Chuẩn hóa dữ liệu đầu vào</h3>
+<pre><code class="language-python">nhap = &quot;   doraemon   &quot;
+chuan_hoa = nhap.strip().upper()
+print(f&quot;Tên đã sửa: &#x27;{chuan_hoa}&#x27;&quot;)</code></pre>
+<p>Có thể móc nối nhiều lệnh với nhau. strip() xóa khoảng trắng thừa 2 đầu, sau đó upper() biến thành chữ HOA: &quot;DORAEMON&quot;.</p>
+<h2>4. Lỗi thường gặp &amp; Cách khắc phục</h2>
+<ul>
+<li>Lỗi: Cố gắng thay đổi 1 ký tự trong chuỗi (TypeError)</li>
+<li>Sai: ten = &quot;Nam&quot; rồi gọi ten[0] = &quot;C&quot; để biến thành &quot;Cam&quot;.</li>
+<li>Giải thích: List có thể thay đồ trong toa tàu, nhưng Chuỗi trong Python thì &quot;Đóng băng&quot; (không thể thay đổi trực tiếp từng chữ). Muốn đổi, phải tạo ra một chuỗi mới hoàn toàn.</li>
+</ul>
+<h2>5. Bài tập thực hành trên lớp</h2>
+<ol>
+<li>Cấp độ 1: Viết chương trình yêu cầu người dùng nhập tên của họ. In ra độ dài của tên đó (số ký tự) bằng hàm len().</li>
+<li>Cấp độ 2 (In bảng hiệu): Yêu cầu nhập một từ. Dùng vòng lặp for duyệt qua chuỗi và in mỗi chữ cái trên 1 dòng kèm theo dấu <code>*</code> (Ví dụ nhập &quot;BO&quot;, in ra &quot;* B *&quot;, xuống dòng &quot;* O *&quot;).</li>
+</ol>
+<pre><code class="language-python">3. Cấp độ 3 (Khắc phục gõ sai): Tạo một biến cau_tra_loi = input(&quot;Bạn thích chơi game không? (Có/Không): &quot;). Người dùng có thể nhập &quot; CÓ &quot;, &quot;có&quot;, &quot;CÓ &quot;. Hãy dùng strip() và lower() để biến câu trả lời về dạng chuẩn &quot;có&quot;. Nếu biến chuẩn hóa bằng &quot;có&quot;, in ra &quot;Giống mình thế!&quot;.</code></pre>
+<h2>6. Bài tập về nhà</h2>
+<ul>
+<li>Thống kê chữ cái A: Yêu cầu người dùng nhập vào một câu văn bất kỳ. Hãy dùng vòng lặp for duyệt qua câu đó và tạo một biến dem = 0 để đếm xem có bao nhiêu chữ &#x27;a&#x27; hoặc &#x27;A&#x27; xuất hiện trong câu. In số lượng đó ra màn hình. (Gợi ý: Dùng <code>lower()</code> trước khi đếm để khỏi phải xét cả &#x27;a&#x27; và &#x27;A&#x27;).</li>
+</ul>
+<h2>7. Học sinh cần tự nói lại được gì?</h2>
+<ul>
+<li>&quot;Chuỗi hoạt động giống như List, cũng có chỉ số bắt đầu từ 0 và dùng được vòng lặp for.&quot;</li>
+<li>&quot;Hàm upper() làm chữ bự lên (Viết hoa), lower() làm chữ nhỏ đi (Viết thường).&quot;</li>
+<li>&quot;Hàm strip() dùng để dọn dẹp các dấu cách thừa ở đầu và đuôi chuỗi.&quot;</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-10-xu-ly-list-so.html">← Bài trước</a>
+      <a href="buoi-12-xu-ly-chuoi-ung-dung.html">Bài sau →</a>
+    </div>
+  </div>
+</body>
+</html>

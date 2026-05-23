@@ -1,0 +1,277 @@
+﻿Giáo án chi tiết - Giai đoạn 1 (Buổi 05 - Buổi 08)
+Nội dung chi tiết cho các buổi học tiếp theo về Câu lệnh điều kiện (If/Else) và Vòng lặp (For/While) thuộc Giai đoạn 1.
+
+
+________________
+Buổi 05: Điều kiện if/else cơ bản
+1. Mục tiêu bài học
+* Hiểu khái niệm điều kiện Đúng/Sai trong lập trình giống như việc đưa ra quyết định ở ngã ba đường [cite: 39].
+* Biết cách sử dụng cấu trúc if, else và dấu hai chấm : [cite: 40].
+* Nắm bắt quy tắc "thụt lề" (indentation) bắt buộc trong Python [cite: 40].
+* Sử dụng thành thạo các toán tử so sánh: == (bằng nhau), != (khác nhau), >, <, >=, <= [cite: 41].
+* Viết được chương trình kiểm tra tuổi, điểm thi đạt/không đạt [cite: 42].
+
+
+2. Lý thuyết chi tiết
+* Ngã ba đường và Quyết định: Bình thường máy tính chạy code thẳng từ trên xuống dưới. Nhưng đôi khi ta muốn máy tính biết "suy nghĩ": Nếu trời mưa thì ở nhà, ngược lại thì đi chơi. Lệnh if (Nếu) và else (Ngược lại) sinh ra để làm việc này.
+* Toán tử so sánh (Cặp kính lúp): Để biết điều kiện đúng hay sai, ta phải so sánh.
+   * Chú ý đặc biệt: Dấu = đứng một mình là để Gán (bỏ đồ vào hộp). Muốn So sánh bằng nhau, ta BẮT BUỘC phải dùng hai dấu bằng == đứng cạnh nhau.
+   * Dấu khác nhau là chấm than và dấu bằng !=.
+* Dấu hai chấm : và Quy tắc thụt lề:
+   * Cuối dòng if hoặc else luôn phải có dấu :. Nó báo hiệu "Sau đây là những việc cần làm".
+   * Thụt lề (Indentation): Các câu lệnh nằm bên trong if phải lùi vào trong 1 khoảng (bằng phím Tab). Python dùng việc thụt lề để biết lệnh nào thuộc về if, lệnh nào nằm ngoài.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Kiểm tra điểm Đậu/Rớt
+	diem = 8
+if diem >= 5:
+   print("Chúc mừng bạn đã Đậu!")
+else:
+   print("Bạn rớt rồi, cố lên nhé!")
+	Vì điểm là 8 (lớn hơn 5), điều kiện là ĐÚNG. Lệnh print bên trong if sẽ chạy, và bỏ qua phần else.
+	Ví dụ 2: Rạp chiếu phim 13+
+	tuoi = int(input("Bạn mấy tuổi? "))
+if tuoi >= 13:
+   print("Mời bạn vào xem phim.")
+else:
+   print("Phim này chỉ dành cho người từ 13 tuổi.")
+	Lấy input, ép thành số rồi so sánh. Nếu nhập 11, điều kiện SAI, sẽ chạy phần else.
+	Ví dụ 3: Tầm quan trọng của thụt lề
+	tien = 10
+if tien > 0:
+   print("Bạn có tiền")
+print("Tạm biệt!")
+	Lệnh in "Tạm biệt" không bị thụt lề, nên nó KHÔNG phụ thuộc vào lệnh if. Dù có tiền hay không, nó vẫn luôn in ra "Tạm biệt".
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: IndentationError: expected an indented block (Lỗi quên thụt lề)
+   * Nguyên nhân: Xuống dòng sau dấu : nhưng lại viết code sát lề trái, không ấn phím Tab.
+   * Cách sửa: Đặt con trỏ chuột ở đầu dòng báo lỗi, ấn phím Tab để lùi vào trong.
+* Lỗi: SyntaxError: invalid syntax do thiếu dấu :
+   * Sai: if tuoi > 18 -> Quên dấu hai chấm ở cuối.
+   * Cách sửa: Thêm dấu hai chấm: if tuoi > 18:
+
+
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Viết chương trình nhập vào số tiền tiêu vặt của em. Nếu số tiền >= 20000, in ra "Đủ tiền mua trà sữa". Ngược lại in ra "Chưa đủ tiền rồi".
+2. Cấp độ 2 (Chẵn hay Lẻ?): Yêu cầu nhập vào một số nguyên. Dùng phép chia dư (% 2) để kiểm tra: Nếu chia dư cho 2 bằng 0 thì in "Đây là số chẵn", ngược lại in "Đây là số lẻ".
+3. Cấp độ 3 (Số âm hay dương?): Viết chương trình yêu cầu nhập một số. Nếu số đó lớn hơn 0, in ra "Số dương". Nếu nhỏ hơn 0, in ra "Số âm". (Chưa cần xét trường hợp bằng 0).
+4. Cấp độ 4 (Sửa lỗi code): Sửa đoạn code bị lỗi sau:
+mat_khau = "12345"
+if mat_khau = "12345"
+print("Mở khóa thành công")
+else
+   print("Sai mật khẩu")
+(Gợi ý: Dòng 2 thiếu dấu `==` và dấu `:`, dòng 3 thiếu thụt lề, dòng 4 thiếu dấu `:`).
+
+
+6. Bài tập về nhà
+   * Hệ thống Đăng Nhập Mini: Cài đặt sẵn một biến mk_dung = "python123". Yêu cầu người dùng nhập mật khẩu vào từ bàn phím. Nếu mật khẩu nhập vào giống hệt mật khẩu đúng, in ra "Đăng nhập thành công, chào mừng sếp!". Ngược lại, in ra "Báo động! Có kẻ đột nhập!".
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Lệnh if/else giúp chương trình biết đưa ra quyết định."
+   * "So sánh bằng nhau phải dùng hai dấu ==, không được dùng một dấu."
+   * "Sau if và else phải có dấu hai chấm : và dòng bên dưới phải thụt lề (bấm Tab)."
+
+
+
+
+________________
+Buổi 06: else-if với elif và điều kiện nhiều nhánh
+1. Mục tiêu bài học
+   * Hiểu khi nào thì dùng thêm elif để tạo ra nhiều nhánh rẽ cho bài toán [cite: 43].
+   * Biết cách sắp xếp các điều kiện theo thứ tự hợp lý (từ lớn đến bé hoặc ngược lại) [cite: 44].
+   * Biết kết hợp nhiều điều kiện cùng lúc bằng and, or, not [cite: 45].
+   * Hiểu tầm quan trọng của việc test các mốc ranh giới (4.9, 5.0, v.v.) [cite: 47].
+   * Viết được chương trình phân loại học lực và menu lựa chọn [cite: 46, 48].
+
+
+2. Lý thuyết chi tiết
+   * elif - Cánh cửa thứ hai: Khi chỉ có 2 lựa chọn, ta dùng if/else. Nhưng nếu có 3, 4 hoặc nhiều lựa chọn hơn (như Xếp loại Giỏi, Khá, Trung bình, Yếu), ta chèn thêm lệnh elif (viết tắt của else-if) vào giữa.
+   * Quy tắc "Từ trên xuống dưới": Máy tính sẽ kiểm tra các cửa (điều kiện) từ trên xuống dưới. Cửa nào đúng trước, nó sẽ chui vào làm việc ở cửa đó, và BỎ QUA tất cả các cửa còn lại bên dưới. Do đó, việc sắp xếp thứ tự các điều kiện là cực kỳ quan trọng.
+   * Từ khóa phép thuật (and, or):
+   * and (VÀ): Bắt buộc CẢ 2 điều kiện phải đúng thì mới được vào. (Ví dụ: Tuổi > 12 and Chiều cao > 140).
+   * or (HOẶC): Chỉ cần 1 trong 2 điều kiện đúng là được vào. (Ví dụ: Có vé or Là khách VIP).
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Phân loại Số (Âm, Dương, 0)
+	so = 0
+if so > 0:
+   print("Số dương")
+elif so < 0:
+   print("Số âm")
+else:
+   print("Đây là số 0")
+	Dùng elif để bắt trường hợp thứ 2 (Số âm). Cuối cùng else sẽ gom trường hợp còn lại duy nhất (chính là số 0).
+	Ví dụ 2: Xếp loại học lực (Lưu ý thứ tự)
+	diem = 8.5
+if diem >= 8.0:
+   print("Học sinh Giỏi")
+elif diem >= 6.5:
+   print("Học sinh Khá")
+else:
+   print("Học sinh Trung Bình")
+	Phải xét mức điểm cao nhất (8.0) đầu tiên. Nếu để >= 6.5 lên đầu, 8.5 sẽ bị xếp nhầm thành loại Khá vì nó thỏa mãn 6.5 trước.
+	Ví dụ 3: Dùng AND kết hợp
+	toan = 9
+van = 8
+if toan >= 8 and van >= 8:
+   print("Được thưởng xe đạp")
+else:
+   print("Cố gắng học đều nhé")
+	Hai môn ĐỀU PHẢI từ 8 trở lên mới được thưởng.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+   * Lỗi sai logic khi xếp hạng: Như ở Ví dụ 2, viết sai thứ tự điều kiện khiến kết quả sai hoàn toàn (máy không báo lỗi đỏ, chỉ ra kết quả sai). Cách khắc phục là luôn phải test thử các ranh giới: Thử nhập 7.9, thử nhập 8.0 xem chương trình in ra gì.
+
+
+5. Bài tập thực hành trên lớp
+   1. Cấp độ 1: Viết chương trình hỏi thời tiết hôm nay ("nắng", "mưa", "âm u"). Nếu nhập "nắng" -> in "Đi đá bóng". Nếu "mưa" -> in "Ở nhà chơi game". Nếu "âm u" -> in "Mang theo ô cho chắc".
+   2. Cấp độ 2 (Phân loại giá vé): Khu vui chơi thu tiền vé như sau: Trẻ em dưới 6 tuổi: Miễn phí. Từ 6 đến dưới 18 tuổi: 50k. Người lớn (từ 18 tuổi trở lên): 100k. Hãy viết code yêu cầu nhập tuổi và in ra giá vé.
+   3. Cấp độ 3 (Menu đồ ăn): In ra màn hình 3 món: "1. Phở", "2. Bún chả", "3. Bánh mỳ". Yêu cầu người dùng gõ số 1, 2 hoặc 3. Dùng if/elif/else để in ra câu "Bạn đã chọn món ..." tương ứng. Nếu gõ sai số, in "Món này không có".
+
+
+6. Bài tập về nhà
+   * Trò chơi oẳn tù tì (Kéo Búa Bao) - Phiên bản rút gọn: Cài sẵn Máy tính ra "Búa" (may = "búa"). Yêu cầu em nhập vào lựa chọn của mình (kéo, búa, hoặc bao). Hãy dùng if/elif/else để phân định thắng, thua, hoặc hòa rồi in kết quả ra màn hình.
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Khi có nhiều hơn 2 lựa chọn, mình chèn thêm lệnh elif vào giữa."
+   * "Lệnh and bắt buộc cả 2 bên đều đúng, lệnh or chỉ cần 1 bên đúng."
+   * "Sắp xếp thứ tự các lệnh if/elif rất quan trọng, phải xếp theo mức độ từ cao xuống thấp (hoặc ngược lại)."
+
+
+
+
+________________
+Buổi 07: Vòng lặp for và lặp biết trước số lần
+1. Mục tiêu bài học
+   * Hiểu sức mạnh của vòng lặp: giúp tự động làm đi làm lại một việc nhiều lần mà không phải copy-paste code [cite: 49].
+   * Biết cách sử dụng vòng lặp for kết hợp với range() [cite: 50].
+   * Hiểu các dạng của range: range(n), range(a, b), range(a, b, step) [cite: 50].
+   * Biết cách dùng vòng lặp để in dãy số, tính tổng và đếm [cite: 51].
+   * Tránh lỗi nhầm lẫn điểm kết thúc của hàm range [cite: 52].
+
+
+2. Lý thuyết chi tiết
+   * Tại sao cần Vòng lặp? Nếu muốn in tên mình 100 lần, việc copy lệnh print() 100 lần là quá mệt mỏi. Vòng lặp (Loop) giống như một đường đua vòng tròn, giúp máy tính chạy tự động bao nhiêu vòng tùy ý ta đặt ra.
+   * Vòng lặp for: Dùng khi ta ĐÃ BIẾT TRƯỚC mình muốn lặp bao nhiêu lần.
+   * Người chỉ đường range(): range trong tiếng Anh nghĩa là "phạm vi". Hàm này tạo ra một danh sách các con số để vòng lặp for đếm.
+   * range(5): Đếm 5 vòng, bắt đầu từ con số 0 (0, 1, 2, 3, 4). Cực kỳ lưu ý: Luôn dừng lại trước điểm kết thúc 1 đơn vị.
+   * range(1, 6): Bắt đầu từ 1, dừng lại ở 5 (1, 2, 3, 4, 5).
+   * range(1, 10, 2): Bắt đầu từ 1, đến dưới 10, nhưng nhảy mỗi lần 2 bước (1, 3, 5, 7, 9).
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Lặp hành động nhiều lần
+	for i in range(3):
+   print("Xin chào!")
+	Vòng lặp chạy 3 lần. Biến i đóng vai trò là "người đếm vòng" (nhận giá trị 0, 1, 2).
+	Ví dụ 2: In dãy số
+	for so in range(1, 6):
+   print("Số hiện tại là:", so)
+	Đếm từ 1 đến 5. Điểm kết thúc trong range là 6 nên nó dừng lại ở 5.
+	Ví dụ 3: Tính tổng các số
+	tong = 0
+for i in range(1, 4):
+   tong = tong + i
+print("Tổng là:", tong)
+	Khởi tạo một chiếc hộp tong = 0. Mỗi vòng lặp, ta lấy tong cũ cộng thêm i (1, rồi 2, rồi 3). Kết quả là 6. Lệnh print nằm ngoài vòng lặp (không thụt lề).
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+   * Lỗi: Quên thụt lề hoặc thụt lề sai chỗ: Nếu lệnh print(tong) ở Ví dụ 3 bị thụt lề ngang hàng với tong = tong + i, chương trình sẽ in ra liên tục kết quả sau mỗi vòng lặp thay vì chỉ in kết quả cuối cùng.
+   * Lỗi: Nhầm điểm cuối của range(): Muốn in từ 1 đến 10, nhưng lại viết range(1, 10) thì nó chỉ in đến 9. Cách sửa: Phải cộng thêm 1 vào điểm cuối: range(1, 11).
+
+
+5. Bài tập thực hành trên lớp
+   1. Cấp độ 1: Dùng vòng lặp for in ra 5 lần câu: "Python thật thú vị!".
+   2. Cấp độ 2 (Đếm số chẵn): In ra tất cả các số chẵn từ 2 đến 10 (Gợi ý: Dùng range(2, 11, 2)).
+   3. Cấp độ 3 (Bảng cửu chương 5): Dùng vòng lặp for với biến i chạy từ 1 đến 10. Ở mỗi vòng lặp, in ra kết quả của phép tính: 5 x i (Ví dụ: in ra "5 x 1 = 5", "5 x 2 = 10"... dùng f-string).
+
+
+6. Bài tập về nhà
+   * Hình vuông bằng dấu sao: Hãy dùng 1 vòng lặp for chạy 5 lần, mỗi lần in ra dòng chữ "*****". Quan sát kết quả trên màn hình, em vừa vẽ được hình gì?
+   * Lợn đất tích kiệm: Tuần 1 em bỏ lợn 10k, tuần 2 bỏ 20k, tuần 3 bỏ 30k... tuần 10 bỏ 100k. Dùng vòng lặp for và biến tong để tính xem sau 10 tuần em có tổng cộng bao nhiêu tiền?
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Vòng lặp for dùng khi mình đã biết trước số lần muốn lặp lại."
+   * "Lệnh range(1, 10) sẽ sinh ra các số từ 1 đến 9, luôn dừng lại TRƯỚC điểm kết thúc 1 đơn vị."
+
+
+
+
+________________
+Buổi 08: while và lặp đến khi đúng điều kiện
+1. Mục tiêu bài học
+   * Hiểu khi nào cần dùng vòng lặp while (khi chưa biết trước số lần lặp) [cite: 54].
+   * Sử dụng vòng lặp để bắt người dùng phải nhập đúng định dạng/đáp án mới cho đi tiếp [cite: 55].
+   * Hiểu "Vòng lặp vô hạn" là gì và cách phòng tránh [cite: 56].
+   * Biết sử dụng lệnh break để chủ động đập vỡ, thoát khỏi vòng lặp [cite: 55].
+   * Hoàn thiện được mini game Đoán số bí mật [cite: 57].
+
+
+2. Lý thuyết chi tiết
+   * while - Vòng lặp chờ đợi: Nếu for là chạy đua quanh sân vận động 5 vòng (biết trước số vòng), thì while là việc em đứng chờ ở trạm xe buýt. "Trong khi (While) xe buýt chưa tới, thì tôi vẫn tiếp tục đứng chờ". Số phút đứng chờ là không biết trước!
+   * Cấu trúc cơ bản: while điều_kiện:. Nếu điều kiện còn ĐÚNG, các lệnh thụt lề bên trong sẽ còn chạy mãi.
+   * Vòng lặp vô hạn (Lỗ đen vũ trụ): Nếu điều kiện của while không bao giờ sai (ví dụ: while 1 < 2:), chương trình sẽ chạy lặp lại mãi mãi không dừng, khiến máy tính bị treo. Để tránh, ta phải có một lệnh thay đổi điều kiện bên trong vòng lặp.
+   * Lệnh break (Búa thoát hiểm): Đôi khi ta muốn đập vỡ vòng lặp ngay lập tức giữa chừng dù điều kiện vẫn còn đúng. Lệnh break sẽ giúp thoát ra khỏi vòng lặp ngay lập tức.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Đếm ngược (Tên lửa cất cánh)
+	dem = 5
+while dem > 0:
+   print(dem)
+   dem = dem - 1
+print("Phóng!")
+	Mỗi vòng lặp, dem bị trừ đi 1. Khi dem về 0, điều kiện 0 > 0 bị SAI, vòng lặp dừng lại.
+	Ví dụ 2: Ép nhập đúng pass (Dùng break)
+	while True:
+   mk = input("Nhập mật khẩu: ")
+   if mk == "123":
+       print("Đúng rồi!")
+       break
+   else:
+       print("Sai, nhập lại!")
+	while True là tạo ra vòng lặp vô hạn. Nếu nhập đúng, lệnh break sẽ được kích hoạt để phá vỡ vòng lặp, cho phép thoát ra.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+   * Lỗi chạy vô hạn không dừng:
+   * Nguyên nhân: Trong Ví dụ 1, nếu em quên viết dòng dem = dem - 1, số dem sẽ mãi mãi là 5. Vòng lặp sẽ in ra số 5 hàng triệu lần.
+   * Cách sửa: Luôn phải nhớ cập nhật/thay đổi biến điều kiện bên trong vòng lặp while. Nếu lỡ chạy vô hạn, ấn tổ hợp phím Ctrl + C ở màn hình console để ép máy tính dừng lại.
+
+
+5. Bài tập thực hành trên lớp
+   1. Cấp độ 1: Sử dụng vòng lặp while để in ra các số chẵn từ 2 đến 10 (Giống bài vòng lặp for, nhưng lần này thử thách dùng while).
+   2. Cấp độ 2 (Hỏi mãi không thôi): Viết chương trình có một while True:. Trong đó hỏi người dùng: "Bạn có mệt không? (co/khong)". Nếu người dùng gõ "co", thì in ra "Nghỉ ngơi thôi" và dùng break để thoát. Nếu gõ "khong" thì lại hỏi tiếp.
+   3. Cấp độ 3 (Mini Game Đoán Số - Version 1): Tạo một biến so_bi_mat = 7. Dùng vòng lặp while cho người dùng nhập một số dự đoán. Nếu nhập sai, in ra "Sai rồi, đoán lại đi!". Nếu nhập bằng 7, in ra "Chúc mừng, bạn đã đoán trúng!" và kết thúc.
+
+
+6. Bài tập về nhà
+   * Mini Game Đoán Số - Version 2: Nâng cấp bài tập Cấp độ 3 trên lớp. Lần này, nếu người dùng nhập số lớn hơn 7, hãy in ra gợi ý "Số bạn đoán quá lớn". Nếu nhập nhỏ hơn 7, in ra "Số bạn đoán quá nhỏ". Giúp người dùng dễ dàng tìm ra kết quả hơn nhé!
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Vòng lặp while dùng khi mình KHÔNG biết trước cần lặp bao nhiêu lần."
+   * "Lệnh break giống như búa thoát hiểm, dùng để phá vỡ vòng lặp và thoát ra ngay lập tức."
+   * "Luôn cẩn thận với vòng lặp vô hạn, phải có cách làm cho điều kiện trở thành SAI hoặc có lệnh break."

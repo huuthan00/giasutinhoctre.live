@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lập Trình Python Tư Duy | GiaSuTHT</title>
+<meta name="description" content="Khóa học Lập Trình Python Tư Duy cho học sinh 11-12 tuổi. Lộ trình 32 buổi, học 1-kèm-1, có mini app và sản phẩm demo cuối khóa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #facc15;
+  --primary-rgb: 250, 204, 21;
+  --secondary: #38bdf8;
+  --accent: #22c55e;
+  --danger: #f97316;
+  --bg: #08111f;
+  --bg-2: #0d1729;
+  --card: rgba(255,255,255,.045);
+  --border: rgba(255,255,255,.1);
+  --text: #f8fafc;
+  --muted: #9fb0c7;
+  --font-head: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --radius: 16px;
+  --transition: .25s ease;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 16% 4%, rgba(56,189,248,.16), transparent 30%),
+    radial-gradient(circle at 92% 14%, rgba(250,204,21,.12), transparent 28%),
+    linear-gradient(180deg, #07101d 0%, #09111f 48%, #070b15 100%);
+  font-family: var(--font-body);
+  line-height: 1.65;
+}
+
+a { color: inherit; text-decoration: none; }
+.container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+section { padding: 74px 0; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,17,31,.86);
+  backdrop-filter: blur(16px);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 62px;
+  gap: 18px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 19px;
+}
+.brand i { color: var(--primary); }
+.brand span { color: var(--secondary); }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+.nav a:hover { color: var(--primary); }
+
+.hero {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 54px;
+  align-items: center;
+  padding: 76px 0 64px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  background: rgba(var(--primary-rgb),.09);
+  border: 1px solid rgba(var(--primary-rgb),.26);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  margin: 22px 0 18px;
+  font-family: var(--font-head);
+  font-size: clamp(38px, 5.7vw, 68px);
+  line-height: 1.02;
+  font-weight: 900;
+}
+.hero h1 span {
+  color: var(--secondary);
+}
+.hero-desc {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 18px;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  color: #06101c;
+  background: linear-gradient(135deg, var(--primary), #f59e0b);
+  box-shadow: 0 16px 36px rgba(var(--primary-rgb),.22);
+}
+.btn-outline {
+  color: var(--text);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.035);
+}
+.btn-outline:hover { border-color: rgba(var(--primary-rgb),.4); }
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 34px;
+}
+.metric {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  padding: 15px;
+}
+.metric strong {
+  display: block;
+  color: var(--primary);
+  font-family: var(--font-head);
+  font-size: 24px;
+  line-height: 1;
+}
+.metric span { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
+
+.python-window {
+  position: relative;
+  border: 1px solid rgba(148,163,184,.24);
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(15,23,42,.94), rgba(3,7,18,.94));
+  box-shadow: 0 28px 90px rgba(0,0,0,.34);
+}
+.window-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 13px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.red { background: #ef4444; }
+.yellow { background: #facc15; }
+.green { background: #22c55e; }
+.file-name { margin-left: 10px; }
+.python-window pre {
+  margin: 0;
+  padding: 26px;
+  overflow-x: auto;
+  color: #dbeafe;
+  font: 15px/1.75 Consolas, 'Courier New', monospace;
+}
+.kw { color: #38bdf8; }
+.str { color: #86efac; }
+.num { color: #fde68a; }
+.comment { color: #94a3b8; }
+.float-card {
+  position: absolute;
+  right: -18px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  background: rgba(15,23,42,.92);
+  box-shadow: 0 18px 38px rgba(0,0,0,.32);
+  padding: 13px 15px;
+  min-width: 162px;
+}
+.float-card strong { display: block; font-family: var(--font-head); }
+.float-card span { color: var(--muted); font-size: 12px; }
+.float-one { top: 88px; }
+.float-two { bottom: 70px; left: -18px; right: auto; }
+.float-card i { color: var(--primary); margin-right: 7px; }
+
+.section-head {
+  text-align: center;
+  max-width: 690px;
+  margin: 0 auto 42px;
+}
+.section-tag {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.12;
+  font-weight: 900;
+}
+.section-desc {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.overview-grid,
+.projects-grid,
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.overview-card,
+.project-card,
+.skill-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 24px;
+}
+.overview-card i,
+.skill-card i {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: #06101c;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  margin-bottom: 16px;
+}
+.overview-card h3,
+.project-card h3,
+.skill-card h3 {
+  font-family: var(--font-head);
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+.overview-card p,
+.project-card p,
+.skill-card p { color: var(--muted); font-size: 14px; }
+
+.profile-box {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 36px;
+  align-items: center;
+  border: 1px solid rgba(56,189,248,.22);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(56,189,248,.09), rgba(250,204,21,.06));
+  padding: 38px;
+}
+.profile-main {
+  text-align: center;
+}
+.avatar {
+  width: 104px;
+  height: 104px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: #06101c;
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+.profile-main h3,
+.profile-content h3 {
+  font-family: var(--font-head);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.profile-main p,
+.profile-content p { color: var(--muted); }
+.profile-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+.profile-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--text);
+}
+.profile-list i { color: var(--accent); margin-top: 5px; }
+
+.phases {
+  display: grid;
+  gap: 30px;
+}
+.phase-card {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255,255,255,.035);
+  overflow: hidden;
+}
+.phase-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid var(--border);
+}
+.phase-num {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: #06101c;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 18px;
+}
+.phase-title { flex: 1; }
+.phase-title h3 {
+  font-family: var(--font-head);
+  font-size: 22px;
+}
+.phase-title p { color: var(--muted); font-size: 14px; }
+.phase-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--primary);
+  border: 1px solid rgba(var(--primary-rgb),.22);
+  background: rgba(var(--primary-rgb),.08);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 800;
+  font-size: 13px;
+}
+.phase-body { padding: 24px 28px 30px; }
+.week-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.week-table th,
+.week-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  text-align: left;
+}
+.week-table th {
+  color: var(--secondary);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.week-table tr:last-child td { border-bottom: 0; }
+.week-badge {
+  display: inline-flex;
+  min-width: 102px;
+  justify-content: center;
+  color: #06101c;
+  background: var(--primary);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 900;
+}
+.week-topic {
+  color: var(--text);
+  font-weight: 900;
+}
+.week-detail,
+.week-output {
+  color: var(--muted);
+  font-size: 14px;
+}
+.week-output i { color: var(--accent); margin-right: 6px; }
+
+.project-card {
+  min-height: 210px;
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+.project-label {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 14px;
+}
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.tag {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.skills-grid { grid-template-columns: repeat(3, 1fr); }
+.skill-card strong {
+  display: block;
+  margin-top: 14px;
+  color: var(--secondary);
+}
+
+.schedule {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(255,255,255,.035);
+  overflow: hidden;
+}
+.schedule table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.schedule td {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.schedule tr:last-child td { border-bottom: 0; }
+.schedule td:first-child {
+  width: 260px;
+  color: var(--text);
+  font-weight: 900;
+}
+.schedule i { color: var(--primary); margin-right: 8px; }
+.schedule td:last-child { color: var(--muted); }
+
+.final-cta {
+  border: 1px solid rgba(var(--primary-rgb),.22);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(56,189,248,.1), rgba(250,204,21,.08));
+  padding: 42px;
+  text-align: center;
+}
+.final-cta h2 {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 4vw, 42px);
+  margin-bottom: 12px;
+}
+.final-cta p {
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 auto 24px;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 14px;
+}
+.footer strong { color: var(--text); }
+.footer a { color: var(--secondary); }
+
+@media (max-width: 980px) {
+  .hero,
+  .profile-box {
+    grid-template-columns: 1fr;
+  }
+  .python-window { max-width: 720px; }
+  .overview-grid,
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .container { width: min(100% - 28px, 1120px); }
+  section { padding: 52px 0; }
+  .topbar-inner,
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .topbar-inner { padding: 14px 0; }
+  .nav { gap: 8px; }
+  .hero { padding: 52px 0 42px; min-height: auto; }
+  .hero-desc { font-size: 16px; }
+  .hero-actions,
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+  .btn { width: 100%; }
+  .float-card { display: none; }
+  .overview-grid,
+  .projects-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-box,
+  .final-cta {
+    padding: 24px;
+  }
+  .phase-head {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  .phase-time { width: 100%; justify-content: center; }
+  .phase-body { padding: 8px 18px 20px; }
+  .week-table thead { display: none; }
+  .week-table tr {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .week-table tr:last-child { border-bottom: 0; }
+  .week-table td {
+    display: block;
+    border-bottom: 0;
+    padding: 6px 0;
+  }
+  .week-badge { min-width: 0; }
+  .schedule table,
+  .schedule tbody,
+  .schedule tr,
+  .schedule td {
+    display: block;
+    width: 100%;
+  }
+  .schedule tr { border-bottom: 1px solid var(--border); }
+  .schedule tr:last-child { border-bottom: 0; }
+  .schedule td {
+    border-bottom: 0;
+    padding: 14px 18px;
+  }
+  .schedule td:first-child { width: 100%; padding-bottom: 4px; }
+}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html"><i class="fa-solid fa-chalkboard-user"></i>GiaSu<span>THT</span></a>
+    <div class="nav">
+      <a href="index.html#pathways">Khóa học</a>
+      <a href="#curriculum">Lộ trình</a>
+      <a href="#projects">Sản phẩm</a>
+      <a href="index.html#register">Đăng ký học thử</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <header class="container hero">
+    <div>
+      <span class="eyebrow"><i class="fa-brands fa-python"></i> Lộ trình cá nhân hóa · Python cho học sinh 11-12 tuổi</span>
+      <h1>Lập Trình Python <span>Tư Duy</span></h1>
+      <p class="hero-desc">Khóa học 1-kèm-1 giúp học sinh hiểu cách máy tính suy nghĩ, tự viết chương trình Python, luyện thói quen chia nhỏ bài toán và hoàn thiện sản phẩm demo cuối khóa.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="index.html#register"><i class="fa-solid fa-paper-plane"></i> Đăng Ký Học Thử Miễn Phí</a>
+        <a class="btn btn-outline" href="#curriculum"><i class="fa-solid fa-route"></i> Xem Lộ Trình 32 Buổi</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric"><strong>32</strong><span>buổi học nền tảng đến sản phẩm</span></div>
+        <div class="metric"><strong>90'</strong><span>mỗi buổi, học trực tiếp 1-kèm-1</span></div>
+        <div class="metric"><strong>4</strong><span>giai đoạn có sản phẩm nhỏ</span></div>
+      </div>
+    </div>
+
+    <div class="python-window" aria-label="Minh họa chương trình Python">
+      <div class="window-head">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="file-name">python_thinking.py</span>
+      </div>
+      <pre><code><span class="comment"># Học sinh tự viết mini quiz</span>
+diem = <span class="num">0</span>
+
+cau_hoi = [
+    (<span class="str">"Python dùng lệnh nào để in?"</span>, <span class="str">"print"</span>),
+    (<span class="str">"Vòng lặp biết trước số lần?"</span>, <span class="str">"for"</span>)
+]
+
+<span class="kw">for</span> cau, dap_an <span class="kw">in</span> cau_hoi:
+    tra_loi = input(cau + <span class="str">" "</span>).lower()
+    <span class="kw">if</span> tra_loi == dap_an:
+        diem += <span class="num">1</span>
+
+print(<span class="str">"Điểm của em:"</span>, diem)</code></pre>
+      <div class="float-card float-one"><strong><i class="fa-solid fa-puzzle-piece"></i>Tư duy từng bước</strong><span>Chia bài toán thành dữ liệu, xử lý, kết quả</span></div>
+      <div class="float-card float-two"><strong><i class="fa-solid fa-gamepad"></i>Sản phẩm demo</strong><span>Quiz app, game nhỏ, sổ tay ghi chú</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Tổng quan khóa học</span>
+        <h2 class="section-title">Học Python Bằng Cách Làm, Không Học Thuộc Cú Pháp</h2>
+        <p class="section-desc">Mỗi buổi học có lý thuyết ngắn gọn, ví dụ code mẫu, thực hành trên lớp và bài tập về nhà để học sinh thật sự tự code được.</p>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <i class="fa-solid fa-code"></i>
+          <h3>Nền tảng Python</h3>
+          <p>Biến, dữ liệu, input, phép tính, điều kiện, vòng lặp, list, string, hàm và dictionary.</p>
+        </div>
+        <div class="overview-card">
+          <i class="fa-solid fa-brain"></i>
+          <h3>Tư duy thuật toán nhỏ</h3>
+          <p>Biết phân tích đề, viết từng bước, kiểm tra dữ liệu và sửa lỗi chương trình.</p>
+        </div>
+        <div class="overview-card">
+          <i class="fa-solid fa-shapes"></i>
+          <h3>Trực quan với Turtle</h3>
+          <p>Vẽ hình, pattern, đồng hồ đơn giản để thấy vòng lặp và tọa độ hoạt động như thế nào.</p>
+        </div>
+        <div class="overview-card">
+          <i class="fa-solid fa-rocket"></i>
+          <h3>Sản phẩm demo</h3>
+          <p>Cuối khóa có mini app hoặc game nhỏ, học sinh demo và giải thích được code của mình.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="profile-box">
+        <div class="profile-main">
+          <div class="avatar"><i class="fa-solid fa-child-reaching"></i></div>
+          <h3>Phù hợp với học sinh 11-12 tuổi</h3>
+          <p>Đã biết sử dụng máy tính cơ bản, có thể gõ phím và muốn chuyển từ chơi/quan sát sang tự tạo chương trình.</p>
+        </div>
+        <div class="profile-content">
+          <h3>Khóa học giải quyết đúng khó khăn của lứa tuổi này</h3>
+          <p>Học sinh 11-12 tuổi thường tò mò nhưng dễ nản nếu lý thuyết quá khô. Vì vậy mỗi khái niệm đều đi kèm tình huống, code mẫu và bài thực hành nhỏ để thấy kết quả ngay.</p>
+          <ul class="profile-list">
+            <li><i class="fa-solid fa-check"></i><span>Không ép học thuật toán nặng, tập trung nền tảng và tư duy xử lý vấn đề.</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Không chỉ chép code, học sinh phải nói lại được chương trình đang làm gì.</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Lộ trình có thể tăng tốc hoặc giảm tốc sau buổi học thử tùy trình độ thật.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="curriculum">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Lộ trình học</span>
+        <h2 class="section-title">Lộ Trình 4 Giai Đoạn · 32 Buổi</h2>
+        <p class="section-desc">Đi từ cú pháp Python đầu tiên đến mini app có dữ liệu, có kiểm tra lỗi và có phần trình bày sản phẩm cuối khóa.</p>
+      </div>
+
+      <div class="phases">
+        <article class="phase-card">
+          <div class="phase-head">
+            <div class="phase-num">01</div>
+            <div class="phase-title">
+              <h3>Làm quen Python và tư duy code</h3>
+              <p>Học cách viết chương trình, nhập xuất dữ liệu, điều kiện và vòng lặp.</p>
+            </div>
+            <span class="phase-time"><i class="fa-solid fa-calendar-days"></i> Buổi 1-8</span>
+          </div>
+          <div class="phase-body">
+            <table class="week-table">
+              <thead><tr><th>Buổi</th><th>Chủ đề</th><th>Nội dung chính</th><th>Đầu ra</th></tr></thead>
+              <tbody>
+                <tr><td><span class="week-badge">Buổi 1</span></td><td><div class="week-topic">Python là gì?</div></td><td><div class="week-detail">Cài môi trường, chạy file đầu tiên, hiểu lệnh `print()` và cách đọc lỗi cơ bản.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Chương trình giới thiệu bản thân</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 2</span></td><td><div class="week-topic">Biến và dữ liệu</div></td><td><div class="week-detail">Số, chuỗi, boolean, đặt tên biến rõ nghĩa, đổi kiểu dữ liệu cơ bản.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Hồ sơ học sinh bằng Python</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 3-4</span></td><td><div class="week-topic">Input và phép tính</div></td><td><div class="week-detail">Nhập dữ liệu từ bàn phím, tính toán, thứ tự ưu tiên, làm tròn và định dạng kết quả.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Máy tính điểm/trung bình</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 5-6</span></td><td><div class="week-topic">Điều kiện if/elif/else</div></td><td><div class="week-detail">So sánh, điều kiện nhiều nhánh, `and`, `or`, kiểm tra mốc ranh giới.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> App phân loại điểm</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 7-8</span></td><td><div class="week-topic">Vòng lặp for và while</div></td><td><div class="week-detail">Lặp biết trước số lần, lặp đến khi đúng điều kiện, tránh vòng lặp vô hạn.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Game đoán số đơn giản</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="phase-card">
+          <div class="phase-head">
+            <div class="phase-num">02</div>
+            <div class="phase-title">
+              <h3>Dữ liệu, chuỗi, danh sách và Turtle</h3>
+              <p>Chuyển từ biến đơn lẻ sang dữ liệu nhiều phần tử và sản phẩm trực quan.</p>
+            </div>
+            <span class="phase-time"><i class="fa-solid fa-calendar-days"></i> Buổi 9-16</span>
+          </div>
+          <div class="phase-body">
+            <table class="week-table">
+              <thead><tr><th>Buổi</th><th>Chủ đề</th><th>Nội dung chính</th><th>Đầu ra</th></tr></thead>
+              <tbody>
+                <tr><td><span class="week-badge">Buổi 9-10</span></td><td><div class="week-topic">List cơ bản và list số</div></td><td><div class="week-detail">Tạo list, truy cập phần tử, thêm/xóa/sửa, tính tổng, tìm min/max, lọc dữ liệu.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Bảng điểm mini</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 11</span></td><td><div class="week-topic">Chuỗi ký tự</div></td><td><div class="week-detail">Cắt chuỗi, đổi chữ hoa/thường, tìm kiếm, đếm ký tự, xử lý tên và câu nhập vào.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Bộ xử lý văn bản nhỏ</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 12-13</span></td><td><div class="week-topic">Hàm và chia nhỏ bài toán</div></td><td><div class="week-detail">Viết hàm, tham số, giá trị trả về, tách chương trình thành nhiều phần dễ hiểu.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Thư viện hàm tiện ích</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 14-15</span></td><td><div class="week-topic">Dictionary và Turtle</div></td><td><div class="week-detail">Lưu dữ liệu theo cặp key-value, vẽ hình bằng tọa độ, vòng lặp và màu sắc.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Tranh Turtle có quy luật</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 16</span></td><td><div class="week-topic">Mini project Turtle</div></td><td><div class="week-detail">Lên ý tưởng, chia bước, viết code và sửa lỗi cho sản phẩm vẽ hình hoàn chỉnh.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Sản phẩm Turtle cá nhân</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="phase-card">
+          <div class="phase-head">
+            <div class="phase-num">03</div>
+            <div class="phase-title">
+              <h3>Game, dữ liệu và file cơ bản</h3>
+              <p>Biết tổ chức chương trình dài hơn, lưu dữ liệu và tạo trải nghiệm tương tác.</p>
+            </div>
+            <span class="phase-time"><i class="fa-solid fa-calendar-days"></i> Buổi 17-24</span>
+          </div>
+          <div class="phase-body">
+            <table class="week-table">
+              <thead><tr><th>Buổi</th><th>Chủ đề</th><th>Nội dung chính</th><th>Đầu ra</th></tr></thead>
+              <tbody>
+                <tr><td><span class="week-badge">Buổi 17-18</span></td><td><div class="week-topic">Random và game text</div></td><td><div class="week-detail">Dùng `random`, tạo câu hỏi, luật chơi, tính điểm, xử lý lượt chơi.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Quiz hoặc game đoán số nâng cấp</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 19-20</span></td><td><div class="week-topic">Menu chương trình</div></td><td><div class="week-detail">Thiết kế menu, vòng lặp chính, tách chức năng thêm/xem/sửa/xóa dữ liệu.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> App quản lý danh sách nhỏ</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 21-22</span></td><td><div class="week-topic">Làm việc với file</div></td><td><div class="week-detail">Ghi file, đọc file, lưu dữ liệu đơn giản, xử lý lỗi khi file chưa tồn tại.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Sổ tay ghi chú lưu được</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 23-24</span></td><td><div class="week-topic">Debug và hoàn thiện</div></td><td><div class="week-detail">Test dữ liệu thường gặp, sửa lỗi logic, làm đẹp output và chuẩn bị sản phẩm nhỏ.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> App console chạy ổn định</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="phase-card">
+          <div class="phase-head">
+            <div class="phase-num">04</div>
+            <div class="phase-title">
+              <h3>Mini app, sản phẩm demo và bảo vệ sản phẩm</h3>
+              <p>Gom kiến thức thành sản phẩm có tính năng rõ ràng và biết trình bày code.</p>
+            </div>
+            <span class="phase-time"><i class="fa-solid fa-calendar-days"></i> Buổi 25-32</span>
+          </div>
+          <div class="phase-body">
+            <table class="week-table">
+              <thead><tr><th>Buổi</th><th>Chủ đề</th><th>Nội dung chính</th><th>Đầu ra</th></tr></thead>
+              <tbody>
+                <tr><td><span class="week-badge">Buổi 25-26</span></td><td><div class="week-topic">Chọn ý tưởng dự án</div></td><td><div class="week-detail">Chọn app phù hợp năng lực: quiz, sổ tay, quản lý điểm, game text hoặc Turtle story.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Bản mô tả tính năng</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 27-29</span></td><td><div class="week-topic">Xây tính năng chính</div></td><td><div class="week-detail">Viết menu, hàm, dữ liệu, kiểm tra input, lưu file nếu cần và test từng chức năng.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Demo bản 1</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 30-31</span></td><td><div class="week-topic">Hoàn thiện sản phẩm</div></td><td><div class="week-detail">Sửa lỗi, làm rõ output, thêm hướng dẫn sử dụng, chuẩn bị dữ liệu mẫu để demo.</div></td><td><div class="week-output"><i class="fa-solid fa-star"></i> Sản phẩm chạy được</div></td></tr>
+                <tr><td><span class="week-badge">Buổi 32</span></td><td><div class="week-topic">Demo và bảo vệ</div></td><td><div class="week-detail">Học sinh trình bày mục tiêu, cách dùng, phần code chính, lỗi đã sửa và hướng phát triển.</div></td><td><div class="week-output"><i class="fa-solid fa-trophy"></i> Sản phẩm demo + phần bảo vệ</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Sản phẩm học viên</span>
+        <h2 class="section-title">4 Sản Phẩm Nhỏ Theo Từng Giai Đoạn</h2>
+        <p class="section-desc">Mục tiêu không phải học thật nhiều lệnh, mà là tự tạo ra chương trình có thể chạy, có thể sửa và có thể giải thích.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-label">Giai đoạn 1</div>
+          <h3>Game Đoán Số</h3>
+          <p>Người chơi nhập số, máy tính gợi ý cao hơn/thấp hơn, chương trình đếm lượt và thông báo thắng.</p>
+          <div class="tag-row"><span class="tag">if/else</span><span class="tag">while</span><span class="tag">random</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-label">Giai đoạn 2</div>
+          <h3>Tranh Turtle Có Quy Luật</h3>
+          <p>Sử dụng vòng lặp, tọa độ, màu sắc và hàm để tạo hình vẽ có cấu trúc rõ ràng.</p>
+          <div class="tag-row"><span class="tag">for</span><span class="tag">function</span><span class="tag">turtle</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-label">Giai đoạn 3</div>
+          <h3>Sổ Tay Ghi Chú</h3>
+          <p>App console có menu, thêm/xem ghi chú, lưu vào file để lần sau mở lại vẫn còn dữ liệu.</p>
+          <div class="tag-row"><span class="tag">list</span><span class="tag">file</span><span class="tag">menu</span></div>
+        </div>
+        <div class="project-card">
+          <div class="project-label">Cuối khóa</div>
+          <h3>Sản Phẩm Demo Cá Nhân</h3>
+          <p>Học sinh chọn đề tài vừa sức, hoàn thiện tính năng chính và tự trình bày trước gia sư/phụ huynh.</p>
+          <div class="tag-row"><span class="tag">demo</span><span class="tag">debug</span><span class="tag">thuyết trình</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Kỹ năng đầu ra</span>
+        <h2 class="section-title">Sau 32 Buổi Học Sinh Sẽ Đạt Được</h2>
+        <p class="section-desc">Đầu ra được đánh giá bằng bài thực hành, sản phẩm demo và khả năng giải thích chương trình bằng lời của học sinh.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class="fa-solid fa-terminal"></i>
+          <h3>Tự viết chương trình Python</h3>
+          <p>Biết tạo file, chạy code, nhập xuất dữ liệu, dùng điều kiện, vòng lặp, list, hàm và dictionary.</p>
+          <strong>Không chỉ copy code mẫu.</strong>
+        </div>
+        <div class="skill-card">
+          <i class="fa-solid fa-bug-slash"></i>
+          <h3>Biết đọc lỗi và sửa lỗi</h3>
+          <p>Nhận diện lỗi cú pháp, lỗi nhập dữ liệu, lỗi vòng lặp, lỗi logic đơn giản và biết test bằng dữ liệu mẫu.</p>
+          <strong>Học cách tự kiểm tra.</strong>
+        </div>
+        <div class="skill-card">
+          <i class="fa-solid fa-comments"></i>
+          <h3>Biết trình bày sản phẩm</h3>
+          <p>Giải thích được chương trình làm gì, dữ liệu đi qua các bước nào và phần nào do học sinh tự hoàn thiện.</p>
+          <strong>Có sản phẩm demo cuối khóa.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Lịch học & hình thức</span>
+        <h2 class="section-title">Tổ Chức Buổi Học</h2>
+      </div>
+      <div class="schedule">
+        <table>
+          <tbody>
+            <tr><td><i class="fa-solid fa-calendar-week"></i>Số buổi/tuần</td><td>Khuyến nghị 2 buổi/tuần, có thể điều chỉnh 3-4 buổi/tuần</td></tr>
+            <tr><td><i class="fa-solid fa-clock"></i>Thời lượng</td><td>90 phút / buổi, gồm lý thuyết, ví dụ code mẫu và thực hành trực tiếp</td></tr>
+            <tr><td><i class="fa-solid fa-house-laptop"></i>Hình thức</td><td>Online qua Google Meet hoặc Offline tại nhà gia sư</td></tr>
+            <tr><td><i class="fa-solid fa-toolbox"></i>Công cụ</td><td>Python 3, VS Code hoặc Thonny, tài liệu bài giảng HTML theo từng buổi</td></tr>
+            <tr><td><i class="fa-solid fa-headset"></i>Hỗ trợ ngoài giờ</td><td>Giải đáp miễn phí</td></tr>
+            <tr><td><i class="fa-solid fa-chart-line"></i>Đánh giá tiến độ</td><td>Mini project sau mỗi giai đoạn và báo cáo tiến độ cho phụ huynh khi cần</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="final-cta">
+        <h2>Bắt Đầu Học Python Tư Duy Với 1 Buổi Học Thử</h2>
+        <p>Gia sư sẽ đánh giá trình độ hiện tại, thói quen sử dụng máy tính và khả năng tư duy từng bước để điều chỉnh tốc độ học phù hợp.</p>
+        <a class="btn btn-primary" href="index.html#register"><i class="fa-solid fa-paper-plane"></i> Đăng Ký Học Thử Miễn Phí</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 <strong>GiaSuTHT</strong> · Gia Sư Tin Học Trẻ · <a href="https://giasutinhoctre.live">giasutinhoctre.live</a></p>
+  </div>
+</footer>
+</body>
+</html>

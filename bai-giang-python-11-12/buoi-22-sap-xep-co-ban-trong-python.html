@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 22 - Sắp xếp cơ bản trong Python</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
+      <div class="nav">
+        <a href="../index.html#pathways">Khóa Python</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 3 - Game, dữ liệu và file cơ bản</span>
+      <h1>Buổi 22: Sắp xếp cơ bản trong Python</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh 11-12 tuổi.</div>
+        <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu bài học</h2>
+<ul>
+<li>Biết sức mạnh của hàm .sort() và sorted() trong việc tự động sắp xếp danh sách.</li>
+<li>Hiểu cách sắp xếp ngược từ Lớn xuống Bé bằng tham số reverse=True.</li>
+<li>Nắm được kỹ năng nâng cao: Sử dụng một &quot;Hàm chỉ điểm&quot; để sắp xếp một danh sách các Dictionary phức tạp.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Hô khẩu lệnh Tập Hợp: Trong giờ thể dục, thầy giáo hô &quot;Tập hợp từ thấp đến cao!&quot;. Trong Python, em chỉ cần gắn lệnh .sort() vào sau một danh sách, máy tính sẽ tự động xếp số từ bé đến lớn, hoặc xếp chữ theo thứ tự từ điển A, B, C.</li>
+<li>Xếp ngược (Từ cao xuống thấp): Mặc định .sort() là tăng dần. Nếu muốn lấy top những bạn điểm cao nhất, ta phải dặn Python &quot;Hãy xếp ngược lại&quot; bằng cách ghi thêm reverse=True vào trong ngoặc: .sort(reverse=True).</li>
+<li>Hàm &quot;Chỉ điểm&quot; (Sắp xếp Dictionary): Nếu em có một List chứa tủ đồ (Học sinh có Tên và Điểm). Python sẽ bối rối hỏi: &quot;Tôi phải xếp theo Tên hay theo Điểm?&quot;. Em phải viết một hàm nhỏ (def) để &quot;chỉ&quot; cho Python biết: &quot;Hãy nhìn vào Điểm mà xếp!&quot;. Lệnh sẽ là .sort(key=ham_chi_diem).</li>
+</ul>
+<h2>3. Ví dụ minh họa (Gõ code cùng giáo viên)</h2>
+<h3 class="example-title">Ví dụ 1: Xếp số và chữ đơn giản</h3>
+<pre><code class="language-python">so = [5, 1, 9, 3]
+so.sort()
+print(so)</code></pre>
+<p>In ra [1, 3, 5, 9]. Nhanh hơn chớp mắt.</p>
+<h3 class="example-title">Ví dụ 2: Xếp điểm từ cao xuống thấp</h3>
+<pre><code class="language-python">diem = [7, 10, 5, 8]
+diem.sort(reverse=True)
+print(&quot;Bảng vàng:&quot;, diem)
+reverse=True đảo ngược quy luật, xếp điểm 10 lên đầu tiên.</code></pre>
+<h3 class="example-title">Ví dụ 3: Xếp lớp học theo điểm</h3>
+<pre><code class="language-python">lop = [{&quot;ten&quot;:&quot;An&quot;, &quot;diem&quot;:7}, {&quot;ten&quot;:&quot;Bo&quot;, &quot;diem&quot;:10}]
+def lay_diem(hs):
+return hs[&quot;diem&quot;]</code></pre>
+<pre><code class="language-python">lop.sort(key=lay_diem, reverse=True)
+print(lop)</code></pre>
+<p>Hàm lay_diem chui vào tủ đồ, móc đúng cái nhãn &quot;diem&quot; ra cho Python xem để nó làm cơ sở sắp xếp.</p>
+<h2>4. Lỗi thường gặp &amp; Cách khắc phục</h2>
+<ul>
+<li>Lỗi: Gọi sort() nhưng lại lưu vào biến mới: danh_sach_moi = so.sort(). In ra bị chữ None.</li>
+<li>Cách sửa: Lệnh .sort() tự động sửa trực tiếp trên danh sách cũ. Không được gán nó vào biến mới bằng dấu =.</li>
+</ul>
+<h2>5. Bài tập thực hành trên lớp</h2>
+<pre><code class="language-python">1. Cấp độ 1: Tạo list nhiet_do = [32, 28, 35, 20, 39]. Dùng lệnh để sắp xếp từ lạnh nhất đến nóng nhất và in ra.</code></pre>
+<ol>
+<li>Cấp độ 2: Vẫn list trên, hãy sắp xếp từ nóng nhất đến lạnh nhất để tìm ra ngày nóng kỷ lục.</li>
+<li>Cấp độ 3 (Bảng xếp hạng Game): Tạo list gồm 3 Dict mô tả người chơi: &quot;ten&quot; và &quot;cup&quot;. Viết hàm lay_cup(nguoi_choi), dùng nó để sắp xếp danh sách theo số cúp từ cao xuống thấp.</li>
+</ol>
+<h2>6. Bài tập về nhà</h2>
+<ul>
+<li>Quản lý Hàng Tồn Kho: Cửa hàng của em có list các mặt hàng dạng Dictionary (Gồm &quot;ten&quot; và &quot;so_luong&quot;).</li>
+<li>1. In ra danh sách hàng hóa từ ít đến nhiều (để biết món nào sắp hết mà nhập thêm).</li>
+<li>2. Viết thêm tính năng: Ai có số lượng nhỏ hơn 5 thì in kèm dòng chữ &quot;CẢNH BÁO SẮP HẾT!&quot;.</li>
+</ul>
+<h2>7. Học sinh cần tự nói lại được gì?</h2>
+<ul>
+<li>&quot;Lệnh .sort() giúp tự động sắp xếp danh sách theo chiều tăng dần.&quot;</li>
+<li>&quot;Tham số reverse=True giống như lệnh quay đầu, giúp xếp từ lớn xuống bé.&quot;</li>
+<li>&quot;Để xếp các Dictionary phức tạp, phải viết một hàm nhỏ để &#x27;chỉ điểm&#x27; cho Python biết xếp theo thuộc tính nào.&quot;</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-21-tim-kiem-va-loc-du-lieu-co-ban.html">← Bài trước</a>
+      <a href="buoi-23-file-text-co-ban.html">Bài sau →</a>
+    </div>
+  </div>
+</body>
+</html>

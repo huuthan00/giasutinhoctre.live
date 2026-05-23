@@ -1,0 +1,285 @@
+﻿Giáo án chi tiết - Giai đoạn 1: Làm quen Python và Tư duy Code
+Tài liệu này tổng hợp toàn bộ giáo án chi tiết từ Buổi 01 đến Buổi 04 thuộc Giai đoạn 1, được thiết kế chuyên biệt cho học sinh lứa tuổi 11-12.
+
+
+Buổi 01: Python là gì và chương trình đầu tiên
+1. Mục tiêu bài học
+* Hiểu bản chất của lập trình: dùng ngôn ngữ Python để ra lệnh cho máy tính làm việc.
+* Phân biệt rõ ràng 3 vai trò: Lập trình viên, Chương trình và Máy tính.
+* Biết cách mở môi trường lập trình (IDE), viết code và chạy thử một file .py.
+* Thành thạo cấu trúc lệnh print(): cách in chữ, in số, in phép tính và in nhiều giá trị cùng lúc.
+* Nhận diện được các lỗi sai cú pháp cơ bản và tự tin sửa lỗi.
+
+
+2. Lý thuyết chi tiết
+* Lập trình là gì? Hãy tưởng tượng máy tính của em là một chú robot siêu khỏe, tính toán siêu nhanh nhưng lại... không biết tự làm gì cả. Chú robot này cần một "bản hướng dẫn" cực kỳ chi tiết. Việc chúng ta viết ra bản hướng dẫn đó được gọi là Lập trình.
+* Tại sao chúng ta học Python? Python là một ngôn ngữ lập trình rất thân thiện. Các câu lệnh của nó được thiết kế giống như tiếng Anh cơ bản, không rườm rà phức tạp, giúp các em tập trung vào việc rèn luyện "tư duy" thay vì phải nhớ quá nhiều ký hiệu khó.
+* Ba vai trò quan trọng cần nhớ:
+   * Lập trình viên (Chính là các em): Người suy nghĩ và viết ra các câu lệnh.
+   * Chương trình (Code): Là danh sách các câu lệnh (bản hướng dẫn) mà em vừa viết.
+   * Máy tính: Là cỗ máy ngoan ngoãn đọc code của em từ trên xuống dưới và làm theo y hệt.
+* Lệnh print() - Chiếc loa của máy tính:
+   * Trong tiếng Anh, "print" nghĩa là "in". Trong Python, nó dùng để hiển thị thông tin ra màn hình để con người đọc được.
+   * Cấu trúc cơ bản: Bắt buộc phải có chữ print (viết thường) và cặp dấu ngoặc tròn ().
+   * Quy tắc quan trọng:
+      * Khi in CHỮ (Văn bản): Bắt buộc phải bọc chữ trong cặp dấu ngoặc kép " " hoặc ngoặc đơn ' '. Ví dụ: print("Xin chào"). Lý do: Dấu ngoặc kép báo cho máy tính biết "đây chỉ là chữ để hiển thị, không phải là một câu lệnh phức tạp nào cả".
+      * Khi in SỐ: Không cần dấu ngoặc kép. Máy tính tự hiểu đó là số. Ví dụ: print(100).
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Câu chào đầu tiên (In chữ)
+	print("Chào các bạn nhỏ!")
+	Lệnh in ra dòng chữ Chào các bạn nhỏ!. Chữ được đặt gọn gàng trong cặp ngoặc kép.
+	Ví dụ 2: In số (Không cần ngoặc kép)
+	print(2024)
+	Vì 2024 là một con số, Python sẽ tự nhận diện được mà không cần dấu ngoặc kép.
+	Ví dụ 3: Sự khác biệt kì diệu của phép tính
+	print(10 + 5)
+print("10 + 5")
+	- Dòng trên in ra: 15 (Python tự cộng hai số lại rồi mới in).
+- Dòng dưới in ra: 10 + 5 (Có ngoặc kép, Python coi nó như một đoạn chữ bình thường, không tính toán gì cả).
+	Ví dụ 4: In nhiều thứ cùng lúc
+	print("Năm nay mình", 11, "tuổi")
+	Sử dụng dấu phẩy , để ngăn cách. Python sẽ tự động in chúng ra và ghép lại, ở giữa có thêm một dấu cách. Kết quả: Năm nay mình 11 tuổi.
+	Ví dụ 5: Dùng print để vẽ hình
+	print("  * ")
+print(" *** ")
+print("*****")
+	Máy tính chạy từ trên xuống dưới, in từng dòng một. Kết quả chúng ta được hình một cái cây hoặc mũi tên nhỏ.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: SyntaxError: invalid syntax (Lỗi cú pháp do quên ngoặc kép)
+   * Sai: print(Xin chào) -> Python tưởng "Xin chào" là một câu lệnh lạ.
+   * Cách sửa: Thêm ngoặc kép vào 2 đầu: print("Xin chào").
+* Lỗi: SyntaxError: unexpected EOF while parsing (Lỗi quên đóng ngoặc)
+   * Sai: print("Hello" -> Máy tính đợi mãi không thấy dấu đóng ngoặc tròn.
+   * Cách sửa: Luôn kiểm tra xem đã đóng đủ ngoặc () chưa.
+* Lỗi: NameError: name 'Print' is not defined (Lỗi viết hoa sai lệnh)
+   * Sai: Print("Hi") hoặc PRINT("Hi").
+   * Cách sửa: Lập trình rất chặt chẽ, lệnh print phải viết thường toàn bộ.
+
+
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1 (Khởi động): Viết chương trình chỉ dùng 1 lệnh print() để in ra tên gọi ở nhà (nickname) của em.
+2. Cấp độ 2 (Ghép thông tin): Dùng 3 lệnh print() để in ra 3 dòng: Tên, Lớp, và Môn học em yêu thích nhất.
+3. Cấp độ 3 (Nhà toán học nhí): Hãy dùng print() để nhờ Python tính giúp kết quả của hai phép tính sau và in ra màn hình: 250 + 400 và 1000 - 350.
+4. Cấp độ 4 (Thám tử bắt bọ - Debug): Giáo viên cung cấp đoạn code bị lỗi. Học sinh tìm và sửa lại cho chạy được:
+Print("Tên mình là Bo")
+print(Năm nay mình 11 tuổi)
+print("Mình thích ăn kem"
+
+5. Cấp độ 5 (Họa sĩ tài ba): Sử dụng các ký tự trên bàn phím và lệnh print() để vẽ hình một chú mèo đơn giản như sau:
+ /\_/\
+( o.o )
+> ^ <
+
+
+
+6. Bài tập về nhà
+   * Bài 1 (Hồ sơ bản thân): Em hãy viết một chương trình gồm ít nhất 5 dòng giới thiệu về bản thân. Yêu cầu: Có sử dụng dấu phẩy , để ghép chữ và số trên cùng một dòng (ví dụ: print("Gia đình em có", 4, "người")).
+   * Bài 2 (Xây nhà): Em hãy dùng nhiều lệnh print() liên tiếp để vẽ một ngôi nhà có mái ngói (dùng ký tự /, \, -) và cửa sổ ra màn hình.
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Lập trình là viết kịch bản hướng dẫn cho máy tính làm việc."
+   * "Lệnh print() dùng để in kết quả ra màn hình."
+   * "Khi in văn bản bắt buộc phải có dấu ngoặc kép, khi in số hoặc cần máy tính tính toán thì không dùng ngoặc kép."
+
+
+Buổi 02: Biến và dữ liệu trong Python
+1. Mục tiêu bài học
+   * Hiểu khái niệm "Biến" (Variable) là một chiếc hộp để lưu trữ dữ liệu trong chương trình.
+   * Biết cách tạo biến, đặt tên biến chuẩn xác và gán giá trị bằng dấu =.
+   * Phân biệt được 4 kiểu dữ liệu cơ bản: Chuỗi (String), Số nguyên (Integer), Số thực (Float), Đúng/Sai (Boolean).
+   * Biết dùng hàm type() để nhờ Python kiểm tra kiểu dữ liệu của một chiếc hộp.
+   * Hiểu được lỗi cộng chữ với số và cách khắc phục.
+
+
+2. Lý thuyết chi tiết
+   * Biến (Variable) là gì? Em hãy tưởng tượng biến giống như một "chiếc hộp" có dán nhãn. Chiếc hộp này dùng để đựng đồ vật (dữ liệu), và cái nhãn dán chính là tên của biến. Khi cần lấy đồ vật ra dùng, ta chỉ cần gọi tên trên nhãn dán.
+   * Dấu Bằng = Kì Diệu: Trong Toán học, dấu = nghĩa là hai bên bằng nhau. Nhưng trong Python, dấu = mang ý nghĩa là "Gán" (Bỏ đồ vào hộp). Câu lệnh tuoi = 11 nghĩa là: "Lấy con số 11 bỏ vào chiếc hộp có dán nhãn là tuoi".
+   * Quy tắc dán nhãn (Đặt tên biến):
+   * Không được có dấu cách (sai: ten cua minh, đúng: ten_cua_minh).
+   * Không được bắt đầu bằng số (sai: 1thang, đúng: thang1).
+   * Nên viết chữ thường, không dấu để code chuyên nghiệp hơn.
+   * 4 Loại đồ vật (Kiểu dữ liệu) cơ bản:
+   * String (str): Kiểu Chuỗi. Giống như sách vở, chứa chữ cái. Luôn phải bọc trong dấu ngoặc kép "".
+   * Integer (int): Số nguyên (số đếm không có phần thập phân: 1, 5, -10, 100).
+   * Float (float): Số thực (số có phần thập phân: 3.14, 5.5). Python dùng dấu chấm thay cho dấu phẩy.
+   * Boolean (bool): Kiểu Đúng/Sai (Chỉ có 2 giá trị là True hoặc False).
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Tạo chiếc hộp và lấy đồ ra
+	ten = "Doraemon"
+tuoi = 10
+print(ten)
+print(tuoi)
+	Lệnh print(ten) không in ra chữ "ten" mà in ra đồ vật bên trong chiếc hộp đó, tức là Doraemon.
+	Ví dụ 2: Thay đồ vật trong hộp
+	diem = 8
+print("Điểm cũ:", diem)
+diem = 10
+print("Điểm mới:", diem)
+	Một chiếc hộp chỉ chứa được 1 đồ vật tại một thời điểm. Nếu bỏ đồ mới (10) vào, đồ cũ (8) sẽ biến mất.
+	Ví dụ 3: Máy soi kiểu dữ liệu type()
+	chieu_cao = 1.45
+print(type(chieu_cao))
+	Hàm type() sẽ soi vào hộp chieu_cao và báo lại kết quả là số thực (float).
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+   * Lỗi: NameError: name 'Tuoi' is not defined (Lỗi gọi sai tên biến)
+   * Sai: Tạo biến tuoi = 11 nhưng lại gọi print(Tuoi) (chữ T viết hoa).
+   * Cách sửa: Nhớ gọi đúng chính xác tên nhãn dán, Python phân biệt chữ hoa và chữ thường.
+   * Lỗi: TypeError: can only concatenate str (not "int") to str
+   * Sai: print("Mình " + 11 + " tuổi"). Python không cho phép lấy Chữ cộng (+) với Số một cách trực tiếp.
+   * Cách sửa: Dùng dấu phẩy , thay vì dấu +: print("Mình", 11, "tuổi").
+
+
+5. Bài tập thực hành trên lớp
+   1. Cấp độ 1: Tạo 2 biến là mon_hoc và diem_so. Gán giá trị tùy thích và in chúng ra màn hình.
+   2. Cấp độ 2 (Hồ sơ Game): Tạo các biến để lưu thông tin của một nhân vật Game em thích: Tên nhân vật (chữ), Cấp độ (số nguyên), Máu (số thực), Đang sống hay đã "bay màu" (boolean). Sau đó in toàn bộ thông tin đó ra màn hình.
+   3. Cấp độ 3 (Bắt bọ): Đoạn code sau bị lỗi, em hãy chỉ ra chỗ sai và sửa lại:
+ten cua ban = "Pikachu"
+level = 50
+print("Tên pokemon là:", ten_cua_ban)
+
+
+
+6. Bài tập về nhà
+      * Bài tập "Cửa hàng của em": Hãy tạo các biến để lưu thông tin về một món hàng em muốn bán (Ví dụ: tên món hàng, giá tiền, số lượng còn lại trong kho, cân nặng). Dùng lệnh print() để giới thiệu món hàng đó thật hấp dẫn nhé!
+
+
+7. Học sinh cần tự nói lại được gì?
+      * "Biến giống như một chiếc hộp có tên, dùng để đựng dữ liệu."
+      * "Dấu = dùng để gán (bỏ đồ vào hộp), không phải để so sánh bằng nhau."
+      * "Có 4 loại dữ liệu chính là: Chuỗi (chữ), Số nguyên (int), Số thực (float) và Boolean (Đúng/Sai)."
+
+
+Buổi 03: Nhập dữ liệu với input()
+1. Mục tiêu bài học
+      * Biết sử dụng input() như một chiếc micro để nhận thông tin từ bàn phím người dùng.
+      * Hiểu được nguyên lý: Mọi thứ nhập từ input() đều được Python coi là Chuỗi (chữ) kể cả khi nhập số.
+      * Biết cách "Ép kiểu" (Chuyển đổi kiểu dữ liệu) bằng int() và float() để tính toán.
+      * Nắm vững công cụ ghép chuỗi siêu tốc: f-string.
+
+
+2. Lý thuyết chi tiết
+      * Hàm input() - Lắng nghe người dùng: Hàm này sinh ra để chương trình có thể giao tiếp, biết hỏi và chờ người dùng gõ câu trả lời vào bàn phím. Câu hỏi sẽ được đặt trong ngoặc kép của input().
+      * Nguyên lý chiếc mặt nạ (Kiểu dữ liệu của input): Dù em gõ số 10 vào bàn phím, hàm input() vẫn biến nó thành chuỗi chữ "10". Vì thế, chúng ta không thể mang nó đi làm toán cộng trừ nhân chia ngay được.
+      * Ép kiểu - Lột mặt nạ: Để biến chuỗi "10" trở về đúng bản chất là số nguyên 10, ta dùng phép thuật ép kiểu int(). Nếu muốn biến thành số thực, ta dùng float().
+      * f-string (Format String) - Ma thuật ghép chữ: Ta đặt chữ f trước dấu ngoặc kép, rồi thả các "chiếc hộp" (biến) vào trong cặp ngoặc nhọn {} để nhúng trực tiếp giá trị vào câu nói.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Hỏi tên (Dữ liệu chữ)
+	ten = input("Cậu tên là gì? ")
+print("Chào cậu,", ten)
+	Máy tính in câu hỏi, dừng lại chờ người dùng gõ. Gõ xong nhấn Enter, câu trả lời sẽ được cất vào hộp ten.
+	Ví dụ 2: Ép kiểu để làm toán
+	tuoi_chuoi = input("Cậu bao nhiêu tuổi? ")
+tuoi_so = int(tuoi_chuoi)
+print("Sang năm cậu sẽ", tuoi_so + 1, "tuổi!")
+	Lấy dữ liệu (dạng chữ) -> Dùng int() biến thành số -> Lưu vào hộp mới để cộng thêm 1.
+	Ví dụ 3: Phép thuật f-string
+	ten = "Nobita"
+diem = 0
+print(f"Hôm nay {ten} bị {diem} điểm toán.")
+	Chữ f báo hiệu: "Bên trong chữ này, chỗ nào có ngoặc {} thì hãy mở hộp biến ra để lấy đồ vật".
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+      * Lỗi: ValueError: invalid literal for int()
+      * Nguyên nhân: Chương trình chờ nhập số (do có ép kiểu int()) nhưng người dùng lại gõ chữ hoặc gõ số thập phân.
+      * Cách sửa: Khi chạy chương trình, phải nhập đúng định dạng số nguyên.
+      * Lỗi: Quên chữ f ở f-string
+      * Sai: print("Tên mình là {ten}") -> Sẽ in ra y hệt dòng chữ "Tên mình là {ten}".
+      * Cách sửa: Nhớ đặt chữ f ngay trước dấu ngoặc kép.
+
+
+5. Bài tập thực hành trên lớp
+      1. Cấp độ 1: Viết chương trình hỏi tên bạn thân nhất của em, sau đó in ra câu: "A, mình cũng biết bạn {tên_bạn} đó!" (Dùng f-string).
+      2. Cấp độ 2 (Máy tính mini): Yêu cầu người dùng nhập vào một số bất kỳ (nhớ ép kiểu), sau đó chương trình sẽ in ra số đó nhân với 10 bằng bao nhiêu.
+      3. Cấp độ 3 (Khảo sát thông tin): Viết một chương trình lần lượt hỏi: Tên, Tuổi, và Chiều cao (theo mét, ví dụ 1.5). In ra một câu tổng hợp sử dụng f-string. Chú ý: Chiều cao là số thực nên phải ép kiểu bằng float().
+
+
+6. Bài tập về nhà
+      * Máy tính tiền siêu mini: Cửa hàng tạp hóa đang có chương trình: Ai mua bim bim cũng được giảm 500 đồng. Em hãy viết một chương trình hỏi người dùng giá gói bim bim, số lượng muốn mua, sau đó tính và in ra tổng số tiền phải trả sau khi giảm giá.
+
+
+7. Học sinh cần tự nói lại được gì?
+      * "Hàm input() dùng để lấy thông tin do mình gõ từ bàn phím."
+      * "Tất cả mọi thứ gõ từ bàn phím vào đều bị biến thành chữ (Chuỗi)."
+      * "Muốn làm toán, mình phải ép kiểu bằng cách bọc int() hoặc float() ra ngoài."
+
+
+Buổi 04: Phép tính số học và biểu thức
+1. Mục tiêu bài học
+      * Thành thạo các phép toán cơ bản: +, -, *, /, ** (Lũy thừa).
+      * Hiểu và phân biệt rõ ràng 3 phép chia trong Python: Chia thường /, Chia lấy phần nguyên //, Chia lấy phần dư %.
+      * Hiểu quy tắc "Nhân chia trước, cộng trừ sau" và cách dùng dấu ngoặc () để ưu tiên tính trước.
+      * Biết cách tạo các "biến trung gian" để làm cho bài toán dễ hiểu hơn thay vì viết một dòng code quá dài.
+
+
+2. Lý thuyết chi tiết
+      * Máy tính là chiếc máy tính bỏ túi siêu cấp: Ngoài cộng, trừ, Python dùng dấu sao * để Nhân và gạch chéo / để Chia. Dấu ** được dùng cho phép Lũy thừa (ví dụ 2 mũ 3 thì viết là 2 ** 3).
+      * Bí mật của 3 phép chia:
+      * Chia thường /: Giống hệt toán học, luôn ra số thập phân. (Ví dụ: 10 / 3 = 3.333...)
+      * Chia lấy nguyên // (Phép chia chia kẹo): Chia đồ vật nguyên vẹn không cắt rời. Ví dụ: Có 10 cái kẹo chia cho 3 bạn, mỗi bạn được nhiều nhất 3 cái nguyên vẹn. Vậy 10 // 3 = 3.
+      * Chia lấy dư % (Phần thừa lại): Tìm phần còn thừa sau phép chia nguyên. Ví dụ: Chia xong 10 cái kẹo cho 3 bạn, mỗi bạn 3 cái, vậy trên tay mình còn thừa 1 cái. Vậy 10 % 3 = 1.
+      * Thứ tự tính toán: Nhân chia làm trước, cộng trừ làm sau. Nếu muốn phép cộng/trừ làm trước, hãy đặt nó vào trong dấu ngoặc tròn ().
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Phép chia thường và chia nguyên
+	print("Chia thường 7 / 2 =", 7 / 2)
+print("Chia nguyên 7 // 2 =", 7 // 2)
+	Chia thường ra 3.5. Nhưng chia nguyên (không được chặt đôi đồ vật) thì mỗi phần được 3.
+	Ví dụ 2: Phép chia lấy dư
+	kẹo = 14
+ban = 4
+du = kẹo % ban
+print(f"Mỗi bạn nhận được {kẹo // ban} kẹo, thừa lại {du} kẹo")
+	Phép % rất hữu ích để giải bài toán chia đồ vật, hoặc kiểm tra số chẵn số lẻ (số chia dư cho 2 bằng 0 là số chẵn).
+	Ví dụ 3: Tầm quan trọng của dấu ngoặc
+	toan = 8
+van = 9
+tb_dung = (toan + van) / 2
+print(tb_dung)
+	Code đúng sẽ cộng tổng trước nhờ dấu ngoặc rồi mới chia 2 để ra điểm trung bình chính xác.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+      * Lỗi: ZeroDivisionError: division by zero (Lỗi chia cho 0)
+      * Nguyên nhân: Em cố gắng chia một số cho số 0, đây là phép toán không hợp lệ.
+      * Cách sửa: Kiểm tra lại công thức toán, đảm bảo số chia không bao giờ bằng 0.
+
+
+5. Bài tập thực hành trên lớp
+      1. Cấp độ 1: Viết chương trình yêu cầu nhập 1 số nguyên. In ra bình phương (mũ 2) của số đó.
+      2. Cấp độ 2 (Hỏi giờ): Viết chương trình nhập vào số phút (ví dụ 130). Dùng phép // và % để đổi thành dạng: "... giờ ... phút".
+      3. Cấp độ 3 (Kế toán lớp): Nhập vào số lượng vở cần mua, nhập vào đơn giá 1 quyển. Tính tổng số tiền phải trả và số tiền trung bình mỗi học sinh phải đóng nếu chia đều cho 40 bạn.
+
+
+6. Bài tập về nhà
+      * Bài toán "Chú Heo Đất": Một tờ tiền mệnh giá 50.000, nếu muốn đổi hoàn toàn ra các tờ mệnh giá 3.000 đồng để đút lợn (heo đất), thì em sẽ đổi được tối đa bao nhiêu tờ 3.000 đồng? Và người đổi tiền sẽ trả lại cho em bao nhiêu tiền thừa? Hãy viết chương trình Python để tính toán bài toán này.
+
+
+7. Học sinh cần tự nói lại được gì?
+      * "Phép // dùng để chia lấy phần nguyên."
+      * "Phép % dùng để tìm phần dư còn thừa ra sau khi chia."
+      * "Khi muốn cộng/trừ trước nhân/chia, mình bắt buộc phải bọc chúng trong ngoặc tròn ()."

@@ -1,0 +1,270 @@
+﻿Giáo án chi tiết - Giai đoạn 2 (Buổi 09 - Buổi 12)
+GIAI ĐOẠN 2 - DỮ LIỆU, CHUỖI, DANH SÁCH VÀ TURTLE. Nội dung chi tiết cho các buổi học từ 09 đến 12.
+
+
+________________
+Buổi 09: List cơ bản
+1. Mục tiêu bài học
+* Hiểu `list` (danh sách) dùng để lưu nhiều dữ liệu bên trong một biến duy nhất.
+* Biết cách tạo list và truy cập các phần tử bằng chỉ số (index).
+* Nắm vững quy tắc quan trọng: Chỉ số trong lập trình luôn bắt đầu từ 0.
+* Sử dụng thành thạo các lệnh: len() (đo độ dài), append() (thêm vào cuối), remove() (xóa phần tử).
+* Biết cách duyệt qua list bằng vòng lặp for.
+
+
+2. Lý thuyết chi tiết
+* List là một đoàn tàu: Thay vì dùng 5 chiếc hộp (biến) để đựng tên 5 người bạn, ta có thể dùng một `list`. Hãy tưởng tượng `list` là một đoàn tàu, mỗi phần tử là một toa tàu chở một món đồ.
+* Chỉ số (Index) - Số thứ tự toa tàu: Để lấy đồ ở một toa cụ thể, ta cần biết số của toa đó. Đặc biệt chú ý: Toa tàu đầu tiên luôn đánh số là 0, không phải 1. Toa thứ hai là 1, toa thứ ba là 2...
+* Các công cụ bảo dưỡng tàu:
+   * append(): Móc thêm một toa mới vào cuối đoàn tàu.
+   * remove(): Tìm và tháo bỏ một toa tàu chở món đồ cụ thể.
+   * len(): Đếm xem đoàn tàu hiện tại đang có tổng cộng bao nhiêu toa.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Tạo list và truy cập
+	balo = ["Sách", "Bút", "Kẹo", "Nước"]
+print("Món đồ đầu tiên:", balo[0])
+print("Món đồ thứ ba:", balo[2])
+	Dùng ngoặc vuông [] để tạo list. balo[0] sẽ lấy ra "Sách". balo[2] lấy ra "Kẹo".
+	Ví dụ 2: Thêm và Xóa đồ vật
+	game = ["Minecraft", "Roblox"]
+game.append("Lien Quan")
+game.remove("Minecraft")
+print(game)
+	append thêm "Lien Quan" vào cuối. remove tìm chữ "Minecraft" và xóa đi. Kết quả in ra: ['Roblox', 'Lien Quan'].
+	Ví dụ 3: Đi dạo qua từng toa tàu
+	mon_hoc = ["Toán", "Văn", "Anh"]
+for mon in mon_hoc:
+   print("Hôm nay có môn:", mon)
+	Vòng lặp for sẽ tự động đi vào từng phần tử trong list và gán vào biến mon để in ra màn hình. Rất tiện lợi!
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: IndexError: list index out of range (Lỗi trượt khỏi đoàn tàu)
+   * Nguyên nhân: Tàu chỉ có 3 toa (chỉ số 0, 1, 2) nhưng em lại đòi lấy đồ ở toa số 3 (balo[3]) hoặc toa số 10.
+   * Cách sửa: Luôn nhớ chỉ số lớn nhất chỉ bằng len(list) - 1. Kiểm tra lại số lượng phần tử trước khi truy cập.
+
+
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Tạo một list chứa tên 4 loại trái cây em thích. In ra loại trái cây ở vị trí số 0 và vị trí số 3.
+2. Cấp độ 2 (Hành trang du lịch): Tạo một list hanh_trang rỗng ([]). Dùng append() để thêm 3 món đồ vào list. Dùng len() để in ra câu: "Bạn đã mang theo ... món đồ".
+3. Cấp độ 3 (Điểm danh): Cho list lop_hoc = ["An", "Bình", "Châu", "Dương"]. Dùng vòng lặp for in ra thông báo: "Bạn [tên] có mặt!". Nếu thấy bạn "Bình", hãy dùng remove() xóa bạn đó đi (giả sử Bình chuyển trường) và in lại danh sách.
+
+
+6. Bài tập về nhà
+* Quản lý nhiệm vụ (To-do list): Viết chương trình có một list chứa sẵn 3 việc cần làm (ví dụ: "Học bài", "Quét nhà", "Nấu cơm"). Yêu cầu người dùng nhập thêm 1 việc mới từ bàn phím và thêm vào list. Sau đó dùng vòng lặp in ra danh sách các việc kèm theo số thứ tự (Gợi ý: có thể tạo biến đếm bên ngoài vòng lặp để in số 1, 2, 3, 4...).
+
+
+7. Học sinh cần tự nói lại được gì?
+* "List dùng để gom nhiều dữ liệu lại thành một nhóm."
+* "Chỉ số của List luôn bắt đầu đếm từ số 0."
+* "Lệnh append() dùng để nhét thêm đồ vào cuối danh sách."
+
+
+
+
+________________
+Buổi 10: Xử lý list số
+1. Mục tiêu bài học
+* Biết cách nhập nhiều số và đưa vào list (thông qua vòng lặp).
+* Sử dụng các hàm có sẵn để xử lý số: sum() (tính tổng), max() (lớn nhất), min() (nhỏ nhất).
+* Biết cách tính trung bình cộng của một list số.
+* Biết cách đếm các phần tử thỏa mãn điều kiện (số chẵn, số lẻ, số lớn hơn một mốc).
+* Tránh lỗi chia cho 0 khi list rỗng.
+
+
+2. Lý thuyết chi tiết
+* Danh sách toàn số: List không chỉ chứa chữ mà còn chứa số (ví dụ: danh sách điểm kiểm tra, danh sách tiền tiết kiệm). Khi list toàn là số, Python cung cấp cho ta những "phép thuật" tính toán siêu nhanh mà không cần viết vòng lặp dài dòng.
+* Bộ 3 phép thuật:
+   * sum(list): Tính tổng tất cả các số trong list.
+   * max(list): Tìm ra con số khổng lồ nhất (lớn nhất).
+   * min(list): Tìm ra con số bé hạt tiêu nhất (nhỏ nhất).
+* Tính trung bình: Trong toán học, trung bình cộng = Tổng các số / Số lượng các số. Trong Python, ta kết hợp: sum(list) / len(list). Cần dùng lệnh `if` kiểm tra len(list) > 0 trước khi chia để tránh lỗi chia cho 0.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Tìm Max, Min và Tổng
+	diem = [7, 9, 5, 10, 8]
+print("Tổng điểm:", sum(diem))
+print("Điểm cao nhất:", max(diem))
+print("Điểm thấp nhất:", min(diem))
+	Các hàm sum, max, min giúp tính toán trong nháy mắt mà không cần viết vòng lặp for phức tạp.
+	Ví dụ 2: Tính điểm trung bình an toàn
+	diem = [8, 9, 7]
+if len(diem) > 0:
+   tb = sum(diem) / len(diem)
+   print("Trung bình:", tb)
+else:
+   print("Danh sách rỗng!")
+	Luôn kiểm tra len(diem) > 0. Nếu list rỗng [] mà đem chia cho len() (tức là chia cho 0) thì chương trình sẽ bị sập.
+	Ví dụ 3: Đếm số lượng điểm Giỏi (>= 8)
+	diem = [7, 9, 5, 10, 8]
+dem_gioi = 0
+for d in diem:
+   if d >= 8:
+       dem_gioi = dem_gioi + 1
+print("Số bạn học giỏi là:", dem_gioi)
+	Kết hợp vòng lặp for và lệnh if để duyệt qua từng số, nếu thỏa mãn điều kiện thì tăng biến đếm lên 1.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: ZeroDivisionError khi tính trung bình:
+   * Nguyên nhân: Xảy ra khi dùng công thức sum(list) / len(list) nhưng list lại chưa có dữ liệu nào (rỗng).
+   * Cách sửa: Bọc công thức tính toán vào trong lệnh if len(list) > 0: như Ví dụ 2.
+
+
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Tạo list gồm các số: [15, 20, 5, 40, 10]. In ra màn hình số lớn nhất và số nhỏ nhất.
+2. Cấp độ 2 (Thủ quỹ lớp): Em thu tiền quỹ của 5 bạn, lưu vào list (ví dụ: [10, 20, 10, 50, 10] ngàn đồng). Hãy tính và in ra: Tổng số tiền thu được, và số tiền đóng trung bình của mỗi bạn.
+3. Cấp độ 3 (Lọc số chẵn): Cho list so_ngau_nhien = [1, 4, 7, 10, 13, 16]. Viết vòng lặp duyệt qua list, dùng phép chia lấy dư % 2 để kiểm tra và chỉ in ra các số chẵn.
+
+
+6. Bài tập về nhà
+* Phân tích điểm thi: Hãy tạo một list chứa điểm kiểm tra của 6 môn học của em (số thực từ 0 đến 10). Viết chương trình:
+1. In ra điểm cao nhất để khoe bố mẹ.
+2. In ra điểm thấp nhất để nhắc nhở bản thân.
+3. Tính điểm trung bình 6 môn.
+4. Dùng vòng lặp đếm xem có bao nhiêu môn em được điểm tuyệt đối (10 điểm).
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Muốn tìm số lớn nhất/nhỏ nhất trong list, mình dùng hàm max() và min()."
+   * "Tính điểm trung bình bằng cách lấy sum(list) chia cho len(list)."
+   * "Phải cẩn thận với lỗi chia cho 0 khi list không có phần tử nào."
+
+
+
+
+________________
+Buổi 11: Chuỗi string cơ bản
+1. Mục tiêu bài học
+   * Hiểu bản chất chuỗi (string) thực ra là một dãy các ký tự xếp liền nhau (Rất giống List).
+   * Biết đo độ dài chuỗi bằng len() và lấy từng chữ cái ra bằng chỉ số (index).
+   * Biết thực hiện nối chuỗi (+), lặp chuỗi (*).
+   * Sử dụng các hàm xử lý chuỗi: lower() (viết thường), upper() (viết hoa), strip() (cắt khoảng trắng).
+   * Viết chương trình chuẩn hóa tên người dùng.
+
+
+2. Lý thuyết chi tiết
+   * Chuỗi cũng là một đoàn tàu: Chữ "PYTHON" thực chất là một đoàn tàu gồm 6 toa, toa số 0 chở chữ 'P', toa số 1 chở chữ 'Y'... Giống hệt như List, ta có thể dùng chỉ số [ ] để lấy từng chữ cái ra.
+   * Tính toán với chữ?
+   * Phép +: Dùng để dán hai chuỗi lại với nhau (ví dụ: "A" + "B" = "AB").
+   * Phép *: Dùng để nhân bản chuỗi lên nhiều lần (ví dụ: "Ha" * 3 = "HaHaHa").
+   * Hàm làm đẹp chuỗi: Đôi khi người dùng nhập tên rất lộn xộn (chữ hoa chữ thường lẫn lộn, phím Space bị kẹt). Python có các "thợ trang điểm" cho chuỗi:
+   * upper(): Biến TẤT CẢ thành CHỮ HOA.
+   * lower(): Biến tất cả thành chữ thường.
+   * strip(): Gọt bỏ những dấu cách (space) thừa ở hai đầu của chuỗi.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Lấy chữ cái từ chuỗi
+	chu_oi = "HELLO"
+print("Chữ cái đầu tiên:", chu_oi[0])
+print("Chữ cái cuối cùng:", chu_oi[4])
+	Hoạt động y hệt như list. [0] lấy ra 'H', [4] lấy ra 'O'. Độ dài chuỗi là 5.
+	Ví dụ 2: Duyệt qua từng chữ cái
+	ten = "BIN"
+for chu_cai in ten:
+   print(chu_cai)
+	Vòng lặp for cũng chạy được trên chuỗi. Nó sẽ in ra chữ 'B', rồi xuống dòng in 'I', rồi in 'N'.
+	Ví dụ 3: Chuẩn hóa dữ liệu đầu vào
+	nhap = "   doraemon   "
+chuan_hoa = nhap.strip().upper()
+print(f"Tên đã sửa: '{chuan_hoa}'")
+	Có thể móc nối nhiều lệnh với nhau. strip() xóa khoảng trắng thừa 2 đầu, sau đó upper() biến thành chữ HOA: "DORAEMON".
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+   * Lỗi: Cố gắng thay đổi 1 ký tự trong chuỗi (TypeError)
+   * Sai: ten = "Nam" rồi gọi ten[0] = "C" để biến thành "Cam".
+   * Giải thích: List có thể thay đồ trong toa tàu, nhưng Chuỗi trong Python thì "Đóng băng" (không thể thay đổi trực tiếp từng chữ). Muốn đổi, phải tạo ra một chuỗi mới hoàn toàn.
+
+
+5. Bài tập thực hành trên lớp
+   1. Cấp độ 1: Viết chương trình yêu cầu người dùng nhập tên của họ. In ra độ dài của tên đó (số ký tự) bằng hàm len().
+   2. Cấp độ 2 (In bảng hiệu): Yêu cầu nhập một từ. Dùng vòng lặp for duyệt qua chuỗi và in mỗi chữ cái trên 1 dòng kèm theo dấu `*` (Ví dụ nhập "BO", in ra "* B *", xuống dòng "* O *").
+   3. Cấp độ 3 (Khắc phục gõ sai): Tạo một biến cau_tra_loi = input("Bạn thích chơi game không? (Có/Không): "). Người dùng có thể nhập " CÓ ", "có", "CÓ ". Hãy dùng strip() và lower() để biến câu trả lời về dạng chuẩn "có". Nếu biến chuẩn hóa bằng "có", in ra "Giống mình thế!".
+
+
+6. Bài tập về nhà
+   * Thống kê chữ cái A: Yêu cầu người dùng nhập vào một câu văn bất kỳ. Hãy dùng vòng lặp for duyệt qua câu đó và tạo một biến dem = 0 để đếm xem có bao nhiêu chữ 'a' hoặc 'A' xuất hiện trong câu. In số lượng đó ra màn hình. (Gợi ý: Dùng `lower()` trước khi đếm để khỏi phải xét cả 'a' và 'A').
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Chuỗi hoạt động giống như List, cũng có chỉ số bắt đầu từ 0 và dùng được vòng lặp for."
+   * "Hàm upper() làm chữ bự lên (Viết hoa), lower() làm chữ nhỏ đi (Viết thường)."
+   * "Hàm strip() dùng để dọn dẹp các dấu cách thừa ở đầu và đuôi chuỗi."
+
+
+
+
+________________
+Buổi 12: Xử lý chuỗi ứng dụng
+1. Mục tiêu bài học
+   * Biết sử dụng từ khóa in để kiểm tra một chuỗi nhỏ có nằm trong chuỗi lớn hay không.
+   * Sử dụng các hàm nâng cao: count() (đếm số lần xuất hiện), replace() (thay thế chữ), split() (cắt chuỗi thành List).
+   * Biết cách đếm số từ trong một câu.
+   * Ứng dụng chuỗi để tạo tính năng kiểm tra mật khẩu mạnh/yếu đơn giản.
+
+
+2. Lý thuyết chi tiết
+   * Từ khóa in - Máy quét tìm kiếm: Thay vì phải dùng vòng lặp chạy qua từng chữ cái để tìm kiếm, Python cho ta từ khóa in. Câu lệnh "A" in "Bảng Chữ Cái" sẽ trả về True (Có) hoặc False (Không).
+   * Các công cụ biên tập văn bản:
+   * count(): Đếm xem một từ xuất hiện bao nhiêu lần. Ví dụ: đếm từ "không" trong câu.
+   * replace(): Thay thế từ này bằng từ khác. Rất hữu ích để làm bộ lọc từ ngữ (ví dụ che đi các từ bậy bạ bằng dấu ***).
+   * split(): (Cực kỳ quan trọng) Hàm này lấy cây kéo, cắt chuỗi tại các dấu cách (space) và bỏ các mảnh vỡ vào một List. Đây là cách nhanh nhất để chia một câu dài thành danh sách các từ.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Tìm kiếm chuỗi con
+	mon_an = "Cơm sườn chả"
+if "sườn" in mon_an:
+   print("Món này có sườn!")
+	Lệnh in kiểm tra nhanh chữ "sườn" có nằm bên trong biến mon_an không. Kết quả là True.
+	Ví dụ 2: Thay thế và Đếm
+	cau = "mèo con thích mèo lớn"
+print("Số lần xuất hiện từ mèo:", cau.count("mèo"))
+cau_moi = cau.replace("mèo", "chó")
+print(cau_moi)
+	count ra kết quả 2. replace sẽ đổi TẤT CẢ chữ "mèo" thành "chó". Kết quả in ra "chó con thích chó lớn".
+	Ví dụ 3: Cắt chuỗi thành List
+	cau = "Hôm nay trời đẹp"
+danh_sach_tu = cau.split()
+print(danh_sach_tu)
+print("Số từ trong câu:", len(danh_sach_tu))
+	split() nhắm vào các khoảng trắng và cắt ra thành List: ['Hôm', 'nay', 'trời', 'đẹp']. Sau đó dùng len() đếm số lượng phần tử (4 từ).
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+   * Lỗi: Không lưu lại kết quả sau khi `replace` hoặc `lower`
+   * Sai: cau = "A B C", gọi cau.replace("A", "X"), rồi in print(cau). Kết quả vẫn ra "A B C".
+   * Cách sửa: Các hàm của chuỗi không làm thay đổi chuỗi gốc, mà nó tạo ra chuỗi mới. Phải gán lại: cau = cau.replace("A", "X").
+
+
+5. Bài tập thực hành trên lớp
+   1. Cấp độ 1: Nhập vào một đoạn văn bản. Dùng count() đếm xem có bao nhiêu dấu chấm . trong đoạn văn (tương đương đếm số câu).
+   2. Cấp độ 2 (Kiểm duyệt ngôn từ): Viết chương trình yêu cầu người dùng chat một câu. Nếu trong câu có chứa từ "ngu", hãy dùng replace() đổi nó thành "***" rồi in câu chat ra màn hình.
+   3. Cấp độ 3 (Kiểm tra mật khẩu): Yêu cầu nhập một mật khẩu. Điều kiện mật khẩu an toàn: Phải có độ dài từ 8 ký tự trở lên (dùng `len()`) VÀ phải chứa ký tự "@" (dùng `in`). Dùng if/else để in ra "Mật khẩu an toàn" hoặc "Mật khẩu quá yếu".
+
+
+6. Bài tập về nhà
+   * Trò chơi đoán chữ (Mini Hangman): Tạo một biến bí mật tu_khoa = "python". Yêu cầu người chơi nhập vào 1 chữ cái. Kiểm tra xem chữ cái đó có nằm trong tu_khoa hay không (dùng lệnh `in`). Nếu có in ra "Chính xác, có chữ ... trong từ khóa". Nếu không in ra "Sai rồi!". (Nâng cấp thêm bằng cách bọc trong vòng lặp while cho đoán đến khi nào đoán trúng 1 chữ thì thôi).
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Từ khóa in dùng để kiểm tra sự tồn tại (tìm xem có không)."
+   * "Hàm replace() dùng để thay thế chữ."
+   * "Hàm split() cực kỳ quan trọng, nó cắt một câu dài ra thành một List chứa các từ."

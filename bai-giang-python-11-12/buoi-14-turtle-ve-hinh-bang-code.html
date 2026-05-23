@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 14 - Turtle: Vẽ hình bằng code</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
+      <div class="nav">
+        <a href="../index.html#pathways">Khóa Python</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</span>
+      <h1>Buổi 14: Turtle: Vẽ hình bằng code</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh 11-12 tuổi.</div>
+        <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu bài học</h2>
+<ul>
+<li>Hiểu Turtle là thư viện giúp biến các dòng code khô khan thành hình ảnh động trực quan.</li>
+<li>Biết cách triệu hồi &quot;chú Rùa&quot; và các lệnh di chuyển cơ bản: forward, backward, left, right.</li>
+<li>Biết cách thay đổi màu sắc (color), độ dày bút (pensize) và tốc độ vẽ (speed).</li>
+<li>Áp dụng vòng lặp for để vẽ hình vuông, tam giác đều, lục giác đều một cách ngắn gọn.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Turtle là gì? Em hãy tưởng tượng có một chú rùa máy tính cầm một cây bút màu đi dạo trên màn hình. Mỗi lệnh của em chính là một hướng dẫn đi đường. Rùa đi đến đâu, vết mực in ra đến đó tạo thành hình vẽ.</li>
+<li>4 Lệnh di chuyển thần thánh:</li>
+<li>forward(d) hoặc fd(d): Tiến tới trước d bước (pixels).</li>
+<li>backward(d) hoặc bk(d): Đi lùi lại d bước.</li>
+<li>right(goc) hoặc rt(goc): Xoay mặt qua PHẢI một góc (tính bằng độ, ví dụ 90 độ là góc vuông).</li>
+<li>left(goc) hoặc lt(goc): Xoay mặt qua TRÁI một góc.</li>
+<li>Sức mạnh của vòng lặp trong hình học: Để vẽ hình vuông, thay vì viết 8 dòng code (tiến - xoay - tiến - xoay...), ta chỉ cần dùng vòng lặp for i in range(4): chứa 2 lệnh: tiến và xoay 90 độ! Quy tắc tính góc xoay cho các đa giác đều là: Góc xoay = 360 / số cạnh.</li>
+</ul>
+<h2>3. Ví dụ minh họa (Gõ code cùng giáo viên)</h2>
+<h3 class="example-title">Ví dụ 1: Triệu hồi rùa và vẽ góc vuông</h3>
+<pre><code class="language-python">import turtle
+rua = turtle.Turtle()
+rua.forward(100)
+rua.left(90)
+rua.forward(100)
+turtle.done()
+import turtle là phép thuật gọi rùa ra. turtle.done() giữ màn hình không bị tắt vụt đi sau khi vẽ xong. Mặc định rùa hướng mặt về bên phải màn hình.</code></pre>
+<h3 class="example-title">Ví dụ 2: Trang bị bút màu và tốc độ</h3>
+<pre><code class="language-python">import turtle
+rua = turtle.Turtle()
+rua.pensize(5)        # Bút to
+rua.color(&quot;blue&quot;)     # Màu xanh dương
+rua.speed(1)          # Chạy chậm (1-10, 0 là nhanh nhất)
+rua.forward(150)
+turtle.done()</code></pre>
+<p>Có thể trang trí cho nét vẽ sinh động hơn bằng các thuộc tính của bút vẽ.</p>
+<h3 class="example-title">Ví dụ 3: Vẽ hình vuông bằng vòng lặp</h3>
+<pre><code class="language-python">import turtle
+rua = turtle.Turtle()
+for i in range(4):
+rua.forward(100)
+rua.right(90)
+turtle.done()</code></pre>
+<p>Vòng lặp chạy 4 vòng, mỗi vòng rùa đi thẳng rồi xoay phải một góc vuông. Khép kín lại đúng 1 hình vuông.</p>
+<h2>4. Lỗi thường gặp &amp; Cách khắc phục</h2>
+<ul>
+<li>Lỗi: Vẽ xong cái màn hình tắt vụt mất tiêu!</li>
+<li>Nguyên nhân: Quên viết lệnh turtle.done() ở DÒNG CUỐI CÙNG của chương trình.</li>
+<li>Lỗi: Góc xoay sai khiến hình bị méo.</li>
+<li>Nguyên nhân: Muốn vẽ tam giác đều nhưng lại cho rùa xoay left(60). Rùa của chúng ta đi thẳng, xoay trái 60 độ tức là góc bên trong tam giác thành 120 độ -&gt; Vẽ ra hình méo.</li>
+<li>Cách sửa: Nhớ công thức thần thánh: Góc rùa cần xoay = 360 chia cho số cạnh. (Tam giác: 360/3 = 120 độ).</li>
+</ul>
+<h2>5. Bài tập thực hành trên lớp</h2>
+<ol>
+<li>Cấp độ 1: Vẽ một hình chữ nhật màu đỏ (chiều dài 150, chiều rộng 80) bằng cách không dùng vòng lặp (gõ thủ công từng lệnh tiến và xoay).</li>
+<li>Cấp độ 2 (Vòng lặp đa giác): Dùng vòng lặp for để vẽ một hình Tam giác đều (3 cạnh, góc xoay 120 độ). Đổi nét bút thật to.</li>
+<li>Cấp độ 3 (Lục giác đều): Dùng vòng lặp for vẽ một hình lục giác (6 cạnh). Tự tính góc xoay (360 / 6). Đổi màu bút thành màu xanh lá (&quot;green&quot;).</li>
+</ol>
+<h2>6. Bài tập về nhà</h2>
+<ul>
+<li>Vẽ ngôi nhà cơ bản: Kết hợp vẽ một hình vuông làm thân nhà (màu tùy ý) và một hình tam giác nằm chồng lên trên để làm mái nhà. Gợi ý: Hãy vẽ nháp trên giấy trước để tính toán xem rùa đang đứng ở góc nào và hướng mặt về đâu nhé!</li>
+</ul>
+<h2>7. Học sinh cần tự nói lại được gì?</h2>
+<ul>
+<li>&quot;Rùa Turtle vẽ hình bằng cách làm theo lệnh tiến, lùi và xoay hướng.&quot;</li>
+<li>&quot;Dùng vòng lặp for giúp vẽ các hình khối lặp lại một cách cực kỳ ngắn gọn.&quot;</li>
+<li>&quot;Công thức tính góc xoay để rùa khép kín vòng là: 360 độ / số cạnh.&quot;</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-13-ham-function-co-ban.html">← Bài trước</a>
+      <a href="buoi-15-turtle-va-hoa-van-lap-lai.html">Bài sau →</a>
+    </div>
+  </div>
+</body>
+</html>

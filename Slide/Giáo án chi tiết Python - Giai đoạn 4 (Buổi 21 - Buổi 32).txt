@@ -1,0 +1,515 @@
+﻿Giáo án chi tiết - Giai đoạn 4: Quản lý dữ liệu, File và Xây dựng Ứng dụng
+Giai đoạn này tập trung vào các thao tác xử lý dữ liệu thực tế và quy trình làm dự án phần mềm.
+
+
+Buổi 21: Tìm kiếm và lọc dữ liệu cơ bản
+1. Mục tiêu bài học
+* Hiểu cách áp dụng vòng lặp for và câu lệnh if để quét qua một danh sách và tìm ra thông tin cần thiết.
+* Nắm được sự khác biệt giữa "Tìm kiếm một phần tử" (chỉ lấy 1 kết quả) và "Lọc dữ liệu" (lấy ra một danh sách các kết quả).
+* Ôn tập lại kiến thức: Một List có thể chứa nhiều Dictionary bên trong, tạo thành cấu trúc để quản lý danh sách rất mạnh.
+2. Lý thuyết chi tiết
+* Chiếc máy quét (Scanner): Giả sử em có một danh sách 1000 học sinh. Em không thể dùng mắt đọc từng dòng để tìm bạn "An". Em sẽ dùng vòng lặp for làm "động cơ" chạy qua từng bạn, và lệnh if làm "mắt thần" kiểm tra xem tên bạn đó có phải là "An" hay không.
+* Kỹ thuật Cờ hiệu (Flag): Khi tìm kiếm, ta thường tạo một biến tim_thay = False ở ngoài. Nếu máy quét tìm thấy, ta cắm cờ tim_thay = True và dùng lệnh break (búa thoát hiểm) để đập vỡ vòng lặp, vì đã tìm thấy rồi thì không cần tìm thêm nữa.
+* Chiếc rổ Lọc dữ liệu: Khi muốn tìm "Tất cả các bạn được 10 điểm", ta tạo một chiếc rổ rỗng (một List mới: danh_sach_gioi = []). Cứ mỗi lần if thấy một bạn thỏa mãn, ta dùng append() để ném bạn đó vào rổ.
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Ví dụ 1: Tìm đúng 1 người
+	lop = [{"ten": "An", "diem": 9}, {"ten": "Bo", "diem": 5}]
+for hs in lop:
+   if hs["ten"] == "Bo":
+       print("Tìm thấy Bo:", hs["diem"], "điểm")
+       break
+	Vòng lặp duyệt qua từng tủ đồ. Lệnh if kiểm tra nhãn "ten". Dùng break để tiết kiệm sức cho máy tính khi đã tìm ra.
+	Ví dụ 2: Lọc danh sách giỏi
+	lop = [{"ten": "An", "diem": 9}, {"ten": "Bo", "diem": 5}, {"ten": "Cún", "diem": 10}]
+hs_gioi = []
+for hs in lop:
+   if hs["diem"] >= 8:
+       hs_gioi.append(hs)
+print("Các bạn giỏi:", hs_gioi)
+	Tạo rổ hs_gioi rỗng. Gặp ai điểm >= 8 thì nạp vào. Cuối cùng in cả cái rổ ra.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: Gọi sai tên nhãn (KeyError) dẫn đến chương trình bị sập khi tìm kiếm.
+* Cách sửa: Luôn đảm bảo tên Nhãn (Key) viết đúng chính tả (ví dụ: "diem" thay vì "điểm" hoặc "Diem"). Khác với List dùng số 0,1 để gọi, Dict dùng tên Nhãn để gọi đồ.
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Cho một List chứa các số [10, 5, 20, 8, 30]. Viết code lọc ra các số lớn hơn 10 và cho vào List mới.
+2. Cấp độ 2 (Tìm Game): Tạo List chứa 3 Dictionary mô tả 3 tựa game (Tên, Giá tiền). Hỏi người dùng nhập tên game muốn tìm, nếu có in ra giá tiền, nếu không có in ra "Không tìm thấy".
+3. Cấp độ 3 (Khuyến mãi): Dùng lại List game ở trên, lọc ra và in lên màn hình tên những game có giá dưới 50.000 vnđ.
+6. Bài tập về nhà
+* Cửa hàng Thú cưng: Lập một danh sách (List) gồm ít nhất 4 thú cưng. Mỗi thú cưng (Dictionary) có các thuộc tính: "loai" (Chó, Mèo, Chim...), "ten", và "gia".
+   * 1. Viết vòng lặp tìm và in ra thông tin của con thú cưng tên là "Pug".
+   * 2. Viết vòng lặp tìm và in ra tên của tất cả các bé "Mèo" đang có trong cửa hàng.
+7. Học sinh cần tự nói lại được gì?
+* "Để tìm kiếm một thứ, mình phải cho vòng lặp chạy qua tất cả và dùng lệnh if để kiểm tra."
+* "Để lọc nhiều thứ, mình phải chuẩn bị sẵn một List rỗng (chiếc rổ) và ném đồ vào bằng lệnh append()."
+
+
+
+
+Buổi 22: Sắp xếp cơ bản trong Python
+1. Mục tiêu bài học
+* Biết sức mạnh của hàm .sort() và sorted() trong việc tự động sắp xếp danh sách.
+* Hiểu cách sắp xếp ngược từ Lớn xuống Bé bằng tham số reverse=True.
+* Nắm được kỹ năng nâng cao: Sử dụng một "Hàm chỉ điểm" để sắp xếp một danh sách các Dictionary phức tạp.
+2. Lý thuyết chi tiết
+* Hô khẩu lệnh Tập Hợp: Trong giờ thể dục, thầy giáo hô "Tập hợp từ thấp đến cao!". Trong Python, em chỉ cần gắn lệnh .sort() vào sau một danh sách, máy tính sẽ tự động xếp số từ bé đến lớn, hoặc xếp chữ theo thứ tự từ điển A, B, C.
+* Xếp ngược (Từ cao xuống thấp): Mặc định .sort() là tăng dần. Nếu muốn lấy top những bạn điểm cao nhất, ta phải dặn Python "Hãy xếp ngược lại" bằng cách ghi thêm reverse=True vào trong ngoặc: .sort(reverse=True).
+* Hàm "Chỉ điểm" (Sắp xếp Dictionary): Nếu em có một List chứa tủ đồ (Học sinh có Tên và Điểm). Python sẽ bối rối hỏi: "Tôi phải xếp theo Tên hay theo Điểm?". Em phải viết một hàm nhỏ (def) để "chỉ" cho Python biết: "Hãy nhìn vào Điểm mà xếp!". Lệnh sẽ là .sort(key=ham_chi_diem).
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Ví dụ 1: Xếp số và chữ đơn giản
+	so = [5, 1, 9, 3]
+so.sort()
+print(so)
+	In ra [1, 3, 5, 9]. Nhanh hơn chớp mắt.
+	Ví dụ 2: Xếp điểm từ cao xuống thấp
+	diem = [7, 10, 5, 8]
+diem.sort(reverse=True)
+print("Bảng vàng:", diem)
+	reverse=True đảo ngược quy luật, xếp điểm 10 lên đầu tiên.
+	Ví dụ 3: Xếp lớp học theo điểm
+	lop = [{"ten":"An", "diem":7}, {"ten":"Bo", "diem":10}]
+def lay_diem(hs):
+   return hs["diem"]
+
+lop.sort(key=lay_diem, reverse=True)
+print(lop)
+	Hàm lay_diem chui vào tủ đồ, móc đúng cái nhãn "diem" ra cho Python xem để nó làm cơ sở sắp xếp.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: Gọi sort() nhưng lại lưu vào biến mới: danh_sach_moi = so.sort(). In ra bị chữ None.
+* Cách sửa: Lệnh .sort() tự động sửa trực tiếp trên danh sách cũ. Không được gán nó vào biến mới bằng dấu =.
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Tạo list nhiet_do = [32, 28, 35, 20, 39]. Dùng lệnh để sắp xếp từ lạnh nhất đến nóng nhất và in ra.
+2. Cấp độ 2: Vẫn list trên, hãy sắp xếp từ nóng nhất đến lạnh nhất để tìm ra ngày nóng kỷ lục.
+3. Cấp độ 3 (Bảng xếp hạng Game): Tạo list gồm 3 Dict mô tả người chơi: "ten" và "cup". Viết hàm lay_cup(nguoi_choi), dùng nó để sắp xếp danh sách theo số cúp từ cao xuống thấp.
+6. Bài tập về nhà
+* Quản lý Hàng Tồn Kho: Cửa hàng của em có list các mặt hàng dạng Dictionary (Gồm "ten" và "so_luong").
+   * 1. In ra danh sách hàng hóa từ ít đến nhiều (để biết món nào sắp hết mà nhập thêm).
+   * 2. Viết thêm tính năng: Ai có số lượng nhỏ hơn 5 thì in kèm dòng chữ "CẢNH BÁO SẮP HẾT!".
+7. Học sinh cần tự nói lại được gì?
+* "Lệnh .sort() giúp tự động sắp xếp danh sách theo chiều tăng dần."
+* "Tham số reverse=True giống như lệnh quay đầu, giúp xếp từ lớn xuống bé."
+* "Để xếp các Dictionary phức tạp, phải viết một hàm nhỏ để 'chỉ điểm' cho Python biết xếp theo thuộc tính nào."
+
+
+
+
+Buổi 23: File text cơ bản
+1. Mục tiêu bài học
+* Hiểu được sự khác biệt giữa bộ nhớ tạm (Biến/List bị mất khi tắt máy) và bộ nhớ vĩnh viễn (File lưu trên ổ cứng).
+* Biết cách sử dụng hàm open() để tạo và mở một file .txt.
+* Thành thạo 3 chế độ thao tác với file: "w" (Write - Ghi đè), "a" (Append - Ghi nối), và "r" (Read - Đọc).
+* Nắm vững quy tắc quan trọng nhất: Luôn luôn phải đóng file bằng lệnh .close() sau khi dùng xong.
+2. Lý thuyết chi tiết
+* Bộ não cá vàng và Cuốn sổ tay: Từ Buổi 1 đến giờ, cứ mỗi lần em tắt chương trình đi chạy lại là điểm số, tên người chơi bay mất sạch. Vì biến (Variable) lưu trên bộ nhớ tạm RAM (rất hay quên). Muốn lưu mãi mãi, em phải bảo Python viết dữ liệu vào một cuốn sổ tay cất trong ổ cứng, đó chính là File (.txt).
+* Hành động Mở Sổ (open): Ta phải dặn Python mở sổ kèm theo chế độ:
+   * Chế độ "w" (Write): Xóa sạch sổ cũ, viết đè lên từ trang đầu tiên.
+   * Chế độ "a" (Append): Giữ nguyên sổ cũ, móc thêm đồ mới vào cuối (Giống lệnh append của List).
+   * Chế độ "r" (Read): Chỉ được phép đọc bằng mắt, không được viết chữ vào.
+* Hành động Cất Sổ (close): Viết xong không cất sổ đi, mất điện là mất hết chữ! Luôn luôn gọi file.close() ở cuối.
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Ví dụ 1: Ghi chữ vào sổ (w)
+	so_tay = open("nhatky.txt", "w", encoding="utf-8")
+so_tay.write("Hôm nay học Python rất vui!\n")
+so_tay.close()
+	encoding="utf-8" là phép thuật giúp Python viết được tiếng Việt có dấu. \n là ký hiệu ép xuống dòng.
+	Ví dụ 2: Ghi thêm vào cuối (a)
+	so_tay = open("nhatky.txt", "a", encoding="utf-8")
+so_tay.write("Mục tiêu: Viết game xịn!\n")
+so_tay.close()
+	Lần này dùng "a". Câu "Học Python rất vui!" cũ không bị mất đi.
+	Ví dụ 3: Đọc sổ lên màn hình (r)
+	so_tay = open("nhatky.txt", "r", encoding="utf-8")
+noi_dung = so_tay.read()
+print("Sổ viết gì:", noi_dung)
+so_tay.close()
+	Chế độ "r" lấy toàn bộ chữ trong sổ cất vào biến noi_dung, sau đó em thoải mái dùng print() in ra loa.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: Mở file lên xem thấy chữ tiếng Việt biến thành ký tự lạ loằng ngoằng (Lỗi Font).
+* Cách sửa: Quên bùa chú encoding="utf-8". Luôn nhớ chèn nó vào hàm open().
+* Lỗi: FileNotFoundError (Không tìm thấy file).
+* Nguyên nhân: Cố gắng đọc ("r") một file chưa từng được tạo ra. Python không thể đọc một cuốn sổ tàng hình.
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Hãy viết một chương trình Python tạo file thongtin.txt. Ghi họ tên và lớp của em vào file đó. Mở thư mục máy tính để kiểm tra xem file đã xuất hiện chưa.
+2. Cấp độ 2: Dùng chế độ "a", chạy file thêm 3 lần nữa, mỗi lần yêu cầu chương trình write() thêm câu: "Tôi là Lập trình viên". Kiểm tra xem file có dài ra không.
+3. Cấp độ 3: Viết một file Python khác, mở thongtin.txt ở chế độ "r", đọc nội dung và in ra màn hình.
+6. Bài tập về nhà
+* Sổ tay ghi nợ: Hãy dùng vòng lặp while True liên tục hỏi người dùng: "Bạn muốn ghi nhớ việc gì? (Gõ 'thoat' để dừng)". Cứ mỗi lần người dùng gõ một việc, em hãy dùng lệnh mở file chế độ "a" để nối việc đó vào file congviec.txt. Khi gõ 'thoat', hãy đọc toàn bộ file và in lên màn hình để nhắc nhở họ.
+7. Học sinh cần tự nói lại được gì?
+* "Biến là não cá vàng, File txt là cuốn sổ tay lưu vĩnh viễn."
+* "w là xóa sạch viết mới, a là viết nối tiếp vào cuối, r là chỉ đọc."
+* "Viết xong bắt buộc phải close() để cất sổ đi."
+
+
+
+
+Buổi 24: Lưu và đọc dữ liệu ứng dụng với JSON
+1. Mục tiêu bài học
+* Nhận biết nhược điểm của file Text thường khi lưu List/Dict.
+* Hiểu khái niệm JSON như một "người phiên dịch" đóng gói dữ liệu của Python thành chữ.
+* Thành thạo 2 lệnh cốt lõi của thư viện json: dumps() (đóng thùng) và loads() (mở thùng).
+* Áp dụng để lưu một danh sách List chứa Dict xuống file và đọc lên khôi phục nguyên vẹn.
+2. Lý thuyết chi tiết
+* Vấn đề của file Text thường: File Text .txt chỉ cho phép lưu văn bản (String). Nếu em ném thẳng một chiếc List [1, 2, 3] vào file, máy sẽ báo lỗi. Nếu ép nó thành chữ, khi đọc lên lại, nó mất hết phép thuật của List, biến thành một cục chữ vô hồn, không dùng vòng lặp for để duyệt được nữa.
+* Vị cứu tinh JSON: JSON (JavaScript Object Notation) là một chuẩn ngôn ngữ quốc tế. Nó giống như "Thùng carton đóng gói".
+   * Em đưa một List/Dict phức tạp cho JSON, nó sẽ cẩn thận gói ghém, chuyển hóa thành một đoạn chữ có quy tắc đặc biệt để nhét vừa vào file Text.
+   * Khi cần, JSON lại lấy đoạn chữ đó ra, bóc dỡ niêm phong, trả lại cho em đúng hình dạng List/Dict ban đầu.
+* Câu thần chú: Phải gọi import json ở đầu file.
+   * json.dumps(du_lieu): Đóng gói (Dump) dữ liệu thành chữ String.
+   * json.loads(chuoi_json): Bóc dỡ (Load) chữ String biến lại thành dữ liệu.
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Ví dụ 1: Đóng gói List Dict vào sổ
+	import json
+lop = [{"ten":"An", "diem":9}]
+
+chuoi_json = json.dumps(lop)
+f = open("data.txt", "w", encoding="utf-8")
+f.write(chuoi_json)
+f.close()
+	Lệnh json.dumps() hô biến cái tủ đồ phức tạp thành một chuỗi văn bản an toàn để cất vào data.txt.
+	Ví dụ 2: Bóc gói dữ liệu khi mở máy lên
+	import json
+f = open("data.txt", "r", encoding="utf-8")
+chuoi = f.read()
+f.close()
+
+lop_cu = json.loads(chuoi)
+print("Đã khôi phục:", lop_cu[0]["ten"])
+	Lấy chuỗi từ file ra. Dùng json.loads() phục hồi lại nguyên trạng. Ta lại gọi được lop_cu[0]["ten"] như bình thường.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: JSONDecodeError (Lỗi không mở được thùng).
+* Nguyên nhân: File chứa những chữ linh tinh không phải do JSON đóng gói, nên hàm loads() chịu thua không giải mã được.
+* Cách sửa: Đảm bảo file được tạo ra bằng dumps() trước khi đọc nó bằng loads().
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Khai báo một Dictionary thông tin nhân vật game của em. Dùng json.dumps() in thử kết quả ra màn hình xem JSON đã biến nó thành dạng chữ trông như thế nào.
+2. Cấp độ 2: Viết đoạn code ghi cái biến String vừa tạo ra ở Cấp độ 1 vào file tên là nhanvat.json.
+3. Cấp độ 3: Viết một chương trình hoàn toàn mới, mở file nhanvat.json, dùng json.loads() khôi phục lại Dict và cộng cho nhân vật thêm 100 máu.
+6. Bài tập về nhà
+* Hệ thống Lưu Game (Save/Load Game):
+   1. Lập một Dictionary thong_so = {"level": 5, "tien": 1000}.
+   2. Viết tính năng hỏi người dùng "Bạn muốn Lưu game hay Tải game? (luu/tai)".
+   3. Nếu gõ "luu", dùng JSON bọc thong_so lại và lưu vào file save.txt. In ra "Lưu thành công!".
+   4. Nếu gõ "tai", mở file save.txt, bóc dữ liệu bằng JSON và in ra: "Chào mừng trở lại, bạn đang ở level...".
+7. Học sinh cần tự nói lại được gì?
+* "Không thể nhét thẳng List hay Dict vào file văn bản được."
+* "Hàm dumps giống như việc đóng thùng đồ đạc cất vào kho."
+* "Hàm loads giống như việc mang từ kho ra bóc dỡ thành đồ vật dùng được."
+
+
+
+
+Buổi 25: Menu console và cấu trúc chương trình
+1. Mục tiêu bài học
+* Biết cách thiết kế một chương trình phần mềm có giao diện điều khiển bằng văn bản (Menu Console).
+* Hiểu cách tổ chức chương trình thành các Hàm (def) riêng biệt để code không bị rối rắm.
+* Kết hợp vòng lặp while True và cấu trúc if/elif để điều hướng lựa chọn của người dùng.
+2. Lý thuyết chi tiết
+* Giao diện Menu Nhà Hàng: Phần mềm chuyên nghiệp không bao giờ tự động chạy tuồn tuột từ đầu đến cuối rồi tắt. Nó sẽ in ra một cái Menu giống như trong nhà hàng: "1. Xem món, 2. Gọi món, 3. Thanh toán (Thoát)". Người dùng gõ phím nào thì nó làm việc đó.
+* Vòng lặp bất tử chờ lệnh: Vòng lặp while True giúp tạo vòng chơi vô tận. Máy tính sẽ liên tục in lại cái Menu và chờ em ra lệnh, cho đến khi em chọn chức năng dùng lệnh break để thoát.
+* Tư duy Kiến trúc sư (Gói code vào Hàm): Nếu em viết tất cả lệnh thêm, xóa, sửa vào chung một chỗ while True, file code sẽ dài hàng trăm dòng, rất dễ lỗi. Tư duy đúng là: Chức năng Thêm tách ra một def them(), chức năng In tách ra một def in_danh_sach(). Ở trong while, ta chỉ việc gọi tên các hàm đó. Code sẽ cực kỳ sạch sẽ!
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Bước 1: Thiết kế các tính năng (def)
+	def xem():
+   print("Đang mở kho xem đồ...")
+
+def them():
+   print("Đang nhét đồ mới vào kho...")
+	Mỗi tính năng gói vào một hộp hàm gọn gàng, không dính líu đến nhau. Dễ kiểm tra, dễ sửa lỗi.
+	Bước 2: Xây dựng Menu tổng điều khiển
+	while True:
+   print("\n--- MENU ---")
+   print("1. Xem  2. Thêm  3. Thoát")
+   chon = input("Mời chọn: ")
+   if chon == '1':
+       xem()
+   elif chon == '2':
+       them()
+   elif chon == '3':
+       break
+	Vòng lặp liên tục hiển thị Menu. Dùng if/elif để chuyển hướng. Gọi hàm tương ứng khi người dùng nhập số.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: Gọi hàm bên dưới Menu báo NameError (Không tìm thấy hàm).
+* Cách sửa: Trong Python, em phải chế tạo máy (viết def) ở TRÊN CÙNG của file code, rồi mới được sử dụng nó (chạy vòng lặp while) ở BÊN DƯỚI. Nếu đảo ngược, Python không nhìn thấy.
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Viết 3 hàm siêu ngắn: def xin_chao(), def tam_biet(), def chui_mang(). Trong mỗi hàm chỉ cần dùng lệnh print một câu phù hợp.
+2. Cấp độ 2: Dựng một khung Menu while True hiển thị: "1. Khen, 2. Chửi, 3. Chào thoát".
+3. Cấp độ 3: Nối kết: Cài đặt điều kiện if/elif để khi người dùng gõ phím 1, máy gọi hàm xin_chao(), tương tự cho phím 2 và 3.
+6. Bài tập về nhà
+* Máy ATM mini: Khởi tạo một biến so_du = 50000. Thiết kế một Menu ATM gồm 3 chức năng:
+   1. Kiểm tra số dư (In ra so_du).
+   2. Nạp tiền (Dùng input() hỏi số tiền nạp, ép kiểu int(), cộng vào so_du).
+   3. Rút thẻ (Thoát chương trình).
+7. Học sinh cần tự nói lại được gì?
+* "Phần mềm luôn chạy trong vòng lặp vô hạn while True để chờ mình ra lệnh."
+* "Mỗi tính năng của phần mềm phải được gói gọn vào một Hàm def để dễ quản lý."
+
+
+
+
+Buổi 26: Mini app quản lý danh sách học tập (To-do List)
+1. Mục tiêu bài học
+* Áp dụng tất cả kiến thức về Menu, List, Dictionary để tạo một ứng dụng Quản lý công việc (To-do List).
+* Thực hành thao tác CRUD cốt lõi trong lập trình: Create (Thêm), Read (Đọc/In).
+* Thấy được thành quả của việc kết nối các mảnh ghép lý thuyết thành một sản phẩm thực tế.
+2. Lý thuyết chi tiết
+* To-do List là gì? Là một phần mềm giúp ghi lại các công việc cần làm. Hôm nay chúng ta sẽ làm bộ não trung tâm của nó.
+* Cấu trúc Dữ liệu gốc: Ta cần 1 chiếc List tổng để chứa các công việc: danh_sach_viec = [].
+* Mỗi công việc sẽ là một Tủ đồ Dictionary có 2 nhãn: "ten_viec" (Ví dụ: Mua trứng) và "trang_thai" (Mặc định là "Chưa xong").
+* Ghép nối Logic: Khi người dùng chọn Thêm từ Menu, ta hỏi input(), tạo Dictionary, rồi append() vào List tổng. Khi chọn Xem, ta dùng vòng lặp for chạy qua List và in đẹp đẽ ra màn hình.
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Khởi tạo dữ liệu và Hàm In
+	danh_sach = []
+
+def in_danh_sach():
+   print("--- CÁC VIỆC CẦN LÀM ---")
+   for i in range(len(danh_sach)):
+       viec = danh_sach[i]
+       print(f"{i}. {viec['ten_viec']} - {viec['trang_thai']}")
+	Dùng vòng lặp for i in range() để in ra được cả số thứ tự 0, 1, 2 rất tiện để sau này yêu cầu Xóa hoặc Đánh dấu hoàn thành.
+	Hàm Thêm công việc
+	def them_viec():
+   t = input("Tên công việc mới: ")
+   viec_moi = {"ten_viec": t, "trang_thai": "Chưa xong"}
+   danh_sach.append(viec_moi)
+   print("Đã thêm thành công!")
+	Lấy dữ liệu từ bàn phím, đóng gói vào Dictionary kèm trạng thái tự động, nhét vào List.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: Thêm việc vào xong, in ra màn hình thấy List vẫn rỗng không có gì!
+* Nguyên nhân: Biến danh_sach_viec = [] lại bị đặt nhầm ở BÊN TRONG thân vòng lặp while True. Hậu quả: Cứ chạy hết 1 vòng menu, danh sách lại bị reset về rỗng.
+* Cách sửa: Di chuyển khai báo List lên vị trí cao nhất trên cùng của file.
+5. Bài tập thực hành trên lớp
+1. Lắp ráp Hàm In và Hàm Thêm vào bộ khung Menu Console (gồm 3 lựa chọn 1. Xem, 2. Thêm, 3. Thoát) đã học ở buổi trước.
+2. Chạy thử chương trình, tiến hành thêm 3 công việc: "Học Python", "Đá bóng", "Quét nhà". Sau đó chọn chức năng Xem để kiểm tra xem máy có in ra đúng không.
+6. Bài tập về nhà
+* Hoàn thiện tính năng Xóa: Hãy viết thêm một hàm def xoa_viec():. Hàm này sẽ yêu cầu người dùng nhập vào số thứ tự (i) của công việc muốn xóa. Dùng lệnh pop() hoặc del danh_sach[i] để xóa công việc đó khỏi List. Đừng quên cập nhật thêm chức năng này vào Menu tổng nhé!
+7. Học sinh cần tự nói lại được gì?
+* "Một ứng dụng thực tế là sự kết hợp nhịp nhàng giữa dữ liệu (List/Dict) và các Hàm chức năng."
+* "Phải khai báo chiếc List lưu trữ ở ngoài cùng để dữ liệu không bị xóa sạch khi Menu chạy lại."
+
+
+
+
+Buổi 27: Nâng cấp mini app - Thống kê và Sắp xếp
+1. Mục tiêu bài học
+* Cập nhật thông tin trong ứng dụng (Chuyển trạng thái "Chưa xong" thành "Đã xong").
+* Tích hợp tính năng Thống kê (Đếm số lượng công việc đã hoàn thành).
+* Áp dụng tính năng Sắp xếp để đẩy các việc đã xong xuống cuối danh sách.
+2. Lý thuyết chi tiết
+* Cập nhật (Update): Để sửa một công việc, ta hỏi số thứ tự vị trí trong List (ví dụ [0]). Sau đó gọi trực tiếp vào tủ đồ ở vị trí đó và sửa lại Nhãn: danh_sach[0]["trang_thai"] = "Xong".
+* Thống kê: Dùng kỹ thuật Lọc và Đếm đã học ở Buổi 21. Tạo một biến dem = 0, cho vòng lặp duyệt qua List, cứ thấy công việc nào có nhãn "Đã xong" thì dem = dem + 1.
+* Trải nghiệm người dùng: Một phần mềm tốt là khi người dùng nhìn vào, các việc chưa làm sẽ nằm ở trên cùng để nhắc nhở, các việc làm rồi tự động trôi xuống dưới. Ta sẽ dùng lệnh .sort() để hỗ trợ.
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Hàm Đánh dấu Hoàn thành
+	def hoan_thanh():
+   in_danh_sach()
+   vt = int(input("Nhập số thứ tự đã làm xong: "))
+   danh_sach[vt]["trang_thai"] = "Đã xong"
+   print("Giỏi quá, đã tick xanh!")
+	Cho người dùng xem danh sách để biết số thứ tự. Lấy vị trí vt, chui vào đúng ngăn kéo chứa trạng thái và đổi chữ.
+	Hàm Thống kê độ chăm chỉ
+	def thong_ke():
+   dem = 0
+   for v in danh_sach:
+       if v["trang_thai"] == "Đã xong":
+           dem = dem + 1
+   print(f"Bạn đã hoàn thành {dem} việc!")
+	Bộ đếm hoạt động bằng cách quét qua List và soi điều kiện.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: IndexError (Trượt khỏi đoàn tàu) khi đánh dấu hoàn thành.
+* Nguyên nhân: Danh sách chỉ có 2 việc (số 0 và số 1). Người dùng lại cố tình nhập số 5.
+* Cách sửa: Hiện tại nhắc nhở học sinh gõ cẩn thận. Buổi sau ta sẽ học cách đeo "mũ bảo hiểm" chống lại người gõ sai.
+5. Bài tập thực hành trên lớp
+1. Bổ sung def hoan_thanh() vào Mini App To-do List của buổi trước và gắn nó vào Menu số 4.
+2. Bổ sung def thong_ke() và gắn nó vào Menu số 5.
+3. Chạy thử phần mềm: Thêm 3 việc, đánh dấu xong 2 việc, in Thống kê để xem máy có đếm ra số 2 không.
+6. Bài tập về nhà
+* Bảo vệ dữ liệu: Hiện tại tắt máy đi ứng dụng của chúng ta vẫn bị mất sạch công việc. Em hãy vận dụng kỹ thuật JSON (Buổi 24), viết thêm tính năng LƯU và TẢI vào ứng dụng To-do List.
+   * Gợi ý 1: Khi khởi động chương trình, tự động tìm và bóc file todo.txt nạp vào danh_sach.
+   * Gợi ý 2: Khi chọn phím "Thoát", trước khi break, hãy dùng json.dumps để đóng gói và lưu cái danh_sach vào todo.txt.
+7. Học sinh cần tự nói lại được gì?
+* "Để thay đổi dữ liệu, mình cần biết vị trí index của nó trong List, sau đó gán lại Giá trị mới bằng dấu =."
+* "Đếm số lượng là đếm các trường hợp thỏa mãn điều kiện if trong vòng lặp."
+
+
+
+
+Buổi 28: Kiểm tra dữ liệu nhập và sửa lỗi (Try-Except)
+1. Mục tiêu bài học
+* Hiểu rằng người dùng không bao giờ ngoan ngoãn gõ đúng như mình nghĩ (Bảo gõ Số thì lại gõ Chữ).
+* Biết cách sử dụng lá chắn bảo vệ try...except để chương trình không bị văng ra ngoài (Crash) khi gặp lỗi.
+* Viết được tính năng ép người dùng nhập đi nhập lại cho đến khi nào đúng định dạng số mới thôi.
+2. Lý thuyết chi tiết
+* Kẻ phá hoại mang tên ValueError: Hãy nhớ nguyên tắc: Mọi thứ nhập từ input() đều bị biến thành Chuỗi (chữ). Khi ta hỏi Menu chon = int(input("Chọn menu:")), nếu khách hàng gõ nhầm chữ "A", lệnh int() không thể biến chữ A thành số. Máy tính sẽ hoảng loạn và sập ngay lập tức với lỗi ValueError.
+* Chiếc mũ bảo hiểm try - except: Python cho chúng ta cấu trúc try (Làm thử đi) và except (Nếu bị lỗi thì làm cái này thay thế, đừng sập).
+   * Khi đưa code nguy hiểm vào khu vực try, Python sẽ rón rén chạy thử.
+   * Nếu xảy ra sự cố vấp ngã, thay vì màn hình đỏ lòm báo lỗi tắt ngúm, Python sẽ nhảy sang khu vực except để in ra lời nhắc nhở nhẹ nhàng: "Bạn nhập sai định dạng rồi".
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+ 
+	Bảo vệ lỗi gõ chữ thay vì gõ số
+	try:
+   tuoi = int(input("Nhập tuổi của bạn: "))
+   print("Sang năm bạn:", tuoi + 1)
+except ValueError:
+   print("Trời ơi! Hãy gõ số, đừng gõ chữ!")
+	Nếu gõ "Mười", lệnh int() sẽ ném lỗi ValueError. Lúc này khu vực try bị bỏ dở, nhảy ngay xuống lệnh print của except. Ứng dụng vẫn sống sót!
+	Vòng lặp bất tử ép nhập đúng
+	while True:
+   try:
+       so = int(input("Nhập số chọn Menu: "))
+       break # Nếu đúng thì phá vỡ vòng lặp
+   except ValueError:
+       print("Nhập sai, xin nhập lại!")
+	Sự kết hợp vô địch! Máy sẽ hỏi hoài hỏi mãi cho đến khi nào try thực hiện thành công và chạy được đến chữ break thì thôi.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: Quên xác định loại lỗi. (Chỉ ghi mỗi chữ except: chung chung).
+* Tại sao không nên: Viết thế này nó sẽ che đậy tất cả mọi lỗi (kể cả lỗi lập trình gõ sai code), khiến em không biết đường nào mà sửa.
+* Cách sửa: Luôn cố gắng bắt đúng tên lỗi cần bắt, ví dụ except ValueError: hoặc except IndexError:.
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1: Chạy lại phần mềm To-do List buổi trước. Ở tính năng "Xóa công việc", hãy áp dụng mũ bảo hiểm try - except ValueError để bắt lỗi khi người dùng không gõ số thứ tự mà gõ chữ "hihi".
+2. Cấp độ 2: Tiếp tục bổ sung thêm chiếc mũ thứ hai except IndexError: để bắt lỗi khi người dùng gõ số quá lớn (Ví dụ list có 2 việc mà gõ số 10). In ra "Không có công việc số 10!".
+6. Bài tập về nhà
+* Máy tính bỏ túi chống đạn: Viết chương trình yêu cầu người dùng nhập 2 số a và b. In ra kết quả phép chia a / b.
+   * Hãy dùng try-except để bắt 2 lỗi sau:
+   * 1. Người dùng gõ chữ thay vì số (ValueError).
+   * 2. Người dùng cho số b = 0 (ZeroDivisionError) khiến phép chia vô lý.
+7. Học sinh cần tự nói lại được gì?
+* "Không bao giờ được tin tưởng người dùng sẽ gõ đúng dữ liệu mình cần."
+* "try là thử làm việc nguy hiểm, except là biện pháp cứu hộ khi việc nguy hiểm đó gây ra lỗi để chương trình không bị văng."
+
+
+
+
+Buổi 29: Chọn đề tài và lập kế hoạch sản phẩm cuối khóa
+1. Mục tiêu bài học
+* Học sinh tự chọn được đề tài phần mềm hoặc game phù hợp với khả năng trong số các dự án mẫu.
+* Rèn luyện kỹ năng phân tích: Phác thảo thiết kế, liệt kê tính năng (Features List).
+* Áp dụng Tư duy Máy tính để chia nhỏ dự án lớn thành các bước code nhỏ theo ngày.
+2. Lý thuyết chi tiết
+* Quy trình làm Phần mềm (Agile cho lập trình viên nhí): Làm một dự án cuối khóa không phải là cắm cúi viết code 500 dòng. Ta phải làm theo quy trình: Ý tưởng -> Phác thảo giao diện -> Danh sách Tính năng -> Code từng tính năng một -> Test lỗi (Debug).
+* Các ý tưởng dự án phù hợp:
+   * Dự án 1: Pokedex nâng cao: Quản lý Pokemon, chiến đấu tính điểm, lưu kết quả xuống file.
+   * Dự án 2: Siêu thị mini: Quản lý kho hàng, giao diện tính tiền cho khách, in hóa đơn.
+   * Dự án 3: Sổ tay Sinh từ (Flashcard): Phần mềm học từ vựng tiếng Anh. Thêm từ, kiểm tra từ ngẫu nhiên (random), thống kê điểm số.
+   * Dự án 4: Game Text Adventure: Trò chơi phiêu lưu khám phá hầm ngục dựa trên văn bản, bốc thăm ngẫu nhiên quái vật, lưu lượng máu.
+3. Các bước triển khai thực tế trên lớp
+* Bước 1: Giới thiệu (15 phút): Giáo viên chạy thử file Demo (mẫu) của 4 dự án trên để học sinh nhìn thấy thành phẩm và có cảm hứng.
+* Bước 2: Lựa chọn (5 phút): Học sinh chốt 1 đề tài (Không đổi lại sau buổi này).
+* Bước 3: Bản thiết kế (Thiết kế hệ thống) (25 phút): Giáo viên phát giấy hoặc yêu cầu dùng Word. Học sinh phải viết ra:
+   * Dữ liệu chính: Mình sẽ dùng List hay Dictionary? Nếu Dictionary thì có những Nhãn nào?
+   * Cấu trúc Menu: Sẽ có mấy số, hiển thị ra sao?
+   * Các Hàm chức năng: Liệt kê tên các hàm def mình dự định viết.
+* Bước 4: Trình bày ý tưởng (15 phút): Mỗi học sinh nói nhanh 2 phút về phần mềm mình sẽ làm.
+4. Bài tập về nhà
+* Khởi tạo Bộ khung: Em hãy mở máy tính ở nhà, tạo file du_an_cuoi_khoa.py. Xây dựng sẵn bộ khung chương trình bao gồm: Vòng lặp while True, in ra Menu Console, và các lựa chọn if/elif rỗng (bên trong chỉ ghi lệnh pass để chờ Buổi 30 lên lớp điền code vào).
+
+
+
+
+Buổi 30: Xây dựng sản phẩm cuối khóa (Phần 1 - Chức năng cốt lõi)
+1. Mục tiêu bài học
+* Chuyển hóa Bản thiết kế giấy thành các dòng code Python đầu tiên.
+* Hoàn thành được tính năng gốc của phần mềm: Khởi tạo dữ liệu (CRUD - Create, Read).
+* Học cách làm việc độc lập, tự chủ động tìm lỗi (debug) bằng lệnh in (print()) trung gian.
+2. Hoạt động trên lớp
+* Nguyên tắc "Code đến đâu, Sống đến đó": Giáo viên nhắc nhở tuyệt đối cấm học sinh viết 1 lèo 3 Hàm rồi mới nhấn nút Run. Viết xong hàm them() là phải test thử nhập liệu ngay. Test báo Thành công rồi mới được phép viết tiếp hàm xem().
+* Thực hành cá nhân (45 phút):
+   * Nhiệm vụ 1: Khai báo dữ liệu gốc (List/Dictionary) ở đầu chương trình.
+   * Nhiệm vụ 2: Viết hàm Thêm dữ liệu (Ví dụ thêm hàng hóa, thêm từ vựng, tạo nhân vật). Áp dụng try-except ép nhập đúng loại dữ liệu (giá tiền phải là số).
+   * Nhiệm vụ 3: Viết hàm Hiển thị toàn bộ dữ liệu ra màn hình một cách sạch đẹp bằng vòng lặp for kết hợp f-string.
+* Kiểm tra chéo (15 phút): Hai học sinh ngồi cạnh nhau đổi máy tính, đóng vai người dùng ác ý cố tình gõ sai Menu, gõ chữ vào chỗ nhập Số, xem phần mềm của bạn có bị sập (Crash) không. Ghi lại lỗi cho bạn sửa.
+3. Lỗi thường gặp học sinh cần chú ý
+* Quên thụt lề khi bọc try-except: Khi thêm try vào khối code cũ, các dòng code bên trong phải được thụt lề vào một nhịp (nhấn Tab). Python cực kỳ nhạy cảm với thụt lề.
+4. Bài tập về nhà
+* Sửa toàn bộ các lỗi (Bugs) mà bạn bè đã tìm ra lúc Kiểm tra chéo.
+* Tự suy nghĩ và chuẩn bị thuật toán cho các tính năng Xóa/Cập nhật hoặc Chơi Game cho Buổi 31.
+
+
+
+
+Buổi 31: Xây dựng sản phẩm cuối khóa (Phần 2 - Nâng cấp & Lưu file)
+1. Mục tiêu bài học
+* Hoàn thành các tính năng tính toán logic phức tạp (Xóa đồ, Chiến đấu tính điểm, Đếm số câu đúng).
+* Tích hợp công nghệ JSON để dữ liệu của phần mềm có thể lưu lại trên máy tính người dùng mãi mãi.
+* Trang trí console để giao diện đẹp hơn (in thêm đường gạch ngang ---, khoảng trống chèn \n).
+2. Hoạt động trên lớp
+* Khởi động tính năng JSON (10 phút): Giáo viên code mẫu lại một lần quy trình lưu file.
+   1. Đầu file code: Đọc file data.json, loads() vào biến. Nếu chưa có file (lần đầu chơi) thì dùng try-except FileNotFoundError gán biến bằng rỗng [].
+   2. Chức năng thoát: dumps() biến và write vào file data.json.
+* Thực hành Tính năng Nâng cao (40 phút): Học sinh hoàn thiện các hàm logic còn lại.
+   * Dự án Pokedex/Game: Viết hàm chiến đấu dựa vào sức mạnh và đổ xúc xắc ngẫu nhiên random.randint().
+   * Dự án Siêu thị: Viết vòng lặp tính hóa đơn, hỏi khách mua bao nhiêu lượng, trừ đi trong Tồn Kho, cộng tiền vào Tổng.
+* Hoàn thiện & Trang trí (10 phút): Căn chỉnh lại nội dung in ra màn hình. Thay vì chỉ in "An 10 điểm", hãy in "👑 Học sinh xuất sắc: An - 10đ".
+3. Chuẩn bị cho buổi bảo vệ
+* Giáo viên phát hướng dẫn Kịch bản Thuyết trình:
+   1. Giới thiệu Bản thân và Tên Ứng dụng.
+   2. Ứng dụng này sinh ra để giải quyết vấn đề gì? (Giúp học từ mới, hay để giải trí?).
+   3. Demo chạy thử từ đầu đến cuối.
+   4. Trình bày 1 đoạn Code mà mình tự hào nhất hoặc tốn nhiều công sức nhất để sửa lỗi.
+4. Bài tập về nhà
+* Tập luyện Kịch bản thuyết trình ở nhà ít nhất 3 lần trước gương. Mở sẵn file code lên, kiểm tra lần cuối đảm bảo phần mềm chạy trơn tru không lỗi.
+
+
+
+
+Buổi 32: Demo và bảo vệ sản phẩm
+1. Mục tiêu bài học
+* Rèn luyện kỹ năng thuyết trình trước đám đông, tự tin trình bày logic tư duy của bản thân.
+* Tôn vinh nỗ lực học tập của học sinh trong toàn bộ khóa học.
+* Tiếp thu nhận xét, định hướng ứng dụng công nghệ trong tương lai.
+2. Các bước triển khai buổi Demo
+* Setup (10 phút): Giáo viên hỗ trợ học sinh kết nối máy tính với máy chiếu/màn hình lớn. Đảm bảo file chạy không bị lỗi Font.
+* Trình bày (30-40 phút): Lần lượt từng học sinh lên thuyết trình (Khoảng 5 phút/người).
+   * Bám sát kịch bản đã giao: Cố gắng diễn đạt bằng ngôn ngữ lập trình chuẩn (Sử dụng các từ khóa List, Dictionary, Vòng lặp, File, Bắt lỗi...).
+   * Thao tác trực tiếp (Demo Live): Học sinh tự nhập dữ liệu vào phần mềm ngay tại chỗ để chứng minh code hoạt động thật.
+* Phản biện Q&A (10 phút): Giáo viên và các bạn học sinh dưới lớp đóng vai "Khách hàng" để đặt câu hỏi.
+   * Ví dụ: "Phần mềm của em rất hay, nhưng nếu cô nhập số lượng tiền nạp là số Âm thì máy có tính được không?" (Thử thách tư duy logic).
+* Tổng kết & Trao chứng nhận (10 phút):
+   * Giáo viên nhận xét điểm mạnh của từng bạn (Khen ngợi về logic chặt chẽ, sáng tạo trong giao diện, hoặc sự kiên trì khi fix bug).
+   * Phát bằng khen/Giấy chứng nhận kết thúc khóa học Python Cơ bản.
+   * Truyền cảm hứng: Giải thích những kiến thức nền tảng này (Biến, Vòng lặp, List, Hàm) chính là nền móng để các em làm Web, làm Robot AI hay lập trình Hackathon trong tương lai.
+(Kết thúc Giai đoạn 4 và Khóa học).

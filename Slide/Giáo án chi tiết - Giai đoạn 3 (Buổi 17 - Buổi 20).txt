@@ -1,0 +1,271 @@
+﻿Giáo án chi tiết - Giai đoạn 3 (Buổi 17 - Buổi 20)
+GIAI ĐOẠN 3 - TƯ DUY GAME, DỮ LIỆU NÂNG CAO VÀ FILE. Nội dung chi tiết cho các buổi học từ 17 đến 20.
+
+
+________________
+Buổi 17: Random và trò chơi may mắn
+1. Mục tiêu bài học
+* Hiểu thư viện random giúp chương trình trở nên thú vị, tạo ra các kết quả khác biệt trong mỗi lần chơi.
+* Biết cách gọi phép thuật bằng lệnh import random.
+* Sử dụng thành thạo hai bửu bối: random.randint() (chọn số ngẫu nhiên) và random.choice() (bốc thăm từ danh sách).
+* Biết kết hợp random với if/else để tạo ra luật chơi.
+* Học sinh tự viết được game tung xúc xắc và game Kéo - Búa - Bao phiên bản đầu tiên.
+
+
+2. Lý thuyết chi tiết
+* Tại sao cần Random? Nếu chơi một trò chơi mà lúc nào quái vật cũng xuất hiện ở đúng một chỗ, rơi ra đúng một món đồ, thì sẽ cực kỳ nhàm chán. Random (Ngẫu nhiên) là cách chúng ta tạo ra sự bất ngờ, giống như việc lắc xúc xắc hay rút thăm trúng thưởng vậy.
+* import random - Triệu hồi phép thuật: Trong Python có sẵn rất nhiều "kho chứa công cụ" (thư viện). Kho random chứa các công cụ làm ảo thuật, nhưng nó đóng cửa. Ta phải dùng lệnh import random ở dòng đầu tiên của chương trình để mở khóa.
+* Hai công cụ mạnh nhất:
+   * random.randint(A, B): "Xin hãy nhắm mắt bốc cho tôi một con số từ A đến B". Thường dùng cho xúc xắc, sát thương chí mạng...
+   * random.choice(list): "Xin hãy bốc thăm ngẫu nhiên 1 món đồ trong cái hộp (List) này". Dùng để quay vòng quay may mắn, rút lá bài...
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Lắc xúc xắc 6 mặt
+	import random
+xuc_xac = random.randint(1, 6)
+print(f"Bạn tung được {xuc_xac} điểm!")
+	Biến xuc_xac sẽ nhận 1 giá trị ngẫu nhiên từ 1 đến 6. Cứ mỗi lần bấm chạy lại, số in ra có thể sẽ khác nhau.
+	Ví dụ 2: Hôm nay ăn gì? (Bốc thăm)
+	import random
+mon_an = ["Phở", "Bún chả", "Cơm rang"]
+hom_nay = random.choice(mon_an)
+print(f"Hôm nay mình sẽ đi ăn {hom_nay}")
+	random.choice sẽ thò tay vào cái list mon_an và nhặt ra đúng 1 món bất kỳ. Thích hợp cho những bạn hay phân vân!
+	Ví dụ 3: Robot chọn Kéo, Búa, Bao
+	import random
+vu_khi = ["Kéo", "Búa", "Bao"]
+may_chon = random.choice(vu_khi)
+print("Máy tính đã ra:", may_chon)
+	Máy tính được lập trình để chọn ngẫu nhiên giống hệt con người. Đây là bước đệm để làm game đối kháng.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: NameError: name 'random' is not defined
+   * Nguyên nhân: Em xài công cụ randint nhưng ở đầu file quên không viết câu thần chú mở khóa import random.
+* Lỗi: Viết sai tên hàm
+   * Sai: random.randInt() (chữ I viết hoa), random.choices() (thừa chữ s). Nhớ viết đúng chính xác từng chữ cái thường.
+
+
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1 (Quay số trúng thưởng): Viết chương trình sinh ra một số may mắn từ 1 đến 99 và in ra: "Số trúng giải đặc biệt hôm nay là: [số]". Chạy thử 3 lần xem số có thay đổi không.
+2. Cấp độ 2 (Hộp quà bí mật): Tạo một list chứa tên 4 món quà (ví dụ: "Kẹo", "Bút", "Gấu bông", "Bom"). Dùng random.choice() bốc thăm. Nếu bốc trúng "Bom", in ra "BÙM! Bạn đã thua". Các quà khác in ra "Chúc mừng bạn nhận được ...".
+3. Cấp độ 3 (Mini Game Đổ Xúc Xắc): Viết chương trình đổ 2 viên xúc xắc. Tính tổng điểm. Nếu tổng điểm >= 10, in ra "May mắn quá!". Nếu nhỏ hơn 10 in ra "Bình thường thôi".
+
+
+6. Bài tập về nhà
+* Tạo Game Kéo-Búa-Bao (Phiên bản cơ bản): Cài đặt cho Máy tính chọn ngẫu nhiên bằng random.choice(["kéo", "búa", "bao"]). Dùng input() cho người chơi nhập lựa chọn của mình. Hãy dùng if/elif/else kiểm tra và phân định thắng thua của ván đó rồi in kết quả ra màn hình.
+
+
+7. Học sinh cần tự nói lại được gì?
+* "Lệnh import random phải luôn đặt ở đầu chương trình."
+* "random.randint() dùng để bốc số, còn random.choice() dùng để bốc một món đồ từ trong list."
+
+
+
+
+________________
+Buổi 18: Game Kéo-Búa-Bao có tính điểm
+1. Mục tiêu bài học
+* Nâng cấp tư duy lập trình: biết cách thiết kế một luật game phức tạp thành các điều kiện if/elif/else gọn gàng.
+* Sử dụng vòng lặp while True để tạo vòng chơi vô tận, cho phép người dùng chơi đi chơi lại nhiều ván.
+* Biết cách dùng "biến lưu điểm" (điểm người chơi, điểm máy) để ghi nhớ kết quả qua nhiều vòng lặp.
+* Biết tạo lối thoát (menu) để kết thúc game khi người chơi gõ chữ "thoat".
+
+
+2. Lý thuyết chi tiết
+* Vòng lặp Game (Game Loop): Các trò chơi từ siêu to như Liên Minh Huyền Thoại đến bé xíu như Flappy Bird đều có một điểm chung: Nó luôn chạy trong một vòng lặp vô hạn while True cho đến khi người chơi bấm nút "Thoát". Trong vòng lặp này, game sẽ: Hỏi lựa chọn -> Tính toán kết quả -> In ra -> Chờ chơi tiếp.
+* Biến nhớ điểm số: Để đếm điểm, ta phải tạo 2 cái hộp (biến) diem_nguoi = 0 và diem_may = 0 ở BÊN NGOÀI vòng lặp. Nếu để bên trong, mỗi ván mới bắt đầu, điểm lại bị reset về 0.
+* Thiết kế luật thông minh: Kéo-Búa-Bao có 9 trường hợp. Nếu dùng 9 cái if/elif thì quá dài. Cách thông minh: Xét trường hợp Hòa trước (người == máy). Sau đó dùng elif gom 3 trường hợp Người Thắng lại (Bao bọc Búa, Búa đập Kéo, Kéo cắt Bao). Cuối cùng else chính là Máy Thắng (không cần xét nữa).
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Bước 1: Tạo vòng lặp và điều kiện Thoát
+	while True:
+   nguoi = input("Nhập kéo/búa/bao (Gõ 'thoat' để nghỉ): ")
+   if nguoi == 'thoat':
+       print("Tạm biệt nhé!")
+       break
+   print(f"Bạn đã chọn: {nguoi}")
+	Tạo một game loop chưa có luật. Chỉ tập trung vào việc chơi liên tục và có thể break thoát ra an toàn.
+	Bước 2: Cắm luật chơi vào
+	# (Sau khi lấy input và kiểm tra thoat)
+import random
+may = random.choice(['kéo', 'búa', 'bao'])
+print("Máy chọn:", may)
+
+if nguoi == may:
+   print("Hòa nhau!")
+elif (nguoi=='bao' and may=='búa') or (nguoi=='búa' and may=='kéo') or (nguoi=='kéo' and may=='bao'):
+   print("Bạn Thắng!")
+else:
+   print("Bạn Thua!")
+	Lưu ý cách dùng and, or và dấu ngoặc () để gộp 3 điều kiện chiến thắng của người chơi vào 1 dòng elif duy nhất. Rất ngầu!
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: Càng chơi điểm càng về 0
+   * Nguyên nhân: Đặt lệnh diem = 0 nằm LỌT THỎM bên trong vòng lặp while True:.
+   * Cách sửa: Nhớ quy tắc: Khởi tạo điểm thì nằm ngoài cùng, chỉ CỘNG điểm (diem = diem + 1) thì mới nằm bên trong.
+
+
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1 (Ghép nối): Gắn Bước 1 và Bước 2 ở trên lại thành một vòng chơi có luật đầy đủ.
+2. Cấp độ 2 (Hệ thống tính điểm): Tạo biến điểm cho người và máy ở đầu file. Mỗi khi bạn thắng -> cộng 1 điểm cho bạn. Mỗi khi thua -> cộng 1 điểm cho máy. In ra tỷ số: Tỉ số hiện tại - Người: [x] | Máy: [y] sau mỗi ván.
+3. Cấp độ 3 (Khắc phục gõ sai): Nếu người dùng gõ sai như "Kéo", "KÉO ", hãy dùng .strip().lower() để chuyển nó về "kéo" chuẩn trước khi đem đi so sánh. Nếu gõ "súng", in ra "Vũ khí không hợp lệ" và dùng lệnh continue để bỏ qua vòng đó, bắt nhập lại.
+
+
+6. Bài tập về nhà
+* Game Đoán Số phiên bản Master: Máy tính bí mật tạo ra một số từ 1 đến 100. Người chơi có vô số lượt đoán (Dùng vòng lặp while True). Mỗi lần đoán sai, máy tính gợi ý "Đoán cao hơn" hoặc "Đoán thấp hơn". Dùng 1 biến so_lan_doan = 0 để đếm xem người chơi cần bao nhiêu lần để đoán trúng. Khi đoán trúng, in ra: "Tuyệt đỉnh! Bạn đoán trúng sau ... lần thử".
+
+
+7. Học sinh cần tự nói lại được gì?
+* "Game hoạt động dựa trên vòng lặp vô hạn while True."
+* "Biến lưu trữ điểm số phải được tạo ở NGOÀI vòng lặp, nếu không sẽ bị reset về 0."
+* "Biết cách thiết kế if/elif/else gộp các điều kiện chiến thắng để code ngắn gọn hơn."
+
+
+
+
+________________
+Buổi 19: Dictionary cơ bản
+1. Mục tiêu bài học
+* Hiểu cấu trúc dữ liệu mới: Dictionary (Từ điển) dùng để lưu dữ liệu theo cặp Chìa khóa (Key) - Giá trị (Value).
+* Biết cách khởi tạo một Dictionary bằng dấu ngoặc nhọn {}.
+* So sánh sự khác biệt giữa List (truy cập bằng số 0, 1) và Dictionary (truy cập bằng tên Nhãn).
+* Biết cách Thêm mới, Cập nhật (Sửa) và Xóa dữ liệu trong Dictionary.
+* Duyệt qua các chìa khóa (keys) và giá trị (values) bằng vòng lặp.
+
+
+2. Lý thuyết chi tiết
+* Tủ đựng đồ thông minh: `List` là đoàn tàu, em phải nhớ đồ vật ở toa số mấy (0, 1, 2). Nhưng giả sử danh sách có 100 thứ, em không thể nhớ "Tuổi" nằm ở toa số mấy, "Điểm" ở toa số mấy. `Dictionary` chính là một chiếc tủ đồ có DÁN NHÃN. Muốn lấy tuổi, em chỉ cần gọi nhãn "Tuổi".
+* Cặp Key - Value (Chìa khóa - Giá trị): Trong tủ đồ này, cái Nhãn dán được gọi là Key (phải là chữ), còn đồ vật bên trong gọi là Value. Ví dụ: Key là "Mau_sac", Value là "Đỏ". Mối quan hệ là: "Mau_sac": "Đỏ" (ngăn cách bằng dấu hai chấm).
+* Quy tắc quan trọng: Dictionary được bọc trong dấu NGOẶC NHỌN {}. Giữa các cặp Key-Value có dấu phẩy ,. Tên của Key không được trùng lặp.
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Tạo từ điển và Lấy đồ ra
+	nhan_vat = {
+   "ten": "Yasuo",
+   "mau": 500,
+   "sat_thuong": 80
+}
+print("Tên tướng là:", nhan_vat["ten"])
+	Tạo 1 dict chứa thông tin nhân vật game. Thay vì gọi nhan_vat[0] như list, ta gọi tên nhãn nhan_vat["ten"]. Cực kỳ dễ hiểu!
+	Ví dụ 2: Cập nhật (Sửa) và Thêm mới
+	# Tướng bị mất máu
+nhan_vat["mau"] = 450  
+
+# Tướng nhặt được giáp mới (Thêm nhãn mới)
+nhan_vat["giap"] = 20  
+print(nhan_vat)
+	Nếu gọi một nhãn ĐÃ CÓ, nó sẽ sửa giá trị. Nếu gọi một nhãn CHƯA TỪNG CÓ, nó sẽ tự động tạo một ngăn kéo mới chứa đồ mới.
+	Ví dụ 3: Duyệt qua Tủ đồ
+	for nhan, do_vat in nhan_vat.items():
+   print(f"Thuộc tính {nhan} có giá trị {do_vat}")
+	Hàm .items() giúp vòng lặp for móc ra cùng lúc cả Nhãn (Key) và Đồ vật (Value) tương ứng.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+* Lỗi: KeyError: 'vu_khi'
+   * Nguyên nhân: Em cố gắng mở cái ngăn kéo có nhãn là "vu_khi" để lấy đồ, nhưng trong tủ hoàn toàn không có cái ngăn kéo nào tên như thế cả.
+   * Cách sửa: Kiểm tra lại chính tả của Key. Hoặc dùng hàm an toàn hơn: nhan_vat.get("vu_khi", "Chưa có vũ khí") (Nếu không có thì trả về câu mặc định).
+
+
+5. Bài tập thực hành trên lớp
+1. Cấp độ 1 (Hồ sơ cá nhân): Tạo một Dictionary ban_than lưu thông tin của em gồm 3 khóa: "ten", "tuoi", "so_thich". In ra câu "Chào, mình tên là [ten], mình thích [so_thich]".
+2. Cấp độ 2 (Từ điển Anh-Việt mini): Tạo dict có 3 từ tiếng anh (Ví dụ: "hello": "xin chào", "cat": "con mèo"). Hỏi người dùng nhập 1 từ tiếng Anh. Nếu từ đó có trong từ điển (dùng lệnh `if tu_khoa in tu_dien`), in ra nghĩa tiếng Việt.
+3. Cấp độ 3 (Cửa hàng thú cưng): Tạo dict thu_cung = {"chó": 2, "mèo": 5}. Hôm nay cửa hàng bán được 1 con mèo -> Hãy trừ đi 1. Cửa hàng mới nhập thêm 10 con thỏ -> Hãy thêm key "thỏ" với value 10. In từ điển mới ra.
+
+
+6. Bài tập về nhà
+* Quản lý điểm số cá nhân: Em hãy lập một Dictionary tên là bang_diem, trong đó Nhãn (Key) là tên các môn học (Toán, Văn, Anh...), và Giá trị (Value) là điểm số tương ứng. Viết vòng lặp for kết hợp với .items() để in ra màn hình thật đẹp:
+- Môn Toán: 9 điểm
+- Môn Văn: 8 điểm
+*(Thử thách nâng cao: Tính điểm trung bình các môn học trong Dictionary này)*.
+
+
+7. Học sinh cần tự nói lại được gì?
+   * "Dictionary lưu dữ liệu theo cặp Nhãn (Key) và Đồ vật (Value)."
+   * "Khác với List dùng số 0,1 để gọi, Dict dùng tên Nhãn để gọi đồ."
+   * "Có thể tùy ý thêm nhãn mới, thay đổi dữ liệu hoặc xóa bớt nhãn đi."
+
+
+
+
+________________
+Buổi 20: Quản lý dữ liệu nhỏ bằng list và dictionary
+1. Mục tiêu bài học
+   * Hiểu được sự kết hợp sức mạnh: Một List (danh sách) có thể chứa nhiều Dictionary ở bên trong.
+   * Biết cách xây dựng cấu trúc dữ liệu cho một "Lớp học" gồm nhiều "Học sinh".
+   * Thực hành kỹ năng thêm một học sinh mới vào danh sách.
+   * Biết dùng vòng lặp để in ra bảng thông tin dễ nhìn.
+   * Tự tin viết một chương trình quản lý dữ liệu nhỏ.
+
+
+2. Lý thuyết chi tiết
+   * Cấu trúc dữ liệu "Siêu cấp":
+   * List giỏi việc xếp hàng theo thứ tự (Học sinh 1, Học sinh 2, Học sinh 3).
+   * Dictionary giỏi việc mô tả chi tiết 1 đối tượng (Tên, Tuổi, Điểm).
+   * => Ghép lại: Ta có một List, trong đó mỗi toa tàu là một cái tủ đồ (Dictionary). Đây chính là cách các công ty, ứng dụng thật sự (như game, shopee, facebook) dùng để quản lý hàng triệu người dùng!
+   * Truy cập 2 lớp: Nếu lop_hoc là một List chứa các Dictionary. Thì lop_hoc[0] sẽ lấy ra bạn học sinh đầu tiên (Là một Dictionary). Sau đó lop_hoc[0]["ten"] sẽ lấy ra chữ Tên của bạn đó. (Vào toa tàu số 0, mở ngăn kéo có nhãn "Tên").
+
+
+3. Ví dụ minh họa (Gõ code cùng giáo viên)
+Mục đích
+	Code Python
+	Giải thích chi tiết
+	Ví dụ 1: Tạo lớp học (List chứa Dict)
+	lop_hoc = [
+   {"ten": "An", "diem": 9},
+   {"ten": "Bình", "diem": 7}
+]
+print(lop_hoc[0]["ten"])
+	Một danh sách [] chứa 2 phần tử, mỗi phần tử là một tủ đồ {}. Lấy toa số 0, sau đó mở nhãn "ten". Sẽ in ra chữ "An".
+	Ví dụ 2: Duyệt danh sách in thông báo
+	for hs in lop_hoc:
+   print(f"Bạn {hs['ten']} được {hs['diem']} điểm.")
+	Vòng lặp lấy từng chiếc tủ đồ (dict) ra, gán vào biến hs. Sau đó ta chỉ việc mở nhãn "ten" và "diem" của chiếc tủ đó để in ra. Chú ý ngoặc kép nháy đơn bên trong f-string.
+	Ví dụ 3: Thêm học sinh mới
+	hs_moi = {"ten": "Châu", "diem": 10}
+lop_hoc.append(hs_moi)
+print("Số học sinh hiện tại:", len(lop_hoc))
+	Tạo một tủ đồ riêng cho bạn Châu. Sau đó dùng lệnh append để nhét cả chiếc tủ đó vào cuối đoàn tàu lop_hoc.
+	
+
+4. Lỗi thường gặp & Cách khắc phục
+   * Lỗi: Cú pháp ngoặc kép lồng nhau trong f-string
+   * Sai: print(f"Tên: {hs["ten"]}"). Python bị nhầm lẫn vì có tới 4 dấu ngoặc kép đôi. Máy không biết đâu là mở, đâu là đóng.
+   * Cách sửa: Bên ngoài dùng ngoặc kép đôi "", bên trong dùng ngoặc đơn '' cho cái nhãn: print(f"Tên: {hs['ten']}").
+
+
+5. Bài tập thực hành trên lớp
+   1. Cấp độ 1 (Khởi tạo): Khai báo một List tên là cua_hang. Bên trong chứa 2 Dictionary, mỗi Dictionary là một món hàng gồm: "ten_mon" và "gia_tien" (Ví dụ Bánh mì 15k, Sữa 10k).
+   2. Cấp độ 2 (Nhập hàng mới): Dùng lệnh input() để hỏi chủ cửa hàng muốn nhập thêm món gì, giá bao nhiêu. Tạo thành 1 dict mới rồi append nó vào list cua_hang.
+   3. Cấp độ 3 (In Menu): Dùng vòng lặp for duyệt qua list cua_hang, in ra cái Menu đẹp mắt:
+--- MENU ---
+- Bánh mì: 15000 vnd
+- Sữa: 10000 vnd
+- (Món em vừa nhập ở Cấp độ 2)...
+
+
+6. Bài tập về nhà
+      * Pokedex Mini (Từ điển Pokemon):
+Em hãy tạo một chương trình quản lý thông tin các Pokemon.
+1. Tạo 1 list chứa 3 Pokemon (mỗi Pokemon là 1 dict có tên, hệ, và sức mạnh).
+2. Viết vòng lặp để tìm ra Pokemon có sức mạnh lớn nhất và in câu: "Pokemon mạnh nhất của bạn là ... với sức mạnh ...". (Gợi ý: tạo biến max_suc_manh = 0 trước vòng lặp, duyệt qua list nếu gặp ai mạnh hơn thì cập nhật).
+
+
+7. Học sinh cần tự nói lại được gì?
+         * "Một List có thể chứa nhiều Dictionary bên trong, tạo thành cấu trúc để quản lý danh sách rất mạnh."
+         * "Lệnh append() dùng để nhét thêm một dict mới vào cuối list."
+         * "Khi dùng f-string với dictionary, phải dùng nháy đơn cho tên Nhãn (Key) ở bên trong để không bị lỗi."

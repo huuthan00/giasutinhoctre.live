@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 19 - Dictionary cơ bản</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
+      <div class="nav">
+        <a href="../index.html#pathways">Khóa Python</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 3 - Game, dữ liệu và file cơ bản</span>
+      <h1>Buổi 19: Dictionary cơ bản</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh 11-12 tuổi.</div>
+        <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu bài học</h2>
+<ul>
+<li>Hiểu cấu trúc dữ liệu mới: Dictionary (Từ điển) dùng để lưu dữ liệu theo cặp Chìa khóa (Key) - Giá trị (Value).</li>
+<li>Biết cách khởi tạo một Dictionary bằng dấu ngoặc nhọn {}.</li>
+<li>So sánh sự khác biệt giữa List (truy cập bằng số 0, 1) và Dictionary (truy cập bằng tên Nhãn).</li>
+<li>Biết cách Thêm mới, Cập nhật (Sửa) và Xóa dữ liệu trong Dictionary.</li>
+<li>Duyệt qua các chìa khóa (keys) và giá trị (values) bằng vòng lặp.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Tủ đựng đồ thông minh: <code>List</code> là đoàn tàu, em phải nhớ đồ vật ở toa số mấy (0, 1, 2). Nhưng giả sử danh sách có 100 thứ, em không thể nhớ &quot;Tuổi&quot; nằm ở toa số mấy, &quot;Điểm&quot; ở toa số mấy. <code>Dictionary</code> chính là một chiếc tủ đồ có DÁN NHÃN. Muốn lấy tuổi, em chỉ cần gọi nhãn &quot;Tuổi&quot;.</li>
+<li>Cặp Key - Value (Chìa khóa - Giá trị): Trong tủ đồ này, cái Nhãn dán được gọi là Key (phải là chữ), còn đồ vật bên trong gọi là Value. Ví dụ: Key là &quot;Mau_sac&quot;, Value là &quot;Đỏ&quot;. Mối quan hệ là: &quot;Mau_sac&quot;: &quot;Đỏ&quot; (ngăn cách bằng dấu hai chấm).</li>
+<li>Quy tắc quan trọng: Dictionary được bọc trong dấu NGOẶC NHỌN {}. Giữa các cặp Key-Value có dấu phẩy ,. Tên của Key không được trùng lặp.</li>
+</ul>
+<h2>3. Ví dụ minh họa (Gõ code cùng giáo viên)</h2>
+<h3 class="example-title">Ví dụ 1: Tạo từ điển và Lấy đồ ra</h3>
+<pre><code class="language-python">nhan_vat = {</code></pre>
+<p>&quot;ten&quot;: &quot;Yasuo&quot;,</p>
+<p>&quot;mau&quot;: 500,</p>
+<p>&quot;sat_thuong&quot;: 80</p>
+<pre><code class="language-python">}
+print(&quot;Tên tướng là:&quot;, nhan_vat[&quot;ten&quot;])</code></pre>
+<p>Tạo 1 dict chứa thông tin nhân vật game. Thay vì gọi nhan_vat[0] như list, ta gọi tên nhãn nhan_vat[&quot;ten&quot;]. Cực kỳ dễ hiểu!</p>
+<h3 class="example-title">Ví dụ 2: Cập nhật (Sửa) và Thêm mới</h3>
+<pre><code class="language-python"># Tướng bị mất máu
+nhan_vat[&quot;mau&quot;] = 450</code></pre>
+<pre><code class="language-python"># Tướng nhặt được giáp mới (Thêm nhãn mới)
+nhan_vat[&quot;giap&quot;] = 20
+print(nhan_vat)</code></pre>
+<p>Nếu gọi một nhãn ĐÃ CÓ, nó sẽ sửa giá trị. Nếu gọi một nhãn CHƯA TỪNG CÓ, nó sẽ tự động tạo một ngăn kéo mới chứa đồ mới.</p>
+<h3 class="example-title">Ví dụ 3: Duyệt qua Tủ đồ</h3>
+<pre><code class="language-python">for nhan, do_vat in nhan_vat.items():
+print(f&quot;Thuộc tính {nhan} có giá trị {do_vat}&quot;)
+Hàm .items() giúp vòng lặp for móc ra cùng lúc cả Nhãn (Key) và Đồ vật (Value) tương ứng.</code></pre>
+<h2>4. Lỗi thường gặp &amp; Cách khắc phục</h2>
+<ul>
+<li>Lỗi: KeyError: &#x27;vu_khi&#x27;</li>
+<li>Nguyên nhân: Em cố gắng mở cái ngăn kéo có nhãn là &quot;vu_khi&quot; để lấy đồ, nhưng trong tủ hoàn toàn không có cái ngăn kéo nào tên như thế cả.</li>
+<li>Cách sửa: Kiểm tra lại chính tả của Key. Hoặc dùng hàm an toàn hơn: nhan_vat.get(&quot;vu_khi&quot;, &quot;Chưa có vũ khí&quot;) (Nếu không có thì trả về câu mặc định).</li>
+</ul>
+<h2>5. Bài tập thực hành trên lớp</h2>
+<ol>
+<li>Cấp độ 1 (Hồ sơ cá nhân): Tạo một Dictionary ban_than lưu thông tin của em gồm 3 khóa: &quot;ten&quot;, &quot;tuoi&quot;, &quot;so_thich&quot;. In ra câu &quot;Chào, mình tên là [ten], mình thích [so_thich]&quot;.</li>
+<li>Cấp độ 2 (Từ điển Anh-Việt mini): Tạo dict có 3 từ tiếng anh (Ví dụ: &quot;hello&quot;: &quot;xin chào&quot;, &quot;cat&quot;: &quot;con mèo&quot;). Hỏi người dùng nhập 1 từ tiếng Anh. Nếu từ đó có trong từ điển (dùng lệnh <code>if tu_khoa in tu_dien</code>), in ra nghĩa tiếng Việt.</li>
+</ol>
+<pre><code class="language-python">3. Cấp độ 3 (Cửa hàng thú cưng): Tạo dict thu_cung = {&quot;chó&quot;: 2, &quot;mèo&quot;: 5}. Hôm nay cửa hàng bán được 1 con mèo -&gt; Hãy trừ đi 1. Cửa hàng mới nhập thêm 10 con thỏ -&gt; Hãy thêm key &quot;thỏ&quot; với value 10. In từ điển mới ra.</code></pre>
+<h2>6. Bài tập về nhà</h2>
+<ul>
+<li>Quản lý điểm số cá nhân: Em hãy lập một Dictionary tên là bang_diem, trong đó Nhãn (Key) là tên các môn học (Toán, Văn, Anh...), và Giá trị (Value) là điểm số tương ứng. Viết vòng lặp for kết hợp với .items() để in ra màn hình thật đẹp:</li>
+<li>Môn Toán: 9 điểm</li>
+<li>Môn Văn: 8 điểm</li>
+</ul>
+<p>*(Thử thách nâng cao: Tính điểm trung bình các môn học trong Dictionary này)*.</p>
+<h2>7. Học sinh cần tự nói lại được gì?</h2>
+<ul>
+<li>&quot;Dictionary lưu dữ liệu theo cặp Nhãn (Key) và Đồ vật (Value).&quot;</li>
+<li>&quot;Khác với List dùng số 0,1 để gọi, Dict dùng tên Nhãn để gọi đồ.&quot;</li>
+<li>&quot;Có thể tùy ý thêm nhãn mới, thay đổi dữ liệu hoặc xóa bớt nhãn đi.&quot;</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-18-game-keo-bua-bao-co-tinh-diem.html">← Bài trước</a>
+      <a href="buoi-20-quan-ly-du-lieu-nho-bang-list-va-dictionary.html">Bài sau →</a>
+    </div>
+  </div>
+</body>
+</html>
