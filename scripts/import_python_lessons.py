@@ -354,7 +354,7 @@ def render_lesson(index: int, title: str, body_html: str, titles: dict[int, str]
       <h1>Buổi {index:02d}: {html.escape(title)}</h1>
       <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
       <div class="summary-grid">
-        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh 11-12 tuổi.</div>
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh mới học lập trình.</div>
         <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
         <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
       </div>
@@ -403,7 +403,7 @@ def render_index(titles: dict[int, str]) -> str:
     <header class="hero">
       <span class="badge">Bộ bài giảng HTML</span>
       <h1>Lập Trình Python Tư Duy</h1>
-      <p class="note">Bộ 32 bài giảng chi tiết cho học sinh 11-12 tuổi, đi từ những dòng Python đầu tiên đến mini app và sản phẩm demo cuối khóa.</p>
+      <p class="note">Bộ 32 bài giảng chi tiết, đi từ những dòng Python đầu tiên đến mini app và sản phẩm demo cuối khóa.</p>
     </header>
     <section>
       <h2>Mục lục</h2>
