@@ -1,0 +1,354 @@
+KHOA HOC LAP TRINH PYTHON TU DUY CHO BE 11-12 TUOI
+Danh sach bai hoc va noi dung kien thuc moi buoi can dat
+
+Thong tin chung:
+- Doi tuong: hoc sinh 11-12 tuoi, co the chua tung lap trinh hoac moi biet Scratch/co ban.
+- Thoi luong moi buoi: 90 phut.
+- Tong so buoi de xuat: 32 buoi.
+- Lich hoc khuyen nghi: 2 buoi/tuan. Co the dieu chinh 3 buoi/tuan neu hoc vien tiep thu tot.
+- Muc tieu khoa hoc: giup hoc sinh hieu tu duy lap trinh bang Python, biet viet chuong trinh console ro rang, biet dung bien, dieu kien, vong lap, danh sach, chuoi, ham, Turtle, file co ban, va cuoi khoa co san pham demo tu lam.
+- Dinh huong giang day: uu tien vi du gan voi doi song, game nho, hinh ve truc quan, bai tap ngan de hoc sinh co cam giac tu lam duoc.
+- Pham vi kien thuc: khong day noi dung qua nang nhu OOP nang cao, de quy nang cao, thuat toan do thi, dynamic programming, database, web framework.
+- San pham cuoi khoa: hoc sinh chon 1 trong 3 huong: mini game, ung dung quan ly don gian, hoac chuong trinh ve/hieu ung Turtle. Hoc sinh biet demo va giai thich san pham.
+
+Yeu cau khi Gemini viet bai giang chi tiet cho moi buoi:
+1. Co bai giang ly thuyet chi tiet, giai thich bang ngon ngu don gian cho hoc sinh 11-12 tuoi.
+2. Moi kien thuc quan trong can co vi du minh hoa rieng, nen gan voi tinh huong quen thuoc nhu diem so, cua hang, tro choi, nhan vat, so bi mat.
+3. Moi buoi co 3 den 4 vi du code Python day du, moi vi du co giai thich tung buoc.
+4. Moi buoi co 3 den 4 bai tap thuc hanh tren lop, muc do tang dan.
+5. Moi buoi co bai tap ve nha ro yeu cau.
+6. Code dung Python 3, uu tien de doc, ten bien ro nghia, tranh code qua ngan kho hieu.
+7. Neu co loi thuong gap, can ghi ro cach nhan biet loi va cach sua.
+8. Cuoi moi buoi can co muc "Hoc sinh can tu noi lai duoc gi?" de kiem tra hieu bai.
+
+============================================================
+GIAI DOAN 1 - LAM QUEN PYTHON VA TU DUY CODE
+============================================================
+
+Buoi 01 - Python la gi va chuong trinh dau tien
+Kien thuc can dat:
+- Hieu Python la ngon ngu lap trinh dung de ra lenh cho may tinh.
+- Hieu khac nhau giua nguoi dung, chuong trinh va may tinh.
+- Biet mo moi truong code Python va chay file .py.
+- Biet dung print() de in thong tin ra man hinh.
+- Hieu chuoi van ban can dat trong dau nhay.
+- Biet sua loi co ban: thieu dau nhay, thieu dau ngoac, viet sai print.
+- Hoc sinh tu viet duoc chuong trinh in ten, tuoi, so thich va 3 dong gioi thieu ban than.
+
+Buoi 02 - Bien va du lieu trong Python
+Kien thuc can dat:
+- Hieu bien la hop dung du lieu trong chuong trinh.
+- Biet tao bien va gan gia tri bang dau =.
+- Biet cac kieu du lieu co ban: str, int, float, bool.
+- Biet dung type() de xem kieu du lieu.
+- Biet dat ten bien ro nghia, khong dat ten co dau cach.
+- Hieu loi khi cong so voi chuoi.
+- Hoc sinh viet duoc chuong trinh luu thong tin hoc vien va in ra cau gioi thieu.
+
+Buoi 03 - Nhap du lieu voi input()
+Kien thuc can dat:
+- Biet dung input() de nhap du lieu tu ban phim.
+- Hieu input() luon tra ve chuoi.
+- Biet ep kieu int(), float() khi can tinh toan.
+- Biet ghep chuoi bang dau + va dung f-string.
+- Biet xu ly loi khi nhap so khong dung dang.
+- Hoc sinh viet duoc chuong trinh hoi ten, tuoi, lop, mon yeu thich va in loi chao.
+
+Buoi 04 - Phep tinh so hoc va bieu thuc
+Kien thuc can dat:
+- Biet dung +, -, *, /, //, %, ** trong Python.
+- Hieu thu tu uu tien phep tinh va vai tro cua dau ngoac.
+- Phan biet chia thuong / va chia lay phan nguyen //.
+- Hieu phep chia du % qua bai toan chan/le, chia keo, doi thoi gian.
+- Biet dung bien trung gian de code de doc.
+- Hoc sinh viet duoc chuong trinh tinh tien mua hang, tinh diem trung binh, doi phut sang gio-phut.
+
+Buoi 05 - Dieu kien if/else co ban
+Kien thuc can dat:
+- Hieu dieu kien dung/sai trong lap trinh.
+- Biet dung if, else va dau hai cham.
+- Hieu thut le trong Python la bat buoc.
+- Biet cac toan tu so sanh: ==, !=, >, <, >=, <=.
+- Biet kiem tra so duong/am/0, du tuoi, dau/rot.
+- Hoc sinh viet duoc chuong trinh kiem tra tuoi xem phim, diem dat/khong dat.
+
+Buoi 06 - else-if voi elif va dieu kien nhieu nhanh
+Kien thuc can dat:
+- Hieu khi nao can dung elif.
+- Biet sap xep dieu kien theo thu tu hop ly.
+- Biet ket hop dieu kien bang and, or, not.
+- Biet phan loai diem so, xep loai hoc luc, chon menu don gian.
+- Biet test cac moc ranh gioi nhu 4.9, 5.0, 7.9, 8.0.
+- Hoc sinh viet duoc chuong trinh xep loai diem va menu lua chon mon hoc.
+
+Buoi 07 - Vong lap for va lap biet truoc so lan
+Kien thuc can dat:
+- Hieu vong lap giup lap lai hanh dong nhieu lan.
+- Biet dung for voi range().
+- Hieu range(n), range(a, b), range(a, b, step).
+- Biet in day so, tinh tong, dem so luong.
+- Biet tranh loi nham lan diem dau/diem cuoi cua range.
+- Hoc sinh viet duoc chuong trinh in bang cuu chuong, tinh tong 1 den n, in hinh bang ky tu.
+
+Buoi 08 - while va lap den khi dung dieu kien
+Kien thuc can dat:
+- Hieu while dung khi chua biet truoc so lan lap.
+- Biet lap den khi nguoi dung nhap dung.
+- Biet dung break de thoat vong lap khi can.
+- Hieu vong lap vo han va cach tranh.
+- Biet viet mini game doan so don gian.
+- Hoc sinh viet duoc game doan so bi mat co thong bao lon hon/nho hon.
+
+============================================================
+GIAI DOAN 2 - DU LIEU, CHUOI, DANH SACH VA TURTLE
+============================================================
+
+Buoi 09 - List co ban
+Kien thuc can dat:
+- Hieu list dung de luu nhieu du lieu trong mot bien.
+- Biet tao list, truy cap phan tu bang chi so.
+- Hieu chi so bat dau tu 0.
+- Biet dung len(), append(), remove().
+- Biet duyet list bang for.
+- Hoc sinh viet duoc chuong trinh quan ly danh sach mon hoc, danh sach diem.
+
+Buoi 10 - Xu ly list so
+Kien thuc can dat:
+- Biet nhap nhieu so vao list.
+- Biet tinh tong, trung binh, tim max, min.
+- Biet dem so chan, so le, so lon hon mot moc.
+- Biet tim vi tri phan tu trong list.
+- Biet tranh loi list rong khi tinh trung binh.
+- Hoc sinh viet duoc chuong trinh thong ke diem cua mot lop nho.
+
+Buoi 11 - Chuoi string co ban
+Kien thuc can dat:
+- Hieu string la day ky tu.
+- Biet lay do dai chuoi bang len().
+- Biet truy cap tung ky tu bang chi so.
+- Biet noi chuoi, lap chuoi, in tung ky tu.
+- Biet mot so ham co ban: lower(), upper(), strip().
+- Hoc sinh viet duoc chuong trinh chuan hoa ten don gian va dem so ky tu.
+
+Buoi 12 - Xu ly chuoi ung dung
+Kien thuc can dat:
+- Biet dung in de kiem tra chuoi con.
+- Biet dung count(), replace(), split() o muc co ban.
+- Biet dem so tu trong cau.
+- Biet kiem tra mat khau don gian theo do dai va ky tu.
+- Biet ung dung chuoi vao tro choi doan chu.
+- Hoc sinh viet duoc chuong trinh kiem tra ten dang nhap/mat khau co ban.
+
+Buoi 13 - Ham function co ban
+Kien thuc can dat:
+- Hieu ham giup tach chuong trinh thanh cac viec nho.
+- Biet dinh nghia ham bang def.
+- Biet goi ham, truyen tham so.
+- Phan biet ham co return va ham chi print.
+- Biet viet ham tinh toan don gian: tinh tong, kiem tra chan le, tinh diem trung binh.
+- Hoc sinh viet duoc chuong trinh tach cac chuc nang thanh ham nho.
+
+Buoi 14 - Turtle: ve hinh bang code
+Kien thuc can dat:
+- Hieu Turtle giup thay code thanh hinh anh truc quan.
+- Biet tao turtle, di chuyen forward, backward, left, right.
+- Biet doi mau, do day but, toc do ve.
+- Biet dung vong lap de ve hinh vuong, tam giac, luc giac.
+- Hieu moi hinh ve la ket qua cua lenh lap trinh.
+- Hoc sinh ve duoc bo suu tap hinh co ban bang Turtle.
+
+Buoi 15 - Turtle va hoa van lap lai
+Kien thuc can dat:
+- Biet ket hop for va Turtle de ve hoa van.
+- Biet thay doi goc quay de tao hieu ung khac nhau.
+- Biet dung bien de dieu khien kich thuoc, mau sac, so lan lap.
+- Biet chia bai ve lon thanh ham ve nho.
+- Biet thu nghiem va quan sat ket qua khi doi tham so.
+- Hoc sinh ve duoc hinh bong hoa, banh xe mau, hoac hoa van xoay.
+
+Buoi 16 - On tap giai doan 1-2 va mini project Turtle
+Kien thuc can dat:
+- On lai bien, input, if, for, while, list, string, ham, Turtle.
+- Biet doc yeu cau va chia thanh cac buoc nho.
+- Biet lap ke hoach truoc khi code.
+- Biet sua loi bang cach in gia tri trung gian.
+- Hoan thanh mini project Turtle co chu de rieng: canh dem, robot, vu tru, thanh pho, bong hoa.
+- Hoc sinh trinh bay duoc code va y tuong san pham trong 2-3 phut.
+
+============================================================
+GIAI DOAN 3 - TU DUY GAME, DU LIEU VA FILE CO BAN
+============================================================
+
+Buoi 17 - Random va tro choi may man
+Kien thuc can dat:
+- Hieu random giup chuong trinh tao ket qua khac nhau moi lan chay.
+- Biet import random.
+- Biet dung randint(), choice().
+- Biet ung dung random vao xuc xac, rut tham, doan so, chon cau hoi.
+- Biet ket hop random voi if/else.
+- Hoc sinh viet duoc game tung xuc xac va game keo-bua-bao don gian.
+
+Buoi 18 - Game keo bua bao co tinh diem
+Kien thuc can dat:
+- Biet thiet ke luat game thanh dieu kien.
+- Biet dung while de choi nhieu van.
+- Biet dung bien diem nguoi choi va diem may.
+- Biet hien thi ket qua sau moi van.
+- Biet ket thuc game khi nguoi choi chon thoat.
+- Hoc sinh viet duoc game keo-bua-bao hoan chinh co tinh diem.
+
+Buoi 19 - Dictionary co ban
+Kien thuc can dat:
+- Hieu dictionary luu du lieu theo cap key-value.
+- Biet tao dictionary, lay gia tri theo key.
+- Biet them, sua, xoa du lieu trong dictionary.
+- Biet duyet keys, values, items.
+- Biet ung dung dictionary de luu thong tin hoc sinh/san pham.
+- Hoc sinh viet duoc chuong trinh luu thong tin mot nhan vat game hoac hoc vien.
+
+Buoi 20 - Quan ly du lieu nho bang list va dictionary
+Kien thuc can dat:
+- Hieu list co the chua nhieu dictionary.
+- Biet tao danh sach hoc sinh/san pham/nhan vat.
+- Biet them phan tu moi vao danh sach.
+- Biet in bang thong tin don gian.
+- Biet tim mot doi tuong theo ten hoac ma.
+- Hoc sinh viet duoc chuong trinh quan ly danh sach hoc sinh gom ten, tuoi, diem.
+
+Buoi 21 - Tim kiem va loc du lieu co ban
+Kien thuc can dat:
+- Hieu tim kiem la duyet qua danh sach de tim du lieu can.
+- Biet tim theo ten, ma, hoac dieu kien.
+- Biet loc danh sach theo diem, tuoi, loai san pham.
+- Biet xu ly truong hop khong tim thay.
+- Biet hien thi nhieu ket qua thoa dieu kien.
+- Hoc sinh viet duoc chuong trinh tim hoc sinh theo ten va loc hoc sinh diem cao.
+
+Buoi 22 - Sap xep co ban trong Python
+Kien thuc can dat:
+- Hieu sap xep giup du lieu de xem va so sanh.
+- Biet dung sorted() va list.sort() o muc co ban.
+- Biet sap xep so tang/giam.
+- Biet sap xep danh sach dictionary theo diem hoac tuoi bang key.
+- Biet khi nao dung reverse=True.
+- Hoc sinh viet duoc chuong trinh bang xep hang diem.
+
+Buoi 23 - File text co ban
+Kien thuc can dat:
+- Hieu file giup luu du lieu sau khi tat chuong trinh.
+- Biet mo file de ghi va doc bang with open().
+- Biet ghi mot dong, ghi nhieu dong.
+- Biet doc file bang read(), readline(), readlines() o muc co ban.
+- Biet dong file tu dong khi dung with.
+- Hoc sinh viet duoc chuong trinh luu ghi chu hoac danh sach viec can lam vao file.
+
+Buoi 24 - Luu va doc du lieu ung dung
+Kien thuc can dat:
+- Biet luu danh sach du lieu don gian vao file text.
+- Biet tach du lieu bang dau phay hoac dau |.
+- Biet doc file va tao lai danh sach trong chuong trinh.
+- Biet kiem tra file rong/co du lieu.
+- Biet thiet ke format du lieu don gian de de doc lai.
+- Hoc sinh viet duoc ung dung todo list luu file co them/xem/xoa viec.
+
+============================================================
+GIAI DOAN 4 - MINI APP, SAN PHAM DEMO VA BAO VE SAN PHAM
+============================================================
+
+Buoi 25 - Menu console va cau truc chuong trinh
+Kien thuc can dat:
+- Hieu menu giup nguoi dung chon chuc nang.
+- Biet dung while True de lap menu.
+- Biet tach moi chuc nang thanh ham rieng.
+- Biet xu ly lua chon sai.
+- Biet thiet ke menu: them, xem, tim, xoa, thoat.
+- Hoc sinh viet duoc menu console cho ung dung quan ly don gian.
+
+Buoi 26 - Mini app quan ly danh sach hoc tap
+Kien thuc can dat:
+- Biet tao ung dung quan ly danh sach tu vung/bai tap/diem so.
+- Biet them du lieu moi.
+- Biet xem toan bo danh sach.
+- Biet tim kiem theo tu khoa.
+- Biet xoa du lieu theo vi tri hoac ten.
+- Hoc sinh viet duoc ung dung quan ly tu vung tieng Anh hoac danh sach bai tap.
+
+Buoi 27 - Nang cap mini app: thong ke va sap xep
+Kien thuc can dat:
+- Biet them chuc nang thong ke so luong du lieu.
+- Biet tinh diem trung binh, tim cao nhat/thap nhat neu du lieu co diem.
+- Biet sap xep danh sach theo ten, diem, hoac ngay them.
+- Biet hien thi thong tin dep va de doc.
+- Biet kiem tra truong hop danh sach rong.
+- Hoc sinh nang cap mini app co thong ke va sap xep.
+
+Buoi 28 - Kiem tra du lieu nhap va sua loi
+Kien thuc can dat:
+- Hieu vi sao can kiem tra du lieu dau vao.
+- Biet xu ly nhap so bang try/except o muc co ban.
+- Biet bat nguoi dung nhap lai khi sai.
+- Biet tranh crash chuong trinh vi du lieu khong hop le.
+- Biet doc thong bao loi Python va khoanh vung loi.
+- Hoc sinh sua mini app de nhap lieu an toan hon.
+
+Buoi 29 - Chon de tai san pham cuoi khoa
+Kien thuc can dat:
+- Hieu san pham cuoi khoa can vua suc, co the demo trong 3-5 phut.
+- Biet chon de tai theo so thich: game, quan ly hoc tap, quan ly cua hang nho, quiz, ve Turtle.
+- Biet viet mo ta san pham: muc tieu, nguoi dung, chuc nang chinh.
+- Biet lap danh sach tinh nang bat buoc va tinh nang them neu con thoi gian.
+- Biet ve so do luong chay don gian.
+- Hoc sinh chot duoc de tai va ke hoach lam san pham.
+
+Buoi 30 - Xay dung san pham cuoi khoa phan 1
+Kien thuc can dat:
+- Tao file/codebase ban dau cho san pham.
+- Xay menu hoac man hinh chinh.
+- Xay 2-3 chuc nang cot loi dau tien.
+- Biet test tung chuc nang nho sau khi code.
+- Biet ghi lai loi gap phai va cach sua.
+- Hoc sinh co ban demo ban dau chay duoc.
+
+Buoi 31 - Xay dung san pham cuoi khoa phan 2
+Kien thuc can dat:
+- Hoan thien cac chuc nang con lai.
+- Them kiem tra du lieu dau vao.
+- Them hien thi dep hon: tieu de, dong phan cach, thong bao ro rang.
+- Neu phu hop, them luu file hoac bang diem.
+- Biet test san pham voi nhieu tinh huong.
+- Hoc sinh co san pham gan hoan chinh de demo.
+
+Buoi 32 - Demo va bao ve san pham
+Kien thuc can dat:
+- Biet chuan bi kich ban demo 3-5 phut.
+- Biet gioi thieu muc tieu san pham, cac chuc nang chinh, du lieu thu nghiem.
+- Biet giai thich mot doan code quan trong bang ngon ngu cua minh.
+- Biet tra loi cau hoi: chuong trinh dung bien/list/dictionary/ham/file o dau.
+- Biet neu diem manh, diem can cai thien, huong nang cap sau khoa hoc.
+- Hoc sinh demo duoc san pham cuoi khoa va tu tin bao ve san pham.
+
+============================================================
+GOI Y DE TAI SAN PHAM CUOI KHOA
+============================================================
+
+1. Game keo-bua-bao nang cap co diem, lich su van choi va thong ke.
+2. Game quiz kien thuc co ngan hang cau hoi, tinh diem va xep hang.
+3. Ung dung quan ly tu vung tieng Anh: them tu, xem tu, tim kiem, quiz tu vung.
+4. Ung dung quan ly bai tap: them bai, danh dau hoan thanh, loc bai chua lam.
+5. Bang diem mini: nhap diem, tinh trung binh, xep loai, tim hoc sinh diem cao.
+6. Turtle Art Gallery: ve nhieu mau hinh, cho nguoi dung chon mau/kich thuoc/hoa van.
+
+============================================================
+YEU CAU DAU RA TOAN KHOA
+============================================================
+
+Sau 32 buoi, hoc sinh can dat:
+- Tu viet va chay duoc chuong trinh Python co input/output.
+- Hieu va su dung duoc bien, kieu du lieu, dieu kien, vong lap.
+- Xu ly duoc list, string, dictionary o muc co ban.
+- Biet viet ham de tach chuong trinh.
+- Biet tao hinh ve Turtle va mini game console.
+- Biet doc/ghi file text don gian.
+- Biet thiet ke menu, chia chuc nang, test loi co ban.
+- Co mot san pham demo cuoi khoa va trinh bay duoc cach hoat dong.
+

@@ -388,10 +388,12 @@ body.light-mode .theme-toggle-btn .sun-icon {
     align-items: center;
     position: relative;
     z-index: 10;
+    width: 100%;
 }
 
 .hero-content {
     flex: 1.2;
+    min-width: 0;
 }
 
 .hero-tag {
@@ -407,6 +409,7 @@ body.light-mode .theme-toggle-btn .sun-icon {
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 25px;
+    max-width: 100%;
 }
 
 .hero-title {
@@ -501,6 +504,8 @@ body.light-mode .hero-btn.secondary-btn {
     display: flex;
     justify-content: center;
     position: relative;
+    min-width: 0;
+    width: 100%;
 }
 
 /* 7. TECH GRAPHIC ENGINE (100% CSS) */
@@ -1324,6 +1329,7 @@ body.light-mode .toggle-btn {
 .testimonial-slider {
     position: relative;
     height: 280px;
+    overflow: hidden;
 }
 
 .testimonial-slide {
@@ -1926,6 +1932,7 @@ body.light-mode .modal-data-box {
         flex-direction: column;
         gap: 50px;
         text-align: center;
+        max-width: 100%;
     }
     
     .hero-content {
@@ -1937,6 +1944,18 @@ body.light-mode .modal-data-box {
     .hero-desc {
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .badge-1 {
+        right: 0;
+    }
+
+    .badge-2 {
+        left: 0;
+    }
+
+    .badge-3 {
+        right: 16px;
     }
     
     .pathway-card {
@@ -1991,12 +2010,47 @@ body.light-mode .modal-data-box {
 }
 
 @media (max-width: 768px) {
+    .section-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-section {
+        min-height: auto;
+        padding: 130px 0 80px;
+    }
+
+    .hero-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-tag {
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+        line-height: 1.4;
+        letter-spacing: 0.6px;
+    }
+
     .section-title {
         font-size: 32px;
     }
     
     .hero-title {
         font-size: 42px;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        letter-spacing: 0;
+    }
+
+    .tech-graphic-container {
+        max-width: 100%;
+    }
+
+    .testimonial-slide {
+        transform: translateX(0);
+        padding: 0 4px;
     }
     
     .hero-stats {
@@ -2112,12 +2166,71 @@ body.light-mode .modal-data-box {
 }
 
 @media (max-width: 480px) {
+    .section {
+        padding: 64px 0;
+    }
+
+    .section-container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-desc {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .ambient-glow {
+        width: 260px;
+        height: 260px;
+        filter: blur(90px);
+        opacity: 0.1;
+    }
+
+    .bg-glow-1 {
+        left: -80px;
+    }
+
+    .bg-glow-2 {
+        right: -90px;
+    }
+
+    .bg-glow-3 {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hero-section {
+        padding: 118px 0 60px;
+    }
+
+    .hero-container {
+        padding-left: 18px;
+        padding-right: 18px;
+        gap: 34px;
+    }
+
+    .hero-tag {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
     .hero-title {
-        font-size: 32px;
+        font-size: clamp(30px, 9vw, 34px);
+        line-height: 1.15;
     }
     
     .hero-desc {
         font-size: 15px;
+        line-height: 1.65;
     }
     
     .hero-ctas {
@@ -2129,6 +2242,8 @@ body.light-mode .modal-data-box {
     .hero-btn {
         width: 100%;
         justify-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
     .hero-stats {
@@ -2144,6 +2259,16 @@ body.light-mode .modal-data-box {
     .calc-inputs, .calc-results, .registration-info, .registration-form-card {
         padding: 30px 20px;
     }
+
+    .btn-group-toggle {
+        flex-direction: column;
+    }
+
+    .metric-row {
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
+    }
     
     .radio-tiles {
         grid-template-columns: 1fr;
@@ -2151,6 +2276,60 @@ body.light-mode .modal-data-box {
     
     .pathway-card {
         padding: 24px 16px;
+    }
+
+    .pathway-info h3 {
+        font-size: 24px;
+    }
+
+    .path-badge {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .tech-graphic-container {
+        height: 330px;
+    }
+
+    .code-box {
+        height: 286px;
+    }
+
+    .code-box-body {
+        padding: 16px;
+        font-size: 12px;
+    }
+
+    .floating-badge {
+        padding: 10px 12px;
+        gap: 8px;
+        border-radius: 12px;
+        max-width: 170px;
+    }
+
+    .floating-badge h4 {
+        font-size: 13px;
+    }
+
+    .floating-badge p {
+        font-size: 11px;
+    }
+
+    .floating-badge i {
+        font-size: 20px;
+    }
+
+    .badge-1 {
+        right: 0;
+    }
+
+    .badge-2 {
+        left: 0;
+    }
+
+    .badge-3 {
+        right: 0;
     }
     
     .success-modal {
