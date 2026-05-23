@@ -215,7 +215,21 @@ th { color: var(--primary); }
 }
 </style>
 </head>
-<body>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 07</h1>
+      <p>Vòng lặp for và lặp biết trước số lần thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
 
   <div class="wrap">
     <div class="topbar">
@@ -298,6 +312,54 @@ Khởi tạo một chiếc hộp tong = 0. Mỗi vòng lặp, ta lấy tong cũ 
       <a href="buoi-08-while-va-lap-den-khi-dung-dieu-kien.html">Bài sau →</a>
     </div>
   </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_python_lessons_unlocked";
+      const SECURITY_CODE = "PYTHON";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
 
 </body>
 </html>

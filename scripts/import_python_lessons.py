@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "Slide"
 OUT_DIR = ROOT / "bai-giang-python-nentang"
 LESSON_COUNT = 32
-PROTECTED_FROM_LESSON = 10
+PROTECTED_FROM_LESSON = 5
 SECURITY_CODE = "PYTHON"
 LOCK_STORAGE_KEY = "giasutht_python_lessons_unlocked"
 
