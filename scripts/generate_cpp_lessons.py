@@ -1270,6 +1270,8 @@ def render_lesson(index: int, lesson: dict) -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buổi {index:02d} - {html.escape(lesson['title'])}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#06b6d4">
   <style>{STYLE}</style>
 </head>
 <body>
@@ -1367,6 +1369,8 @@ def render_index() -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mục lục bài giảng C++</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#06b6d4">
   <style>{STYLE}</style>
 </head>
 <body>

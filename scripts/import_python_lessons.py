@@ -494,6 +494,8 @@ def render_lesson(index: int, title: str, body_html: str, titles: dict[int, str]
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buổi {index:02d} - {html.escape(title)}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#22c55e">
   <style>{STYLE}{EXTRA_STYLE}</style>
 </head>
 <body{body_class}>
@@ -548,6 +550,8 @@ def render_index(titles: dict[int, str]) -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mục lục bài giảng Python tư duy</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#22c55e">
   <style>{STYLE}{EXTRA_STYLE}</style>
 </head>
 <body>
