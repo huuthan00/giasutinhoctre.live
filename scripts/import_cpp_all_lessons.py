@@ -9,7 +9,7 @@ from generate_cpp_lessons import LESSONS, STYLE, lesson_filename
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "c++all.txt"
-OUT_DIR = ROOT / "bai-giang-cpp-15tuoi"
+OUT_DIR = ROOT / "bai-giang-cpp-nentang"
 PROTECTED_FROM_LESSON = 10
 SECURITY_CODE = "CPP15"
 LOCK_STORAGE_KEY = "giasutht_cpp_lesson_access_v2"
