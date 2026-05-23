@@ -142,6 +142,12 @@ section:first-of-type { padding-top: 0; }
   transition: transform var(--transition), box-shadow var(--transition);
 }
 .btn-primary-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(var(--primary-rgb),.45); }
+.price-label {
+  cursor: default;
+}
+.price-label:hover {
+  transform: none;
+}
 .btn-outline-cta {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 28px;
@@ -513,9 +519,9 @@ section:first-of-type { padding-top: 0; }
     </div>
 
     <div class="hero-ctas">
-      <a href="index.html#register" class="btn-primary-cta">
-        <i class="fa-solid fa-calendar-check"></i> Đăng Ký Học Thử Miễn Phí
-      </a>
+      <span class="btn-primary-cta price-label">
+        <i class="fa-solid fa-tag"></i> Học phí: 12.999.999đ
+      </span>
       <a href="#curriculum" class="btn-outline-cta">
         <i class="fa-solid fa-list"></i> Xem Chi Tiết Lộ Trình
       </a>
