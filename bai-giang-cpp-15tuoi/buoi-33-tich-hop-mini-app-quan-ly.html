@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 33 - Tích hợp mini app quản lý</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 24px;
+}
+.lesson-body h4 {
+  color: #bae6fd;
+  margin: 20px 0 8px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.task-item {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.task-item strong {
+  color: #eef2ff;
+}
+.check-item {
+  list-style: none;
+  margin-left: -4px;
+}
+.check-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(238,242,255,.7);
+  border-radius: 3px;
+  margin-right: 8px;
+  transform: translateY(2px);
+}
+.lesson-body blockquote,
+.image-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+.image-note > strong {
+  display: block;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.image-note p {
+  margin: 8px 0;
+}
+.image-note ul {
+  margin-bottom: 0;
+}
+.image-note li strong {
+  color: #fde68a;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(6,182,212,.7);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+}
+</style>
+</head>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 33</h1>
+      <p>Tích hợp mini app quản lý thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng C++</a>
+      <div class="nav">
+        <a href="../khoa-hoc-cpp-nentang.html">Trang khóa học</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</span>
+      <h1>Buổi 33: Tích hợp mini app quản lý</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết, ví dụ code, giải thích từng bước, bài tập trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Nội dung được triển khai chi tiết theo từng khái niệm.</div>
+        <div class="card"><strong>Code mẫu</strong>Các ví dụ C++ console có giải thích từng bước.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp và bài tập về nhà rõ yêu cầu.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu buổi học</h2>
+<ul>
+<li>Biết gom các chức năng đã học thành một chương trình quản lý.</li>
+<li>Có menu: thêm, hiển thị, tìm kiếm, sửa, xóa, sắp xếp, thống kê, thoát.</li>
+<li>Biết tách code thành các hàm riêng.</li>
+<li>Biết dùng vector làm dữ liệu chính.</li>
+<li>Biết kiểm tra lỗi nhập cơ bản.</li>
+<li>Học sinh hoàn thành mini app quản lý phiên bản đầu.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li><strong>Lắp ráp mô hình (Integration):</strong> 32 buổi trước, chúng ta luyện tập rèn rũa từng mảnh ghép rời rạc: Hàm thêm, Hàm xóa, Cấu trúc <code>if-else</code>, Vòng lặp. Buổi hôm nay là lúc lắp ráp toàn bộ chúng lại thành một cỗ máy Mini App chạy hoàn chỉnh.</li>
+<li><strong>Quản lý dữ liệu tập trung:</strong> Tạo duy nhất một biến <code>vector&lt;Struct&gt; dataMain;</code> ở bên trong hàm <code>main()</code>. Sau đó, truyền tham chiếu biến này vào mọi nhánh của chức năng thông qua Menu.</li>
+<li><strong>Bắt lỗi cơ bản (Validation):</strong> Không được để người dùng nhập Giá tiền là số âm, hoặc nhập Mã là chữ. Trước khi đẩy struct vào mảng bằng <code>push_back()</code>, phải dùng lệnh <code>if</code> để chặn các thông tin vô lý đó lại.</li>
+</ul>
+
+<div class="image-note">
+  <strong>Minh họa chi tiết</strong>
+  <p><em>Ý tưởng trực quan:</em> Một bản vẽ lắp ráp Robot. Các bộ phận rời rạc (Hàm Thêm, Hàm Xóa, Hàm Thống Kê) kết nối vào khung trục trung tâm (Hàm Main chứa Switch-Case) để tạo thành một Mini App hoàn chỉnh</p>
+  <ul>
+    <li><strong>Cách trình bày:</strong> Vẽ mini app như robot: <code>main</code> là thân chính, các hàm thêm/xóa/thống kê là bộ phận được gắn vào.</li>
+    <li><strong>Ví dụ thao tác:</strong> Cho học sinh đánh dấu mỗi chức năng trong menu đang gọi hàm nào.</li>
+    <li><strong>Điểm cần chốt:</strong> Chốt rằng tích hợp app là ghép các hàm đã học thành một luồng sử dụng hoàn chỉnh.</li>
+    <li><strong>Câu hỏi kiểm tra nhanh:</strong> Nếu menu chọn 3 là tìm kiếm, hàm nào nên được gọi và dữ liệu nào được truyền vào?</li>
+  </ul>
+</div>
+
+<h2>3. Ví dụ minh họa</h2>
+<ul>
+<li><strong>Khung sườn Mini App hoàn chỉnh</strong></li>
+</ul>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+struct MonAn { int ma; string ten; }; // Dữ liệu chính
+
+// Các hàm tách biệt (Ví dụ viết ngắn gọn, thực tế viết dài như các bài trước)
+void themMon(vector&lt;MonAn&gt; &amp;ds) {
+    MonAn m;
+    cout &lt;&lt; &quot;Nhap Ma: &quot;; cin &gt;&gt; m.ma;
+    if (m.ma &lt; 0) { // Bắt lỗi cơ bản
+        cout &lt;&lt; &quot;Ma khong duoc am!\n&quot;; return;
+    }
+    cin.ignore();
+    cout &lt;&lt; &quot;Nhap Ten: &quot;; getline(cin, m.ten);
+    ds.push_back(m);
+    cout &lt;&lt; &quot;Da them!\n&quot;;
+}
+
+void xemDanhSach(vector&lt;MonAn&gt; ds) {
+    if(ds.empty()) { cout &lt;&lt; &quot;Rong!\n&quot;; return; }
+    for(int i=0; i&lt;ds.size(); i++) cout &lt;&lt; ds[i].ma &lt;&lt; &quot; - &quot; &lt;&lt; ds[i].ten &lt;&lt; &quot;\n&quot;;
+}
+
+int main() {
+    vector&lt;MonAn&gt; thucDon; // Trái tim của ứng dụng
+    int chon;
+
+    do {
+        cout &lt;&lt; &quot;\n=== APP QUAN LY THUC DON ===\n&quot;;
+        cout &lt;&lt; &quot;1. Them Mon\n2. Xem Danh Sach\n3. Thoat\n&quot;;
+        cout &lt;&lt; &quot;Chon: &quot;; cin &gt;&gt; chon;
+
+        // Điều phối dữ liệu qua các hàm
+        switch(chon) {
+            case 1: themMon(thucDon); break;
+            case 2: xemDanhSach(thucDon); break;
+            case 3: cout &lt;&lt; &quot;Dang thoat...\n&quot;; break;
+            default: cout &lt;&lt; &quot;Loi, chon lai!\n&quot;;
+        }
+    } while (chon != 3);
+
+    return 0;
+}
+</code></pre>
+<p><em>Ghi chú:</em> Nhấn mạnh với học sinh rằng một Mini App thực tế sẽ có <code>case</code> kéo dài từ 1 đến 8 (bao gồm cả Sửa, Xóa, Sắp xếp, Thống kê).</p>
+<h2>4. Bài tập thực hành trên lớp</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Dành 45 phút hoàn thiện lại mã nguồn của Project &quot;Quản lý Sinh Viên/Sản phẩm&quot; mà học sinh đã làm lẻ tẻ từ buổi 23 đến nay. Gom tất cả vào chung một file <code>.cpp</code>.</li>
+<li class="task-item"><strong>Bài 2:</strong> Thêm validation (Kiểm tra lỗi nhập) vào hàm <code>them()</code>: Điểm số của sinh viên không được phép vượt ra khỏi giới hạn <code>0 - 10</code>. Nếu người dùng nhập sai, in ra &quot;Điểm không hợp lệ, hủy thêm mới&quot;.</li>
+</ul>
+<h2>5. Bài tập về nhà</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Tự kiểm thử (Test) ứng dụng của mình. Hãy chạy ứng dụng lên, nhập liên tục các tùy chọn sai (ví dụ: đòi xóa một mã không tồn tại, đòi xem danh sách khi danh sách chưa có gì). Ghi chép lại các lỗi gặp phải để buổi sau xử lý.</li>
+</ul>
+<h2>6. Checklist cuối buổi</h2>
+<ul>
+<li class="check-item"><span class="check-box"></span>Hàm <code>main()</code> của bạn có vượt quá 50 dòng code không? (Nếu có là bạn quên &quot;tách hàm&quot; rồi đấy!)</li>
+<li class="check-item"><span class="check-box"></span>Ứng dụng có bị sập khi người dùng đòi In thống kê trong lúc danh sách chưa có dữ liệu không?</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-32-sap-xep-nhieu-tieu-chi.html">← Bài trước</a>
+      <a href="buoi-34-on-tap-va-sua-loi-logic.html">Bài sau →</a>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_cpp_lesson_access_v2";
+      const SECURITY_CODE = "CPP15";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
+
+</body>
+</html>

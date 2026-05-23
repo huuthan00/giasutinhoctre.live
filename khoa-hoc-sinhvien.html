@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hỗ Trợ Sinh Viên CNTT – Lộ Trình Đồ Án & Môn Chuyên Ngành | GiaSuTHT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --primary: #10b981; --primary-rgb: 16,185,129; --secondary: #6366f1;
+  --accent: #f59e0b; --bg: #0b1120; --bg-card: rgba(255,255,255,0.035);
+  --border: rgba(255,255,255,0.08); --text: #f1f5f9; --muted: #94a3b8;
+  --font-head: 'Outfit',sans-serif; --font-body: 'Inter',sans-serif;
+  --radius: 16px; --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; }
+body::before { content:''; position:fixed; top:-20%; left:-10%; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle,rgba(16,185,129,.12),transparent 70%); pointer-events:none; z-index:0; }
+body::after  { content:''; position:fixed; bottom:-20%; right:-10%; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(99,102,241,.1),transparent 70%); pointer-events:none; z-index:0; }
+.container { max-width:1100px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+section { padding:80px 0; }
+/* BACK BAR */
+.back-bar { background:rgba(255,255,255,.03); border-bottom:1px solid var(--border); padding:14px 0; position:sticky; top:0; z-index:100; backdrop-filter:blur(12px); }
+.back-bar .container { display:flex; align-items:center; justify-content:space-between; }
+.back-link { display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:14px; font-weight:600; text-decoration:none; transition:color var(--transition); }
+.back-link:hover { color:var(--primary); }
+.back-logo { font-family:var(--font-head); font-weight:800; font-size:18px; color:var(--text); }
+.back-logo span { color:var(--primary); }
+/* HERO */
+.hero { padding:80px 0 60px; text-align:center; }
+.hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(var(--primary-rgb),.1); border:1px solid rgba(var(--primary-rgb),.25); color:var(--primary); font-size:13px; font-weight:700; letter-spacing:.06em; padding:6px 16px; border-radius:20px; margin-bottom:24px; text-transform:uppercase; }
+.hero h1 { font-family:var(--font-head); font-size:clamp(32px,5vw,56px); font-weight:900; line-height:1.1; margin-bottom:20px; }
+.hero h1 .highlight { background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-desc { font-size:18px; color:var(--muted); max-width:620px; margin:0 auto 40px; }
+.hero-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:48px; }
+.chip { display:inline-flex; align-items:center; gap:7px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:9px 18px; font-size:14px; font-weight:600; color:var(--muted); }
+.chip i { color:var(--primary); font-size:13px; }
+.hero-ctas { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+.btn-primary-cta { display:inline-flex; align-items:center; gap:8px; padding:14px 32px; background:linear-gradient(135deg,var(--primary),#059669); color:#fff; font-family:var(--font-head); font-size:15px; font-weight:700; border-radius:12px; text-decoration:none; box-shadow:0 8px 25px rgba(var(--primary-rgb),.3); transition:transform var(--transition),box-shadow var(--transition); }
+.btn-primary-cta:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(var(--primary-rgb),.45); }
+.btn-outline-cta { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border:1px solid var(--border); color:var(--muted); font-size:15px; font-weight:600; border-radius:12px; text-decoration:none; transition:border-color var(--transition),color var(--transition); }
+.btn-outline-cta:hover { border-color:var(--primary); color:var(--primary); }
+/* SECTION HEADER */
+.section-header { text-align:center; margin-bottom:56px; }
+.section-tag { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--primary); margin-bottom:12px; }
+.section-title { font-family:var(--font-head); font-size:clamp(24px,3.5vw,38px); font-weight:800; margin-bottom:12px; }
+.section-desc { font-size:16px; color:var(--muted); max-width:560px; margin:0 auto; }
+/* OVERVIEW */
+.overview-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.overview-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:28px 24px; text-align:center; transition:transform var(--transition),border-color var(--transition); }
+.overview-card:hover { transform:translateY(-5px); border-color:rgba(var(--primary-rgb),.3); }
+.overview-card .icon { width:52px; height:52px; border-radius:14px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-size:22px; }
+.icon-green { background:rgba(16,185,129,.12); color:#10b981; }
+.icon-indigo { background:rgba(99,102,241,.12); color:#818cf8; }
+.icon-amber { background:rgba(245,158,11,.12); color:#f59e0b; }
+.icon-cyan { background:rgba(6,182,212,.12); color:#22d3ee; }
+.icon-rose { background:rgba(239,68,68,.12); color:#f87171; }
+.overview-card .num { font-family:var(--font-head); font-size:32px; font-weight:900; color:var(--text); display:block; margin-bottom:4px; }
+.overview-card .label { font-size:13px; color:var(--muted); font-weight:500; }
+/* PROFILE */
+.profile-box { background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(99,102,241,.06)); border:1px solid rgba(var(--primary-rgb),.2); border-radius:20px; padding:40px 48px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+.profile-avatar { display:flex; flex-direction:column; align-items:center; text-align:center; }
+.avatar-circle { width:110px; height:110px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--secondary)); display:flex; align-items:center; justify-content:center; font-size:46px; margin:0 auto 16px; box-shadow:0 0 40px rgba(var(--primary-rgb),.3); }
+.profile-avatar h3 { font-family:var(--font-head); font-size:20px; font-weight:800; margin-bottom:6px; }
+.profile-avatar p { font-size:14px; color:var(--muted); }
+.profile-info h3 { font-family:var(--font-head); font-size:22px; font-weight:800; margin-bottom:20px; }
+.profile-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.profile-list li { display:flex; align-items:flex-start; gap:12px; font-size:15px; }
+.profile-list li i { color:var(--primary); margin-top:3px; flex-shrink:0; }
+/* PHASES */
+.phases { display:flex; flex-direction:column; gap:40px; }
+.phase-card { background:var(--bg-card); border:1px solid var(--border); border-radius:20px; overflow:hidden; transition:box-shadow var(--transition); }
+.phase-card:hover { box-shadow:0 0 40px rgba(var(--primary-rgb),.07); }
+.phase-header { padding:28px 36px; display:flex; align-items:center; gap:20px; border-bottom:1px solid var(--border); position:relative; }
+.phase-header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.ph-1 .phase-header::before { background:linear-gradient(90deg,#10b981,#06b6d4); }
+.ph-2 .phase-header::before { background:linear-gradient(90deg,#6366f1,#a855f7); }
+.ph-3 .phase-header::before { background:linear-gradient(90deg,#f59e0b,#f97316); }
+.ph-4 .phase-header::before { background:linear-gradient(90deg,#ef4444,#ec4899); }
+.phase-num { width:56px; height:56px; border-radius:14px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-head); font-size:22px; font-weight:900; }
+.ph-1 .phase-num { background:rgba(16,185,129,.15); color:#10b981; }
+.ph-2 .phase-num { background:rgba(99,102,241,.15); color:#818cf8; }
+.ph-3 .phase-num { background:rgba(245,158,11,.15); color:#f59e0b; }
+.ph-4 .phase-num { background:rgba(239,68,68,.15); color:#f87171; }
+.phase-meta { flex:1; }
+.phase-meta h3 { font-family:var(--font-head); font-size:20px; font-weight:800; margin-bottom:4px; }
+.phase-meta p { font-size:14px; color:var(--muted); }
+.phase-duration { font-family:var(--font-head); font-size:13px; font-weight:700; padding:6px 14px; border-radius:20px; border:1px solid var(--border); color:var(--muted); white-space:nowrap; }
+.phase-body { padding:0 36px 28px; }
+.week-table { width:100%; border-collapse:collapse; margin-top:20px; }
+.week-table thead th { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); }
+.week-table tbody tr { border-bottom:1px solid var(--border); transition:background var(--transition); }
+.week-table tbody tr:last-child { border-bottom:none; }
+.week-table tbody tr:hover { background:rgba(255,255,255,.025); }
+.week-table td { padding:14px; font-size:14px; vertical-align:top; }
+.week-badge { display:inline-block; font-family:var(--font-head); font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap; }
+.ph-1 .week-badge { background:rgba(16,185,129,.12); color:#10b981; }
+.ph-2 .week-badge { background:rgba(99,102,241,.12); color:#818cf8; }
+.ph-3 .week-badge { background:rgba(245,158,11,.12); color:#f59e0b; }
+.ph-4 .week-badge { background:rgba(239,68,68,.12); color:#f87171; }
+.week-topic { font-weight:600; color:var(--text); margin-bottom:4px; }
+.week-detail { font-size:13px; color:var(--muted); line-height:1.5; }
+.week-output { display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--accent); background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.2); padding:3px 10px; border-radius:6px; white-space:nowrap; margin-top:4px; }
+/* SUPPORT CARDS */
+.support-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+.support-card { background:var(--bg-card); border:1px solid var(--border); border-radius:18px; padding:28px; position:relative; overflow:hidden; transition:transform var(--transition),border-color var(--transition); }
+.support-card:hover { transform:translateY(-6px); border-color:rgba(var(--primary-rgb),.3); }
+.support-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.sup-1::after { background:linear-gradient(90deg,#10b981,#06b6d4); }
+.sup-2::after { background:linear-gradient(90deg,#6366f1,#a855f7); }
+.sup-3::after { background:linear-gradient(90deg,#f59e0b,#f97316); }
+.sup-4::after { background:linear-gradient(90deg,#ef4444,#ec4899); }
+.support-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px; }
+.support-card h3 { font-family:var(--font-head); font-size:18px; font-weight:800; margin-bottom:10px; }
+.support-card p { font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:14px; }
+.tag-list { display:flex; flex-wrap:wrap; gap:6px; }
+.tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:6px; background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--muted); }
+/* SKILLS */
+.skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+.skill-group h4 { font-family:var(--font-head); font-size:15px; font-weight:700; margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+.skill-group h4 i { color:var(--primary); }
+.skill-bars { display:flex; flex-direction:column; gap:14px; }
+.skill-bar-label { display:flex; justify-content:space-between; font-size:13px; margin-bottom:7px; }
+.skill-bar-label span:first-child { font-weight:600; color:var(--text); }
+.skill-bar-label span:last-child { color:var(--primary); font-weight:700; font-family:var(--font-head); }
+.bar-track { height:6px; background:rgba(255,255,255,.07); border-radius:10px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:10px; background:linear-gradient(90deg,var(--primary),var(--secondary)); width:0; transition:width 1.5s cubic-bezier(0.22,1,0.36,1); }
+/* SCHEDULE */
+.schedule-box { background:var(--bg-card); border:1px solid var(--border); border-radius:20px; overflow:hidden; }
+.schedule-table { width:100%; border-collapse:collapse; }
+.schedule-table th { background:rgba(255,255,255,.03); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:16px 20px; text-align:left; border-bottom:1px solid var(--border); }
+.schedule-table td { padding:16px 20px; font-size:14px; border-bottom:1px solid var(--border); vertical-align:middle; }
+.schedule-table tr:last-child td { border-bottom:none; }
+.schedule-table tr:hover td { background:rgba(255,255,255,.02); }
+.sched-label { display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--text); }
+.sched-label i { color:var(--primary); font-size:13px; }
+/* PRICING */
+.pricing-card { background:linear-gradient(135deg,rgba(16,185,129,.07),rgba(99,102,241,.07)); border:1px solid rgba(var(--primary-rgb),.2); border-radius:24px; padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+.pricing-left h3 { font-family:var(--font-head); font-size:26px; font-weight:800; margin-bottom:20px; }
+.pricing-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
+.pricing-list li { display:flex; align-items:flex-start; gap:10px; font-size:15px; color:var(--muted); }
+.pricing-list li i { color:var(--primary); margin-top:3px; flex-shrink:0; }
+.pricing-list li strong { color:var(--text); }
+.pricing-right { text-align:center; }
+.price-main { font-family:var(--font-head); font-size:52px; font-weight:900; color:var(--primary); filter:drop-shadow(0 0 20px rgba(var(--primary-rgb),.3)); line-height:1; }
+.price-unit { font-size:18px; font-weight:600; color:var(--muted); margin-bottom:6px; }
+.price-sub { font-size:14px; color:var(--muted); margin-bottom:28px; }
+.price-total { display:inline-block; background:rgba(255,255,255,.05); border:1px solid var(--border); border-radius:12px; padding:14px 28px; margin-bottom:28px; font-size:15px; color:var(--muted); }
+.price-total strong { color:var(--accent); font-family:var(--font-head); font-size:18px; }
+/* CTA */
+.cta-banner { text-align:center; background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(99,102,241,.08)); border:1px solid rgba(var(--primary-rgb),.15); border-radius:24px; padding:64px 40px; }
+.cta-banner h2 { font-family:var(--font-head); font-size:clamp(26px,4vw,40px); font-weight:900; margin-bottom:16px; }
+.cta-banner p { font-size:17px; color:var(--muted); margin-bottom:36px; }
+/* FOOTER */
+.page-footer { background:rgba(0,0,0,.2); border-top:1px solid var(--border); padding:32px 0; text-align:center; font-size:14px; color:var(--muted); }
+.page-footer a { color:var(--primary); text-decoration:none; }
+/* RESPONSIVE */
+@media(max-width:900px){
+  .overview-grid { grid-template-columns:repeat(2,1fr); }
+  .profile-box { grid-template-columns:1fr; }
+  .skills-grid { grid-template-columns:1fr; }
+  .support-grid { grid-template-columns:1fr; }
+  .pricing-card { grid-template-columns:1fr; text-align:center; }
+  .profile-avatar { display:none; }
+  .phase-header { flex-wrap:wrap; padding:20px 24px; }
+  .phase-body { padding:0 24px 24px; }
+  .week-table thead { display:none; }
+  .week-table td { display:block; padding:8px 14px; }
+}
+@media(max-width:600px){
+  .overview-grid { grid-template-columns:1fr 1fr; }
+  .hero h1 { font-size:28px; }
+  .pricing-card { padding:28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="back-bar">
+  <div class="container">
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Trang chủ</a>
+    <span class="back-logo">GiaSu<span>THT</span></span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag"><i class="fa-solid fa-graduation-cap"></i> Hỗ trợ chuyên sâu · Sinh viên CNTT & Kỹ thuật</div>
+    <h1>Vượt Qua Môn Học &<br><span class="highlight">Chinh Phục Đồ Án</span><br>Từ A Đến Z</h1>
+    <p class="hero-desc">Lấy lại nền tảng lập trình, hiểu sâu môn chuyên ngành và hoàn thành đồ án tốt nghiệp với sự đồng hành tận tâm 1-kèm-1.</p>
+    <div class="hero-chips">
+      <div class="chip"><i class="fa-solid fa-building-columns"></i> Sinh viên đại học</div>
+      <div class="chip"><i class="fa-solid fa-calendar-days"></i> Linh hoạt theo học kỳ</div>
+      <div class="chip"><i class="fa-solid fa-clock"></i> 1.5–2 giờ / buổi</div>
+      <div class="chip"><i class="fa-solid fa-laptop"></i> Online hoặc Offline</div>
+      <div class="chip"><i class="fa-solid fa-person-chalkboard"></i> 1 kèm 1 tuyệt đối</div>
+      <div class="chip"><i class="fa-solid fa-trophy"></i> Mục tiêu: Điểm A & Bảo vệ thành công</div>
+    </div>
+    <div class="hero-ctas">
+      <a href="index.html#register" class="btn-primary-cta"><i class="fa-solid fa-calendar-check"></i> Đăng Ký Tư Vấn Miễn Phí</a>
+      <a href="#support-areas" class="btn-outline-cta"><i class="fa-solid fa-list"></i> Xem Các Môn Hỗ Trợ</a>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section>
+  <div class="container">
+    <div class="overview-grid">
+      <div class="overview-card"><div class="icon icon-green"><i class="fa-solid fa-book-open"></i></div><span class="num">15+</span><span class="label">Môn học CNTT hỗ trợ</span></div>
+      <div class="overview-card"><div class="icon icon-indigo"><i class="fa-solid fa-laptop-code"></i></div><span class="num">50+</span><span class="label">Đồ án đã đồng hành</span></div>
+      <div class="overview-card"><div class="icon icon-amber"><i class="fa-solid fa-star"></i></div><span class="num">95%</span><span class="label">Sinh viên qua môn điểm A/B</span></div>
+      <div class="overview-card"><div class="icon icon-cyan"><i class="fa-solid fa-shield-check"></i></div><span class="num">100%</span><span class="label">Tự giải thích được code mình viết</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET PROFILE -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Dành cho ai</div>
+      <h2 class="section-title">Bạn Có Đang Ở Trong Tình Huống Này?</h2>
+    </div>
+    <div class="profile-box">
+      <div class="profile-avatar">
+        <div class="avatar-circle">👨‍🎓</div>
+        <h3>Sinh viên CNTT / Kỹ thuật</h3>
+        <p>Đang học tại HUST, UET, UIT, PTIT, HCMUT hoặc các trường kỹ thuật toàn quốc</p>
+      </div>
+      <div class="profile-info">
+        <h3>Tôi có thể giúp bạn nếu…</h3>
+        <ul class="profile-list">
+          <li><i class="fa-solid fa-check-circle"></i> Bị hổng kiến thức lập trình từ đầu, không theo kịp bài giảng trên lớp</li>
+          <li><i class="fa-solid fa-check-circle"></i> Sắp thi lại môn C++, Java, Python hoặc môn Cấu trúc dữ liệu & Giải thuật</li>
+          <li><i class="fa-solid fa-check-circle"></i> Đang làm đồ án môn học / tốt nghiệp nhưng không hiểu code mình đang viết</li>
+          <li><i class="fa-solid fa-check-circle"></i> Cần debug gấp một lỗi khó hoặc hoàn thiện tính năng trước deadline</li>
+          <li><i class="fa-solid fa-check-circle"></i> Muốn tự tin trình bày và bảo vệ đồ án trước hội đồng</li>
+          <li><i class="fa-solid fa-check-circle"></i> Muốn học thêm Web/App để có portfolio xin việc sau tốt nghiệp</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT AREAS -->
+<section id="support-areas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Lĩnh vực hỗ trợ</div>
+      <h2 class="section-title">Tôi Có Thể Giúp Bạn Với</h2>
+      <p class="section-desc">Từ môn học nền tảng đến dự án cuối khoá — tôi đồng hành theo từng bước cụ thể.</p>
+    </div>
+    <div class="support-grid">
+
+      <div class="support-card sup-1">
+        <div class="support-icon icon-green"><i class="fa-solid fa-code"></i></div>
+        <h3>🖥️ Lập Trình Nền Tảng</h3>
+        <p>Kỹ thuật lập trình C/C++, Python, Java. Từ cú pháp cơ bản đến con trỏ, đệ quy, cấu trúc file, OOP — học theo giáo trình thực tế của trường bạn đang học.</p>
+        <div class="tag-list">
+          <span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">Java</span>
+          <span class="tag">Kỹ thuật lập trình</span><span class="tag">OOP</span>
+        </div>
+      </div>
+
+      <div class="support-card sup-2">
+        <div class="support-icon icon-indigo"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>🧩 Cấu Trúc Dữ Liệu & Giải Thuật</h3>
+        <p>Linked List, Stack, Queue, Tree, Graph, Hash Table. Sắp xếp, tìm kiếm, BFS/DFS, Dijkstra, DP — giải thích từng dòng code cho đến khi bạn tự vẽ được sơ đồ tư duy.</p>
+        <div class="tag-list">
+          <span class="tag">DSA</span><span class="tag">Linked List</span><span class="tag">Tree/Graph</span>
+          <span class="tag">Dynamic Programming</span>
+        </div>
+      </div>
+
+      <div class="support-card sup-3">
+        <div class="support-icon icon-amber"><i class="fa-solid fa-database"></i></div>
+        <h3>🌐 Web & Cơ Sở Dữ Liệu</h3>
+        <p>HTML/CSS/JS cơ bản, Node.js + Express REST API, ReactJS, MySQL / SQL Server / MongoDB. Thiết kế ERD, viết query, kết nối backend-frontend trong đồ án.</p>
+        <div class="tag-list">
+          <span class="tag">HTML/CSS/JS</span><span class="tag">ReactJS</span><span class="tag">Node.js</span>
+          <span class="tag">SQL</span><span class="tag">MongoDB</span>
+        </div>
+      </div>
+
+      <div class="support-card sup-4">
+        <div class="support-icon icon-rose"><i class="fa-solid fa-file-code"></i></div>
+        <h3>🎓 Đồ Án Môn Học & Tốt Nghiệp</h3>
+        <p>Đồng hành từ lúc chọn đề tài → phân tích → thiết kế DB → code từng tính năng → debug → viết báo cáo → luyện tập trả lời câu hỏi hội đồng. Bạn hiểu 100% hệ thống của mình.</p>
+        <div class="tag-list">
+          <span class="tag">Chọn đề tài</span><span class="tag">Thiết kế hệ thống</span>
+          <span class="tag">Debug</span><span class="tag">Báo cáo</span><span class="tag">Bảo vệ</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Quy trình làm việc</div>
+      <h2 class="section-title">4 Bước Từ "Không Hiểu" Đến "Tự Tin Bảo Vệ"</h2>
+    </div>
+    <div class="phases">
+
+      <div class="phase-card ph-1">
+        <div class="phase-header">
+          <div class="phase-num">01</div>
+          <div class="phase-meta">
+            <h3>🔍 Buổi 1: Chẩn Đoán & Lập Kế Hoạch</h3>
+            <p>Tìm hiểu chính xác bạn đang bị hổng ở đâu, cần hoàn thành gì, deadline khi nào</p>
+          </div>
+          <span class="phase-duration">📅 Buổi đầu tiên · Miễn phí</span>
+        </div>
+        <div class="phase-body">
+          <table class="week-table">
+            <thead><tr><th>Hoạt động</th><th>Chi tiết</th><th>Kết quả</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="week-badge">Khảo sát</span></td>
+                <td><div class="week-topic">Đánh giá kiến thức hiện tại</div><div class="week-detail">Làm 5–10 câu kiểm tra nhanh để xác định chính xác điểm hổng trong kiến thức lập trình</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-star"></i> Bản đồ kiến thức cá nhân</div></td>
+              </tr>
+              <tr>
+                <td><span class="week-badge">Lập kế hoạch</span></td>
+                <td><div class="week-topic">Xây dựng lộ trình ôn tập / đồ án</div><div class="week-detail">Lên kế hoạch chi tiết theo deadline của bạn: số buổi, thứ tự học, mục tiêu từng buổi</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-star"></i> Lộ trình cá nhân hoá</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="phase-card ph-2">
+        <div class="phase-header">
+          <div class="phase-num">02</div>
+          <div class="phase-meta">
+            <h3>📚 Giai Đoạn Học Lý Thuyết & Thực Hành</h3>
+            <p>Học theo giáo trình thực tế của trường — không dạy lý thuyết chung chung</p>
+          </div>
+          <span class="phase-duration">📅 Linh hoạt theo kỳ học</span>
+        </div>
+        <div class="phase-body">
+          <table class="week-table">
+            <thead><tr><th style="width:120px">Dạng học</th><th style="width:200px">Hình thức</th><th>Nội dung</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="week-badge">Học theo bài</span></td>
+                <td><div class="week-topic">Theo slide/giáo trình thực tế của trường</div></td>
+                <td><div class="week-detail">Tôi đọc đề cương, slide giảng viên của bạn rồi giải thích lại theo cách dễ hiểu nhất, kết hợp ví dụ thực tế và trực quan hóa bộ nhớ RAM/Stack</div></td>
+              </tr>
+              <tr>
+                <td><span class="week-badge">Giải bài tập</span></td>
+                <td><div class="week-topic">Code trực tiếp, sửa lỗi cùng nhau</div></td>
+                <td><div class="week-detail">Bạn tự gõ code, tôi quan sát và gợi ý đúng lúc. Không làm thay — mục tiêu là bạn tự làm được sau buổi học</div></td>
+              </tr>
+              <tr>
+                <td><span class="week-badge">Ôn thi</span></td>
+                <td><div class="week-topic">Giải đề thi cũ + dự đoán đề</div></td>
+                <td><div class="week-detail">Tổng hợp đề thi 3 năm gần nhất, phân tích dạng câu hỏi thường gặp, luyện tập có giới hạn thời gian</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="phase-card ph-3">
+        <div class="phase-header">
+          <div class="phase-num">03</div>
+          <div class="phase-meta">
+            <h3>💻 Đồng Hành Đồ Án — Từng Tính Năng</h3>
+            <p>Không làm thay — tôi hướng dẫn để bạn tự hiểu và tự giải thích được 100%</p>
+          </div>
+          <span class="phase-duration">📅 Theo timeline đồ án</span>
+        </div>
+        <div class="phase-body">
+          <table class="week-table">
+            <thead><tr><th style="width:120px">Giai đoạn</th><th>Hỗ trợ cụ thể</th><th style="width:160px">Kết quả</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="week-badge">Phân tích</span></td>
+                <td><div class="week-detail">Xác định yêu cầu hệ thống, phân tích use case, vẽ sơ đồ UML (class diagram, use case diagram, sequence diagram)</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-star"></i> Báo cáo phân tích hoàn chỉnh</div></td>
+              </tr>
+              <tr>
+                <td><span class="week-badge">Thiết kế DB</span></td>
+                <td><div class="week-detail">Vẽ ERD, chuẩn hóa bảng (1NF, 2NF, 3NF), tạo script SQL, thiết kế index, quan hệ khoá ngoại đúng quy tắc</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-star"></i> Database design hoàn chỉnh</div></td>
+              </tr>
+              <tr>
+                <td><span class="week-badge">Code từng module</span></td>
+                <td><div class="week-detail">Đi từng tính năng: CRUD, xác thực đăng nhập, phân quyền, báo cáo thống kê — bạn code, tôi review và giải thích từng dòng</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-star"></i> Hệ thống chạy được</div></td>
+              </tr>
+              <tr>
+                <td><span class="week-badge">Debug & hoàn thiện</span></td>
+                <td><div class="week-detail">Tìm và sửa lỗi logic, lỗi UI, tối ưu query chậm, kiểm tra edge case, chuẩn bị dữ liệu demo ấn tượng</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-star"></i> Demo hoàn chỉnh, không lỗi</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="phase-card ph-4">
+        <div class="phase-header">
+          <div class="phase-num">04</div>
+          <div class="phase-meta">
+            <h3>🎤 Luyện Bảo Vệ & Trả Lời Hội Đồng</h3>
+            <p>Tự tin đứng trước hội đồng, giải thích rõ ràng bất kỳ câu hỏi nào về hệ thống của mình</p>
+          </div>
+          <span class="phase-duration">📅 1–2 tuần trước bảo vệ</span>
+        </div>
+        <div class="phase-body">
+          <table class="week-table">
+            <thead><tr><th style="width:120px">Hoạt động</th><th>Chi tiết</th><th style="width:160px">Kết quả</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="week-badge">Slide & báo cáo</span></td>
+                <td><div class="week-detail">Xây dựng nội dung slide thuyết trình theo cấu trúc chuẩn (vấn đề → giải pháp → demo → kết quả), hoàn thiện báo cáo Word theo mẫu của trường</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-trophy"></i> Slide chuyên nghiệp</div></td>
+              </tr>
+              <tr>
+                <td><span class="week-badge">Tập thuyết trình</span></td>
+                <td><div class="week-detail">Mock defense: tôi đóng vai hội đồng, hỏi các câu khó thực tế. Bạn tập trả lời, tôi ghi nhận điểm cần cải thiện và luyện thêm</div></td>
+                <td><div class="week-output"><i class="fa-solid fa-trophy"></i> Tự tin bảo vệ thành công</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILL OUTCOMES -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Kỹ năng đầu ra</div>
+      <h2 class="section-title">Bạn Sẽ Có Sau Khi Học Cùng Tôi</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4><i class="fa-solid fa-code"></i> Kỹ năng lập trình thực chiến</h4>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Viết code sạch, có cấu trúc</span><span>90%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="90%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Debug độc lập không cần nhờ</span><span>85%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Đọc hiểu code người khác viết</span><span>80%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="80%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4><i class="fa-solid fa-brain"></i> Kỹ năng học thuật & trình bày</h4>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Viết báo cáo đồ án chuẩn</span><span>88%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Trình bày & giải thích hệ thống</span><span>92%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="92%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Tự học tài liệu mới sau này</span><span>85%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="85%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Hình thức học</div>
+      <h2 class="section-title">Tổ Chức Buổi Học</h2>
+    </div>
+    <div class="schedule-box">
+      <table class="schedule-table">
+        <thead><tr><th>Hạng mục</th><th>Chi tiết</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sched-label"><i class="fa-solid fa-calendar-week"></i> Tần suất</span></td><td>Linh hoạt: 1–3 buổi/tuần theo lịch học kỳ và deadline đồ án</td></tr>
+          <tr><td><span class="sched-label"><i class="fa-solid fa-clock"></i> Thời lượng</span></td><td>90–120 phút / buổi · Có thể tăng khi cần debug/rush deadline</td></tr>
+          <tr><td><span class="sched-label"><i class="fa-solid fa-laptop"></i> Hình thức</span></td><td>Online (Google Meet + chia sẻ màn hình) hoặc Offline</td></tr>
+          <tr><td><span class="sched-label"><i class="fa-solid fa-tools"></i> Công cụ</span></td><td>VS Code, IntelliJ/Eclipse (Java), Postman, MySQL Workbench, Git/GitHub, draw.io</td></tr>
+          <tr><td><span class="sched-label"><i class="fa-solid fa-headset"></i> Hỗ trợ ngoài giờ</span></td><td>Zalo <strong style="color:var(--primary)">miễn phí</strong> · Phản hồi trong 30 phút (8:00–22:00) · Không giới hạn câu hỏi</td></tr>
+          <tr><td><span class="sched-label"><i class="fa-solid fa-shield-check"></i> Cam kết</span></td><td>Học viên tự giải thích được toàn bộ code của mình trước hội đồng — không lo bị hỏi "bạn có hiểu không?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Học phí tham khảo</div>
+      <h2 class="section-title">Chi Phí Hỗ Trợ</h2>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-left">
+        <h3>Bao gồm trong học phí</h3>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-circle-check"></i><span>Học theo <strong>giáo trình thực tế của trường</strong> bạn đang học</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span><strong>Hỗ trợ Zalo</strong> miễn phí không giới hạn ngoài giờ</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span>Tài liệu tổng hợp, bộ câu hỏi ôn thi theo môn</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span>Review code, fix bug, giải thích từng dòng tận tình</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span>Luyện mock defense — hỏi như hội đồng thật</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span><strong>Buổi tư vấn đầu tiên miễn phí</strong> — không bắt buộc đăng ký tiếp</span></li>
+        </ul>
+      </div>
+      <div class="pricing-right">
+        <div class="price-unit">Học phí mỗi buổi</div>
+        <div class="price-main">300K</div>
+        <div class="price-sub">đồng / buổi 90–120 phút (1-kèm-1)</div>
+        <div class="price-total">Gói đồ án trọn vẹn (10 buổi) ≈ <strong>3.000.000 đ</strong></div>
+        <a href="index.html#register" class="btn-primary-cta" style="width:100%;justify-content:center;">
+          <i class="fa-solid fa-calendar-check"></i> Đăng Ký Tư Vấn Ngay
+        </a>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;">Buổi đầu hoàn toàn miễn phí · Không cam kết trước</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Deadline Đang Đến Gần?<br>Hãy Nhắn Tôi Ngay Hôm Nay</h2>
+      <p>Dù còn 1 tuần hay 3 ngày trước deadline — tôi sẽ lên kế hoạch phù hợp để bạn qua được. Liên hệ ngay để có buổi tư vấn miễn phí đầu tiên.</p>
+      <div class="hero-ctas">
+        <a href="index.html#register" class="btn-primary-cta"><i class="fa-solid fa-paper-plane"></i> Đặt Lịch Tư Vấn Miễn Phí</a>
+        <a href="index.html#calculator" class="btn-outline-cta"><i class="fa-solid fa-calculator"></i> Tính Học Phí</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="container">
+    <p>© 2026 <strong>GiaSuTHT</strong> · Gia Sư Tin Học Trẻ · <a href="https://giasutinhoctre.live">giasutinhoctre.live</a></p>
+    <p style="margin-top:6px">Liên hệ: <a href="mailto:contact@giasutinhoctre.live">contact@giasutinhoctre.live</a> · Zalo: <a href="tel:0987654321">0987.654.321</a></p>
+  </div>
+</footer>
+
+<script>
+const fills = document.querySelectorAll('.bar-fill');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.style.width=e.target.dataset.width; obs.unobserve(e.target); } });
+}, { threshold: 0.3 });
+fills.forEach(f => obs.observe(f));
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+</body>
+</html>

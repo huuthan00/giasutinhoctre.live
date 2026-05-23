@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 08 - while, do-while và lặp chưa biết trước số lần</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 24px;
+}
+.lesson-body h4 {
+  color: #bae6fd;
+  margin: 20px 0 8px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.task-item {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.task-item strong {
+  color: #eef2ff;
+}
+.check-item {
+  list-style: none;
+  margin-left: -4px;
+}
+.check-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(238,242,255,.7);
+  border-radius: 3px;
+  margin-right: 8px;
+  transform: translateY(2px);
+}
+.lesson-body blockquote,
+.image-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+.image-note > strong {
+  display: block;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.image-note p {
+  margin: 8px 0;
+}
+.image-note ul {
+  margin-bottom: 0;
+}
+.image-note li strong {
+  color: #fde68a;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(6,182,212,.7);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng C++</a>
+      <div class="nav">
+        <a href="../khoa-hoc-cpp-nentang.html">Trang khóa học</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 1 - Nền tảng C++</span>
+      <h1>Buổi 08: while, do-while và lặp chưa biết trước số lần</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết, ví dụ code, giải thích từng bước, bài tập trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Nội dung được triển khai chi tiết theo từng khái niệm.</div>
+        <div class="card"><strong>Code mẫu</strong>Các ví dụ C++ console có giải thích từng bước.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp và bài tập về nhà rõ yêu cầu.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu buổi học</h2>
+<ul>
+<li>Hiểu được vòng lặp <code>while</code> dùng trong trường hợp ta chưa biết trước số lần lặp.</li>
+<li>Hiểu vòng lặp <code>do-while</code> khác biệt ở chỗ nó luôn chạy ít nhất một lần rồi mới kiểm tra điều kiện.</li>
+<li>Biết cách ứng dụng để lặp lại việc nhập dữ liệu cho đến khi người dùng nhập đúng.</li>
+<li>Biết cách viết một menu chương trình lặp lại liên tục cho đến khi người dùng chọn nút thoát.</li>
+<li>Biết cách tránh lỗi &quot;vòng lặp vô hạn&quot; (chương trình bị treo).</li>
+<li>Học sinh viết được chương trình bắt nhập mật khẩu, menu lặp lại, nhập điểm đến khi hợp lệ.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Khi nào dùng <code>while</code>? Vòng lặp <code>for</code> dùng khi biết phải chạy bao nhiêu lần (VD: In 10 dòng). Nhưng nếu bài toán là &quot;Bắt người dùng nhập mật khẩu đến khi nào đúng thì thôi&quot;, ta không biết họ sẽ nhập sai 1 lần, 5 lần hay 100 lần. Lúc này phải dùng <code>while</code>.</li>
+<li>Cấu trúc <code>while</code> (Kiểm tra trước - Làm sau): <code>while (Điều kiện) { ... }</code>. Nghĩa là: Chừng nào điều kiện này còn ĐÚNG, thì tiếp tục thực hiện khối lệnh bên trong.</li>
+<li>Cấu trúc <code>do-while</code> (Làm trước - Kiểm tra sau): Khối lệnh bên trong chữ <code>do</code> sẽ được chạy ngay lập tức ít nhất 1 lần. Sau đó nó mới xem xét điều kiện ở chữ <code>while</code> phía dưới. Nếu đúng thì quay lên làm tiếp.</li>
+</ul>
+
+<div class="image-note">
+  <strong>Minh họa chi tiết</strong>
+  <p><em>Ý tưởng trực quan:</em> Bảng so sánh 2 luồng: while (Hỏi vé trước khi cho vào cửa) vs do-while (Cho vào ăn thử một miếng rồi mới hỏi có muốn mua vé ăn tiếp không)</p>
+  <ul>
+    <li><strong>Cách trình bày:</strong> Vẽ hai luồng cạnh nhau: <code>while</code> kiểm tra điều kiện trước khi làm, <code>do-while</code> làm một lần rồi mới kiểm tra.</li>
+    <li><strong>Ví dụ thao tác:</strong> Dùng bài nhập mật khẩu: <code>while</code> có thể không chạy nếu điều kiện sai từ đầu; <code>do-while</code> luôn hỏi người dùng ít nhất một lần.</li>
+    <li><strong>Điểm cần chốt:</strong> Chốt rằng <code>while</code> hợp với lặp chưa biết số lần, còn <code>do-while</code> hợp với menu hoặc nhập liệu cần chạy tối thiểu một lần.</li>
+    <li><strong>Câu hỏi kiểm tra nhanh:</strong> Vì sao menu chương trình thường dùng <code>do-while</code>?</li>
+  </ul>
+</div>
+
+<ul>
+<li><strong>Vòng lặp vô hạn (Infinite Loop):</strong> Là lỗi nghiêm trọng khi điều kiện của vòng lặp luôn luôn đúng và không bao giờ thoát ra được. Máy tính sẽ chạy mãi mãi đến khi treo máy. Cách sửa: Phải chắc chắn có một câu lệnh bên trong vòng lặp làm thay đổi điều kiện để nó trở thành SAI.</li>
+</ul>
+<h2>3. Ví dụ minh họa</h2>
+<h3><strong>Ví dụ 1: Nhập mật khẩu (Dùng while)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matKhau = 0; // Khởi tạo giá trị ban đầu cố tình làm sai mật khẩu
+
+    // Chừng nào mật khẩu còn chưa đúng (khác 1234)
+    while (matKhau != 1234) {
+        cout &lt;&lt; &quot;Vui long nhap mat khau: &quot;;
+        cin &gt;&gt; matKhau;
+
+        if (matKhau != 1234) {
+            cout &lt;&lt; &quot;Sai roi! Thu lai.\n&quot;;
+        }
+    }
+
+    cout &lt;&lt; &quot;Dang nhap thanh cong!&quot; &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> Vì ta kiểm tra <code>while</code> ngay từ đầu, nên <code>matKhau</code> phải được gán một giá trị (VD: <code>0</code>) để điều kiện <code>0 != 1234</code> là đúng, giúp vòng lặp khởi động được.</p>
+<h3><strong>Ví dụ 2: Nhập điểm hợp lệ (Dùng do-while)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    double diem;
+
+    // Làm việc nhập điểm ít nhất 1 lần
+    do {
+        cout &lt;&lt; &quot;Nhap diem (tu 0 den 10): &quot;;
+        cin &gt;&gt; diem;
+
+        if (diem &lt; 0 || diem &gt; 10) {
+            cout &lt;&lt; &quot;Diem khong hop le, vui long nhap lai!\n&quot;;
+        }
+    } while (diem &lt; 0 || diem &gt; 10); // Lặp lại nếu điểm vẫn nằm ngoài khoảng
+
+    cout &lt;&lt; &quot;Ban da nhap diem: &quot; &lt;&lt; diem &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> <code>do-while</code> rất hợp với bài toán &quot;Kiểm tra dữ liệu nhập&quot;. Ta cho phép họ nhập vào (<code>do</code>) rồi mới xét xem điểm có sai không (<code>while</code>). Nếu sai thì bắt nhập lại.</p>
+<h3><strong>Ví dụ 3: Menu chương trình lặp lại</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int chon;
+
+    do {
+        cout &lt;&lt; &quot;\n--- MENU QUAN LY ---&quot; &lt;&lt; endl;
+        cout &lt;&lt; &quot;1. Xem danh sach&quot; &lt;&lt; endl;
+        cout &lt;&lt; &quot;2. Them sinh vien&quot; &lt;&lt; endl;
+        cout &lt;&lt; &quot;0. Thoat&quot; &lt;&lt; endl;
+        cout &lt;&lt; &quot;Ban chon: &quot;;
+        cin &gt;&gt; chon;
+
+        // Xử lý lựa chọn
+        if (chon == 1) { cout &lt;&lt; &quot;Dang hien thi danh sach...\n&quot;; }
+        else if (chon == 2) { cout &lt;&lt; &quot;Dang mo tinh nang them...\n&quot;; }
+        else if (chon == 0) { cout &lt;&lt; &quot;Tam biet!\n&quot;; }
+        else { cout &lt;&lt; &quot;Nhap sai, moi nhap lai!\n&quot;; }
+
+    } while (chon != 0); // Chỉ thoát khi người dùng nhập số 0
+
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> Dùng <code>do-while</code> bọc toàn bộ menu lại. Khách hàng xài xong tính năng 1, menu lại tự động hiện ra cho đến khi họ chủ động bấm phím 0 để thoát.</p>
+<h2>4. Bài tập thực hành trên lớp</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Viết chương trình yêu cầu người dùng nhập vào một số dương. Nếu họ cố tình nhập số âm, dùng <code>while</code> hoặc <code>do-while</code> để mắng họ và bắt nhập lại cho tới khi nào nhập đúng số dương thì thôi.</li>
+<li class="task-item"><strong>Bài 2:</strong> Bổ sung cấu trúc <code>switch-case</code> (đã học ở buổi 6) vào vị trí của các lệnh <code>if/else if</code> trong Ví dụ 3 (Menu chương trình).</li>
+<li class="task-item"><strong>Bài 3:</strong> Thử tạo ra một &quot;Vòng lặp vô hạn&quot; (In chữ &quot;Toang rồi&quot; liên tục trên màn hình) bằng cách viết điều kiện <code>while(1 == 1)</code>. Bấm <code>Ctrl + C</code> trên bàn phím để ép dừng chương trình.</li>
+</ul>
+<h2>5. Bài tập về nhà</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Làm một Mini-game &quot;Đoán số&quot;. Máy tính giữ một con số bí mật (ví dụ: <code>42</code>). Dùng vòng lặp cho phép người chơi đoán liên tục. Nếu người chơi nhập số nhỏ hơn, in ra &quot;Số của bạn hơi bé&quot;. Nếu lớn hơn, in ra &quot;Số của bạn hơi lớn&quot;. Nếu đoán đúng thì in ra &quot;Chúc mừng!&quot; và kết thúc.</li>
+<li class="task-item"><strong>Bài 2:</strong> Viết chương trình mô phỏng máy ATM: Bắt nhập mã PIN (chỉ cho phép nhập sai tối đa 3 lần). Nếu quá 3 lần thì in &quot;Khóa thẻ&quot;, nếu đúng thì in &quot;Rút tiền thành công&quot;. (Gợi ý: Kết hợp <code>while</code> và một biến đếm số lần sai).</li>
+</ul>
+<h2>6. Checklist cuối buổi</h2>
+<ul>
+<li class="check-item"><span class="check-box"></span>Khi nào thì dùng <code>for</code>, khi nào thì dùng <code>while</code>?</li>
+<li class="check-item"><span class="check-box"></span>Sự khác biệt lớn nhất giữa <code>while</code> và <code>do-while</code> là gì?</li>
+<li class="check-item"><span class="check-box"></span>Làm sao để vòng lặp <code>while</code> không bị rơi vào tình trạng &quot;chạy mãi mãi không dừng&quot;?</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-07-vong-lap-for-va-bai-toan-lap-biet-truoc-so-lan.html">← Bài trước</a>
+      <a href="buoi-09-mang-mot-chieu.html">Bài sau →</a>
+    </div>
+  </div>
+
+</body>
+</html>

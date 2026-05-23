@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 09 - Mảng một chiều</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 24px;
+}
+.lesson-body h4 {
+  color: #bae6fd;
+  margin: 20px 0 8px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.task-item {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.task-item strong {
+  color: #eef2ff;
+}
+.check-item {
+  list-style: none;
+  margin-left: -4px;
+}
+.check-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(238,242,255,.7);
+  border-radius: 3px;
+  margin-right: 8px;
+  transform: translateY(2px);
+}
+.lesson-body blockquote,
+.image-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+.image-note > strong {
+  display: block;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.image-note p {
+  margin: 8px 0;
+}
+.image-note ul {
+  margin-bottom: 0;
+}
+.image-note li strong {
+  color: #fde68a;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(6,182,212,.7);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng C++</a>
+      <div class="nav">
+        <a href="../khoa-hoc-cpp-nentang.html">Trang khóa học</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 1 - Nền tảng C++</span>
+      <h1>Buổi 09: Mảng một chiều</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết, ví dụ code, giải thích từng bước, bài tập trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Nội dung được triển khai chi tiết theo từng khái niệm.</div>
+        <div class="card"><strong>Code mẫu</strong>Các ví dụ C++ console có giải thích từng bước.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp và bài tập về nhà rõ yêu cầu.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu buổi học</h2>
+<ul>
+<li>Hiểu mảng một chiều lưu nhiều giá trị cùng kiểu.</li>
+<li>Biết khai báo mảng, nhập mảng, in mảng.</li>
+<li>Hiểu chỉ số mảng bắt đầu từ 0.</li>
+<li>Biết duyệt mảng bằng for.</li>
+<li>Biết tính tổng, trung bình, đếm, tìm phần tử trong mảng.</li>
+<li>Học sinh viết được chương trình quản lý danh sách điểm hoặc danh sách số.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li><strong>Mảng một chiều (Array) là gì?</strong> Hãy tưởng tượng thay vì mua 10 chiếc hộp rời rạc để đựng 10 cuốn sách (khai báo 10 biến <code>int</code>), bạn mua một cái kệ sách có 10 ngăn dính liền nhau. Mảng chính là cái kệ sách đó, giúp lưu trữ một danh sách nhiều giá trị <strong>cùng một kiểu dữ liệu</strong> (ví dụ: cùng là số nguyên, hoặc cùng là chuỗi).</li>
+</ul>
+
+<div class="image-note">
+  <strong>Minh họa chi tiết</strong>
+  <p><em>Ý tưởng trực quan:</em> Hình ảnh 10 chiếc hộp rời rạc (Biến) đặt cạnh 1 chiếc tủ có 10 ngăn kéo đánh số thứ tự (Mảng)</p>
+  <ul>
+    <li><strong>Cách trình bày:</strong> Vẽ một tủ có các ngăn đánh số <code>0, 1, 2, 3, 4</code>. Mỗi ngăn chứa một điểm số.</li>
+    <li><strong>Ví dụ thao tác:</strong> Cho học sinh truy cập <code>scores[0]</code>, <code>scores[2]</code>, rồi hỏi vì sao phần tử đầu tiên không phải <code>scores[1]</code>.</li>
+    <li><strong>Điểm cần chốt:</strong> Chốt rằng mảng lưu nhiều giá trị cùng kiểu và chỉ số bắt đầu từ 0.</li>
+    <li><strong>Câu hỏi kiểm tra nhanh:</strong> Nếu mảng có 5 phần tử, chỉ số cuối cùng là bao nhiêu?</li>
+  </ul>
+</div>
+
+<ul>
+<li><strong>Khai báo mảng:</strong> Cú pháp: <code>Kiểu_dữ_liệu Tên_mảng[Số_lượng_phần_tử];</code>. Ví dụ: <code>int diem[5];</code> (Tạo mảng chứa 5 điểm số).</li>
+<li><strong>Chỉ số mảng (Index):</strong> Trong lập trình, người ta đếm từ số 0. Ngăn đầu tiên của tủ đồ là ngăn số 0. Do đó, mảng có 5 phần tử thì các chỉ số lần lượt là: 0, 1, 2, 3, 4.</li>
+<li><strong>Truy cập phần tử:</strong> Để lấy đồ hoặc cất đồ vào ngăn tủ, ta dùng dấu ngoặc vuông <code>[ ]</code>. Ví dụ: <code>diem[0] = 8;</code> (Cất số 8 vào ngăn đầu tiên).</li>
+<li>Duyệt mảng bằng <code>for</code>: Vì chỉ số mảng tăng dần từ <code>0</code> đến <code>n-1</code>, vòng lặp <code>for</code> là công cụ sinh ra để đi qua từng ngăn của mảng một cách hoàn hảo.</li>
+</ul>
+<h2>3. Ví dụ minh họa</h2>
+<h3><strong>Ví dụ 1: Khai báo và in mảng cơ bản</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Khai báo mảng chứa 5 phần tử và gán sẵn giá trị
+    int tuoi[5] = {14, 15, 15, 16, 14};
+
+    // In ra phần tử đầu tiên (chỉ số 0) và cuối cùng (chỉ số 4)
+    cout &lt;&lt; &quot;Tuoi cua ban dau tien: &quot; &lt;&lt; tuoi[0] &lt;&lt; endl;
+    cout &lt;&lt; &quot;Tuoi cua ban cuoi cung: &quot; &lt;&lt; tuoi[4] &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> Mảng <code>tuoi</code> có kích thước 5. Phần tử <code>tuoi[0]</code> chứa giá trị 14, <code>tuoi[4]</code> chứa giá trị 14. Nếu cố tình truy cập <code>tuoi[5]</code>, chương trình sẽ báo lỗi hoặc chạy sai vì vượt quá giới hạn tủ.</p>
+<h3><strong>Ví dụ 2: Nhập và in danh sách điểm (Duyệt mảng)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int diem[4]; // Mảng chứa 4 con điểm
+
+    // Vòng lặp để nhập dữ liệu
+    cout &lt;&lt; &quot;Nhap 4 con diem:\n&quot;;
+    for (int i = 0; i &lt; 4; i++) {
+        cout &lt;&lt; &quot;Nhap diem thu &quot; &lt;&lt; i + 1 &lt;&lt; &quot;: &quot;;
+        cin &gt;&gt; diem[i];
+    }
+
+    // Vòng lặp để in dữ liệu
+    cout &lt;&lt; &quot;\nDanh sach diem vua nhap la: &quot;;
+    for (int i = 0; i &lt; 4; i++) {
+        cout &lt;&lt; diem[i] &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> Vòng lặp <code>for</code> với biến <code>i</code> chạy từ 0 đến 3. <code>diem[i]</code> sẽ lần lượt đại diện cho <code>diem[0]</code>, <code>diem[1]</code>, <code>diem[2]</code>, <code>diem[3]</code>.</p>
+<h3><strong>Ví dụ 3: Tính tổng và trung bình mảng</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int danhSach[5] = {5, 7, 8, 9, 6};
+    double tong = 0;
+
+    // Duyệt mảng để cộng dồn vào tổng
+    for (int i = 0; i &lt; 5; i++) {
+        tong = tong + danhSach[i];
+    }
+
+    double trungBinh = tong / 5;
+    cout &lt;&lt; &quot;Tong cac so la: &quot; &lt;&lt; tong &lt;&lt; endl;
+    cout &lt;&lt; &quot;Trung binh la: &quot; &lt;&lt; trungBinh &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+<h2>4. Bài tập thực hành trên lớp</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Viết chương trình khai báo một mảng lưu trữ 5 tên môn học (kiểu <code>string</code>). Dùng vòng lặp <code>for</code> để in danh sách các môn học đó ra màn hình.</li>
+<li class="task-item"><strong>Bài 2:</strong> Viết chương trình cho phép người dùng nhập vào mảng 10 số nguyên. Sau đó dùng vòng lặp đếm xem trong mảng vừa nhập có bao nhiêu số chẵn.</li>
+<li class="task-item"><strong>Bài 3:</strong> Cho mảng <code>int tienTietKiem[7]</code> đại diện cho số tiền tiết kiệm trong 7 ngày. Hãy nhập dữ liệu cho mảng và tìm xem ngày nào (chỉ số mấy) tiết kiệm được nhiều tiền nhất (Tìm Max).</li>
+</ul>
+<h2>5. Bài tập về nhà</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Viết chương trình quản lý điểm số: Nhập số lượng học sinh N (N &lt; 50), sau đó nhập mảng N điểm số. Tính và in ra điểm trung bình của cả lớp, đồng thời đếm số lượng học sinh đạt điểm giỏi (&gt;= 8.0).</li>
+<li class="task-item"><strong>Bài 2:</strong> Nhập một mảng 5 số nguyên. Hãy in mảng đó ra màn hình theo thứ tự đảo ngược (Ví dụ nhập 1 2 3 4 5 thì in ra 5 4 3 2 1). (Gợi ý: Cho vòng lặp <code>for</code> chạy lùi từ <code>4</code> về <code>0</code>).</li>
+</ul>
+<h2>6. Checklist cuối buổi</h2>
+<ul>
+<li class="check-item"><span class="check-box"></span>Tại sao chỉ số đầu tiên của mảng luôn là 0?</li>
+<li class="check-item"><span class="check-box"></span>Mảng <code>int a[10]</code> thì chỉ số lớn nhất được phép truy cập là bao nhiêu?</li>
+<li class="check-item"><span class="check-box"></span>Tôi đã hiểu cách kết hợp vòng lặp <code>for</code> và chỉ số <code>i</code> để duyệt qua mảng chưa?</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-08-while-do-while-va-lap-chua-biet-truoc-so-lan.html">← Bài trước</a>
+      <a href="buoi-10-ham-co-ban-va-mini-game-oan-so.html">Bài sau →</a>
+    </div>
+  </div>
+
+</body>
+</html>

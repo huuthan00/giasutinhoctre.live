@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 32 - Sắp xếp nhiều tiêu chí</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 24px;
+}
+.lesson-body h4 {
+  color: #bae6fd;
+  margin: 20px 0 8px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.task-item {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.task-item strong {
+  color: #eef2ff;
+}
+.check-item {
+  list-style: none;
+  margin-left: -4px;
+}
+.check-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(238,242,255,.7);
+  border-radius: 3px;
+  margin-right: 8px;
+  transform: translateY(2px);
+}
+.lesson-body blockquote,
+.image-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+.image-note > strong {
+  display: block;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.image-note p {
+  margin: 8px 0;
+}
+.image-note ul {
+  margin-bottom: 0;
+}
+.image-note li strong {
+  color: #fde68a;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(6,182,212,.7);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+}
+</style>
+</head>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 32</h1>
+      <p>Sắp xếp nhiều tiêu chí thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng C++</a>
+      <div class="nav">
+        <a href="../khoa-hoc-cpp-nentang.html">Trang khóa học</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</span>
+      <h1>Buổi 32: Sắp xếp nhiều tiêu chí</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết, ví dụ code, giải thích từng bước, bài tập trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Nội dung được triển khai chi tiết theo từng khái niệm.</div>
+        <div class="card"><strong>Code mẫu</strong>Các ví dụ C++ console có giải thích từng bước.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp và bài tập về nhà rõ yêu cầu.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu buổi học</h2>
+<ul>
+<li>Biết sắp xếp theo giá tăng dần, nếu bằng giá thì mã tăng dần.</li>
+<li>Biết trình bày kết quả sau sắp xếp.</li>
+<li>Biết tránh comparator sai logic.</li>
+<li>Học sinh viết được sắp xếp danh sách struct theo 2 tiêu chí.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li><strong>Xung đột khi xếp hạng:</strong> Trong thực tế, có rất nhiều học sinh đạt cùng 9.0 điểm. Nếu chỉ sắp xếp theo điểm, thứ tự của các bạn đồng điểm sẽ lộn xộn. Lúc này ta cần Tiêu chí phụ (Tiêu chí 2): &quot;Xếp theo điểm từ cao xuống thấp. Nhưng nếu 2 bạn bằng điểm nhau, thì xét tên theo bảng chữ cái A-Z&quot;.</li>
+<li><strong>Xây dựng Logic Comparator:</strong> Ta dùng cấu trúc <code>if - else if</code> bên trong hàm Comparator.</li>
+<li><code>if (diem khác nhau)</code> -&gt; Xếp theo điểm.</li>
+</ul>
+<p><code>if (diem bằng nhau)</code> -&gt; Đi xem xét đến tên.</p>
+<ul>
+<li><strong>Lỗi logic kinh điển (Sai Luật Trọng Tài):</strong> Hàm Trọng tài phải trả về <code>false</code> nếu a và b hoàn toàn giống nhau. Đừng bao giờ viết <code>return a.diem &gt;= b.diem;</code>. Chỉ được dùng dấu <code>&gt;</code> hoặc <code>&lt;</code> nghiêm ngặt, tuyệt đối không dùng <code>&gt;=</code> hay <code>&lt;=</code> trong Comparator của <code>std::sort</code>. Nếu cố tình dùng, chương trình sẽ báo lỗi &quot;Segmentation Fault&quot; (Lỗi bộ nhớ).</li>
+</ul>
+
+<div class="image-note">
+  <strong>Minh họa chi tiết</strong>
+  <p><em>Ý tưởng trực quan:</em> Sơ đồ luồng (Flowchart) của Comparator nhiều tiêu chí. Kim cương 1: So sánh Điểm -&gt; Nếu bằng nhau rẽ sang Kim cương 2: So sánh Tên -&gt; Trả về Kết quả True/False</p>
+  <ul>
+    <li><strong>Cách trình bày:</strong> Vẽ flowchart: so sánh tiêu chí 1, nếu khác thì quyết định; nếu bằng nhau mới chuyển sang tiêu chí 2.</li>
+    <li><strong>Ví dụ thao tác:</strong> Ví dụ sắp xếp điểm giảm dần, nếu bằng điểm thì tên tăng dần.</li>
+    <li><strong>Điểm cần chốt:</strong> Chốt rằng comparator nhiều tiêu chí phải xử lý rõ trường hợp bằng nhau.</li>
+    <li><strong>Câu hỏi kiểm tra nhanh:</strong> Nếu hai học sinh cùng điểm 8.5, tiêu chí phụ nào sẽ quyết định thứ tự?</li>
+  </ul>
+</div>
+
+<h2>3. Ví dụ minh họa</h2>
+<h3><strong>Ví dụ 1: Comparator 2 tiêu chí (Giá tăng dần, Mã tăng dần)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+struct SanPham { int ma; string ten; int gia; };
+
+// Trọng tài xử lý 2 tiêu chí
+bool soSanh2TieuChi(SanPham a, SanPham b) {
+    if (a.gia != b.gia) {
+        // Tiêu chí 1: Nếu giá khác nhau, xếp giá tăng dần
+        return a.gia &lt; b.gia;
+    } else {
+        // Tiêu chí 2: Nếu giá bằng nhau, xếp theo Mã số tăng dần
+        return a.ma &lt; b.ma;
+    }
+}
+
+int main() {
+    vector&lt;SanPham&gt; ds = {
+        {105, &quot;Vo tap&quot;, 10000},
+        {101, &quot;But bi&quot;, 5000},
+        {103, &quot;But chi&quot;, 5000}, // Đồng giá với Bút bi
+        {102, &quot;Gom&quot;, 8000}
+    };
+
+    sort(ds.begin(), ds.end(), soSanh2TieuChi);
+
+    cout &lt;&lt; &quot;--- DANH SACH SAU KHI XEP ---\n&quot;;
+    for (int i = 0; i &lt; ds.size(); i++) {
+        // In định dạng thẳng cột, dễ nhìn
+        cout &lt;&lt; &quot;- Ma: &quot; &lt;&lt; ds[i].ma &lt;&lt; &quot; | Gia: &quot; &lt;&lt; ds[i].gia &lt;&lt; &quot; | Ten: &quot; &lt;&lt; ds[i].ten &lt;&lt; &quot;\n&quot;;
+    }
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> Nhờ Comparator nhiều tiêu chí, sản phẩm <code>But bi</code> (Mã 101) sẽ được xếp tự động nằm trên <code>But chi</code> (Mã 103) mặc dù cả 2 đồng giá 5000.</p>
+<h2>4. Bài tập thực hành trên lớp</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Viết Comparator xếp danh sách Sinh viên: Tiêu chí 1 là Điểm số Giảm Dần. Nếu Điểm số bằng nhau, xét Tiêu chí 2 là Tên Tăng Dần (A-&gt;Z).</li>
+<li class="task-item"><strong>Bài 2:</strong> (Tìm lỗi) Cho đoạn code <code>bool cmp(HocSinh a, HocSinh b) { return a.diem &gt;= b.diem; }</code>. Hãy chỉ ra tại sao nó sai logic và sửa lại cho đúng quy tắc của C++.</li>
+</ul>
+<h2>5. Bài tập về nhà</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Tạo một danh sách 5 mặt hàng tạp hóa (Mã SP, Tên SP, Giá tiền, Số lượng). Viết Comparator để sắp xếp ưu tiên hiển thị những món &quot;Gần hết hàng&quot; lên trên (Số lượng tăng dần). Nếu 2 món có số lượng bằng nhau, ưu tiên đưa món &quot;Giá trị cao&quot; lên trước (Giá giảm dần).</li>
+</ul>
+<h2>6. Checklist cuối buổi</h2>
+<ul>
+<li class="check-item"><span class="check-box"></span>Làm sao để C++ biết khi nào thì cần xét đến tiêu chí thứ 2?</li>
+<li class="check-item"><span class="check-box"></span>Ký hiệu tuyệt đối bị cấm sử dụng trong Comparator <code>std::sort</code> là gì?</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-31-loc-du-lieu-va-thong-ke.html">← Bài trước</a>
+      <a href="buoi-33-tich-hop-mini-app-quan-ly.html">Bài sau →</a>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_cpp_lesson_access_v2";
+      const SECURITY_CODE = "CPP15";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,5727 @@
+Chào bạn, tôi là AI Gemini. Để đáp ứng yêu cầu soạn tài liệu giáo trình C++ dành cho học sinh 15 tuổi  theo đúng cấu trúc bạn đã cung cấp, tôi xin trình bày nội dung dưới định dạng văn bản có cấu trúc rõ ràng.
+
+Vì tôi là một trí tuệ nhân tạo, tôi không thể trực tiếp xuất ra một file `.docx` (Microsoft Word) vật lý hay tạo ra các tệp hình ảnh thực tế. Tuy nhiên, tôi đã định dạng đoạn văn bản dưới đây vô cùng chuẩn xác để bạn có thể **sao chép (copy) và dán (paste) trực tiếp vào Microsoft Word** mà vẫn giữ nguyên bố cục. Đối với yêu cầu bổ sung hình ảnh, tôi đã đặt sẵn các khung mô tả `[📸 Hình ảnh ví dụ: ...]` để bạn biết chính xác cần chèn hình ảnh gì vào Word nhằm minh họa trực quan nhất cho học sinh.
+
+Do giới hạn về độ dài của một lần phản hồi, tôi sẽ soạn thảo chi tiết **2 buổi học đầu tiên (Giai đoạn 1)** làm mẫu chuẩn, đáp ứng thời lượng 90 phút mỗi buổi, không quá nặng và bám sát mọi nguyên tắc sư phạm, ví dụ thực tế bạn đã đề ra. Bạn có thể yêu cầu tôi soạn tiếp các buổi còn lại dựa trên định dạng này nhé!
+
+---
+
+# KHOÁ HỌC C++ CHO HỌC SINH 15 TUỔI
+
+*Đối tượng: Học sinh khoảng 15 tuổi, mới học lập trình hoặc đã biết rất ít.* *Thời lượng mỗi buổi: 90 phút.* 
+
+---
+
+## ============================================================
+
+## GIAI ĐOẠN 1 - NỀN TẢNG C++
+
+## ============================================================
+
+### Buổi 01 - Làm quen C++ và môi trường lập trình
+
+1. Mục tiêu buổi học 
+
+* Hiểu file `.cpp` chính là file mã nguồn của C++.
+
+
+* Hiểu được quá trình cơ bản: viết code, biên dịch (compile) và chạy chương trình.
+
+
+* Nắm được cấu trúc tối thiểu của một chương trình C++ gồm: `#include <iostream>`, `using namespace std`, `int main()`, `return 0`.
+
+
+* Biết cách dùng `cout`, `endl`, `\n` để in thông tin ra màn hình console.
+
+
+* Biết đọc và tự sửa các lỗi cơ bản như: thiếu dấu `;`, thiếu dấu ngoặc, hoặc viết sai chữ hoa/chữ thường.
+
+
+* Học sinh tự viết được một chương trình in thông tin cá nhân và giải thích được từng dòng code.
+
+
+
+2. Lý thuyết chi tiết 
+
+* **Ngôn ngữ lập trình và Biên dịch là gì?** Máy tính không hiểu tiếng người, nó chỉ hiểu mã máy (các số 0 và 1). C++ là ngôn ngữ giúp ta viết lệnh cho máy tính đọc (lưu vào file `.cpp`). Trình biên dịch (Compiler) giống như một người phiên dịch, dịch mã C++ sang ngôn ngữ máy để máy tính chạy.
+
+
+> `[📸 Hình ảnh ví dụ: Sơ đồ minh họa File .cpp -> Trình biên dịch (Bánh răng) -> File chạy .exe / Màn hình đen Console]`
+
+
+* 
+**Cấu trúc một chương trình C++:** Bất kỳ chương trình C++ nào cũng cần một bộ khung cơ bản.
+
+
+* 
+`#include <iostream>`: Khai báo thư viện giúp ta nhập và xuất dữ liệu (in chữ ra màn hình).
+
+
+* 
+`using namespace std;`: Sử dụng không gian tên chuẩn để không phải viết dài dòng sau này.
+
+
+* `int main() { ... }`: "Cánh cửa" bắt đầu của mọi chương trình. Code của bạn sẽ viết bên trong hai dấu ngoặc nhọn `{ }` này.
+
+
+* 
+`return 0;`: Báo hiệu chương trình đã kết thúc thành công.
+
+
+
+
+* **In chữ ra màn hình:** Dùng lệnh `cout << "Nội dung cần in";`. Để xuống dòng, ta có thể thêm `\n` vào trong ngoặc kép hoặc dùng `<< endl` ở cuối.
+
+
+> `[📸 Hình ảnh ví dụ: So sánh màn hình console khi có lệnh endl và khi không có lệnh endl]`
+
+
+* **Các lỗi thường gặp (Lỗi cú pháp):** Máy tính rất nghiêm khắc. Nếu bạn quên dấu chấm phẩy `;` ở cuối lệnh, quên ngoặc `}`, hay viết `Cout` thay vì `cout` (C++ phân biệt chữ hoa, chữ thường), chương trình sẽ báo lỗi (chữ màu đỏ).
+
+
+
+3. Ví dụ minh họa 
+
+* 
+**Ví dụ 1: Xin chào thế giới!** (Chương trình C++ đầy đủ đầu tiên) 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Xin chao the gioi!" << endl;
+    return 0;
+}
+
+```
+
+*Giải thích từng bước*:
+Dòng 1-2: Gọi thư viện chuẩn để chuẩn bị xuất chữ.
+Dòng 4: Bắt đầu thân chương trình `main`.
+Dòng 5: Lệnh `cout` đẩy dòng chữ "Xin chao the gioi!" ra màn hình. `endl` giúp con trỏ nhấp nháy chuyển xuống dòng mới. Lưu ý dấu `;` ở cuối.
+Dòng 6: Báo chương trình kết thúc tốt đẹp.
+
+* 
+**Ví dụ 2: In nhiều dòng thông tin cá nhân** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Ho va ten: Nguyen Van A\n";
+    cout << "Nam nay minh 15 tuoi." << endl;
+    cout << "So thich: Choi game, Lap trinh.";
+    return 0;
+}
+
+```
+
+*Giải thích từng bước*:
+Ta dùng `\n` ngay bên trong chuỗi ở dòng 5 để xuống dòng. Dòng 6 dùng `endl`. Dòng 7 không xuống dòng. Cả 2 cách `\n` và `endl` đều giúp văn bản không bị dính liền vào nhau.
+
+* 
+**Ví dụ 3: Đọc và sửa lỗi thiếu dấu chấm phẩy** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Toi dang hoc sua loi" // LỖI: Thiếu dấu chấm phẩy
+    return 0;
+}
+
+```
+
+*Giải thích:* Khi chạy, màn hình sẽ hiện lỗi đỏ chỉ vào dòng chữ `return 0;` báo rằng "expected ';' before return". Học sinh cần nhìn lên dòng ngay trước đó và thêm `;` vào cuối lệnh `cout`.
+
+4. Bài tập thực hành trên lớp 
+
+* **Bài 1:** Viết chương trình in ra họ tên, tuổi và trường học của em trên 3 dòng khác nhau.
+* **Bài 2:** Vẽ một hình chữ nhật bằng các dấu `*` in ra màn hình console (Gợi ý: Dùng 3 lệnh `cout` liên tiếp với cấu trúc `cout << "*****\n";`).
+* **Bài 3:** Giáo viên cung cấp một đoạn code bị thiếu 2 dấu `;` và bị viết sai chữ `int Main()`. Học sinh hãy tìm, sửa lại và chạy thành công.
+
+
+
+5. Bài tập về nhà 
+
+* **Bài 1:** Viết chương trình in ra thời khóa biểu ngày Mai của em (Gồm: Tiết 1, Tiết 2, Tiết 3...).
+* **Bài 2:** Dùng lệnh `cout` thiết kế một bức thư ngắn hoặc một bài thơ 4 dòng gửi cho bạn thân. Chú ý sử dụng `endl` hoặc `\n` để trình bày đẹp mắt.
+
+6. Checklist cuối buổi 
+Học sinh tự trả lời các câu hỏi:
+
+* [ ] File `.cpp` chứa gì và phải làm gì để chạy được nó?
+* [ ] 4 thành phần bắt buộc phải có của một chương trình C++ là gì?
+* [ ] Lệnh nào dùng để in ra màn hình? Lệnh nào để xuống dòng?
+* [ ] Tôi đã tự sửa được lỗi quên dấu `;` chưa?
+
+---
+
+### Buổi 02 - Nhập dữ liệu, biến và kiểu dữ liệu
+
+1. Mục tiêu buổi học 
+
+* Hiểu "Biến" là nơi lưu trữ dữ liệu tạm thời trong chương trình.
+
+
+* Biết cách khai báo và sử dụng các kiểu dữ liệu cơ bản: `int`, `double`, `char`, `string`, `bool`.
+
+
+* Biết dùng lệnh `cin` để nhập số và `getline` để nhập chuỗi có chứa khoảng trắng.
+
+
+* Hiểu được lỗi kinh điển khi dùng `cin` trước `getline` (lỗi trôi lệnh) và biết cách khắc phục bằng `cin.ignore()`.
+
+
+* Biết cách đặt tên biến rõ nghĩa (ví dụ: `diemToan` thay vì `a`).
+
+
+* Học sinh viết được chương trình nhập thông tin học viên, sản phẩm, điểm số và in lại ra màn hình.
+
+
+
+2. Lý thuyết chi tiết 
+
+* **Biến là gì?** Hãy tưởng tượng máy tính có rất nhiều "chiếc hộp" để đựng đồ. Biến (Variable) chính là tên gọi của những chiếc hộp này. Bạn cần đặt tên cho hộp để nhớ nó đựng gì (quy tắc đặt tên rõ nghĩa: không có dấu tiếng Việt, không khoảng trắng, ví dụ: `tuoi`, `hoTen` thay vì `x`, `y`).
+
+
+> `[📸 Hình ảnh ví dụ: Các chiếc hộp có dán nhãn tên "Tuổi" (chứa số 15), hộp "Điểm" (chứa 8.5) và hộp "Tên" (chứa chữ "Nam")]`
+
+
+* 
+**Các kiểu dữ liệu (Kích cỡ và loại hộp):** 
+
+
+* `int`: Dành cho số nguyên (không có phần thập phân). Vd: tuổi, số lượng.
+* `double`: Dành cho số thực (có phần thập phân). Vd: điểm số, tiền.
+* `string`: Dành cho văn bản, chuỗi ký tự. Vd: họ tên, địa chỉ.
+* `char`: Dành cho đúng 1 ký tự. Vd: 'A', 'B'.
+* `bool`: Dành cho đúng/sai (`true` hoặc `false`).
+
+
+* 
+**Lệnh nhập dữ liệu (cin và getline):** 
+
+
+* `cin >> tenBien;`: Dùng để nhập các số hoặc chữ liền nhau. (Mũi tên chỉ vào biến).
+* `getline(cin, tenBien);`: Nếu họ tên có dấu cách (vd "Le Van A"), lệnh `cin` sẽ chỉ lấy được chữ "Le". Ta bắt buộc dùng `getline` để lấy cả dòng.
+
+
+* **Lỗi trôi lệnh (Trôi Enter):** Khi nhập một số bằng `cin`, máy tính để lại phím "Enter" trong bộ nhớ. Nếu lệnh ngay sau đó là `getline`, nó sẽ "ăn" luôn phím Enter đó và bỏ qua việc cho bạn nhập chữ. Cách giải quyết: Kẹp lệnh `cin.ignore();` ở giữa.
+
+
+> `[📸 Hình ảnh ví dụ: Minh họa bộ đệm bàn phím (Keyboard Buffer) đang kẹt phím Enter (\n) và lệnh cin.ignore() giống như cây chổi quét dọn bộ đệm]`
+
+
+
+3. Ví dụ minh họa 
+
+* 
+**Ví dụ 1: Nhập và in số nguyên (Tuổi)** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int tuoi; // Khai báo chiếc hộp tên 'tuoi' kiểu int
+    cout << "Nhap tuoi cua ban: ";
+    cin >> tuoi; // Chờ người dùng nhập số từ bàn phím
+    cout << "Nam nay ban " << tuoi << " tuoi." << endl;
+    return 0;
+}
+
+```
+
+*Giải thích:* Dòng 5 tạo một biến `int`. Dòng 7 dùng `cin` đưa dữ liệu từ bàn phím vào hộp `tuoi`. Dòng 8 dùng `cout` kết hợp chuỗi chữ với giá trị của biến.
+
+* 
+**Ví dụ 2: Lỗi trôi lệnh và cách khắc phục** 
+
+
+
+```cpp
+#include <iostream>
+#include <string> // Cần thiết khi dùng string
+using namespace std;
+
+int main() {
+    int maHocSinh;
+    string hoTen;
+    
+    cout << "Nhap ma hoc sinh (so): ";
+    cin >> maHocSinh; 
+    
+    cin.ignore(); // QUAN TRỌNG: Xóa phím Enter thừa
+    
+    cout << "Nhap ho ten: ";
+    getline(cin, hoTen);
+    
+    cout << "Hoc sinh: " << hoTen << " - Ma: " << maHocSinh << endl;
+    return 0;
+}
+
+```
+
+*Giải thích:* Ở dòng 10, người dùng nhập số rồi bấm Enter. Dòng 12 `cin.ignore()` làm nhiệm vụ xóa dấu Enter đó đi. Nhờ vậy, dòng 15 `getline` mới hoạt động đúng và cho phép nhập cả họ tên dài có khoảng trắng.
+
+* 
+**Ví dụ 3: Quản lý sản phẩm với nhiều kiểu dữ liệu** 
+
+
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string tenSanPham;
+    int soLuong;
+    double giaTien; // Dùng double cho tiền tệ
+    
+    cout << "Ten san pham: ";
+    getline(cin, tenSanPham);
+    
+    cout << "So luong: ";
+    cin >> soLuong;
+    
+    cout << "Gia tien: ";
+    cin >> giaTien;
+    
+    cout << "\n--- THONG TIN DON HANG ---\n";
+    cout << "Mat hang: " << tenSanPham << endl;
+    cout << "So luong: " << soLuong << " | Gia: " << giaTien << "$" << endl;
+    return 0;
+}
+
+```
+
+*Giải thích:* Chương trình trên kết hợp biến kiểu `string`, `int`, `double`. Lệnh `getline` được gọi đầu tiên nên chưa bị dính lỗi Enter, không cần `ignore()`. Biến được đặt tên rất rõ nghĩa.
+
+4. Bài tập thực hành trên lớp 
+
+* **Bài 1:** Viết chương trình khai báo biến lưu thông tin một nhân vật game (Tên nhân vật, Cấp độ, Máu). Nhập dữ liệu từ bàn phím và in thông tin ra.
+* **Bài 2:** Viết chương trình nhập điểm 3 môn Toán, Văn, Anh (Sử dụng kiểu `double`). In lại các điểm số đó ra màn hình.
+* 
+**Bài 3:** Thử cố tình xóa dòng `cin.ignore()` trong Ví dụ 2, chạy lại chương trình, quan sát lỗi trôi lệnh để hiểu rõ bản chất.
+
+
+
+5. Bài tập về nhà 
+
+* **Bài 1:** Viết một chương trình hồ sơ thú cưng. Yêu cầu nhập: Tên thú cưng (`string`), Giống loài (`string`), Cân nặng (`double`), Số tuổi (`int`). In ra một bảng thông tin thú cưng thật đẹp. Đừng quên xử lý trôi lệnh nhé!.
+
+
+
+6. Checklist cuối buổi 
+Học sinh tự trả lời các câu hỏi:
+
+* [ ] Tại sao phải đặt tên biến cho rõ ràng?
+* [ ] Phân biệt khi nào dùng `int`, khi nào dùng `double`, khi nào dùng `string`?
+* [ ] Khi nào dùng `cin >>`, khi nào dùng `getline`?
+* [ ] Lệnh `cin.ignore()` dùng để làm gì và đặt ở vị trí nào?
+
+---
+
+*Ghi chú cho người dùng: Các buổi học từ Buổi 03 đến Buổi 40 sẽ tuân theo cấu trúc chuẩn mực này. Hãy cho tôi biết nếu bạn đã sẵn sàng sao chép dữ liệu này vào Word và muốn tôi tiếp tục triển khai các buổi học tiếp theo nhé!*
+
+
+
+Dưới đây là nội dung chi tiết cho **Buổi 03** và **Buổi 04** của khóa học, được định dạng chuẩn xác để bạn tiếp tục sao chép và dán trực tiếp vào Microsoft Word. Các hình ảnh minh họa cũng đã được gợi ý sẵn thông qua các khung `[📸 Hình ảnh ví dụ: ...]`.
+
+---
+
+### Buổi 03 - Toán tử số học và biểu thức
+
+**1. Mục tiêu buổi học**
+
+* Biết dùng các phép toán `+`, `-`, `*`, `/` trong các bài toán tính toán cơ bản.
+
+
+* Hiểu được thứ tự ưu tiên của phép tính và vai trò quan trọng của dấu ngoặc.
+
+
+* Nhận biết và phân biệt được phép chia số nguyên và chia số thực.
+
+
+* Biết dùng biến trung gian để giúp đoạn code dễ đọc, dễ hiểu hơn.
+
+
+* Biết cách chọn kiểu dữ liệu `double` cho các giá trị như điểm số, tiền bạc, diện tích hay những kết quả có phần lẻ.
+
+
+* Học sinh tự viết được chương trình tính điểm trung bình, tính tiền hóa đơn, chu vi và diện tích.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* 
+**Các toán tử cơ bản:** Trong C++, các phép tính cộng, trừ, nhân, chia được biểu diễn bằng các ký hiệu lần lượt là `+`, `-`, `*`, `/`.
+
+
+* 
+**Thứ tự ưu tiên:** Giống hệt như toán học ở trường, C++ tính nhân chia trước, cộng trừ sau. Nếu muốn thay đổi thứ tự này, bắt buộc phải dùng dấu ngoặc tròn `( )`.
+
+
+> `[📸 Hình ảnh ví dụ: Biểu đồ thứ tự ưu tiên phép toán - Dấu ngoặc () -> Nhân/Chia -> Cộng/Trừ]`
+
+
+* 
+**Lưu ý cực kỳ quan trọng về phép chia:** Trong C++, nếu bạn lấy một số nguyên chia cho một số nguyên (ví dụ 5 / 2), kết quả sẽ bị cắt bỏ phần thập phân và chỉ lấy phần nguyên (kết quả là 2). Để có kết quả là số thực (2.5), ít nhất một trong hai số phải là số thực (ví dụ 5.0 / 2), hoặc phải ép kiểu.
+
+
+* 
+**Dùng biến trung gian:** Thay vì viết một biểu thức tính toán dài ngoằng và phức tạp vào lệnh in `cout`, hãy tính toán rồi lưu kết quả vào một biến trung gian trước. Việc này giúp code rất dễ đọc và dễ tìm lỗi.
+
+
+* 
+**Lựa chọn kiểu dữ liệu:** Khi làm việc với điểm số, tính tiền, hay tính diện tích, hãy tạo thói quen sử dụng kiểu `double` vì kết quả thường sẽ có phần thập phân.
+
+
+
+**3. Ví dụ minh họa**
+
+* 
+**Ví dụ 1: Tính chu vi và diện tích hình chữ nhật** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double chieuDai = 5.5; [cite_start]// Dùng double cho diện tích [cite: 23]
+    double chieuRong = 3.0;
+    
+    [cite_start]// Dùng biến trung gian để code dễ đọc [cite: 22]
+    double chuVi = (chieuDai + chieuRong) * 2; [cite_start]// Cần dấu ngoặc để cộng trước [cite: 21]
+    double dienTich = chieuDai * chieuRong; [cite_start]// Dùng toán tử * [cite: 20]
+    
+    cout << "Chu vi: " << chuVi << endl;
+    cout << "Dien tich: " << dienTich << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Ở dòng 9, nếu ta không dùng dấu ngoặc `()`, máy tính sẽ lấy `chieuRong * 2` trước, dẫn đến sai kết quả chu vi. Ở dòng 9 và 10, ta dùng biến trung gian `chuVi` và `dienTich` thay vì tính trực tiếp bên trong lệnh `cout`.
+
+* 
+**Ví dụ 2: Tính điểm trung bình môn học** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double toan = 8.0, van = 7.5; [cite_start]// Điểm số dùng double [cite: 23]
+    
+    [cite_start]// Dùng ngoặc để tính tổng trước khi chia [cite: 20, 21]
+    double diemTrungBinh = (toan + van) / 2; 
+    
+    cout << "Diem trung binh cua ban la: " << diemTrungBinh << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Vì biến `toan` và `van` đã là `double`, nên phép chia ở dòng 8 là phép chia số thực, trả về kết quả chính xác có phần lẻ (7.75).
+
+* 
+**Ví dụ 3: Lỗi phép chia số nguyên** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 7;
+    int b = 2;
+    
+    cout << "Ket qua 7 / 2 la: " << a / b << endl; [cite_start]// Sẽ in ra 3, không phải 3.5 [cite: 22]
+    
+    // Cách sửa để ra số thực
+    cout << "Ket qua dung: " << (double)a / b << endl; 
+    return 0;
+}
+
+```
+
+*Giải thích:* Khi hai toán hạng là số nguyên, C++ dùng phép chia nguyên. Bằng cách thêm `(double)` trước biến `a`, ta ép nó thành số thực, từ đó phép tính trở thành chia số thực.
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình nhập vào độ dài 3 cạnh của một hình tam giác. Tính chu vi của hình tam giác đó.
+
+
+* **Bài 2:** Một quán trà sữa bán mỗi ly giá 35.000 VNĐ. Viết chương trình nhập vào số lượng ly khách mua, tính tổng số tiền khách phải trả (dùng biến `double` cho tiền).
+
+
+* **Bài 3:** Viết chương trình tính nhiệt độ. Nhập vào nhiệt độ theo độ F, chuyển đổi sang độ C theo công thức: C = (F - 32) * 5 / 9. (Nhắc học sinh cẩn thận phép chia nguyên).
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình tính điểm xét tuyển. Nhập vào điểm 3 môn Toán, Lý, Hóa. Biết Toán nhân hệ số 2, hãy tính tổng điểm xét tuyển và in ra màn hình.
+
+
+* 
+**Bài 2:** Viết chương trình tính chu vi và diện tích hình tròn khi biết bán kính R (Gợi ý dùng số Pi = 3.14).
+
+
+
+**6. Checklist cuối buổi**
+Học sinh tự trả lời các câu hỏi:
+
+* [ ] Ký hiệu phép nhân và phép chia trong C++ là gì? 
+
+
+* [ ] Tại sao 5 / 2 trong C++ lại bằng 2? Làm sao để kết quả ra 2.5? 
+
+
+* [ ] Vì sao nên dùng biến trung gian? 
+
+
+* [ ] Khi làm việc với điểm số, nên khai báo biến kiểu dữ liệu nào? 
+
+
+
+---
+
+### Buổi 04 - Chia nguyên, chia dư và bài toán chẵn lẻ
+
+**1. Mục tiêu buổi học**
+
+* Nắm vững cơ chế phép chia nguyên `/` khi hai toán hạng đều là số nguyên.
+
+
+* Hiểu cách dùng toán tử chia lấy dư `%` và ý nghĩa của phần dư.
+
+
+* Biết cách kiểm tra một số là chẵn hay lẻ bằng biểu thức `n % 2`.
+
+
+* Biết kiểm tra phép tính chia hết và xử lý trường hợp mẫu số bằng 0.
+
+
+* Biết ứng dụng phép `/` và `%` vào các bài toán thực tế như đổi thời gian, tách chữ số, chia nhóm.
+
+
+* Học sinh viết được các bài tập: xét tính chẵn lẻ, xét tính chia hết, đổi từ giây sang định dạng giờ-phút-giây.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* 
+**Phép chia nguyên (`/`):** Khi cả tử và mẫu là số nguyên (`int`), phép chia `/` chỉ giữ lại phần thương nguyên. Ví dụ: 14 / 3 = 4 (bỏ qua phần lẻ).
+
+
+* 
+**Phép chia lấy dư (`%`):** Toán tử `%` chỉ lấy phần dư của phép chia. Phép tính này chỉ áp dụng cho số nguyên. Ví dụ: 14 % 3 = 2 (vì 14 chia 3 được 4, dư 2).
+
+
+> `[📸 Hình ảnh ví dụ: Phép tính đặt tính rồi tính thời Tiểu học, khoanh tròn vào phần "Thương" ứng với dấu /, và phần "Số dư" ứng với dấu %]`
+
+
+* 
+**Ứng dụng kiểm tra chẵn / lẻ:** Một số khi chia lấy dư cho 2 (`n % 2`) thì chỉ có 2 khả năng: Nếu dư 0 thì là số chẵn; nếu dư 1 thì là số lẻ.
+
+
+* 
+**Kiểm tra chia hết:** Số `A` chia hết cho `B` khi và chỉ khi `A % B == 0` (nghĩa là số dư bằng 0). Lưu ý, tuyệt đối không được để số chia (mẫu số) bằng 0, nếu không chương trình sẽ bị sập (crash).
+
+
+* 
+**Các ứng dụng kinh điển:** Phép `/` và `%` là "cặp bài trùng" để tách các con số (tách hàng chục, đơn vị) hoặc quy đổi các đại lượng (ví dụ: chia giây thành phút, giờ).
+
+
+
+**3. Ví dụ minh họa**
+
+* 
+**Ví dụ 1: Bài toán chia nhóm** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int soHocSinh = 23;
+    int kichThuocNhom = 5;
+    
+    [cite_start]// Dùng / để tìm số nhóm nguyên vẹn [cite: 27]
+    int soNhom = soHocSinh / kichThuocNhom; 
+    
+    [cite_start]// Dùng % để tìm số bạn còn dư lại [cite: 26, 27]
+    int soBanDu = soHocSinh % kichThuocNhom; 
+    
+    cout << "Co " << soNhom << " nhom day du." << endl;
+    cout << "Con le " << soBanDu << " ban." << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Phép chia `23 / 5` cho kết quả phần nguyên là `4` (nhóm). Phép chia lấy dư `23 % 5` trả về phần dư là `3` (bạn lẻ ra).
+
+* 
+**Ví dụ 2: Tách chữ số** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int so = 85;
+    
+    int hangChuc = so / 10; [cite_start]// 85 / 10 = 8 [cite: 25]
+    int hangDonVi = so % 10; [cite_start]// 85 % 10 = 5 [cite: 26]
+    
+    cout << "Chu so hang chuc: " << hangChuc << endl;
+    cout << "Chu so hang don vi: " << hangDonVi << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Bất kỳ số nào khi chia cho 10 bằng toán tử `/` sẽ mất đi hàng đơn vị. Khi dùng toán tử `% 10`, ta luôn luôn lấy được chữ số tận cùng (hàng đơn vị).
+
+* 
+**Ví dụ 3: Đổi thời gian (Giây sang Phút, Giây)** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int tongGiay = 135;
+    
+    int phut = tongGiay / 60; [cite_start]// Lấy số phút nguyên [cite: 27]
+    int giayLe = tongGiay % 60; [cite_start]// Lấy phần giây dư ra [cite: 27]
+    
+    cout << tongGiay << " giay tuong duong voi: ";
+    cout << phut << " phut va " << giayLe << " giay." << endl; [cite_start]// Đổi giây sang giờ-phút-giây [cite: 28]
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Một phút có 60 giây. Chia cho 60 (`/`) sẽ ra được tổng số phút. Chia dư cho 60 (`%`) sẽ ra được số giây lẻ không đủ tạo thành 1 phút.
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Nhập vào một số nguyên. Tính và in ra phần dư của số đó khi chia cho 7.
+
+
+* **Bài 2:** Viết chương trình nhập vào một số tự nhiên (là thời gian tính bằng giây). Hãy quy đổi và in ra màn hình dưới dạng: Giờ - Phút - Giây (Gợi ý: 1 giờ = 3600 giây).
+
+
+* **Bài 3:** Có N cái kẹo chia đều cho M em bé. Hỏi mỗi em nhận được bao nhiêu cái kẹo đầy đủ và cô giáo còn giữ lại bao nhiêu cái? (Nhập N và M từ bàn phím) .
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình nhập vào một số nguyên dương có 2 chữ số (từ 10 đến 99). Hãy in ra con số đảo ngược của số đó (Ví dụ: Nhập 47 -> In ra 74). (Gợi ý: Dùng `/ 10` và `% 10` để tách số, sau đó ghép lại) .
+
+
+* **Bài 2:** (Tìm hiểu trước cho bài hôm sau): Hãy thử tìm hiểu xem nếu mình muốn làm một bài kiểm tra "Số này có lớn hơn 5 không?", mình sẽ dùng lệnh gì trong C++?
+
+**6. Checklist cuối buổi**
+Học sinh tự trả lời các câu hỏi:
+
+* [ ] Toán tử `/` và `%` khác nhau như thế nào với số nguyên? 
+
+
+* [ ] Làm sao để biết một số là chẵn hay lẻ bằng toán tử `%`? 
+
+
+* [ ] Muốn lấy chữ số hàng đơn vị của một số, ta chia lấy dư cho mấy? 
+
+
+* [ ] Tại sao mẫu số trong phép chia hoặc phép lấy dư không được bằng 0?
+
+
+
+Dưới đây là nội dung chi tiết cho **Buổi 05** và **Buổi 06** được soạn theo đúng định dạng chuẩn để bạn tiếp tục sao chép vào Microsoft Word. Các khung hình ảnh minh họa vẫn được đặt sẵn để bạn dễ dàng chèn tài liệu trực quan cho học sinh.
+
+---
+
+### Buổi 05 - Rẽ nhánh if/else cơ bản
+
+**1. Mục tiêu buổi học**
+
+* Hiểu được khái niệm điều kiện đúng/sai trong C++.
+
+
+* Biết cách viết cấu trúc `if`, `if/else` để chương trình tự đưa ra quyết định.
+
+
+* Nắm vững các toán tử so sánh: `==` (bằng), `!=` (khác), `>`, `<`, `>=`, `<=`.
+
+
+* Biết cách "test dữ liệu biên", ví dụ khi kiểm tra điểm đậu/rớt thì phải thử ngay các mức 5.0, 6.5, 8.0 để xem code chạy đúng không.
+
+
+* Biết cách tránh lỗi kinh điển: nhầm lẫn dấu `=` (gán giá trị) với dấu `==` (so sánh bằng).
+
+
+* Học sinh viết được chương trình kiểm tra đậu/rớt, số dương/âm/0, và kiểm tra điểm hợp lệ.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Điều kiện Đúng / Sai (Boolean):** Máy tính đưa ra quyết định dựa trên tính đúng sai. Trong C++, `true` là đúng, `false` là sai.
+* **Cấu trúc `if` (Nếu):** Dùng để bảo máy tính: "Nếu điều kiện này đúng, thì hãy làm việc này".
+> `[📸 Hình ảnh ví dụ: Sơ đồ khối (Flowchart) của lệnh if: Đường đi qua một trạm kiểm soát, nếu vé hợp lệ (Đúng) thì barrier mở cho đi qua, nếu không (Sai) thì đi đường vòng]`
+
+
+* **Cấu trúc `if/else` (Nếu... ngược lại thì...):** Dùng khi ta có 2 ngã rẽ. "Nếu đúng thì làm A, ngược lại thì làm B".
+* **Các toán tử so sánh:** Lớn hơn (`>`), Nhỏ hơn (`<`), Lớn hơn hoặc bằng (`>=`), Nhỏ hơn hoặc bằng (`<=`), Khác nhau (`!=`).
+* **Lưu ý CỰC KỲ QUAN TRỌNG:** Dấu `=` dùng để cất đồ vào hộp (gán giá trị). Dấu `==` mới là phép so sánh xem hai bên có bằng nhau hay không. Học sinh rất hay viết sai thành `if (diem = 10)` thay vì `if (diem == 10)`.
+
+
+
+**3. Ví dụ minh họa**
+
+* 
+**Ví dụ 1: Kiểm tra Đậu / Rớt** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double diem;
+    cout << "Nhap diem cua ban: ";
+    cin >> diem;
+    
+    // Nếu điểm lớn hơn hoặc bằng 5.0 thì đậu
+    if (diem >= 5.0) {
+        cout << "Chuc mung! Ban da thi dau." << endl;
+    } else {
+        // Ngược lại (nhỏ hơn 5.0)
+        cout << "Rat tiec, ban can co gang hon." << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Lệnh `if` kiểm tra biến `diem`. Nếu người dùng nhập `6.5`, điều kiện `6.5 >= 5.0` là đúng, dòng "Chúc mừng" được in ra. Nếu nhập `4.5`, máy tính bỏ qua dòng "Chúc mừng" và nhảy thẳng xuống phần `else` để in ra dòng "Rất tiếc". Hãy test với mức điểm biên là `5.0`.
+
+* 
+**Ví dụ 2: Kiểm tra số Âm / Dương / 0** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int so;
+    cout << "Nhap mot so nguyen: ";
+    cin >> so;
+    
+    if (so > 0) {
+        cout << "Day la so duong." << endl;
+    } else {
+        if (so < 0) {
+            cout << "Day la so am." << endl;
+        } else {
+            cout << "Day la so 0." << endl;
+        }
+    }
+    return 0;
+}
+
+```
+
+*Giải thích:* Đây là ví dụ về `if/else` lồng nhau. Đầu tiên kiểm tra số dương. Nếu không phải số dương (vào `else`), ta lại kiểm tra tiếp xem nó là số âm hay số 0 bằng một cặp `if/else` nhỏ bên trong.
+
+* 
+**Ví dụ 3: Lỗi sai dấu bằng `=` và `==**` 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int matKhau = 123;
+    
+    // SAI LẦM KINH ĐIỂN: Dùng 1 dấu =
+    // if (matKhau = 999) { ... } -> Lỗi logic, máy sẽ gán matKhau thành 999
+    
+    // CÁCH VIẾT ĐÚNG: Dùng 2 dấu ==
+    if (matKhau == 999) {
+        cout << "Mat khau dung!" << endl;
+    } else {
+        cout << "Mat khau sai!" << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình nhập vào số tuổi. Nếu tuổi >= 18, in ra "Đủ tuổi xem phim bạo lực", ngược lại in "Bạn chưa đủ tuổi".
+* 
+**Bài 2:** Kết hợp kiến thức buổi 4, viết chương trình nhập một số nguyên và kiểm tra xem số đó là số chẵn hay số lẻ.
+
+
+* 
+**Bài 3:** Viết chương trình nhập vào một năm, kiểm tra xem năm đó có phải năm 2024 không (Chú ý sử dụng đúng toán tử so sánh bằng).
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình tính tiền vé xem phim. Giá gốc là 100k. Nếu khách hàng mang thẻ học sinh (nhập 1 là có thẻ, nhập 0 là không có thẻ), thì in ra giá vé đã giảm còn 70k. Nếu không, in ra giá gốc.
+* **Bài 2:** Nhập vào 2 số nguyên a và b. So sánh và in ra màn hình con số lớn hơn.
+
+**6. Checklist cuối buổi**
+
+* [ ] Tôi đã hiểu sự khác nhau giữa `=` và `==` chưa?
+* [ ] Ký hiệu "khác nhau" trong C++ viết như thế nào?
+* [ ] Khi nào thì code bên trong ngoặc nhọn `{ }` của `else` được chạy?
+
+---
+
+### Buổi 06 - else-if, switch và điều kiện nhiều nhánh
+
+**1. Mục tiêu buổi học**
+
+* Hiểu được khi nào cần dùng `else-if` để phân loại nhiều mức độ khác nhau.
+
+
+* Biết cách sắp xếp các điều kiện một cách logic, từ chặt đến lỏng hoặc từ cao xuống thấp.
+
+
+* Biết sử dụng cấu trúc `switch-case` để làm các menu lựa chọn rời rạc.
+
+
+* Nắm được vai trò bắt buộc của `break` và `default` bên trong `switch`.
+
+
+* Biết cách kết hợp nhiều điều kiện cùng lúc bằng `&&` (Và), `||` (Hoặc), `!` (Phủ định).
+
+
+* Học sinh viết được chương trình menu máy tính đơn giản và chương trình xếp loại học lực.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Cấu trúc `else if`:** Khi có nhiều hơn 2 ngã rẽ (ví dụ: Giỏi, Khá, Trung Bình, Yếu), thay vì lồng `if/else` quá nhiều, ta dùng `else if` để nối tiếp các điều kiện. Phải sắp xếp điều kiện từ cao xuống thấp để không bị bắt sai trường hợp.
+
+
+* 
+**Toán tử Logic:** Đôi khi ta cần kiểm tra nhiều điều kiện cùng lúc.
+
+
+* `&&` (AND - Và): Cả 2 điều kiện phải cùng ĐÚNG. (VD: Điểm >= 0 VÀ Điểm <= 10).
+* `||` (OR - Hoặc): Chỉ cần 1 trong 2 điều kiện ĐÚNG. (VD: Mật khẩu đúng HOẶC có vân tay).
+
+
+* **Cấu trúc `switch-case`:** Chuyên dùng để làm Menu. Khi người dùng nhập vào một con số cụ thể (1, 2, 3...), `switch` sẽ nhảy thẳng đến `case` tương ứng.
+
+
+* 
+`break`: Đặt ở cuối mỗi `case` để "thắng" lại, ngăn không cho chạy tuột xuống các case bên dưới.
+
+
+* 
+`default`: Tương tự như `else`, nó sẽ chạy nếu người dùng nhập một con số không có trong bất kỳ `case` nào (ví dụ nhập 99 trong khi menu chỉ có từ 1 đến 3).
+
+
+
+
+> `[📸 Hình ảnh ví dụ: Bảng Menu nhà hàng với các món số 1, 2, 3 so sánh ngang với cấu trúc Switch-Case trong code]`
+
+
+
+**3. Ví dụ minh họa**
+
+* 
+**Ví dụ 1: Xếp loại học lực (Dùng else if từ cao xuống thấp)** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double diem;
+    cout << "Nhap diem trung binh: ";
+    cin >> diem;
+    
+    // Phải sắp xếp từ cao xuống thấp
+    if (diem >= 8.0) {
+        cout << "Hoc luc Gioi!" << endl;
+    } else if (diem >= 6.5) {
+        cout << "Hoc luc Kha!" << endl;
+    } else if (diem >= 5.0) {
+        cout << "Hoc luc Trung Binh!" << endl;
+    } else {
+        cout << "Hoc luc Yeu!" << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Nếu người dùng nhập `8.5`, điều kiện đầu tiên đúng, in "Giỏi" và kết thúc luôn cấu trúc. Nhờ việc sắp xếp từ trên xuống, nếu code trôi xuống được `diem >= 6.5`, nghĩa là chắc chắn điểm đó đã nhỏ hơn 8.0.
+
+* 
+**Ví dụ 2: Kết hợp điều kiện với &&** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double diem;
+    cout << "Nhap diem (tu 0 den 10): ";
+    cin >> diem;
+    
+    // Điểm hợp lệ phải lớn hơn hoặc bằng 0 VÀ nhỏ hơn hoặc bằng 10
+    if (diem >= 0 && diem <= 10) {
+        cout << "Diem hop le!" << endl;
+    } else {
+        cout << "Diem sai! Vui long nhap lai." << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+* 
+**Ví dụ 3: Menu máy tính đơn giản với Switch-Case** 
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int luaChon;
+    cout << "--- MENU GIAI TRI ---" << endl;
+    cout << "1. Choi game" << endl;
+    cout << "2. Nghe nhac" << endl;
+    cout << "3. Doc truyen" << endl;
+    cout << "Chon chuc nang (1-3): ";
+    cin >> luaChon;
+    
+    switch (luaChon) {
+        case 1:
+            cout << "Dang mo game..." << endl;
+            break; // Cực kỳ quan trọng để dừng lại
+        case 2:
+            cout << "Dang phat nhac..." << endl;
+            break;
+        case 3:
+            cout << "Dang mo sach..." << endl;
+            break;
+        default:
+            cout << "Lua chon khong ton tai!" << endl;
+            break;
+    }
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình nhập vào một tháng (từ 1 đến 12). In ra màn hình tháng đó thuộc mùa nào (Xuân, Hạ, Thu, Đông) sử dụng `else if` và toán tử `&&`.
+* 
+**Bài 2:** Xóa thử chữ `break` ở `case 1` trong Ví dụ 3, nhập số 1 và quan sát hiện tượng "rơi tự do" (fall-through) của `switch-case` để hiểu tại sao `break` lại quan trọng.
+
+
+* **Bài 3:** Viết một menu gọi món ăn sáng gồm 4 món (Phở, Bún, Cơm, Bánh Mì). Sử dụng `switch-case` để in ra giá tiền tương ứng khi khách chọn số.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết một "Máy tính mini". Yêu cầu nhập vào 2 số nguyên. Sau đó in ra menu chọn phép tính: `1. Cộng`, `2. Trừ`, `3. Nhân`, `4. Chia`. Tùy theo người dùng nhập số nào mà thực hiện phép tính tương ứng và in kết quả ra. (Nhớ chú ý kiểm tra mẫu số khác 0 khi làm phép chia ).
+
+
+* **Bài 2:** Viết chương trình tính tiền cước taxi. Biết rằng: 2km đầu tiên giá 15.000đ/km. Từ km thứ 3 trở đi giá 12.000đ/km. Hãy nhập vào số km và in ra tổng tiền.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Tại sao khi dùng `else if` lại phải sắp xếp điều kiện từ cao xuống thấp hoặc ngược lại?
+* [ ] Dấu `&&` và `||` khác nhau như thế nào?
+* [ ] Trong `switch-case`, chuyện gì xảy ra nếu tôi quên viết `break`?
+* [ ] `default` trong `switch-case` có giống với `else` trong `if-else` không?
+
+Dưới đây là nội dung chi tiết cho **Buổi 07** và **Buổi 08**, khép lại Giai đoạn 1 (Nền tảng C++). Mọi định dạng đều được giữ chuẩn xác để bạn tiếp tục sao chép và dán vào Microsoft Word.
+
+---
+
+Buổi 07 - Vòng lặp for và bài toán lặp biết trước số lần 
+
+**1. Mục tiêu buổi học**
+
+* Hiểu vòng lặp `for` gồm 3 phần chính: khởi tạo, điều kiện lặp, cập nhật.
+
+
+* Biết dùng vòng lặp `for` khi đã biết trước số lần lặp lại của công việc.
+
+
+* Biết cách áp dụng vòng lặp để giải quyết bài toán: tính tổng, đếm số lượng, in dãy số.
+
+
+* Biết theo dõi sự thay đổi giá trị của biến đếm (thường là `i`) qua từng vòng lặp.
+
+
+* Biết cách tránh lỗi kinh điển: lặp thiếu một lần hoặc lặp thừa một lần.
+
+
+* Học sinh viết được chương trình tính tổng các số từ 1 đến n, đếm các số chẵn, in bảng cửu chương.
+
+
+
+2. Lý thuyết chi tiết 
+
+* **Vòng lặp là gì?** Khi bạn muốn in chữ "Xin chào" 100 lần, thay vì viết 100 dòng `cout`, bạn chỉ cần viết 1 dòng `cout` và bảo máy tính "hãy lặp lại việc này 100 lần".
+* **Cấu trúc vòng lặp `for`:** Chuyên dùng khi ta **đã biết trước** số vòng cần chạy. Cú pháp gồm 3 phần nằm trong ngoặc tròn: `for (Khởi tạo; Điều kiện lặp; Bước nhảy) { ... }`.
+* *Khởi tạo:* Biến đếm bắt đầu từ đâu (Ví dụ: `int i = 1;`).
+* *Điều kiện lặp:* Chạy đến khi nào thì dừng (Ví dụ: `i <= 10;`).
+* *Bước nhảy:* Sau mỗi vòng thì biến đếm thay đổi thế nào (Ví dụ: `i++` nghĩa là tăng `i` lên 1 đơn vị).
+
+
+> `[📸 Hình ảnh ví dụ: Sơ đồ luồng (Flowchart) của vòng lặp for: Khởi tạo -> Kiểm tra điều kiện -> Thực thi thân vòng lặp -> Cập nhật bước nhảy -> Quay lại kiểm tra điều kiện]`
+
+
+* **Lỗi lặp thừa / lặp thiếu (Off-by-one error):** Rất dễ nhầm lẫn giữa `<` và `<=`. Ví dụ, nếu muốn chạy từ 1 đến 10, phải dùng `i <= 10`. Nếu dùng `i < 10`, vòng lặp sẽ dừng ở 9 (bị thiếu 1 lần).
+
+
+* 
+**Biến đếm `i`:** `i` thường được dùng làm chữ viết tắt của "index" (chỉ số) hoặc "iterator" (biến lặp). Nó có thể tham gia trực tiếp vào việc tính toán bên trong vòng lặp.
+
+
+
+3. Ví dụ minh họa 
+
+* **Ví dụ 1: In dãy số từ 1 đến 5**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // i bắt đầu từ 1, chạy chừng nào i còn <= 5, mỗi lần tăng i thêm 1
+    for (int i = 1; i <= 5; i++) {
+        cout << i << " "; 
+    }
+    cout << "\nDa in xong!" << endl;
+    return 0;
+}
+
+```
+
+*Giải thích:* Máy tính tạo biến `i = 1`. Thấy `1 <= 5` là đúng, nó in số 1. Sau đó `i++` làm `i` thành 2. Lại kiểm tra `2 <= 5`, đúng, in số 2. Lặp liên tục đến khi `i = 6`, điều kiện `6 <= 5` sai, vòng lặp lập tức kết thúc.
+
+* **Ví dụ 2: Tính tổng các số từ 1 đến N**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    int tong = 0; // Luôn phải khởi tạo tổng = 0 trước khi cộng dồn
+    
+    cout << "Nhap n: ";
+    cin >> n;
+    
+    for (int i = 1; i <= n; i++) {
+        tong = tong + i; // Cộng dồn giá trị của i vào tổng
+    }
+    
+    cout << "Tong tu 1 den " << n << " la: " << tong << endl;
+    return 0;
+}
+
+```
+
+*Giải thích:* Nếu `n = 3`, vòng lặp chạy 3 lần. Vòng 1: `tong = 0 + 1 = 1`. Vòng 2: `tong = 1 + 2 = 3`. Vòng 3: `tong = 3 + 3 = 6`. Đây là kỹ thuật "cộng dồn" cực kỳ phổ biến.
+
+* **Ví dụ 3: In bảng cửu chương**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int so;
+    cout << "Ban muon xem bang cuu chuong may? (1-10): ";
+    cin >> so;
+    
+    cout << "--- BANG CUU CHUONG " << so << " ---" << endl;
+    for (int i = 1; i <= 10; i++) {
+        cout << so << " x " << i << " = " << so * i << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Vòng lặp chạy cố định 10 lần (từ 1 đến 10). Lệnh `cout` kết hợp biến `so` (cố định) và biến `i` (tăng dần) để in ra các dòng phép tính đẹp mắt.
+
+4. Bài tập thực hành trên lớp 
+
+* **Bài 1:** Viết chương trình in ra tất cả các số chẵn từ 1 đến 20 (Gợi ý: Kết hợp vòng lặp `for` với lệnh `if (i % 2 == 0)`).
+* **Bài 2:** Viết chương trình đếm xem có bao nhiêu số chia hết cho 3 trong khoảng từ 1 đến 50 (Gợi ý: Tạo một biến `dem = 0`, gặp số nào chia hết thì `dem++`).
+* **Bài 3:** Viết chương trình tính giai thừa của một số N (N! = 1 * 2 * 3 * ... * N). (Lưu ý: Biến chứa kết quả tích phải khởi tạo bằng 1, không được bằng 0).
+
+5. Bài tập về nhà 
+
+* **Bài 1:** Viết chương trình in ra một hình vuông đặc bằng các dấu `*` kích thước 5x5. (Gợi ý: Dùng lệnh `cout << "*****\n";` bên trong vòng lặp `for` chạy 5 lần).
+* **Bài 2:** (Thử thách) Viết chương trình đếm ngược thời gian để phóng tên lửa. Nhập vào số giây (ví dụ 10), in ra "10, 9, 8... 1, PHOOONG!". (Gợi ý: Khởi tạo `i = n`, điều kiện `i >= 1`, bước nhảy `i--`).
+
+6. Checklist cuối buổi 
+
+* [ ] 3 thành phần trong ngoặc của vòng lặp `for` là những gì?
+* [ ] Biến đếm `i` có bị mất đi sau khi vòng lặp `for` kết thúc không?
+* [ ] Muốn tính tổng thì phải khởi tạo biến `tong` bằng mấy trước vòng lặp?
+
+---
+
+Buổi 08 - while, do-while và lặp chưa biết trước số lần 
+
+**1. Mục tiêu buổi học**
+
+* Hiểu được vòng lặp `while` dùng trong trường hợp ta chưa biết trước số lần lặp.
+
+
+* Hiểu vòng lặp `do-while` khác biệt ở chỗ nó luôn chạy ít nhất một lần rồi mới kiểm tra điều kiện.
+
+
+* Biết cách ứng dụng để lặp lại việc nhập dữ liệu cho đến khi người dùng nhập đúng.
+
+
+* Biết cách viết một menu chương trình lặp lại liên tục cho đến khi người dùng chọn nút thoát.
+
+
+* Biết cách tránh lỗi "vòng lặp vô hạn" (chương trình bị treo).
+
+
+* Học sinh viết được chương trình bắt nhập mật khẩu, menu lặp lại, nhập điểm đến khi hợp lệ.
+
+
+
+2. Lý thuyết chi tiết 
+
+* **Khi nào dùng `while`?** Vòng lặp `for` dùng khi biết phải chạy bao nhiêu lần (VD: In 10 dòng). Nhưng nếu bài toán là "Bắt người dùng nhập mật khẩu đến khi nào đúng thì thôi", ta không biết họ sẽ nhập sai 1 lần, 5 lần hay 100 lần. Lúc này phải dùng `while`.
+* **Cấu trúc `while` (Kiểm tra trước - Làm sau):** `while (Điều kiện) { ... }`. Nghĩa là: Chừng nào điều kiện này còn ĐÚNG, thì tiếp tục thực hiện khối lệnh bên trong.
+* **Cấu trúc `do-while` (Làm trước - Kiểm tra sau):** Khối lệnh bên trong chữ `do` sẽ được chạy ngay lập tức ít nhất 1 lần. Sau đó nó mới xem xét điều kiện ở chữ `while` phía dưới. Nếu đúng thì quay lên làm tiếp.
+> `[📸 Hình ảnh ví dụ: Bảng so sánh 2 luồng: while (Hỏi vé trước khi cho vào cửa) vs do-while (Cho vào ăn thử một miếng rồi mới hỏi có muốn mua vé ăn tiếp không)]`
+
+
+* **Vòng lặp vô hạn (Infinite Loop):** Là lỗi nghiêm trọng khi điều kiện của vòng lặp luôn luôn đúng và không bao giờ thoát ra được. Máy tính sẽ chạy mãi mãi đến khi treo máy. Cách sửa: Phải chắc chắn có một câu lệnh bên trong vòng lặp làm thay đổi điều kiện để nó trở thành SAI.
+
+
+
+3. Ví dụ minh họa 
+
+* **Ví dụ 1: Nhập mật khẩu (Dùng while)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int matKhau = 0; // Khởi tạo giá trị ban đầu cố tình làm sai mật khẩu
+    
+    // Chừng nào mật khẩu còn chưa đúng (khác 1234)
+    while (matKhau != 1234) {
+        cout << "Vui long nhap mat khau: ";
+        cin >> matKhau;
+        
+        if (matKhau != 1234) {
+            cout << "Sai roi! Thu lai.\n";
+        }
+    }
+    
+    cout << "Dang nhap thanh cong!" << endl;
+    return 0;
+}
+
+```
+
+*Giải thích:* Vì ta kiểm tra `while` ngay từ đầu, nên `matKhau` phải được gán một giá trị (VD: `0`) để điều kiện `0 != 1234` là đúng, giúp vòng lặp khởi động được.
+
+* **Ví dụ 2: Nhập điểm hợp lệ (Dùng do-while)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double diem;
+    
+    // Làm việc nhập điểm ít nhất 1 lần
+    do {
+        cout << "Nhap diem (tu 0 den 10): ";
+        cin >> diem;
+        
+        if (diem < 0 || diem > 10) {
+            cout << "Diem khong hop le, vui long nhap lai!\n";
+        }
+    } while (diem < 0 || diem > 10); // Lặp lại nếu điểm vẫn nằm ngoài khoảng
+    
+    cout << "Ban da nhap diem: " << diem << endl;
+    return 0;
+}
+
+```
+
+*Giải thích:* `do-while` rất hợp với bài toán "Kiểm tra dữ liệu nhập". Ta cho phép họ nhập vào (`do`) rồi mới xét xem điểm có sai không (`while`). Nếu sai thì bắt nhập lại.
+
+* **Ví dụ 3: Menu chương trình lặp lại**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int chon;
+    
+    do {
+        cout << "\n--- MENU QUAN LY ---" << endl;
+        cout << "1. Xem danh sach" << endl;
+        cout << "2. Them sinh vien" << endl;
+        cout << "0. Thoat" << endl;
+        cout << "Ban chon: ";
+        cin >> chon;
+        
+        // Xử lý lựa chọn
+        if (chon == 1) { cout << "Dang hien thi danh sach...\n"; }
+        else if (chon == 2) { cout << "Dang mo tinh nang them...\n"; }
+        else if (chon == 0) { cout << "Tam biet!\n"; }
+        else { cout << "Nhap sai, moi nhap lai!\n"; }
+        
+    } while (chon != 0); // Chỉ thoát khi người dùng nhập số 0
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Dùng `do-while` bọc toàn bộ menu lại. Khách hàng xài xong tính năng 1, menu lại tự động hiện ra cho đến khi họ chủ động bấm phím 0 để thoát.
+
+4. Bài tập thực hành trên lớp 
+
+* **Bài 1:** Viết chương trình yêu cầu người dùng nhập vào một số dương. Nếu họ cố tình nhập số âm, dùng `while` hoặc `do-while` để mắng họ và bắt nhập lại cho tới khi nào nhập đúng số dương thì thôi.
+* **Bài 2:** Bổ sung cấu trúc `switch-case` (đã học ở buổi 6) vào vị trí của các lệnh `if/else if` trong Ví dụ 3 (Menu chương trình).
+* **Bài 3:** Thử tạo ra một "Vòng lặp vô hạn" (In chữ "Toang rồi" liên tục trên màn hình) bằng cách viết điều kiện `while(1 == 1)`. Bấm `Ctrl + C` trên bàn phím để ép dừng chương trình.
+
+5. Bài tập về nhà 
+
+* **Bài 1:** Làm một Mini-game "Đoán số". Máy tính giữ một con số bí mật (ví dụ: `42`). Dùng vòng lặp cho phép người chơi đoán liên tục. Nếu người chơi nhập số nhỏ hơn, in ra "Số của bạn hơi bé". Nếu lớn hơn, in ra "Số của bạn hơi lớn". Nếu đoán đúng thì in ra "Chúc mừng!" và kết thúc.
+* **Bài 2:** Viết chương trình mô phỏng máy ATM: Bắt nhập mã PIN (chỉ cho phép nhập sai tối đa 3 lần). Nếu quá 3 lần thì in "Khóa thẻ", nếu đúng thì in "Rút tiền thành công". (Gợi ý: Kết hợp `while` và một biến đếm số lần sai).
+
+6. Checklist cuối buổi 
+
+* [ ] Khi nào thì dùng `for`, khi nào thì dùng `while`?
+* [ ] Sự khác biệt lớn nhất giữa `while` và `do-while` là gì?
+* [ ] Làm sao để vòng lặp `while` không bị rơi vào tình trạng "chạy mãi mãi không dừng"?
+
+
+
+Dưới đây là nội dung chi tiết cho **Buổi 09** và **Buổi 10** (khép lại Giai đoạn 1), cùng với **Buổi 11** và **Buổi 12** (mở đầu Giai đoạn 2). Các định dạng chuẩn xác để dán vào Microsoft Word và các khung `[📸 Hình ảnh ví dụ: ...]` tiếp tục được duy trì.
+
+---
+
+### Buổi 09 - Mảng một chiều
+
+**1. Mục tiêu buổi học**
+
+* Hiểu mảng một chiều lưu nhiều giá trị cùng kiểu.
+
+
+* Biết khai báo mảng, nhập mảng, in mảng.
+
+
+* Hiểu chỉ số mảng bắt đầu từ 0.
+
+
+* Biết duyệt mảng bằng for.
+
+
+* Biết tính tổng, trung bình, đếm, tìm phần tử trong mảng.
+
+
+* Học sinh viết được chương trình quản lý danh sách điểm hoặc danh sách số.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Mảng một chiều (Array) là gì?** Hãy tưởng tượng thay vì mua 10 chiếc hộp rời rạc để đựng 10 cuốn sách (khai báo 10 biến `int`), bạn mua một cái kệ sách có 10 ngăn dính liền nhau. Mảng chính là cái kệ sách đó, giúp lưu trữ một danh sách nhiều giá trị **cùng một kiểu dữ liệu** (ví dụ: cùng là số nguyên, hoặc cùng là chuỗi).
+> `[📸 Hình ảnh ví dụ: Hình ảnh 10 chiếc hộp rời rạc (Biến) đặt cạnh 1 chiếc tủ có 10 ngăn kéo đánh số thứ tự (Mảng)]`
+
+
+* **Khai báo mảng:** Cú pháp: `Kiểu_dữ_liệu Tên_mảng[Số_lượng_phần_tử];`. Ví dụ: `int diem[5];` (Tạo mảng chứa 5 điểm số).
+* **Chỉ số mảng (Index):** Trong lập trình, người ta đếm từ số 0. Ngăn đầu tiên của tủ đồ là ngăn số 0. Do đó, mảng có 5 phần tử thì các chỉ số lần lượt là: 0, 1, 2, 3, 4.
+* **Truy cập phần tử:** Để lấy đồ hoặc cất đồ vào ngăn tủ, ta dùng dấu ngoặc vuông `[ ]`. Ví dụ: `diem[0] = 8;` (Cất số 8 vào ngăn đầu tiên).
+* **Duyệt mảng bằng `for`:** Vì chỉ số mảng tăng dần từ `0` đến `n-1`, vòng lặp `for` là công cụ sinh ra để đi qua từng ngăn của mảng một cách hoàn hảo.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo và in mảng cơ bản**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Khai báo mảng chứa 5 phần tử và gán sẵn giá trị
+    int tuoi[5] = {14, 15, 15, 16, 14};
+    
+    // In ra phần tử đầu tiên (chỉ số 0) và cuối cùng (chỉ số 4)
+    cout << "Tuoi cua ban dau tien: " << tuoi[0] << endl;
+    cout << "Tuoi cua ban cuoi cung: " << tuoi[4] << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Mảng `tuoi` có kích thước 5. Phần tử `tuoi[0]` chứa giá trị 14, `tuoi[4]` chứa giá trị 14. Nếu cố tình truy cập `tuoi[5]`, chương trình sẽ báo lỗi hoặc chạy sai vì vượt quá giới hạn tủ.
+
+* **Ví dụ 2: Nhập và in danh sách điểm (Duyệt mảng)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int diem[4]; // Mảng chứa 4 con điểm
+    
+    // Vòng lặp để nhập dữ liệu
+    cout << "Nhap 4 con diem:\n";
+    for (int i = 0; i < 4; i++) {
+        cout << "Nhap diem thu " << i + 1 << ": ";
+        cin >> diem[i];
+    }
+    
+    // Vòng lặp để in dữ liệu
+    cout << "\nDanh sach diem vua nhap la: ";
+    for (int i = 0; i < 4; i++) {
+        cout << diem[i] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Vòng lặp `for` với biến `i` chạy từ 0 đến 3. `diem[i]` sẽ lần lượt đại diện cho `diem[0]`, `diem[1]`, `diem[2]`, `diem[3]`.
+
+* **Ví dụ 3: Tính tổng và trung bình mảng**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int danhSach[5] = {5, 7, 8, 9, 6};
+    double tong = 0;
+    
+    // Duyệt mảng để cộng dồn vào tổng
+    for (int i = 0; i < 5; i++) {
+        tong = tong + danhSach[i];
+    }
+    
+    double trungBinh = tong / 5;
+    cout << "Tong cac so la: " << tong << endl;
+    cout << "Trung binh la: " << trungBinh << endl;
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình khai báo một mảng lưu trữ 5 tên môn học (kiểu `string`). Dùng vòng lặp `for` để in danh sách các môn học đó ra màn hình.
+* **Bài 2:** Viết chương trình cho phép người dùng nhập vào mảng 10 số nguyên. Sau đó dùng vòng lặp đếm xem trong mảng vừa nhập có bao nhiêu số chẵn.
+* **Bài 3:** Cho mảng `int tienTietKiem[7]` đại diện cho số tiền tiết kiệm trong 7 ngày. Hãy nhập dữ liệu cho mảng và tìm xem ngày nào (chỉ số mấy) tiết kiệm được nhiều tiền nhất (Tìm Max).
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình quản lý điểm số: Nhập số lượng học sinh N (N < 50), sau đó nhập mảng N điểm số. Tính và in ra điểm trung bình của cả lớp, đồng thời đếm số lượng học sinh đạt điểm giỏi (>= 8.0).
+* **Bài 2:** Nhập một mảng 5 số nguyên. Hãy in mảng đó ra màn hình theo thứ tự đảo ngược (Ví dụ nhập 1 2 3 4 5 thì in ra 5 4 3 2 1). (Gợi ý: Cho vòng lặp `for` chạy lùi từ `4` về `0`).
+
+**6. Checklist cuối buổi**
+
+* [ ] Tại sao chỉ số đầu tiên của mảng luôn là 0?
+* [ ] Mảng `int a[10]` thì chỉ số lớn nhất được phép truy cập là bao nhiêu?
+* [ ] Tôi đã hiểu cách kết hợp vòng lặp `for` và chỉ số `i` để duyệt qua mảng chưa?
+
+---
+
+### Buổi 10 - Hàm cơ bản và mini game đoán số
+
+**1. Mục tiêu buổi học**
+
+* Hiểu hàm giúp tách chương trình thành các phần nhỏ.
+
+
+* Biết khai báo hàm, gọi hàm, tham số, giá trị trả về.
+
+
+* Biết viết hàm tính toán đơn giản: tổng, max, kiểm tra chẵn lẻ.
+
+
+* Hiểu void và hàm có return.
+
+
+* Biết tách mini game đoán số thành các hàm nhỏ.
+
+
+* Học sinh viết được mini game đoán số có giới hạn số lần thử.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Hàm (Function) là gì?** Hàm giống như một "nhà máy mini" bên trong chương trình. Bạn đưa nguyên liệu (Tham số) vào nhà máy, nhà máy xử lý, và trả ra thành phẩm (Giá trị trả về). Hàm giúp chia một đoạn code dài hàng trăm dòng thành các khối nhỏ gọn gàng, dễ quản lý và có thể tái sử dụng nhiều lần.
+> `[📸 Hình ảnh ví dụ: Mô hình máy xay sinh tố: Nguyên liệu vào (Tham số: dâu, sữa) -> Quá trình xay (Thân hàm) -> Sản phẩm ra (Return: ly sinh tố)]`
+
+
+* **Cấu trúc của hàm:** `Kiểu_trả_về Tên_hàm(Danh_sách_tham_số) { ... thân hàm ... return giá_trị; }`
+* **Void và Return:**
+* Hàm có kiểu trả về (ví dụ `int`, `double`): Bắt buộc phải có từ khóa `return` để ném kết quả ra ngoài. (Như việc máy xay trả ra sinh tố).
+* Hàm kiểu `void`: Là hàm chỉ thực hiện một hành động (như in ra màn hình) rồi thôi, không trả về giá trị gì cả. Không cần `return`. (Như việc máy hút bụi dọn nhà xong thì tắt).
+
+
+* **Gọi hàm:** Viết tên hàm kèm theo dấu ngoặc tròn `()`. Nếu có tham số thì truyền vào bên trong ngoặc. Từ buổi 1, chúng ta đã luôn code bên trong một hàm đặc biệt, đó chính là `int main()`.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Hàm in lời chào (Kiểu void)**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Khai báo hàm void không trả về giá trị
+void xinChao(string ten) {
+    cout << "Xin chao " << ten << "! Chuc mot ngay tot lanh.\n";
+}
+
+int main() {
+    // Gọi hàm và truyền tham số
+    xinChao("Hoc Sinh"); 
+    xinChao("Gemini");
+    return 0;
+}
+
+```
+
+*Giải thích:* Hàm `xinChao` nhận vào một chuỗi `ten`. Khi ta gọi hàm trong `main` hai lần với hai tên khác nhau, hàm sẽ in ra hai câu chào tương ứng mà ta không phải viết lại code `cout`.
+
+* **Ví dụ 2: Hàm tính tổng (Có giá trị trả về return)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Hàm nhận vào 2 số nguyên, trả về 1 số nguyên
+int tinhTong(int a, int b) {
+    int ketQua = a + b;
+    return ketQua; // Trả kết quả ra ngoài
+}
+
+int main() {
+    int x = 5, y = 10;
+    // Hứng kết quả từ hàm tinhTong vào biến tong
+    int tong = tinhTong(x, y); 
+    cout << "Tong cua x va y la: " << tong << endl;
+    
+    // Có thể gọi trực tiếp trong cout
+    cout << "Tong cua 100 va 200 la: " << tinhTong(100, 200) << endl; 
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Ứng dụng hàm vào Mini Game Đoán Số**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Hàm kiểm tra người chơi đoán đúng hay sai
+void kiemTraDoanSo(int soBiMat, int soDoan) {
+    if (soDoan > soBiMat) {
+        cout << "So cua ban hoi lon!\n";
+    } else if (soDoan < soBiMat) {
+        cout << "So cua ban hoi be!\n";
+    } else {
+        cout << "Chinh xac! Ban da doan trung!\n";
+    }
+}
+
+int main() {
+    int soBiMat = 42; 
+    int soDoan;
+    int soLanThu = 3;
+    
+    cout << "--- GAME DOAN SO (Ban co 3 lan thu) ---\n";
+    
+    for (int i = 1; i <= soLanThu; i++) {
+        cout << "\nLan thu " << i << ". Nhap so ban doan: ";
+        cin >> soDoan;
+        
+        kiemTraDoanSo(soBiMat, soDoan); // Gọi hàm kiểm tra
+        
+        if (soDoan == soBiMat) {
+            break; // Thắng cuộc, thoát vòng lặp
+        }
+    }
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết một hàm kiểu `bool` tên là `kiemTraChanLe(int n)`. Hàm sẽ `return true` nếu n là số chẵn, `return false` nếu n là số lẻ. Gọi hàm này trong `main` để kiểm tra.
+* **Bài 2:** Viết một hàm `int timMax(int a, int b, int c)` nhận vào 3 số nguyên, xử lý tìm số lớn nhất và trả về số đó.
+* **Bài 3:** Nâng cấp Mini game ở Ví dụ 3: Thêm tính năng nếu dùng hết 3 lần thử mà vẫn chưa đoán trúng, hãy in ra thông báo "Game Over! Số bí mật là 42".
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết một hàm `void veHinhVuong(int canh)` chuyên dùng để vẽ một hình vuông bằng dấu `*`. Trong `main`, cho người dùng nhập độ dài cạnh rồi gọi hàm để vẽ.
+* **Bài 2:** Viết một chương trình "Máy tính cầm tay". Tách các phép tính cộng, trừ, nhân, chia thành 4 hàm riêng biệt có kiểu trả về `double`. Dùng menu (Switch-case) ở `main` để gọi hàm tương ứng.
+
+**6. Checklist cuối buổi**
+
+* [ ] Hàm `void` có cần từ khóa `return` không?
+* [ ] Sự khác nhau giữa việc in thẳng trong hàm `void` và `return` giá trị ra cho hàm `main` tự in là gì?
+* [ ] Code chương trình trông có gọn gàng hơn khi được tách thành các hàm nhỏ không?
+
+---
+
+## ============================================================
+
+GIAI ĐOẠN 2 - CẤU TRÚC DỮ LIỆU CƠ BẢN 
+
+## ============================================================
+
+### Buổi 11 - Mảng hai chiều và ma trận
+
+**1. Mục tiêu buổi học**
+
+* Hiểu mảng hai chiều lưu dữ liệu dạng bảng gồm dòng và cột.
+
+
+* Biết khai báo, nhập, in mảng hai chiều.
+
+
+* Biết duyệt mảng hai chiều bằng hai vòng lặp lồng nhau.
+
+
+* Biết tính tổng theo dòng, theo cột.
+
+
+* Biết tìm giá trị lớn nhất, nhỏ nhất trong bảng.
+
+
+* Học sinh viết được chương trình xử lý bảng điểm nhiều học sinh và nhiều môn.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Mảng hai chiều là gì?** Hãy nghĩ về mảng 1 chiều như một dãy nhà trên 1 con phố. Còn mảng 2 chiều chính là một tòa nhà chung cư (có nhiều tầng, mỗi tầng có nhiều phòng) hoặc giống như bảng tính Excel (có dòng và cột).
+> `[📸 Hình ảnh ví dụ: Hình ảnh bảng lưới tọa độ (Lưới Excel) minh họa các ô chứa giá trị ứng với dòng (row) và cột (column)]`
+
+
+* **Khai báo mảng 2 chiều:** Cú pháp: `Kiểu_dữ_liệu Tên_mảng[Số_dòng][Số_cột];`. Ví dụ: `int bangDiem[3][4];` (Tạo một bảng có 3 dòng, mỗi dòng có 4 cột).
+* **Truy cập phần tử:** Ta cần 2 chỉ số để định vị, một cho dòng và một cho cột, bắt đầu từ 0. `bangDiem[0][1]` nghĩa là lấy dữ liệu ở dòng 0, cột 1.
+* **Hai vòng lặp lồng nhau:** Để duyệt mảng 2 chiều, bắt buộc phải dùng 2 vòng lặp `for` lồng vào nhau. Vòng lặp ngoài kiểm soát dòng (`i`), vòng lặp trong kiểm soát cột (`j`).
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo và in ma trận**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Khai báo ma trận 2 dòng, 3 cột và gán giá trị
+    int maTran[2][3] = {
+        {1, 2, 3}, // Dòng 0
+        {4, 5, 6}  // Dòng 1
+    };
+    
+    // In giá trị ở dòng 1, cột 2
+    cout << "Gia tri tai dong 1, cot 2: " << maTran[1][2] << endl; // In ra 6
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Nhập và xuất mảng 2 chiều bằng vòng lặp lồng nhau**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int bang[2][3]; // 2 dòng, 3 cột
+    
+    cout << "Nhap du lieu cho bang 2x3:\n";
+    // Duyệt theo dòng (i)
+    for (int i = 0; i < 2; i++) {
+        // Duyệt theo cột (j)
+        for (int j = 0; j < 3; j++) {
+            cout << "Nhap o [" << i << "][" << j << "]: ";
+            cin >> bang[i][j];
+        }
+    }
+    
+    cout << "\nBang vua nhap la:\n";
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << bang[i][j] << "\t"; // \t dùng để tạo khoảng cách như phím Tab
+        }
+        cout << "\n"; // Hết một dòng thì xuống dòng
+    }
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Tính tổng bảng điểm (Nhiều học sinh, nhiều môn)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Giả sử có 2 học sinh, mỗi bạn có 3 cột điểm (Toán, Văn, Anh)
+    int diem[2][3] = {
+        {8, 7, 9}, // Điểm của học sinh 0
+        {6, 5, 8}  // Điểm của học sinh 1
+    };
+    
+    // Tính tổng điểm từng học sinh (Tính theo dòng)
+    for (int i = 0; i < 2; i++) {
+        int tongHocSinh = 0;
+        for (int j = 0; j < 3; j++) {
+            tongHocSinh += diem[i][j];
+        }
+        cout << "Tong diem cua Hoc sinh " << i << " la: " << tongHocSinh << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình khởi tạo một mảng 2 chiều kích thước 3x3 chứa các số tự nhiên từ 1 đến 9. In mảng đó ra màn hình dưới dạng lưới.
+* **Bài 2:** Tiếp tục với mảng ở Bài 1, hãy viết vòng lặp để tính tổng tất cả các phần tử có trong mảng.
+* **Bài 3:** Viết chương trình quản lý doanh thu. Mảng 2 chiều có kích thước `3x4` đại diện cho doanh thu của 3 cửa hàng trong 4 tuần. Hãy tìm xem cửa hàng nào có 1 tuần bán được doanh thu cao nhất (Tìm Max trong mảng 2 chiều).
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình nhập vào một ma trận kích thước 3x3. Hãy in ra các số nằm trên "đường chéo chính" của ma trận đó. (Gợi ý: Các phần tử nằm trên đường chéo chính sẽ có chỉ số dòng bằng với chỉ số cột, tức là `i == j`).
+
+**6. Checklist cuối buổi**
+
+* [ ] `int a[3][4]` thì có bao nhiêu ô chứa dữ liệu tất cả?
+* [ ] Tại sao vòng lặp duyệt mảng 2 chiều lại luôn cần 2 biến `i` và `j`?
+* [ ] Để tính tổng một dòng, thì biến `tong = 0` phải đặt ở bên ngoài vòng lặp `i` hay ở giữa vòng lặp `i` và `j`?
+
+---
+
+### Buổi 12 - Vector và danh sách linh hoạt
+
+**1. Mục tiêu buổi học**
+
+* Hiểu vector là danh sách có kích thước linh hoạt.
+
+
+* Biết khai báo vector, push_back, size, truy cập theo chỉ số.
+
+
+* Biết duyệt vector bằng for.
+
+
+* Biết thêm dữ liệu khi chưa biết trước số lượng.
+
+
+* Biết so sánh vector với mảng tĩnh.
+
+
+* Học sinh viết được chương trình nhập danh sách điểm hoặc sản phẩm đến khi người dùng dừng lại.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Giới hạn của mảng tĩnh:** Khi khai báo mảng `int diem[5];`, kích thước của nó bị khóa chết ở mức 5. Nếu có 6 học sinh nhập học, mảng này không thể phình to ra được.
+* **Vector là gì?** Vector trong C++ chính là một "mảng thông minh" (Mảng động). Nó có thể tự động co giãn kích thước. Khi bạn nhét thêm dữ liệu vào, nó sẽ tự dài ra.
+> `[📸 Hình ảnh ví dụ: Minh họa Mảng (Array) là một chiếc hộp nhựa cứng, so sánh với Vector là một chiếc túi cao su có thể phồng to khi nhét thêm đồ vật]`
+
+
+* **Thư viện `<vector>`:** Để dùng vector, ta phải thêm `#include <vector>`.
+* **Khai báo và thêm phần tử:** Cú pháp: `vector<Kiểu_dữ_liệu> Tên_vector;`. Để thêm một phần tử vào đuôi danh sách, dùng hàm đặc biệt `.push_back(giá_trị)`.
+* **Kích thước vector:** Dùng `.size()` để biết hiện tại túi đang chứa bao nhiêu đồ vật.
+* **Truy cập phần tử:** Giống hệt mảng tĩnh, ta vẫn dùng ngoặc vuông `[ ]`.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo và thao tác cơ bản với Vector**
+
+```cpp
+#include <iostream>
+#include <vector> // Bắt buộc phải có thư viện này
+using namespace std;
+
+int main() {
+    vector<int> danhSach; // Khai báo một vector chứa số nguyên, ban đầu trống rỗng
+    
+    // Thêm các số vào cuối danh sách
+    danhSach.push_back(10); 
+    danhSach.push_back(20);
+    danhSach.push_back(30);
+    
+    // Số lượng phần tử hiện tại
+    cout << "Kich thuoc vector: " << danhSach.size() << endl; // Sẽ in ra 3
+    
+    // Truy cập phần tử y như mảng
+    cout << "Phan tu thu hai: " << danhSach[1] << endl; // Sẽ in ra 20
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Duyệt Vector bằng vòng lặp for**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<double> diemSo = {7.5, 8.0, 9.5}; // Có thể khởi tạo giá trị sẵn
+    
+    cout << "Danh sach diem cua hoc sinh la:\n";
+    // Dùng .size() thay vì số cố định
+    for (int i = 0; i < diemSo.size(); i++) {
+        cout << diemSo[i] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Ứng dụng thực tế: Nhập đến khi muốn dừng**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> tuiTien;
+    int tienNhap;
+    
+    cout << "Nhap so tien vao tui (Nhap -1 de dung lai):\n";
+    while (true) { // Vòng lặp vô hạn, ta sẽ dùng break để thoát
+        cout << "Nhap: ";
+        cin >> tienNhap;
+        
+        if (tienNhap == -1) {
+            break; // Thoát vòng lặp nếu nhập -1
+        }
+        
+        tuiTien.push_back(tienNhap); // Nhét tiền vào túi
+    }
+    
+    cout << "\nBan da nhap " << tuiTien.size() << " mon tien.\n";
+    return 0;
+}
+
+```
+
+*Giải thích:* Nếu dùng mảng, ta không thể viết bài toán "nhập đến khi dừng" vì không biết người dùng sẽ nhập 3 hay 30 số. Vector xử lý việc này hoàn hảo thông qua `push_back`.
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình khai báo `vector<string> gioHang`. Dùng hàm `push_back` để thêm 3 món hàng vào giỏ. Sau đó duyệt vector để in các món hàng ra.
+* **Bài 2:** Dựa vào Ví dụ 3, hãy mở rộng chương trình: Sau khi người dùng nhập `-1` để dừng, hãy dùng vòng lặp `for` và `.size()` để tính tổng tất cả số tiền đang có trong `tuiTien`.
+* **Bài 3:** Thử so sánh bằng cách viết chương trình yêu cầu nhập 100 con số. Cảm nhận sự tiện lợi khi không phải đoán trước số lượng giới hạn của mảng.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết một chương trình lưu điểm học sinh. Liên tục cho phép nhập điểm. Nếu người dùng nhập điểm hợp lệ (từ 0 đến 10) thì dùng `push_back` lưu vào `vector<double>`. Nếu nhập một số ngoài khoảng 0-10, chương trình dừng nhập và in toàn bộ danh sách các con điểm đã lưu.
+
+**6. Checklist cuối buổi**
+
+* [ ] Nhược điểm lớn nhất của mảng tĩnh so với Vector là gì?
+* [ ] Hàm nào giúp nhét thêm 1 phần tử vào cuối Vector?
+* [ ] Hàm nào giúp biết Vector hiện đang dài bao nhiêu?
+
+
+
+
+Dưới đây là nội dung chi tiết cho **Buổi 09** và **Buổi 10** (khép lại Giai đoạn 1), cùng với **Buổi 11** và **Buổi 12** (mở đầu Giai đoạn 2). Các định dạng chuẩn xác để dán vào Microsoft Word và các khung `[📸 Hình ảnh ví dụ: ...]` tiếp tục được duy trì.
+
+---
+
+### Buổi 09 - Mảng một chiều
+
+**1. Mục tiêu buổi học**
+
+* Hiểu mảng một chiều lưu nhiều giá trị cùng kiểu.
+
+
+* Biết khai báo mảng, nhập mảng, in mảng.
+
+
+* Hiểu chỉ số mảng bắt đầu từ 0.
+
+
+* Biết duyệt mảng bằng for.
+
+
+* Biết tính tổng, trung bình, đếm, tìm phần tử trong mảng.
+
+
+* Học sinh viết được chương trình quản lý danh sách điểm hoặc danh sách số.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Mảng một chiều (Array) là gì?** Hãy tưởng tượng thay vì mua 10 chiếc hộp rời rạc để đựng 10 cuốn sách (khai báo 10 biến `int`), bạn mua một cái kệ sách có 10 ngăn dính liền nhau. Mảng chính là cái kệ sách đó, giúp lưu trữ một danh sách nhiều giá trị **cùng một kiểu dữ liệu** (ví dụ: cùng là số nguyên, hoặc cùng là chuỗi).
+> `[📸 Hình ảnh ví dụ: Hình ảnh 10 chiếc hộp rời rạc (Biến) đặt cạnh 1 chiếc tủ có 10 ngăn kéo đánh số thứ tự (Mảng)]`
+
+
+* **Khai báo mảng:** Cú pháp: `Kiểu_dữ_liệu Tên_mảng[Số_lượng_phần_tử];`. Ví dụ: `int diem[5];` (Tạo mảng chứa 5 điểm số).
+* **Chỉ số mảng (Index):** Trong lập trình, người ta đếm từ số 0. Ngăn đầu tiên của tủ đồ là ngăn số 0. Do đó, mảng có 5 phần tử thì các chỉ số lần lượt là: 0, 1, 2, 3, 4.
+* **Truy cập phần tử:** Để lấy đồ hoặc cất đồ vào ngăn tủ, ta dùng dấu ngoặc vuông `[ ]`. Ví dụ: `diem[0] = 8;` (Cất số 8 vào ngăn đầu tiên).
+* **Duyệt mảng bằng `for`:** Vì chỉ số mảng tăng dần từ `0` đến `n-1`, vòng lặp `for` là công cụ sinh ra để đi qua từng ngăn của mảng một cách hoàn hảo.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo và in mảng cơ bản**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Khai báo mảng chứa 5 phần tử và gán sẵn giá trị
+    int tuoi[5] = {14, 15, 15, 16, 14};
+    
+    // In ra phần tử đầu tiên (chỉ số 0) và cuối cùng (chỉ số 4)
+    cout << "Tuoi cua ban dau tien: " << tuoi[0] << endl;
+    cout << "Tuoi cua ban cuoi cung: " << tuoi[4] << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Mảng `tuoi` có kích thước 5. Phần tử `tuoi[0]` chứa giá trị 14, `tuoi[4]` chứa giá trị 14. Nếu cố tình truy cập `tuoi[5]`, chương trình sẽ báo lỗi hoặc chạy sai vì vượt quá giới hạn tủ.
+
+* **Ví dụ 2: Nhập và in danh sách điểm (Duyệt mảng)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int diem[4]; // Mảng chứa 4 con điểm
+    
+    // Vòng lặp để nhập dữ liệu
+    cout << "Nhap 4 con diem:\n";
+    for (int i = 0; i < 4; i++) {
+        cout << "Nhap diem thu " << i + 1 << ": ";
+        cin >> diem[i];
+    }
+    
+    // Vòng lặp để in dữ liệu
+    cout << "\nDanh sach diem vua nhap la: ";
+    for (int i = 0; i < 4; i++) {
+        cout << diem[i] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Vòng lặp `for` với biến `i` chạy từ 0 đến 3. `diem[i]` sẽ lần lượt đại diện cho `diem[0]`, `diem[1]`, `diem[2]`, `diem[3]`.
+
+* **Ví dụ 3: Tính tổng và trung bình mảng**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int danhSach[5] = {5, 7, 8, 9, 6};
+    double tong = 0;
+    
+    // Duyệt mảng để cộng dồn vào tổng
+    for (int i = 0; i < 5; i++) {
+        tong = tong + danhSach[i];
+    }
+    
+    double trungBinh = tong / 5;
+    cout << "Tong cac so la: " << tong << endl;
+    cout << "Trung binh la: " << trungBinh << endl;
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình khai báo một mảng lưu trữ 5 tên môn học (kiểu `string`). Dùng vòng lặp `for` để in danh sách các môn học đó ra màn hình.
+* **Bài 2:** Viết chương trình cho phép người dùng nhập vào mảng 10 số nguyên. Sau đó dùng vòng lặp đếm xem trong mảng vừa nhập có bao nhiêu số chẵn.
+* **Bài 3:** Cho mảng `int tienTietKiem[7]` đại diện cho số tiền tiết kiệm trong 7 ngày. Hãy nhập dữ liệu cho mảng và tìm xem ngày nào (chỉ số mấy) tiết kiệm được nhiều tiền nhất (Tìm Max).
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình quản lý điểm số: Nhập số lượng học sinh N (N < 50), sau đó nhập mảng N điểm số. Tính và in ra điểm trung bình của cả lớp, đồng thời đếm số lượng học sinh đạt điểm giỏi (>= 8.0).
+* **Bài 2:** Nhập một mảng 5 số nguyên. Hãy in mảng đó ra màn hình theo thứ tự đảo ngược (Ví dụ nhập 1 2 3 4 5 thì in ra 5 4 3 2 1). (Gợi ý: Cho vòng lặp `for` chạy lùi từ `4` về `0`).
+
+**6. Checklist cuối buổi**
+
+* [ ] Tại sao chỉ số đầu tiên của mảng luôn là 0?
+* [ ] Mảng `int a[10]` thì chỉ số lớn nhất được phép truy cập là bao nhiêu?
+* [ ] Tôi đã hiểu cách kết hợp vòng lặp `for` và chỉ số `i` để duyệt qua mảng chưa?
+
+---
+
+### Buổi 10 - Hàm cơ bản và mini game đoán số
+
+**1. Mục tiêu buổi học**
+
+* Hiểu hàm giúp tách chương trình thành các phần nhỏ.
+
+
+* Biết khai báo hàm, gọi hàm, tham số, giá trị trả về.
+
+
+* Biết viết hàm tính toán đơn giản: tổng, max, kiểm tra chẵn lẻ.
+
+
+* Hiểu void và hàm có return.
+
+
+* Biết tách mini game đoán số thành các hàm nhỏ.
+
+
+* Học sinh viết được mini game đoán số có giới hạn số lần thử.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Hàm (Function) là gì?** Hàm giống như một "nhà máy mini" bên trong chương trình. Bạn đưa nguyên liệu (Tham số) vào nhà máy, nhà máy xử lý, và trả ra thành phẩm (Giá trị trả về). Hàm giúp chia một đoạn code dài hàng trăm dòng thành các khối nhỏ gọn gàng, dễ quản lý và có thể tái sử dụng nhiều lần.
+> `[📸 Hình ảnh ví dụ: Mô hình máy xay sinh tố: Nguyên liệu vào (Tham số: dâu, sữa) -> Quá trình xay (Thân hàm) -> Sản phẩm ra (Return: ly sinh tố)]`
+
+
+* **Cấu trúc của hàm:** `Kiểu_trả_về Tên_hàm(Danh_sách_tham_số) { ... thân hàm ... return giá_trị; }`
+* **Void và Return:**
+* Hàm có kiểu trả về (ví dụ `int`, `double`): Bắt buộc phải có từ khóa `return` để ném kết quả ra ngoài. (Như việc máy xay trả ra sinh tố).
+* Hàm kiểu `void`: Là hàm chỉ thực hiện một hành động (như in ra màn hình) rồi thôi, không trả về giá trị gì cả. Không cần `return`. (Như việc máy hút bụi dọn nhà xong thì tắt).
+
+
+* **Gọi hàm:** Viết tên hàm kèm theo dấu ngoặc tròn `()`. Nếu có tham số thì truyền vào bên trong ngoặc. Từ buổi 1, chúng ta đã luôn code bên trong một hàm đặc biệt, đó chính là `int main()`.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Hàm in lời chào (Kiểu void)**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Khai báo hàm void không trả về giá trị
+void xinChao(string ten) {
+    cout << "Xin chao " << ten << "! Chuc mot ngay tot lanh.\n";
+}
+
+int main() {
+    // Gọi hàm và truyền tham số
+    xinChao("Hoc Sinh"); 
+    xinChao("Gemini");
+    return 0;
+}
+
+```
+
+*Giải thích:* Hàm `xinChao` nhận vào một chuỗi `ten`. Khi ta gọi hàm trong `main` hai lần với hai tên khác nhau, hàm sẽ in ra hai câu chào tương ứng mà ta không phải viết lại code `cout`.
+
+* **Ví dụ 2: Hàm tính tổng (Có giá trị trả về return)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Hàm nhận vào 2 số nguyên, trả về 1 số nguyên
+int tinhTong(int a, int b) {
+    int ketQua = a + b;
+    return ketQua; // Trả kết quả ra ngoài
+}
+
+int main() {
+    int x = 5, y = 10;
+    // Hứng kết quả từ hàm tinhTong vào biến tong
+    int tong = tinhTong(x, y); 
+    cout << "Tong cua x va y la: " << tong << endl;
+    
+    // Có thể gọi trực tiếp trong cout
+    cout << "Tong cua 100 va 200 la: " << tinhTong(100, 200) << endl; 
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Ứng dụng hàm vào Mini Game Đoán Số**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Hàm kiểm tra người chơi đoán đúng hay sai
+void kiemTraDoanSo(int soBiMat, int soDoan) {
+    if (soDoan > soBiMat) {
+        cout << "So cua ban hoi lon!\n";
+    } else if (soDoan < soBiMat) {
+        cout << "So cua ban hoi be!\n";
+    } else {
+        cout << "Chinh xac! Ban da doan trung!\n";
+    }
+}
+
+int main() {
+    int soBiMat = 42; 
+    int soDoan;
+    int soLanThu = 3;
+    
+    cout << "--- GAME DOAN SO (Ban co 3 lan thu) ---\n";
+    
+    for (int i = 1; i <= soLanThu; i++) {
+        cout << "\nLan thu " << i << ". Nhap so ban doan: ";
+        cin >> soDoan;
+        
+        kiemTraDoanSo(soBiMat, soDoan); // Gọi hàm kiểm tra
+        
+        if (soDoan == soBiMat) {
+            break; // Thắng cuộc, thoát vòng lặp
+        }
+    }
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết một hàm kiểu `bool` tên là `kiemTraChanLe(int n)`. Hàm sẽ `return true` nếu n là số chẵn, `return false` nếu n là số lẻ. Gọi hàm này trong `main` để kiểm tra.
+* **Bài 2:** Viết một hàm `int timMax(int a, int b, int c)` nhận vào 3 số nguyên, xử lý tìm số lớn nhất và trả về số đó.
+* **Bài 3:** Nâng cấp Mini game ở Ví dụ 3: Thêm tính năng nếu dùng hết 3 lần thử mà vẫn chưa đoán trúng, hãy in ra thông báo "Game Over! Số bí mật là 42".
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết một hàm `void veHinhVuong(int canh)` chuyên dùng để vẽ một hình vuông bằng dấu `*`. Trong `main`, cho người dùng nhập độ dài cạnh rồi gọi hàm để vẽ.
+* **Bài 2:** Viết một chương trình "Máy tính cầm tay". Tách các phép tính cộng, trừ, nhân, chia thành 4 hàm riêng biệt có kiểu trả về `double`. Dùng menu (Switch-case) ở `main` để gọi hàm tương ứng.
+
+**6. Checklist cuối buổi**
+
+* [ ] Hàm `void` có cần từ khóa `return` không?
+* [ ] Sự khác nhau giữa việc in thẳng trong hàm `void` và `return` giá trị ra cho hàm `main` tự in là gì?
+* [ ] Code chương trình trông có gọn gàng hơn khi được tách thành các hàm nhỏ không?
+
+---
+
+## ============================================================
+
+GIAI ĐOẠN 2 - CẤU TRÚC DỮ LIỆU CƠ BẢN 
+
+## ============================================================
+
+### Buổi 11 - Mảng hai chiều và ma trận
+
+**1. Mục tiêu buổi học**
+
+* Hiểu mảng hai chiều lưu dữ liệu dạng bảng gồm dòng và cột.
+
+
+* Biết khai báo, nhập, in mảng hai chiều.
+
+
+* Biết duyệt mảng hai chiều bằng hai vòng lặp lồng nhau.
+
+
+* Biết tính tổng theo dòng, theo cột.
+
+
+* Biết tìm giá trị lớn nhất, nhỏ nhất trong bảng.
+
+
+* Học sinh viết được chương trình xử lý bảng điểm nhiều học sinh và nhiều môn.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Mảng hai chiều là gì?** Hãy nghĩ về mảng 1 chiều như một dãy nhà trên 1 con phố. Còn mảng 2 chiều chính là một tòa nhà chung cư (có nhiều tầng, mỗi tầng có nhiều phòng) hoặc giống như bảng tính Excel (có dòng và cột).
+> `[📸 Hình ảnh ví dụ: Hình ảnh bảng lưới tọa độ (Lưới Excel) minh họa các ô chứa giá trị ứng với dòng (row) và cột (column)]`
+
+
+* **Khai báo mảng 2 chiều:** Cú pháp: `Kiểu_dữ_liệu Tên_mảng[Số_dòng][Số_cột];`. Ví dụ: `int bangDiem[3][4];` (Tạo một bảng có 3 dòng, mỗi dòng có 4 cột).
+* **Truy cập phần tử:** Ta cần 2 chỉ số để định vị, một cho dòng và một cho cột, bắt đầu từ 0. `bangDiem[0][1]` nghĩa là lấy dữ liệu ở dòng 0, cột 1.
+* **Hai vòng lặp lồng nhau:** Để duyệt mảng 2 chiều, bắt buộc phải dùng 2 vòng lặp `for` lồng vào nhau. Vòng lặp ngoài kiểm soát dòng (`i`), vòng lặp trong kiểm soát cột (`j`).
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo và in ma trận**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Khai báo ma trận 2 dòng, 3 cột và gán giá trị
+    int maTran[2][3] = {
+        {1, 2, 3}, // Dòng 0
+        {4, 5, 6}  // Dòng 1
+    };
+    
+    // In giá trị ở dòng 1, cột 2
+    cout << "Gia tri tai dong 1, cot 2: " << maTran[1][2] << endl; // In ra 6
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Nhập và xuất mảng 2 chiều bằng vòng lặp lồng nhau**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int bang[2][3]; // 2 dòng, 3 cột
+    
+    cout << "Nhap du lieu cho bang 2x3:\n";
+    // Duyệt theo dòng (i)
+    for (int i = 0; i < 2; i++) {
+        // Duyệt theo cột (j)
+        for (int j = 0; j < 3; j++) {
+            cout << "Nhap o [" << i << "][" << j << "]: ";
+            cin >> bang[i][j];
+        }
+    }
+    
+    cout << "\nBang vua nhap la:\n";
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << bang[i][j] << "\t"; // \t dùng để tạo khoảng cách như phím Tab
+        }
+        cout << "\n"; // Hết một dòng thì xuống dòng
+    }
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Tính tổng bảng điểm (Nhiều học sinh, nhiều môn)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Giả sử có 2 học sinh, mỗi bạn có 3 cột điểm (Toán, Văn, Anh)
+    int diem[2][3] = {
+        {8, 7, 9}, // Điểm của học sinh 0
+        {6, 5, 8}  // Điểm của học sinh 1
+    };
+    
+    // Tính tổng điểm từng học sinh (Tính theo dòng)
+    for (int i = 0; i < 2; i++) {
+        int tongHocSinh = 0;
+        for (int j = 0; j < 3; j++) {
+            tongHocSinh += diem[i][j];
+        }
+        cout << "Tong diem cua Hoc sinh " << i << " la: " << tongHocSinh << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình khởi tạo một mảng 2 chiều kích thước 3x3 chứa các số tự nhiên từ 1 đến 9. In mảng đó ra màn hình dưới dạng lưới.
+* **Bài 2:** Tiếp tục với mảng ở Bài 1, hãy viết vòng lặp để tính tổng tất cả các phần tử có trong mảng.
+* **Bài 3:** Viết chương trình quản lý doanh thu. Mảng 2 chiều có kích thước `3x4` đại diện cho doanh thu của 3 cửa hàng trong 4 tuần. Hãy tìm xem cửa hàng nào có 1 tuần bán được doanh thu cao nhất (Tìm Max trong mảng 2 chiều).
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình nhập vào một ma trận kích thước 3x3. Hãy in ra các số nằm trên "đường chéo chính" của ma trận đó. (Gợi ý: Các phần tử nằm trên đường chéo chính sẽ có chỉ số dòng bằng với chỉ số cột, tức là `i == j`).
+
+**6. Checklist cuối buổi**
+
+* [ ] `int a[3][4]` thì có bao nhiêu ô chứa dữ liệu tất cả?
+* [ ] Tại sao vòng lặp duyệt mảng 2 chiều lại luôn cần 2 biến `i` và `j`?
+* [ ] Để tính tổng một dòng, thì biến `tong = 0` phải đặt ở bên ngoài vòng lặp `i` hay ở giữa vòng lặp `i` và `j`?
+
+---
+
+### Buổi 12 - Vector và danh sách linh hoạt
+
+**1. Mục tiêu buổi học**
+
+* Hiểu vector là danh sách có kích thước linh hoạt.
+
+
+* Biết khai báo vector, push_back, size, truy cập theo chỉ số.
+
+
+* Biết duyệt vector bằng for.
+
+
+* Biết thêm dữ liệu khi chưa biết trước số lượng.
+
+
+* Biết so sánh vector với mảng tĩnh.
+
+
+* Học sinh viết được chương trình nhập danh sách điểm hoặc sản phẩm đến khi người dùng dừng lại.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Giới hạn của mảng tĩnh:** Khi khai báo mảng `int diem[5];`, kích thước của nó bị khóa chết ở mức 5. Nếu có 6 học sinh nhập học, mảng này không thể phình to ra được.
+* **Vector là gì?** Vector trong C++ chính là một "mảng thông minh" (Mảng động). Nó có thể tự động co giãn kích thước. Khi bạn nhét thêm dữ liệu vào, nó sẽ tự dài ra.
+> `[📸 Hình ảnh ví dụ: Minh họa Mảng (Array) là một chiếc hộp nhựa cứng, so sánh với Vector là một chiếc túi cao su có thể phồng to khi nhét thêm đồ vật]`
+
+
+* **Thư viện `<vector>`:** Để dùng vector, ta phải thêm `#include <vector>`.
+* **Khai báo và thêm phần tử:** Cú pháp: `vector<Kiểu_dữ_liệu> Tên_vector;`. Để thêm một phần tử vào đuôi danh sách, dùng hàm đặc biệt `.push_back(giá_trị)`.
+* **Kích thước vector:** Dùng `.size()` để biết hiện tại túi đang chứa bao nhiêu đồ vật.
+* **Truy cập phần tử:** Giống hệt mảng tĩnh, ta vẫn dùng ngoặc vuông `[ ]`.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo và thao tác cơ bản với Vector**
+
+```cpp
+#include <iostream>
+#include <vector> // Bắt buộc phải có thư viện này
+using namespace std;
+
+int main() {
+    vector<int> danhSach; // Khai báo một vector chứa số nguyên, ban đầu trống rỗng
+    
+    // Thêm các số vào cuối danh sách
+    danhSach.push_back(10); 
+    danhSach.push_back(20);
+    danhSach.push_back(30);
+    
+    // Số lượng phần tử hiện tại
+    cout << "Kich thuoc vector: " << danhSach.size() << endl; // Sẽ in ra 3
+    
+    // Truy cập phần tử y như mảng
+    cout << "Phan tu thu hai: " << danhSach[1] << endl; // Sẽ in ra 20
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Duyệt Vector bằng vòng lặp for**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<double> diemSo = {7.5, 8.0, 9.5}; // Có thể khởi tạo giá trị sẵn
+    
+    cout << "Danh sach diem cua hoc sinh la:\n";
+    // Dùng .size() thay vì số cố định
+    for (int i = 0; i < diemSo.size(); i++) {
+        cout << diemSo[i] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Ứng dụng thực tế: Nhập đến khi muốn dừng**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> tuiTien;
+    int tienNhap;
+    
+    cout << "Nhap so tien vao tui (Nhap -1 de dung lai):\n";
+    while (true) { // Vòng lặp vô hạn, ta sẽ dùng break để thoát
+        cout << "Nhap: ";
+        cin >> tienNhap;
+        
+        if (tienNhap == -1) {
+            break; // Thoát vòng lặp nếu nhập -1
+        }
+        
+        tuiTien.push_back(tienNhap); // Nhét tiền vào túi
+    }
+    
+    cout << "\nBan da nhap " << tuiTien.size() << " mon tien.\n";
+    return 0;
+}
+
+```
+
+*Giải thích:* Nếu dùng mảng, ta không thể viết bài toán "nhập đến khi dừng" vì không biết người dùng sẽ nhập 3 hay 30 số. Vector xử lý việc này hoàn hảo thông qua `push_back`.
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình khai báo `vector<string> gioHang`. Dùng hàm `push_back` để thêm 3 món hàng vào giỏ. Sau đó duyệt vector để in các món hàng ra.
+* **Bài 2:** Dựa vào Ví dụ 3, hãy mở rộng chương trình: Sau khi người dùng nhập `-1` để dừng, hãy dùng vòng lặp `for` và `.size()` để tính tổng tất cả số tiền đang có trong `tuiTien`.
+* **Bài 3:** Thử so sánh bằng cách viết chương trình yêu cầu nhập 100 con số. Cảm nhận sự tiện lợi khi không phải đoán trước số lượng giới hạn của mảng.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết một chương trình lưu điểm học sinh. Liên tục cho phép nhập điểm. Nếu người dùng nhập điểm hợp lệ (từ 0 đến 10) thì dùng `push_back` lưu vào `vector<double>`. Nếu nhập một số ngoài khoảng 0-10, chương trình dừng nhập và in toàn bộ danh sách các con điểm đã lưu.
+
+**6. Checklist cuối buổi**
+
+* [ ] Nhược điểm lớn nhất của mảng tĩnh so với Vector là gì?
+* [ ] Hàm nào giúp nhét thêm 1 phần tử vào cuối Vector?
+* [ ] Hàm nào giúp biết Vector hiện đang dài bao nhiêu?
+
+
+
+
+
+Dưới đây là nội dung chi tiết cho **Buổi 13, 14, 15 và 16**, tiếp tục bám sát vào định dạng chuẩn xác để bạn dễ dàng sao chép và dán vào Microsoft Word. Các khung chứa `[📸 Hình ảnh ví dụ: ...]` vẫn được giữ nguyên để bạn chèn hình ảnh minh họa cho học sinh.
+
+---
+
+### Buổi 13 - Sắp xếp nổi bọt và chọn trực tiếp
+
+**1. Mục tiêu buổi học**
+
+* Hiểu được mục tiêu của thuật toán sắp xếp là đưa dữ liệu từ trạng thái lộn xộn về đúng thứ tự mong muốn.
+
+
+* Biết mô phỏng thuật toán Bubble Sort (Nổi bọt) bằng việc so sánh từng cặp phần tử liền kề và đổi chỗ chúng.
+
+
+* Biết mô phỏng thuật toán Selection Sort (Chọn trực tiếp) bằng việc tìm phần tử nhỏ nhất/lớn nhất rồi đổi chỗ về đầu mảng.
+
+
+* Biết cách in mảng sau từng lượt duyệt để có thể nhìn rõ quá trình sắp xếp diễn ra như thế nào.
+
+
+* Biết cách chỉnh sửa điều kiện so sánh để sắp xếp danh sách tăng dần hoặc giảm dần.
+
+
+* Học sinh tự tay viết được chương trình sắp xếp một danh sách điểm số bằng các thuật toán cơ bản này.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Tại sao phải sắp xếp?** Sắp xếp giúp ta dễ dàng tìm kiếm và thống kê. Hãy tưởng tượng việc tìm một bạn có điểm cao nhất trong bảng điểm 100 người chưa sắp xếp sẽ mệt mỏi thế nào so với một bảng điểm đã được xếp từ cao xuống thấp.
+
+
+* **Đổi chỗ (Swap):** Trong C++, để đổi chỗ 2 ly nước A và B, ta cần một chiếc ly cạn C làm trung gian. (Cất nước ly A sang C -> Đổ nước ly B sang A -> Đổ nước ly C về B) .
+
+
+* **Thuật toán Nổi bọt (Bubble Sort):** Lần lượt so sánh 2 số đứng cạnh nhau. Nếu số đứng trước lớn hơn số đứng sau (khi xếp tăng dần), ta lập tức đổi chỗ chúng. Cứ lặp lại nhiều vòng như vậy, số lớn nhất sẽ từ từ "nổi" dần về phía cuối mảng giống như bong bóng khí.
+
+
+> `[📸 Hình ảnh ví dụ: Mô phỏng bong bóng: Các con số lớn màu đỏ được khoanh vùng so sánh theo cặp 2 số liền kề và tráo đổi vị trí dịch chuyển dần về cuối mảng]`
+
+
+* **Thuật toán Chọn trực tiếp (Selection Sort):** Tìm con số nhỏ nhất trong danh sách. Lấy nó đổi chỗ với con số đang đứng ở vị trí đầu tiên. Sau đó, tiếp tục tìm con số nhỏ nhất trong phần còn lại và đổi chỗ đưa lên vị trí thứ hai. Cứ thế cho đến hết.
+
+
+* 
+**In quá trình sắp xếp:** Bằng việc đặt lệnh `cout` in mảng ở cuối mỗi vòng lặp `for` lớn, ta có thể theo dõi xem thuật toán đang làm đúng hay không.
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Bubble Sort cơ bản (Sắp xếp tăng dần)**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> diem = {8, 3, 9, 2, 5};
+    int n = diem.size();
+
+    // Vòng lặp ngoài kiểm soát số lượt đi qua mảng
+    for (int i = 0; i < n - 1; i++) {
+        // Vòng lặp trong đi so sánh các cặp liền kề
+        for (int j = 0; j < n - i - 1; j++) {
+            if (diem[j] > diem[j+1]) { // Nếu số trước lớn hơn số sau
+                // Đổi chỗ (Swap)
+                int tam = diem[j];
+                diem[j] = diem[j+1];
+                diem[j+1] = tam;
+            }
+        }
+    }
+
+    cout << "Mang sau khi Bubble Sort (Tang dan): ";
+    for (int i = 0; i < n; i++) {
+        cout << diem[i] << " ";
+    }
+    return 0;
+}
+
+```
+
+*Giải thích:* Vòng lặp `j` so sánh cặp `diem[j]` và `diem[j+1]`. Dòng `int tam = diem[j];` chính là bước dùng ly trung gian để đổi chỗ.
+
+* **Ví dụ 2: Selection Sort (Sắp xếp giảm dần)**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> diem = {6, 1, 10, 4, 8};
+    int n = diem.size();
+
+    for (int i = 0; i < n - 1; i++) {
+        int viTriMax = i; // Giả sử phần tử hiện tại là lớn nhất
+        
+        // Tìm vị trí của phần tử lớn nhất trong phần còn lại
+        for (int j = i + 1; j < n; j++) {
+            if (diem[j] > diem[viTriMax]) {
+                viTriMax = j;
+            }
+        }
+        
+        // Đổi chỗ phần tử lớn nhất tìm được với phần tử ở đầu mảng (vị trí i)
+        int tam = diem[i];
+        diem[i] = diem[viTriMax];
+        diem[viTriMax] = tam;
+    }
+
+    cout << "Mang sau khi Selection Sort (Giam dan): ";
+    for (int i = 0; i < n; i++) {
+        cout << diem[i] << " ";
+    }
+    return 0;
+}
+
+```
+
+*Giải thích:* Selection Sort không đổi chỗ liên tục như Bubble Sort, nó đi tìm cái lớn nhất (hoặc nhỏ nhất) rồi mới đổi chỗ 1 lần ở cuối mỗi vòng lặp `i`.
+
+* **Ví dụ 3: In mảng sau từng lượt (Xem quá trình)**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> a = {4, 2, 7, 1};
+    int n = a.size();
+
+    for (int i = 0; i < n - 1; i++) {
+        // Thuật toán Selection Sort tìm Min
+        int posMin = i;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j] < a[posMin]) posMin = j;
+        }
+        // Đổi chỗ
+        int tam = a[i]; a[i] = a[posMin]; a[posMin] = tam;
+        
+        // In ra mảng sau mỗi vòng lặp lớn
+        cout << "Luot " << i + 1 << ": ";
+        for (int k = 0; k < n; k++) cout << a[k] << " ";
+        cout << endl;
+    }
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Cho `vector<int> giaSanPham = {150, 400, 250, 100, 300};`. Viết chương trình dùng Bubble Sort để sắp xếp mảng theo thứ tự tăng dần.
+
+
+* 
+**Bài 2:** Thay đổi điều kiện trong chương trình ở Bài 1 để mảng được sắp xếp theo thứ tự giảm dần.
+
+
+* **Bài 3:** Viết chương trình tạo một mảng gồm 6 số nguyên ngẫu nhiên. Dùng Selection Sort để sắp xếp mảng và bắt buộc phải in ra trạng thái của mảng sau mỗi lượt đổi chỗ.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình quản lý điểm môn Tin học: Nhập số lượng học sinh N, sau đó sử dụng vòng lặp cho phép nhập điểm của từng bạn vào `vector<double>`. Áp dụng thuật toán Selection Sort để in ra bảng điểm xếp hạng từ cao xuống thấp.
+
+
+* **Bài 2:** (Tư duy) Chạy thử bằng tay trên giấy thuật toán Bubble Sort với mảng `[5, 1, 4, 2, 8]`. Viết ra kết quả của mảng sau lượt chạy đầu tiên của vòng lặp `i`.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Ý tưởng chính của Bubble Sort là gì? Sự đổi chỗ diễn ra khi nào? 
+
+
+* [ ] Selection Sort khác biệt như thế nào so với Bubble Sort? 
+
+
+* [ ] Làm sao để biết một mảng đang được xếp tăng hay xếp giảm khi nhìn vào đoạn code? 
+
+
+
+---
+
+### Buổi 14 - Tìm kiếm tuyến tính và bảng xếp hạng
+
+**1. Mục tiêu buổi học**
+
+* Hiểu thuật toán tìm kiếm tuyến tính (Linear Search) chính là việc duyệt xét từng phần tử từ đầu đến cuối danh sách.
+
+
+* Biết cách tìm và lấy ra vị trí của một giá trị được chỉ định bên trong mảng/vector.
+
+
+* Biết cách xử lý hai trường hợp: Tìm thấy thành công và Không tìm thấy (vắng mặt) trong danh sách.
+
+
+* Biết cách thu thập và tìm ra nhiều kết quả cùng lúc nếu chúng thỏa mãn một điều kiện cho trước.
+
+
+* Kết hợp các kiến thức tìm kiếm với danh sách điểm để tạo ra một bảng xếp hạng học sinh cơ bản.
+
+
+* Học sinh viết được chức năng tìm học sinh theo điểm số hoặc một cụm tên ngắn.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Tìm kiếm tuyến tính (Linear Search):** Đây là cách tìm kiếm tự nhiên nhất của con người. Nếu bạn muốn tìm số 7 trong một danh sách, bạn sẽ mở ngăn số 0 ra xem có phải số 7 không, nếu không thì mở ngăn số 1, ngăn số 2... cho đến khi thấy số 7 hoặc hết mảng thì thôi.
+
+
+> `[📸 Hình ảnh ví dụ: Một hàng tủ đồ locker. Một người bảo vệ đi mở cửa từng tủ từ trái sang phải để tìm chiếc túi xách màu đỏ (Minh họa Linear Search)]`
+
+
+* 
+**Lưu lại vị trí (Index):** Khi tìm thấy, điều ta cần trả về không phải là giá trị đó (vì ta đã biết giá trị đó rồi), mà ta cần trả về vị trí (chỉ số) của nó trong mảng.
+
+
+* **Cờ hiệu (Flag) cho trường hợp Không tìm thấy:** Ta thường tạo một biến phụ (ví dụ `int viTri = -1`). Khi duyệt mảng, nếu tìm thấy ta gán `viTri = i`. Sau vòng lặp, nếu `viTri` vẫn bằng `-1` (tức là không hề thay đổi), ta kết luận là giá trị đó không tồn tại trong danh sách.
+
+
+* 
+**Tìm nhiều kết quả:** Thay vì dừng lại (dùng `break`) khi tìm thấy số đầu tiên, ta cứ để vòng lặp chạy hết mảng, mỗi lần tìm thấy một giá trị đúng, ta in nó ra hoặc lưu nó vào một mảng mới.
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Tìm kiếm vị trí của một điểm số**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> danhSach = {4, 7, 2, 9, 6, 8};
+    int soCanTim = 9;
+    int viTri = -1; [cite_start]// -1 nghĩa là chưa tìm thấy [cite: 72]
+
+    [cite_start]// Duyệt từ đầu đến cuối [cite: 70]
+    for (int i = 0; i < danhSach.size(); i++) {
+        if (danhSach[i] == soCanTim) {
+            viTri = i; [cite_start]// Đã tìm thấy, lưu vị trí lại [cite: 71]
+            break;     // Dừng tìm kiếm ngay
+        }
+    }
+
+    if (viTri != -1) {
+        cout << "Da tim thay so " << soCanTim << " tai vi tri thu " << viTri << endl;
+    } else {
+        cout << "Khong tim thay so " << soCanTim << " trong danh sach!" << endl;
+    }
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Tìm tất cả học sinh đạt điểm 10 (Tìm nhiều kết quả)**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> diem = {6, 10, 8, 10, 5, 10, 7};
+    int soLuongDiem10 = 0;
+
+    cout << "Nhung hoc sinh dat diem 10 nam o vi tri: ";
+    for (int i = 0; i < diem.size(); i++) {
+        if (diem[i] == 10) {
+            cout << i << " ";
+            soLuongDiem10++; // Đếm số lượng tìm được
+        }
+    }
+    
+    if (soLuongDiem10 == 0) {
+        cout << "(Khong co ai)"; [cite_start]// Xử lý nếu không tìm thấy [cite: 72, 73]
+    }
+    cout << "\nTong cong co " << soLuongDiem10 << " ban dat diem 10." << endl;
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Linear Search trong Hàm**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Hàm tìm kiếm, trả về vị trí. [cite_start]Trả về -1 nếu không có [cite: 71, 72]
+int timKiemTuyenTinh(vector<int> mang, int giaTri) {
+    for (int i = 0; i < mang.size(); i++) {
+        if (mang[i] == giaTri) {
+            return i; // Dùng return để thoát hàm ngay lập tức
+        }
+    }
+    return -1;
+}
+
+int main() {
+    vector<int> sanPham = {101, 205, 308, 440};
+    int maCanTim;
+    cout << "Nhap ma san pham can tim: ";
+    cin >> maCanTim;
+    
+    int ketQua = timKiemTuyenTinh(sanPham, maCanTim);
+    if (ketQua != -1) cout << "Tim thay o vi tri: " << ketQua << endl;
+    else cout << "San pham khong ton tai!\n";
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình quản lý thư viện. Khai báo mảng `vector<int> maSach = {10, 24, 35, 48, 59};`. Cho người dùng nhập một mã sách, kiểm tra xem quyển sách đó có nằm trong thư viện hay không.
+
+
+* **Bài 2:** Cho danh sách điểm `vector<double> diemSo = {5.5, 9.0, 4.0, 7.5, 3.5};`. Viết chương trình tìm và in ra vị trí của tất cả những học sinh có điểm dưới trung bình (< 5.0).
+
+
+* **Bài 3:** Nhập một số ngẫu nhiên N vào danh sách. Nếu N chưa có trong danh sách thì dùng hàm `push_back` để thêm vào. Nếu đã có thì thông báo "Bị trùng, không thêm".
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình "Bảng Xếp Hạng". Yêu cầu khai báo hai vector song song: `vector<string> ten = {"An", "Binh", "Chau"};` và `vector<int> diem = {8, 10, 9};`. Cho người dùng nhập vào một cái tên. Hãy tìm vị trí của tên đó trong mảng `ten`, sau đó in ra con điểm tương ứng bên mảng `diem`.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Tìm kiếm tuyến tính là làm hành động gì? 
+
+
+* [ ] Tại sao biến chứa kết quả vị trí lại thường được khởi tạo bằng -1? 
+
+
+* [ ] Làm sao để chương trình báo "Không tìm thấy" thay vì im lặng kết thúc? 
+
+
+
+---
+
+### Buổi 15 - String cơ bản và nhập chuỗi
+
+**1. Mục tiêu buổi học**
+
+* Nắm vững kiểu dữ liệu `string` được dùng chuyên biệt để lưu trữ văn bản, câu chữ.
+
+
+* Phân biệt rõ sự khác nhau giữa việc nhập chuỗi bằng `cin` và lệnh `getline`.
+
+
+* Biết cách kiểm tra độ dài của chuỗi (có bao nhiêu ký tự) bằng phương thức `.length()` hoặc `.size()`.
+
+
+* Hiểu rằng string có thể coi như một "mảng các ký tự", biết cách dùng chỉ số (index) để truy cập từng chữ cái.
+
+
+* Biết cách sử dụng phép toán cộng `+` để nối chuỗi và các toán tử để so sánh chuỗi cơ bản.
+
+
+* Học sinh viết được chương trình nhập thông tin họ tên, đếm độ dài chữ và in tách rời từng ký tự.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Thư viện `<string>`:** Chuỗi văn bản trong C++ được hỗ trợ bởi kiểu `string`. Bạn có thể lưu 1 chữ cái "A" hoặc cả một bài văn dài.
+
+
+* **`cin` vs `getline`:**
+* Lệnh `cin >>` chỉ đọc đến khi gặp dấu khoảng trắng (dấu cách) đầu tiên là nó dừng. (Nhập "Nguyen Van A" nó chỉ lưu "Nguyen").
+* Lệnh `getline(cin, tenBien);` sẽ thu thập mọi thứ trên dòng đó cho đến khi bạn ấn phím Enter.
+
+
+
+
+* **Lấy độ dài chuỗi:** Dùng `tenBien.length()` hoặc `tenBien.size()`. Chú ý: Dấu cách và dấu chấm câu đều được đếm là 1 ký tự! 
+
+
+> `[📸 Hình ảnh ví dụ: Chuỗi "HELLO WORLD", mỗi chữ cái và khoảng trắng nằm trong một ô vuông có đánh số chỉ số từ 0 đến 10 bên dưới]`
+
+
+* **String là một mảng ký tự (`char`):** Chữ `H` trong chữ "HELLO" nằm ở vị trí số `0`. Bạn có thể lấy chữ `H` ra bằng cách gọi chỉ số `[0]` giống y hệt như mảng.
+
+
+* **Nối chuỗi và So sánh:** Bạn có thể lấy chuỗi "Xin" `+` chuỗi "Chào" để được "XinChào". Phép `==` giúp kiểm tra xem hai mật khẩu người dùng nhập có khớp nhau hay không.
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo, nhập tên và đo độ dài**
+
+```cpp
+#include <iostream>
+[cite_start]#include <string> // Phải có thư viện này [cite: 75]
+using namespace std;
+
+int main() {
+    string hoTen;
+    cout << "Nhap ho va ten cua ban: ";
+    getline(cin, hoTen); [cite_start]// Dùng getline để lấy được cả họ và tên [cite: 76]
+    
+    [cite_start]// Đo độ dài của chuỗi [cite: 77]
+    cout << "Ten cua ban dai " << hoTen.length() << " ky tu (tinh ca khoang trang)." << endl;
+    
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Truy cập từng ký tự trong chuỗi**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string matKhau = "Gemini AI";
+    
+    [cite_start]// In ký tự đầu tiên và cuối cùng [cite: 77]
+    cout << "Ky tu dau tien: " << matKhau[0] << endl;
+    cout << "Ky tu cuoi cung: " << matKhau[matKhau.length() - 1] << endl;
+    
+    // Duyệt in dọc từng chữ cái (như mảng)
+    cout << "In tung chu cai doc:\n";
+    for (int i = 0; i < matKhau.length(); i++) {
+        cout << matKhau[i] << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+*Giải thích:* Vòng lặp `for` chạy từ 0 đến bé hơn độ dài chuỗi, kết hợp `matKhau[i]` giúp ta đi qua từng chữ cái.
+
+* **Ví dụ 3: Nối và So sánh chuỗi**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string ho = "Nguyen";
+    string ten = "An";
+    
+    [cite_start]// Nối chuỗi bằng toán tử + (nhớ thêm khoảng trắng ở giữa) [cite: 78]
+    string hoVaTen = ho + " " + ten; 
+    cout << "Ho ten day du: " << hoVaTen << endl;
+    
+    [cite_start]// So sánh chuỗi [cite: 78]
+    string pass1 = "12345", pass2 = "12345";
+    if (pass1 == pass2) {
+        cout << "Mat khau khop nhau!" << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình yêu cầu người dùng nhập họ tên của mình. Sau đó in ra màn hình chỉ ký tự đầu tiên và ký tự cuối cùng trong tên của họ.
+
+
+* **Bài 2:** Khai báo một chuỗi `string loiChuc = "Chuc Mung Nam Moi";`. Dùng vòng lặp duyệt qua chuỗi và đếm xem trong câu đó có bao nhiêu khoảng trắng.
+
+
+* **Bài 3:** Viết hệ thống tạo mật khẩu. Yêu cầu người dùng tạo mật khẩu mới. Nếu mật khẩu có độ dài nhỏ hơn 8 ký tự, báo lỗi "Mật khẩu quá ngắn" và bắt nhập lại.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình nhập vào một câu văn bất kỳ. Hãy in câu văn đó ra màn hình nhưng theo thứ tự đảo ngược lại (Từ cuối lên đầu) (Gợi ý: Dùng vòng lặp `for` lùi).
+
+
+* **Bài 2:** Viết chương trình đăng ký tài khoản. Nhập vào `Username` và `Password`. In ra lời chào có dạng "Xin chào [Username], mật khẩu của bạn dài [số lượng] ký tự".
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Nhập chuỗi có chứa dấu cách thì bắt buộc phải dùng lệnh gì? 
+
+
+* [ ] Làm sao để biết một biến `string` đang chứa bao nhiêu ký tự? 
+
+
+* [ ] Chuỗi `string a = "Hello"` thì ký tự chữ `o` nằm ở vị trí thứ mấy (index)? 
+
+
+
+---
+
+### Buổi 16 - Xử lý chuỗi và Caesar Cipher
+
+**1. Mục tiêu buổi học**
+
+* Biết kết hợp vòng lặp để duyệt từng ký tự trong biến chuỗi (string) để xử lý logic.
+
+
+* Biết cách kiểm tra một ký tự ở mức độ cơ bản: xem nó là chữ cái hay là chữ số, hay là một dấu khoảng trắng.
+
+
+* Biết cách chủ động chuyển đổi một chữ viết hoa thành viết thường (và ngược lại) thông qua biến đổi bảng mã ký tự.
+
+
+* Hiểu được ý tưởng cơ bản của kỹ thuật mã hóa Caesar: Dịch chuyển các ký tự đi một số bước nhất định trong bảng chữ cái (ví dụ A dịch 3 bước thành D).
+
+
+* Biết áp dụng xử lý chuỗi để tạo ra một mini tool làm ứng dụng bảo mật đơn giản.
+
+
+* Học sinh tự tay viết được toàn bộ chương trình mã hóa và giải mã theo chuẩn Caesar Cipher cơ bản.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Mã ASCII (Lý thuyết cốt lõi):** Máy tính không hiểu chữ "A". Nó lưu chữ "A" dưới dạng một con số (số 65). Chữ "B" là 66, "C" là 67... Chữ thường "a" là 97. Tức là các ký tự thực chất là các CON SỐ ẩn danh.
+
+
+* 
+**Kiểm tra ký tự:** Nhờ mã ASCII, ta có thể kiểm tra một ký tự `c` có phải chữ cái in hoa không bằng biểu thức toán học: `if (c >= 'A' && c <= 'Z')`.
+
+
+* 
+**Đổi chữ thường thành chữ hoa:** Từ "a" (97) muốn thành "A" (65), ta chỉ cần lấy giá trị đó trừ đi 32. Ngược lại, hoa thành thường thì cộng thêm 32. (Lưu ý: Chỉ thực hiện với các chữ cái).
+
+
+* **Mã hoá Caesar Cipher:** Kỹ thuật mã hoá nổi tiếng của Julius Caesar. Để giấu thông tin, ông dịch tất cả chữ cái trong thư đi K bước. Ví dụ K = 3: chữ 'A' + 3 = 'D', chữ 'B' + 3 = 'E'. Người nhận biết được "chìa khóa" K=3 thì lấy mật thư trừ lại đi 3 bước để giải mã.
+
+
+> `[📸 Hình ảnh ví dụ: Hai vòng tròn bảng chữ cái đồng tâm lồng vào nhau, vòng trong bị xoay lệch đi 3 nấc so với vòng ngoài để minh họa cách tạo mã Caesar]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Kiểm tra các loại ký tự trong chuỗi**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string text = "Password123!";
+    int soChuCai = 0, soChuSo = 0;
+    
+    [cite_start]// Duyệt qua toàn bộ ký tự [cite: 79]
+    for (int i = 0; i < text.length(); i++) {
+        char c = text[i];
+        
+        [cite_start]// Kiểm tra xem có phải chữ cái không [cite: 80]
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+            soChuCai++;
+        }
+        [cite_start]// Kiểm tra xem có phải chữ số không [cite: 80]
+        else if (c >= '0' && c <= '9') {
+            soChuSo++;
+        }
+    }
+    
+    cout << "Chuoi co " << soChuCai << " chu cai va " << soChuSo << " chu so." << endl;
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Mini Tool viết hoa toàn bộ chuỗi**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string ten = "nGuYeN vAn a";
+    
+    for (int i = 0; i < ten.length(); i++) {
+        [cite_start]// Chỉ đổi nếu nó đang là chữ cái thường [cite: 80, 81]
+        if (ten[i] >= 'a' && ten[i] <= 'z') {
+            ten[i] = ten[i] - 32; [cite_start]// Công thức đổi thường thành hoa [cite: 81]
+        }
+    }
+    
+    cout << "Sau khi viet hoa: " << ten << endl; // Kết quả: NGUYEN VAN A
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Mã hóa Caesar Cipher cơ bản**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string matThu = "HELLO";
+    int khoaK = 3; [cite_start]// Dịch chuyển 3 bước [cite: 82]
+    
+    cout << "Ban goc: " << matThu << endl;
+    
+    [cite_start]// Quá trình Mã Hóa [cite: 83]
+    for (int i = 0; i < matThu.length(); i++) {
+        matThu[i] = matThu[i] + khoaK; [cite_start]// Cộng thêm K vào để biến đổi chữ [cite: 82, 83]
+    }
+    cout << "Sau khi ma hoa: " << matThu << endl; // Sẽ in ra: KHOOR
+    
+    // Quá trình Giải Mã
+    for (int i = 0; i < matThu.length(); i++) {
+        matThu[i] = matThu[i] - khoaK; [cite_start]// Trừ K đi để về chữ cũ [cite: 83]
+    }
+    cout << "Sau khi giai ma: " << matThu << endl; // Trở lại: HELLO
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình nhập vào một đoạn chat. Dùng vòng lặp kiểm tra và tự động "Che mờ" tất cả các chữ số (0-9) thành dấu `*` (Ví dụ: "Toi co 50k" -> "Toi co k").
+
+
+* **Bài 2:** Nâng cấp Ví dụ 2: Viết chương trình nhận vào một tên nhập lộn xộn. Hãy chuyển toàn bộ chuỗi thành chữ thường (Bằng cách cộng 32), sau đó chỉnh sửa riêng ký tự `[0]` thành chữ hoa (trừ 32) để tên được viết hoa chữ cái đầu.
+
+
+* **Bài 3:** Chạy thử Ví dụ 3 với chuỗi `matThu = "XYZ"`. Bạn sẽ thấy lỗi sinh ra các ký tự kỳ lạ. Hãy suy nghĩ lý do (Do cộng thêm 3 bị vượt qua chữ Z).
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Cải tiến lại chương trình Caesar Cipher để tạo thành một Mini Tool hoàn chỉnh (Dùng vòng lặp vô hạn). Có menu: Nhấn 1 để Nhập tin nhắn cần mã hóa (Dịch tiến 5 bước). Nhấn 2 để Nhập mật mã cần giải mã (Dịch lùi 5 bước). Nhấn 0 để Thoát.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Biểu thức điều kiện nào giúp nhận diện một ký tự là chữ in Hoa? 
+
+
+* [ ] Tại sao máy tính lại cho phép làm phép toán CỘNG, TRỪ lên một chữ cái? 
+
+
+* [ ] Nguyên lý hoạt động của mã hóa Caesar Cipher là gì?
+
+
+
+Dưới đây là nội dung chi tiết từ **Buổi 17 đến Buổi 22**, giúp khép lại hoàn chỉnh **Giai đoạn 2 - Cấu trúc dữ liệu cơ bản**. Các khung hình ảnh minh họa `[📸 Hình ảnh ví dụ: ...]` tiếp tục được thiết kế sẵn để bạn chèn vào file Word của mình.
+
+---
+
+### Buổi 17 - Hàm nâng cao và tách chương trình
+
+**1. Mục tiêu buổi học**
+
+* Biết tách chương trình thành nhiều hàm theo nhiệm vụ.
+
+
+* Biết thiết kế hàm có tên rõ nghĩa, tham số rõ nghĩa.
+
+
+* Hiểu hàm nên làm một việc chính và biết dùng prototype nếu hàm viết sau main.
+
+
+* Biết tái sử dụng hàm trong nhiều bài và học sinh viết được chương trình có các hàm nhập, xử lý, in kết quả riêng.
+
+
+* Cấu trúc nội dung đáp ứng lý thuyết chi tiết, có ví dụ mã nguồn và bài tập thực hành rõ ràng.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Nguyên tắc "Mỗi hàm một việc":** Một hàm không nên vừa nhập, vừa tính, vừa in. Hãy chia nhỏ: Hàm `nhapDuLieu()`, Hàm `tinhTong()`, Hàm `inKetQua()`. Điều này giúp code cực kỳ dễ đọc và dễ tìm lỗi.
+* **Tái sử dụng code:** Thay vì viết lại thuật toán tính điểm trung bình ở nhiều nơi, ta chỉ cần viết một hàm `tinhDTB()`, sau đó gọi lại nó bao nhiêu lần tùy thích.
+* **Hàm Nguyên mẫu (Prototype):** Trong C++, hàm nào dùng thì phải được khai báo ở phía trên. Nếu bạn muốn viết hàm `main` ở đầu cho gọn, thì phải khai báo "khung xương" của các hàm khác ở trên cùng, và viết thân hàm ở bên dưới `main`.
+> `[📸 Hình ảnh ví dụ: Sơ đồ cấu trúc file C++: Dòng include -> Danh sách Prototype (như mục lục sách) -> Hàm main (nội dung chính) -> Chi tiết các hàm con (các chương sách)]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Tách chương trình với Prototype**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Khai báo hàm nguyên mẫu (Prototype) trước
+void inLoiChao(); 
+int tinhDienTich(int dai, int rong);
+
+int main() {
+    inLoiChao(); // Gọi hàm
+    int s = tinhDienTich(5, 3);
+    cout << "Dien tich la: " << s << endl;
+    return 0;
+}
+
+// Viết chi tiết hàm ở phía dưới main
+void inLoiChao() {
+    cout << "Chao mung den voi chuong trinh tinh toan!" << endl;
+}
+
+int tinhDienTich(int dai, int rong) {
+    return dai * rong;
+}
+
+```
+
+* **Ví dụ 2: Tách bài toán Xếp loại học lực**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Hàm 1: Chuyên lấy dữ liệu
+double nhapDiem() {
+    double d;
+    cout << "Nhap diem (0-10): ";
+    cin >> d;
+    return d;
+}
+
+// Hàm 2: Chuyên xử lý logic
+string xepLoai(double diem) {
+    if (diem >= 8) return "Gioi";
+    if (diem >= 6.5) return "Kha";
+    return "Trung Binh";
+}
+
+// Hàm 3: Chuyên in kết quả
+void inPhieuDiem(double diem, string loai) {
+    cout << "--- PHIEU DIEM ---\n";
+    cout << "Diem: " << diem << " | Xep loai: " << loai << endl;
+}
+
+int main() {
+    // Chương trình main giờ đây cực kỳ ngắn gọn và dễ hiểu
+    double diemCuaHocSinh = nhapDiem();
+    string loaiHocSinh = xepLoai(diemCuaHocSinh);
+    inPhieuDiem(diemCuaHocSinh, loaiHocSinh);
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết hàm `int nhapSoDuong()`. Hàm này liên tục bắt người dùng nhập một số, nếu âm thì bắt nhập lại đến khi dương mới `return` số đó.
+* **Bài 2:** Viết hàm `bool kiemTraNguyenTo(int n)`. Hàm trả về `true` nếu `n` là số nguyên tố. Gọi hàm này trong `main` để kiểm tra số 7 và số 10.
+* **Bài 3:** Ghép 2 hàm trên lại: Sử dụng `nhapSoDuong()` để lấy vào biến `x`. Sau đó truyền `x` vào `kiemTraNguyenTo()` để in ra màn hình `x` có phải số nguyên tố không.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình "Quản lý điểm thi". Tách thành 3 hàm: `nhapMangDiem()`, `timDiemCaoNhat()`, và `inKetQua()`. Kết nối chúng lại trong hàm `main`.
+
+**6. Checklist cuối buổi**
+
+* [ ] Việc tách code ra nhiều hàm có lợi ích gì cho việc sửa lỗi?
+* [ ] Hàm nguyên mẫu (Prototype) dùng để làm gì và viết ở đâu?
+* [ ] Làm sao để liên kết dữ liệu trả về từ hàm A sang hàm B?
+
+---
+
+### Buổi 18 - Kiểm thử hàm và menu console
+
+**1. Mục tiêu buổi học**
+
+* Hiểu cần test hàm bằng dữ liệu mẫu và biết viết menu console có nhiều chức năng.
+
+
+* Biết tách mỗi lựa chọn trong menu thành một hàm và biết xử lý lựa chọn sai.
+
+
+* Biết lặp menu đến khi người dùng chọn thoát và học sinh viết được menu quản lý nhỏ có 3-4 chức năng.
+
+
+* Đáp ứng thời lượng 90 phút qua các ví dụ gắn với học sinh.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Kiểm thử hàm (Testing):** Sau khi viết xong một hàm tính toán, ta không nên viết vội các hàm khác. Hãy gọi hàm đó ngay trong `main` và nhét thử "dữ liệu giả" (dummy data) vào xem nó có chạy đúng không. Đây gọi là tư duy làm phần mềm chuẩn.
+* **Tích hợp Menu:** Một chương trình hoàn thiện sẽ hiển thị danh sách chức năng. Khi người dùng nhập số (1, 2, 3), chương trình dùng `switch-case` để phân luồng, gọi đến các hàm con tương ứng, sau đó vòng lặp `do-while` sẽ tự động hiển thị lại Menu.
+> `[📸 Hình ảnh ví dụ: Lưu đồ hệ thống: Start -> Hiện Menu -> Người dùng chọn nhánh (Switch 1, 2, 3) -> Chạy hàm xử lý nhánh -> Quay lại Hiện Menu (Vòng lặp) hoặc Thoát]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Test hàm bằng dữ liệu cứng (Hardcode)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Viết hàm tính giá giảm
+double tinhGiaGiam(double giaGoc, int phanTram) {
+    return giaGoc - (giaGoc * phanTram / 100);
+}
+
+int main() {
+    // TEST HÀM trước khi làm chức năng nhập/xuất phức tạp
+    cout << "Test 1 (Giam 10% cua 100): " << tinhGiaGiam(100, 10) << " -> Mong doi: 90\n";
+    cout << "Test 2 (Giam 50% cua 200): " << tinhGiaGiam(200, 50) << " -> Mong doi: 100\n";
+    // Nếu in ra đúng kết quả mong đợi thì hàm đã an toàn để dùng!
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Khung Menu Console chuyên nghiệp**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void chucNang1() { cout << "\n>>> Thuc hien chuc nang THEM...\n"; }
+void chucNang2() { cout << "\n>>> Thuc hien chuc nang XEM...\n"; }
+
+int main() {
+    int chon;
+    do {
+        cout << "\n==========================";
+        cout << "\n   PHAN MEM QUAN LY";
+        cout << "\n==========================";
+        cout << "\n1. Them san pham";
+        cout << "\n2. Xem danh sach";
+        cout << "\n0. Thoat";
+        cout << "\n==========================";
+        cout << "\nChon chuc nang: ";
+        cin >> chon;
+        
+        // Tách mỗi lựa chọn gọi đúng 1 hàm
+        switch (chon) {
+            case 1: chucNang1(); break;
+            case 2: chucNang2(); break;
+            case 0: cout << "Dang thoat...\n"; break;
+            default: cout << "Loi! Vui long chon tu 0 den 2.\n"; break;
+        }
+    } while (chon != 0); // Lặp đến khi chọn 0
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết 3 hàm tĩnh: `void veHinhVuong()`, `void veTamGiac()`, `void veDuongThang()`.
+* **Bài 2:** Lắp 3 hàm ở Bài 1 vào một vòng lặp Menu `do-while` có cấu trúc giống Ví dụ 2. Cho người dùng nhập số 1, 2, 3 để vẽ các hình tương ứng và số 0 để tắt ứng dụng.
+* **Bài 3:** Thử test chức năng của Menu bằng cách cố tình nhập số "99". Chương trình phải báo "Lỗi, chọn sai" và hiển thị lại Menu.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Tạo một Mini App "Quản lý chi tiêu". Có Menu: 1. Nạp thêm tiền, 2. Tiêu tiền, 3. Xem số dư, 0. Thoát. (Gợi ý: Cần một biến toàn cục `int soDu = 0;` ở trên cùng, hoặc truyền biến bằng tham chiếu cho các hàm xử lý).
+
+**6. Checklist cuối buổi**
+
+* [ ] Việc test hàm ngay sau khi viết có tác dụng gì?
+* [ ] Tại sao Menu thường được bọc trong vòng lặp `do-while` thay vì `for`?
+* [ ] Lệnh `switch-case` hoạt động cùng với các hàm con mang lại sự gọn gàng như thế nào cho `main()`?
+
+---
+
+### Buổi 19 - Tham chiếu và truyền tham số
+
+**1. Mục tiêu buổi học**
+
+* Hiểu truyền tham trị và truyền tham chiếu khác nhau như thế nào, biết khi nào dùng dấu `&` trong tham số hàm.
+
+
+* Biết viết hàm hoán đổi hai số bằng tham chiếu và biết truyền vector vào hàm để xử lý.
+
+
+* Biết tránh sửa dữ liệu ngoài ý muốn và học sinh viết được hàm nhập vector, sửa giá trị, tính tổng bằng tham số.
+
+
+* Mọi ví dụ cần được minh họa bằng code chi tiết, dễ đọc.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Truyền Tham Trị (Pass by Value):** Khi bạn đưa biến `x` vào hàm, máy tính đi "photocopy" giá trị của `x` đưa cho hàm. Hàm có sửa bản copy đó thế nào thì bản gốc `x` ở bên ngoài cũng không bị suy suyển.
+* **Truyền Tham Chiếu (Pass by Reference):** Bằng cách thêm dấu và (`&`) vào trước tên tham số (ví dụ `int &a`), bạn không đưa bản copy nữa, mà đưa thẳng chìa khóa bản gốc cho hàm. Lúc này, hàm sửa `a` tức là biến truyền vào ở ngoài `main` bị đổi theo.
+> `[📸 Hình ảnh ví dụ: Minh họa sự khác biệt: Tham trị (Copy tờ giấy đưa cho bạn xem, bạn xé đi tờ giấy gốc vẫn còn) vs Tham chiếu (Cùng chia sẻ chung 1 tài liệu trên Google Docs, một người xóa chữ thì tài liệu gốc mất chữ)]`
+
+
+* **Ứng dụng lớn nhất của Tham chiếu:**
+1. Dùng để viết hàm sửa đổi dữ liệu (như hàm `hoanDoi()`).
+2. Truyền Vector: Vector chứa cả ngàn dữ liệu. Nếu dùng tham trị (copy), máy tính mất rất nhiều công để photocopy cả ngàn dữ liệu đó -> Giật, lag. Truyền bằng `&` giúp truy cập cực nhanh.
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Sự khác biệt cực lớn của dấu `&**`
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Hàm 1: Photocopy (Tham trị)
+void tangThem_ThamTri(int a) {
+    a = a + 10;
+}
+
+// Hàm 2: Sửa bản gốc (Tham chiếu)
+void tangThem_ThamChieu(int &a) {
+    a = a + 10;
+}
+
+int main() {
+    int diem = 5;
+    
+    tangThem_ThamTri(diem);
+    cout << "Sau ham 1: " << diem << endl; // Vẫn in ra 5
+    
+    tangThem_ThamChieu(diem);
+    cout << "Sau ham 2: " << diem << endl; // In ra 15
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Hàm Hoán đổi (Kinh điển)**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Buộc phải dùng & vì ta muốn hoán đổi thật sự ở bản gốc
+void hoanDoi(int &x, int &y) {
+    int tam = x;
+    x = y;
+    y = tam;
+}
+
+int main() {
+    int a = 100, b = 200;
+    hoanDoi(a, b);
+    cout << "a=" << a << " va b=" << b << endl; // In ra a=200, b=100
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Truyền Vector vào hàm**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Hàm thêm điểm vào danh sách. Phải dùng & để danh sách thực sự nhận thêm phần tử.
+void themDiem(vector<double> &ds) {
+    double d;
+    cout << "Nhap diem can them: ";
+    cin >> d;
+    ds.push_back(d); 
+}
+
+int main() {
+    vector<double> danhSachDiem;
+    themDiem(danhSachDiem);
+    cout << "Danh sach hien co " << danhSachDiem.size() << " diem.\n";
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Thử xóa dấu `&` ở hàm `themDiem()` trong Ví dụ 3, chạy lại chương trình và giải thích tại sao kích thước vector lại in ra là 0 (Vì hàm chỉ thêm vào bản copy).
+* **Bài 2:** Viết hàm `void nhapDanhSach(vector<int> &v, int soLuong)`. Gọi hàm này trong `main` để nhập 5 phần tử vào mảng.
+* **Bài 3:** Viết hàm `void resetMang(vector<int> &v)`. Hàm này sẽ duyệt qua toàn bộ mảng và biến tất cả các phần tử thành số `0`.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Hãy viết lại hàm Bubble Sort (ở buổi 13) dưới dạng một hàm `void sapXep(vector<int> &mang)`. Truyền một mảng từ `main` vào hàm này để nó tự động sắp xếp lại bản gốc.
+
+**6. Checklist cuối buổi**
+
+* [ ] Nếu tôi không muốn hàm chỉnh sửa làm hỏng biến của mình, tôi nên dùng tham trị hay tham chiếu?
+* [ ] Tại sao khi truyền Vector vào hàm lại luôn được khuyên dùng tham chiếu `&`?
+
+---
+
+### Buổi 20 - Bộ nhớ nhập môn và xử lý vector trong hàm
+
+**1. Mục tiêu buổi học**
+
+* Hiểu cơ bản về biến, vùng nhớ, giá trị được lưu trong biến.
+
+
+* Hiểu vector có thể thay đổi kích thước và biết truyền vector vào hàm bằng tham chiếu để tránh copy không cần thiết.
+
+
+* Biết thêm, xóa, sửa dữ liệu trong vector ở mức cơ bản.
+
+
+* Biết kiểm tra chỉ số hợp lệ trước khi truy cập và học sinh viết được các hàm xử lý danh sách điểm/sản phẩm bằng vector.
+
+
+* Đảm bảo lý thuyết được giải thích dễ hiểu với học sinh 15 tuổi.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Vùng nhớ (Memory):** Khi khởi chạy ứng dụng, hệ điều hành cấp cho nó một mảnh đất (RAM) để ở. Khi bạn khai báo `int x = 5;`, bạn đang xin cấp một ô đất nhỏ, cắm biển tên "x" và cất số 5 vào đó.
+* **Tối ưu truyền Vector:** Bằng cách truyền tham chiếu `&`, ta đưa cho hàm địa chỉ của mảnh đất thay vì bắt máy tính nhân bản toàn bộ mảnh đất đó, giúp bộ nhớ RAM không bị đầy và phần mềm chạy nhanh hơn rất nhiều.
+* **Kiểm tra biên (Boundary Check):** Vector mạnh mẽ nhưng cũng dễ làm sập chương trình. Nếu vector có 3 phần tử (chỉ số 0, 1, 2) mà bạn gọi `v[5]`, chương trình sẽ báo lỗi tràn bộ nhớ (Out of Range). Do đó, hàm sửa dữ liệu bắt buộc phải kiểm tra: `if (viTri >= 0 && viTri < v.size())` thì mới cho truy cập.
+* **Xóa phần tử trong Vector:** Dùng hàm `.erase()`. Tuy nhiên, lệnh này yêu cầu truyền vào một cái gọi là `iterator` (con trỏ vị trí). Cú pháp đơn giản để xóa phần tử ở vị trí thứ `i` là: `v.erase(v.begin() + i);`.
+> `[📸 Hình ảnh ví dụ: Minh họa lệnh v.erase(): Một chiếc móc câu lấy một viên gạch ra khỏi hàng gạch Vector, các viên gạch phía sau tự động trượt lên lấp đầy khoảng trống]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Hàm sửa dữ liệu an toàn (Chống sập ứng dụng)**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void suaDiem(vector<double> &ds, int viTri, double diemMoi) {
+    // Kiem tra chỉ số có hợp lệ hay không trước khi sửa
+    if (viTri >= 0 && viTri < ds.size()) {
+        ds[viTri] = diemMoi;
+        cout << "Da sua thanh cong!\n";
+    } else {
+        cout << "Vi tri nay khong ton tai!\n";
+    }
+}
+
+int main() {
+    vector<double> diem = {7.5, 8.0, 9.5};
+    suaDiem(diem, 1, 10.0); // Hợp lệ (Sửa điểm 8.0 thành 10.0)
+    suaDiem(diem, 5, 4.0);  // Sẽ bị chặn lại, không gây sập phần mềm
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Hàm xóa dữ liệu trong Vector**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void xoaPhanTu(vector<int> &ds, int viTriXoa) {
+    if (viTriXoa >= 0 && viTriXoa < ds.size()) {
+        // Cú pháp đặc biệt: ds.begin() lấy vị trí gốc, cộng thêm vị trí cần xóa
+        ds.erase(ds.begin() + viTriXoa);
+        cout << "Da xoa!\n";
+    }
+}
+
+int main() {
+    vector<int> gioHang = {100, 200, 300};
+    xoaPhanTu(gioHang, 1); // Xóa mặt hàng số 200 (ở vị trí index 1)
+    
+    for (int i = 0; i < gioHang.size(); i++) cout << gioHang[i] << " ";
+    // Sẽ in ra: 100 300
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết một hàm `void xoaTatCa(vector<int> &v)`. Hàm này sẽ liên tục dùng vòng lặp để xóa toàn bộ các phần tử cho đến khi mảng trống rỗng. (Gợi ý: Dùng vòng lặp `while (v.size() > 0)` và xóa phần tử đầu tiên).
+* **Bài 2:** Khai báo một mảng có 5 sinh viên. Viết chương trình hỏi người dùng muốn sửa tên sinh viên ở vị trí số mấy. Gọi hàm an toàn để sửa tên.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Tích hợp bộ kiến thức: Viết một chương trình Quản lý danh sách nhiệm vụ (To-do list) dùng Menu: 1. Thêm nhiệm vụ, 2. Xóa nhiệm vụ theo chỉ số `i`, 3. In toàn bộ công việc, 0. Thoát. Chia thành các hàm nhỏ truyền vector bằng tham chiếu.
+
+**6. Checklist cuối buổi**
+
+* [ ] Hàm `erase()` trong C++ có tự động dồn các phần tử còn lại lên phía trước không?
+* [ ] "Kiểm tra biên" (Boundary Check) là kỹ thuật kiểm tra điều kiện gì trước khi đụng vào mảng?
+
+---
+
+### Buổi 21 - Struct cơ bản
+
+**1. Mục tiêu buổi học**
+
+* Hiểu struct gom nhiều thông tin liên quan vào một kiểu dữ liệu mới và biết khai báo struct Student/Product.
+
+
+* Biết tạo biến struct, nhập và in struct, cũng như biết dùng vector để lưu danh sách đối tượng.
+
+
+* Biết truy cập trường bằng dấu chấm và học sinh viết được danh sách học sinh/sản phẩm với mã, tên, điểm/giá.
+
+
+* Các ví dụ lập trình console ưu tiên mã nguồn rõ ràng, dễ bảo trì.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Giới hạn của biến thông thường:** Để lưu 1 học sinh, ta cần 3 mảng rời rạc: `maSV`, `tenSV`, `diemSV`. Sẽ rất rườm rà và dễ nhầm chỉ số nếu ta muốn sắp xếp thông tin.
+* **Struct (Cấu trúc) là gì?** C++ cho phép ta tạo ra một "khuôn đúc" mới gom tất cả 3 thông tin trên lại làm 1 khối. Ta gọi khối đó là `HocSinh`. Struct chính là bước đệm tuyệt vời để hiểu về Lập trình Hướng đối tượng sau này.
+> `[📸 Hình ảnh ví dụ: Hình ảnh một tấm thẻ căn cước (ID Card) gộp chứa Mã số, Họ tên, và Ảnh chân dung, minh họa cho cách Struct đóng gói nhiều loại dữ liệu khác nhau vào 1 khối duy nhất]`
+
+
+* **Khai báo Struct:** Dùng từ khóa `struct TenKhuon { ... };` (Chú ý phải có dấu `;` ở cuối).
+* **Truy cập phần tử con (Dấu chấm `.`):** Nếu ta tạo một biến `HocSinh hs1;`, để truy cập vào cái tên của `hs1`, ta dùng `hs1.ten`. Dấu chấm ở đây có nghĩa là "của" (Tên CỦA hs1).
+* **Vector Struct:** Biến Struct được đối xử như một kiểu dữ liệu bình thường. Do đó ta có quyền tạo ra danh sách cực mạnh: `vector<HocSinh> danhSach;`.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo và sử dụng biến Struct**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Tạo ra kiểu dữ liệu mới tên là SanPham
+struct SanPham {
+    int maSp;
+    string tenSp;
+    double giaTien;
+}; // CHÚ Ý: Bắt buộc có dấu chấm phẩy ở đây
+
+int main() {
+    // Tạo 1 biến kiểu SanPham
+    SanPham sp1;
+    
+    // Đưa dữ liệu vào bằng dấu chấm (.)
+    sp1.maSp = 101;
+    sp1.tenSp = "Ban phim co";
+    sp1.giaTien = 1500000;
+    
+    cout << "Ten SP: " << sp1.tenSp << " - Gia: " << sp1.giaTien << "VND\n";
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Truyền Struct vào Hàm**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct HocSinh {
+    string ten;
+    double diem;
+};
+
+// Truyền tham chiếu để hàm giúp ta nhập dữ liệu
+void nhapThongTin(HocSinh &hs) {
+    cout << "Nhap ten hoc sinh: ";
+    getline(cin, hs.ten);
+    cout << "Nhap diem: ";
+    cin >> hs.diem;
+    cin.ignore(); // Tránh trôi lệnh
+}
+
+int main() {
+    HocSinh hs1;
+    nhapThongTin(hs1);
+    cout << hs1.ten << " duoc " << hs1.diem << " diem.\n";
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Quản lý Danh sách đối tượng bằng Vector**
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+struct Game {
+    string tenGame;
+    int namPhatHanh;
+};
+
+int main() {
+    vector<Game> thuVien; // Mảng chứa các struct
+    
+    // Thêm game 1
+    Game g1;
+    g1.tenGame = "Minecraft"; g1.namPhatHanh = 2011;
+    thuVien.push_back(g1); // Đẩy cả cái cục struct đó vào mảng
+    
+    // Thêm game 2
+    Game g2;
+    g2.tenGame = "Lien Minh Huyen Thoai"; g2.namPhatHanh = 2009;
+    thuVien.push_back(g2);
+    
+    cout << "--- THU VIEN GAME ---\n";
+    for (int i = 0; i < thuVien.size(); i++) {
+        // Truy cập phần tử thứ i, rồi lấy tên của nó
+        cout << thuVien[i].tenGame << " (" << thuVien[i].namPhatHanh << ")\n";
+    }
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Thiết kế một cấu trúc `struct ToaDo` chứa hai biến nguyên `x` và `y`. Nhập tọa độ 2 điểm A và B. (Không cần tính khoảng cách).
+* **Bài 2:** Thiết kế cấu trúc `struct NhanVien` gồm: Mã NV (`int`), Họ tên (`string`), Hệ số lương (`double`).
+* **Bài 3:** Khai báo một `vector<NhanVien>` cho cấu trúc ở Bài 2. Hãy dùng vòng lặp `for` để nhập thông tin cho 3 nhân viên và in danh sách đó ra.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Thiết kế hệ thống Quản lý Thú cưng. Định nghĩa `struct ThuCung`. Tạo mảng chứa. Viết menu có các hàm: Nhập thêm một bé vào danh sách, In danh sách, và Hàm in ra bé thú cưng có tuổi lớn nhất trong mảng.
+
+**6. Checklist cuối buổi**
+
+* [ ] Tôi có quên dấu chấm phẩy ở cuối lúc định nghĩa Struct không?
+* [ ] Muốn thay đổi điểm của học sinh thứ nhất nằm trong mảng `vector<HocSinh> ds`, tôi phải viết `ds[0].diem = ...` đúng hay sai?
+
+---
+
+### Buổi 22 - File I/O và ôn tập giai đoạn 2
+
+**1. Mục tiêu buổi học**
+
+* Biết đọc và ghi file text cơ bản bằng ifstream/ofstream và biết lưu danh sách ra file, đọc lại danh sách.
+
+
+* Biết kiểm tra file mở thành công hay không và ôn tập toàn bộ kiến thức vector, struct, hàm, menu.
+
+
+* Biết chia chương trình quản lý thành các hàm rõ ràng và học sinh viết được mini app lưu/đọc danh sách đơn giản.
+
+
+* Tổng hợp kiến thức kết thúc Giai đoạn 2 của khóa học.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Tại sao phải dùng File?** Mọi biến `int`, `vector` đều nằm trên RAM. Nếu bạn tắt cửa sổ console (màn hình đen), toàn bộ dữ liệu bạn nhập nãy giờ sẽ bốc hơi. Để dữ liệu tồn tại vĩnh viễn, ta phải lưu chúng xuống ổ cứng dưới dạng tệp văn bản (`.txt`).
+* **Thư viện `<fstream>` (File Stream):** Cung cấp 2 công cụ chính:
+* `ofstream` (Output File Stream): Luồng xuất, dùng để **GHI** dữ liệu từ RAM xuống file txt. (Cách dùng giống hệt `cout`).
+* `ifstream` (Input File Stream): Luồng nhập, dùng để **ĐỌC** dữ liệu từ file txt đưa ngược lên RAM. (Cách dùng giống hệt `cin`).
+
+
+* **Quy trình 3 bước:**
+1. Mở file. (Nhớ kiểm tra xem mở có thành công không, lỡ file bị xóa thì sao?).
+2. Thực hiện thao tác Ghi hoặc Đọc.
+3. ĐÓNG file (`.close()`). Đây là thao tác bắt buộc để hệ điều hành lưu file lại an toàn.
+
+
+> `[📸 Hình ảnh ví dụ: Minh họa quy trình: RAM máy tính -> Mở đường ống nước (ofstream) -> Nước (Data) chảy vào bể chứa (File .txt trên ổ cứng) -> Đóng van (close)]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Ghi thông tin xuống file (Save)**
+
+```cpp
+#include <iostream>
+#include <fstream> // Bắt buộc
+#include <string>
+using namespace std;
+
+int main() {
+    // 1. Mở file để ghi (Nếu file chưa có, nó sẽ tự tạo)
+    ofstream fileGhi("data.txt");
+    
+    if (fileGhi.is_open()) {
+        // 2. Ghi dữ liệu giống y hệt cout
+        fileGhi << "Ban dang hoc bai File trong C++\n";
+        fileGhi << "Diem so: " << 10 << endl;
+        
+        // 3. Đóng file
+        fileGhi.close();
+        cout << "Da luu xuong o cung thanh cong!\n";
+    } else {
+        cout << "Loi tao file!\n";
+    }
+    
+    return 0;
+}
+
+```
+
+*Ghi chú:* Sau khi chạy code, hướng dẫn học sinh vào thư mục chứa code mở tệp `data.txt` bằng Notepad để tận mắt nhìn thấy dữ liệu.
+
+* **Ví dụ 2: Đọc thông tin từ file (Load)**
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    // 1. Mở file để đọc
+    ifstream fileDoc("data.txt");
+    string dongChu;
+    
+    // Kiểm tra file có tồn tại không
+    if (fileDoc.is_open()) {
+        // 2. Đọc từng dòng cho đến khi hết file
+        while (getline(fileDoc, dongChu)) {
+            cout << dongChu << endl; // In lên màn hình
+        }
+        
+        // 3. Đóng file
+        fileDoc.close();
+    } else {
+        cout << "File khong ton tai hoac bi loi!\n";
+    }
+    return 0;
+}
+
+```
+
+* **Ví dụ 3: Ôn tập - Lưu danh sách Struct (Mini App Đọc/Ghi)**
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+struct SanPham { int ma; int gia; };
+
+void luuDanhSach(vector<SanPham> &ds) {
+    ofstream f("sanpham.txt");
+    if (f.is_open()) {
+        f << ds.size() << "\n"; // Lưu số lượng trước để sau này dễ đọc
+        for (int i = 0; i < ds.size(); i++) {
+            f << ds[i].ma << " " << ds[i].gia << "\n";
+        }
+        f.close();
+        cout << "Luu file xong!\n";
+    }
+}
+
+int main() {
+    vector<SanPham> ds = {{101, 5000}, {102, 7500}};
+    luuDanhSach(ds); // Sẽ sinh ra file txt chứa số liệu
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình tạo ra file `nhatky.txt`. Hãy ghi một vài dòng tâm sự của bạn trong ngày hôm nay vào file đó thông qua lệnh `ofstream`.
+* **Bài 2:** (Ôn tập Vector + Hàm) Viết một hàm tính tổng của mảng. Nhưng thay vì in tổng ra console bằng `cout`, hãy truyền `ofstream` vào và in cái tổng đó ra file kết quả.
+* **Bài 3:** Chạy thử Ví dụ 2 với một tên file không hề tồn tại (vd: `loi.txt`). Quan sát lệnh kiểm tra `is_open()` bắt lỗi như thế nào.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Xây dựng phần mềm Quản lý điểm cá nhân Mini. Cấu trúc `struct HocSinh { string ten; double diem; }`. Khi chương trình khởi động, tự động đọc dữ liệu từ tệp `hocsinh.txt` (nếu có) lên `vector`. Khi người dùng thêm điểm xong và chọn "0. Thoát" ở Menu, gọi hàm để ghi đè danh sách mới nhất ngược trở lại `hocsinh.txt` để sao lưu.
+
+**6. Checklist cuối buổi**
+
+* [ ] Dùng thư viện gì để tương tác với tệp văn bản? Lệnh nào chuyên dụng để ghi, lệnh nào chuyên đọc?
+* [ ] Thao tác quan trọng nhất trước khi kết thúc làm việc với File là gì? (Gợi ý: `.close()`)
+* [ ] Tổng kết Giai đoạn 2: Bạn đã làm chủ được Vector, Hàm, và Struct chưa? Sẵn sàng bước vào giai đoạn thuật toán nhé!
+
+
+
+Dưới đây là nội dung chi tiết từ **Buổi 23 đến Buổi 28**, mở đầu cho **Giai đoạn 3**. Các nội dung này tập trung vào tư duy thuật toán và quản lý dữ liệu thực tế. Mọi định dạng đều được tối ưu hóa để bạn có thể sao chép và dán trực tiếp vào Microsoft Word, đồng thời tôi đã ghi chú sẵn các vị trí cần chèn hình ảnh minh họa bằng khung `[📸 Hình ảnh ví dụ: ...]`.
+
+---
+
+## ============================================================
+
+GIAI ĐOẠN 3 - TÌM KIẾM, SẮP XẾP, XỬ LÝ DANH SÁCH 
+
+## ============================================================
+
+### Buổi 23 - Thiết kế dữ liệu dạng danh sách
+
+**1. Mục tiêu buổi học**
+
+* Hiểu trước khi code cần xác định đối tượng cần quản lý.
+
+
+* Biết chọn các trường dữ liệu cần có: mã, tên, điểm, giá, số lượng....
+
+
+* Biết dùng struct kết hợp vector để tạo danh sách.
+
+
+* Biết vẽ luồng dữ liệu: thêm, xem, tìm, sửa, xóa.
+
+
+* Biết đặt tên biến, tên hàm theo bài toán.
+
+
+* Học sinh thiết kế được cấu trúc dữ liệu cho mini app quản lý.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Tư duy thiết kế dữ liệu:** Trước khi nhảy vào gõ code, một lập trình viên giỏi phải dùng giấy bút để vạch ra: Mình đang quản lý cái gì? (Học sinh, Sản phẩm hay Sách?). Đối tượng đó cần những thông tin gì? (Tên, Mã số, Giá tiền). Việc này gọi là Thiết kế Cấu trúc Dữ liệu.
+> `[📸 Hình ảnh ví dụ: Sơ đồ tư duy (Mindmap) phân rã từ Bài toán lớn "Quản lý Cửa hàng" -> Đối tượng "Sản phẩm" -> Các trường thông tin: Mã, Tên, Giá, Số lượng tồn kho]`
+
+
+* **Kết hợp Struct và Vector:** Ở Giai đoạn 2, ta đã học `struct` (Cái khuôn đúc 1 đối tượng) và `vector` (Cái túi không đáy). Khi kết hợp lại thành `vector<SanPham>`, ta có một Danh Sách siêu mạnh mẽ có thể chứa vô hạn đối tượng với đầy đủ thông tin.
+* **Luồng dữ liệu (CRUD):** Mọi ứng dụng trên thế giới (từ Facebook đến Shopee) đều xoay quanh 4 thao tác cốt lõi: Create (Thêm mới), Read (Xem/Tìm kiếm), Update (Sửa thông tin), Delete (Xóa bỏ). Ta phải thiết kế các hàm tương ứng cho 4 thao tác này.
+* **Quy tắc đặt tên:** Tên biến mảng nên ở số nhiều (vd: `danhSach`, `cacHocSinh`), tên hàm phải chứa động từ (vd: `themSanPham()`, `hienThiDanhSach()`).
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Khai báo Cấu trúc và Danh sách**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// 1. Định nghĩa khuôn đúc đối tượng
+struct HocSinh {
+    int maHS;
+    string hoTen;
+    double diemTB;
+};
+
+int main() {
+    // 2. Tạo danh sách chứa nhiều học sinh
+    vector<HocSinh> danhSachLop; 
+    
+    // 3. Thêm 1 học sinh mẫu vào danh sách
+    HocSinh hs1 = {101, "Nguyen Van A", 8.5};
+    danhSachLop.push_back(hs1);
+    
+    cout << "Hien tai lop co " << danhSachLop.size() << " hoc sinh.\n";
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Viết khung các hàm CRUD (Chưa có ruột)**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct SanPham { int ma; string ten; double gia; };
+
+// Khai báo các hàm theo chuẩn CRUD (Sử dụng tham chiếu & để thao tác trên bản gốc)
+void themSanPham(vector<SanPham> &ds);
+void hienThiDanhSach(vector<SanPham> ds); // Xem không cần sửa, có thể bỏ & (hoặc dùng tham chiếu hằng)
+void suaSanPham(vector<SanPham> &ds, int maCanSua);
+void xoaSanPham(vector<SanPham> &ds, int maCanXoa);
+
+int main() {
+    vector<SanPham> khoHang;
+    cout << "Da thiet ke xong bo khung cho ung dung!\n";
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Một thư viện cần quản lý Sách. Hãy tự định nghĩa một `struct Sach` gồm Mã sách, Tên sách, Tác giả và Số lượng.
+* **Bài 2:** Khai báo một `vector<Sach>` trong `main`. Viết một hàm `void nhapMotQuyenSach(vector<Sach> &ds)`. Gọi hàm này 2 lần để người dùng nhập dữ liệu cho 2 cuốn sách.
+* **Bài 3:** Viết hàm `void inDanhSachSach(vector<Sach> &ds)` dùng vòng lặp in toàn bộ sách theo định dạng: `[Mã] Tên Sách - Tác Giả (SL: ...)`.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Bắt đầu thiết kế Project "Quản lý Sinh Viên". Em hãy định nghĩa `struct SinhVien`, tạo `vector<SinhVien>`. Sau đó thiết kế một Menu `do-while` có đủ các lựa chọn Thêm, Xem, Tìm, Sửa, Xóa (chưa cần viết thân hàm xử lý, chỉ cần in ra dòng chữ "Đang gọi chức năng...").
+
+**6. Checklist cuối buổi**
+
+* [ ] Tại sao phải dùng `vector<Struct>` thay vì khai báo nhiều `vector` rời rạc cho mã, tên, giá?
+* [ ] Chữ CRUD viết tắt của các chức năng nào trong ứng dụng quản lý?
+
+---
+
+### Buổi 24 - Thêm, sửa, xóa phần tử trong danh sách
+
+**1. Mục tiêu buổi học**
+
+* Biết thêm phần tử mới vào vector.
+
+
+* Biết tìm phần tử cần sửa hoặc xóa theo mã.
+
+
+* Biết sửa từng trường dữ liệu của một phần tử.
+
+
+* Biết xóa phần tử bằng erase.
+
+
+* Biết kiểm tra mã có tồn tại trước khi thao tác.
+
+
+* Học sinh viết được chức năng thêm, sửa, xóa cho danh sách struct.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Thêm mới (Create):** Khởi tạo một biến `struct` tạm thời, cho người dùng nhập thông tin vào biến đó (lưu ý dùng `cin.ignore()` nếu nhập chữ sau số), cuối cùng đẩy cả khối struct đó vào `vector` bằng `.push_back()`.
+* **Cơ chế tìm trước khi Sửa/Xóa:** Bạn không thể sửa đồ nếu không biết nó nằm ở đâu. Do đó, phải viết vòng lặp tìm kiếm xem Mã sản phẩm mà người dùng nhập có khớp với bất kỳ sản phẩm nào trong mảng không. Nếu tìm thấy, ta lưu lại vị trí (index `i`). Nếu duyệt hết mảng mà không thấy, ta báo lỗi.
+> `[📸 Hình ảnh ví dụ: Một robot rà quét dọc theo kệ hàng (Vector). Robot quét mã vạch (ID) từng món đồ. Khi tìm thấy mã khớp, robot tiến hành dán nhãn giá mới (Sửa) hoặc gắp món đồ đó ném ra khỏi kệ (Xóa)]`
+
+
+* **Xóa bằng `.erase()`:** Khi đã có vị trí `index` cần xóa, ta dùng lệnh `ds.erase(ds.begin() + index);`. Lệnh này sẽ rút món đồ đó ra, và các phần tử phía sau sẽ tự động dồn lên lấp khoảng trống.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Thêm phần tử vào danh sách**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct MonAn { int id; string ten; int gia; };
+
+void themMonAn(vector<MonAn> &ds) {
+    MonAn monMoi;
+    cout << "Nhap ID mon: "; cin >> monMoi.id;
+    cin.ignore();
+    cout << "Nhap ten mon: "; getline(cin, monMoi.ten);
+    cout << "Nhap gia: "; cin >> monMoi.gia;
+    
+    ds.push_back(monMoi); // Đẩy vào danh sách
+    cout << "Them mon an thanh cong!\n";
+}
+
+```
+
+* **Ví dụ 2: Sửa thông tin theo Mã ID**
+
+```cpp
+void suaGiaMonAn(vector<MonAn> &ds) {
+    int idCanSua;
+    cout << "Nhap ID mon an can sua: "; 
+    cin >> idCanSua;
+    
+    int viTri = -1; // Biến cờ hiệu, -1 là chưa tìm thấy
+    for (int i = 0; i < ds.size(); i++) {
+        if (ds[i].id == idCanSua) {
+            viTri = i; // Đã tìm thấy vị trí
+            break;
+        }
+    }
+    
+    if (viTri != -1) {
+        cout << "Gia cu la " << ds[viTri].gia << ". Nhap gia moi: ";
+        cin >> ds[viTri].gia; // Sửa trường dữ liệu
+        cout << "Cap nhat thanh cong!\n";
+    } else {
+        cout << "Khong tim thay mon an co ID " << idCanSua << "!\n";
+    }
+}
+
+```
+
+* **Ví dụ 3: Xóa phần tử theo Mã ID**
+
+```cpp
+void xoaMonAn(vector<MonAn> &ds) {
+    int idCanXoa;
+    cout << "Nhap ID mon an can xoa: "; 
+    cin >> idCanXoa;
+    
+    int viTri = -1;
+    for (int i = 0; i < ds.size(); i++) {
+        if (ds[i].id == idCanXoa) {
+            viTri = i; break;
+        }
+    }
+    
+    if (viTri != -1) {
+        ds.erase(ds.begin() + viTri); // Xóa tại vị trí tìm được
+        cout << "Da xoa mon an khoi thuc don!\n";
+    } else {
+        cout << "Loi! Ma ID khong ton tai.\n";
+    }
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Dựa trên cấu trúc `SinhVien`, hãy viết hàm cập nhật điểm số cho một sinh viên. Yêu cầu nhập Mã SV, tìm kiếm, nếu có thì cho nhập điểm mới, nếu không có thì báo lỗi "Không tìm thấy mã".
+* **Bài 2:** Viết một chương trình nhỏ tạo sẵn mảng gồm 3 sinh viên. Gọi hàm xóa sinh viên để người dùng nhập mã xóa. Sau khi xóa, dùng vòng lặp in danh sách còn lại để kiểm chứng.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Tiếp tục hoàn thiện Project "Quản lý Sinh Viên" ở Buổi 23. Bây giờ em hãy điền code vào bên trong 3 hàm: `themSinhVien()`, `suaSinhVien()`, `xoaSinhVien()`. Kết hợp chúng hoạt động mượt mà với Menu `switch-case`.
+
+**6. Checklist cuối buổi**
+
+* [ ] Trước khi lệnh `erase()` hoặc lệnh thay đổi dữ liệu được chạy, ta bắt buộc phải làm thao tác gì?
+* [ ] Biến `viTri = -1` đóng vai trò gì trong thuật toán tìm và xóa?
+
+---
+
+### Buổi 25 - Tìm kiếm tuyến tính theo mã và tên
+
+**1. Mục tiêu buổi học**
+
+* Biết tìm kiếm tuyến tính trên vector.
+
+
+* Biết tìm theo mã chính xác.
+
+
+* Biết tìm theo tên ở mức cơ bản.
+
+
+* Biết trả về vị trí phần tử tìm thấy.
+
+
+* Biết xử lý không tìm thấy và tìm thấy nhiều kết quả.
+
+
+* Học sinh viết được chức năng tìm học sinh/sản phẩm theo mã hoặc tên.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Tìm kiếm chính xác (Tìm theo Mã):** Mã ID là duy nhất (không có 2 sinh viên trùng mã). Do đó, khi tìm kiếm theo mã, nếu ta thấy sự trùng khớp `==`, ta có thể `break` dừng vòng lặp ngay lập tức vì không cần tìm thêm nữa.
+* **Tìm kiếm tương đối / Tìm nhiều kết quả (Tìm theo Tên):** Một lớp có thể có nhiều bạn tên "Hải". Do đó, khi tìm theo tên, ta **không được dùng lệnh `break**` khi thấy kết quả đầu tiên. Ta phải để vòng lặp chạy từ đầu đến cuối danh sách, cứ thấy tên khớp là in ra.
+> `[📸 Hình ảnh ví dụ: Bảng minh họa: Cột Tìm theo ID (Số thứ tự chứng minh nhân dân) chỉ trỏ tới duy nhất 1 người. Cột Tìm theo Tên (Nguyễn Văn A) trỏ tới 3 người khác nhau trong danh sách]`
+
+
+* **Đếm số lượng kết quả:** Để xử lý việc "Không tìm thấy" trong bài toán tìm tên, ta dùng một biến `int soKetQua = 0;`. Mỗi lần tìm thấy, ta tăng biến này lên 1. Sau vòng lặp, nếu `soKetQua == 0`, chứng tỏ không có ai tên như vậy.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Tìm chính xác theo Mã (Dừng ngay khi thấy)**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct KhachHang { int ma; string ten; };
+
+void timTheoMa(vector<KhachHang> ds) {
+    int maTim;
+    cout << "Nhap Ma KH can tim: "; cin >> maTim;
+    
+    bool daTimThay = false; // Biến cờ hiệu true/false
+    
+    for (int i = 0; i < ds.size(); i++) {
+        if (ds[i].ma == maTim) {
+            cout << "=> Da thay: Khach hang " << ds[i].ten << "\n";
+            daTimThay = true;
+            break; // Thoát ngay, tiết kiệm thời gian chạy
+        }
+    }
+    
+    if (daTimThay == false) cout << "Khong co Khach hang nay!\n";
+}
+
+```
+
+* **Ví dụ 2: Tìm theo Tên (Liệt kê tất cả kết quả)**
+
+```cpp
+void timTheoTen(vector<KhachHang> ds) {
+    string tenTim;
+    cout << "Nhap Ten KH can tim: "; 
+    cin.ignore();
+    getline(cin, tenTim);
+    
+    int soKetQua = 0; // Dùng để đếm
+    
+    cout << "--- KET QUA TIM KIEM ---\n";
+    for (int i = 0; i < ds.size(); i++) {
+        // So sánh bằng (Tên phải nhập chính xác hoàn toàn)
+        if (ds[i].ten == tenTim) { 
+            cout << "- Ma: " << ds[i].ma << " | Ten: " << ds[i].ten << "\n";
+            soKetQua++;
+        }
+    }
+    
+    if (soKetQua == 0) {
+        cout << "(Khong tim thay khach hang nao ten la " << tenTim << ")\n";
+    } else {
+        cout << "=> Tim thay " << soKetQua << " nguoi.\n";
+    }
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Cho `vector<Sach>` chứa danh sách sách trong thư viện. Viết hàm tìm kiếm theo tên sách. Nếu tìm thấy, in ra thông tin sách, nếu không in ra báo lỗi.
+* **Bài 2:** (Nâng cao nhỏ): Làm thế nào để giải quyết vấn đề nhập chữ hoa, chữ thường khi tìm kiếm? Hãy thử yêu cầu người dùng nhập tên bằng chữ viết thường, và dùng thuật toán (ở Buổi 16) đưa tên sách về chữ thường trước khi so sánh `==`.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Bổ sung tính năng `timSinhVien()` vào Project "Quản lý Sinh Viên". Khi chọn chức năng này, hiện Menu con: "1. Tìm theo Mã SV | 2. Tìm theo Tên". Viết logic xử lý cho cả 2 nhánh.
+
+**6. Checklist cuối buổi**
+
+* [ ] Sự khác biệt lớn nhất về logic giữa vòng lặp Tìm theo ID và Tìm theo Tên là gì?
+* [ ] Tại sao biến `soKetQua` lại giúp ích trong việc thông báo "Không tìm thấy" ở bài toán tìm tên?
+
+---
+
+### Buổi 26 - Tìm min, max và lọc dữ liệu
+
+**1. Mục tiêu buổi học**
+
+* Biết tìm giá trị lớn nhất, nhỏ nhất trong danh sách.
+
+
+* Biết tìm đối tượng có điểm/giá cao nhất hoặc thấp nhất.
+
+
+* Biết lọc các phần tử thỏa điều kiện.
+
+
+* Biết đếm số lượng phần tử thỏa điều kiện.
+
+
+* Biết tính trung bình trên danh sách.
+
+
+* Học sinh viết được thống kê cơ bản cho danh sách dữ liệu.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Thuật toán Tìm Min / Max:** Để tìm học sinh cao điểm nhất, ta không so sánh điểm của một bạn với 10, mà ta đặt "Niềm tin" vào bạn đầu tiên trong danh sách (Cắm cờ `viTriMax = 0`). Sau đó ta duyệt từ người thứ hai trở đi, hễ thấy ai điểm cao hơn cái người đang cầm cờ, ta lập tức giật cờ trao cho người mới (`viTriMax = i`). Chạy hết mảng, ai cầm cờ thì người đó là Max.
+> `[📸 Hình ảnh ví dụ: Mô phỏng tìm Min/Max: Đặt một bục vinh quang. Đưa người đầu tiên lên bục. Đi xét từng người còn lại, nếu thấy ai cao hơn người trên bục thì đuổi người trên bục xuống và cho người cao hơn lên thay thế]`
+
+
+* **Lọc dữ liệu (Filter):** Việc lọc bản chất chính là Tìm kiếm nhưng điều kiện lớn hơn. Thay vì `if (diem == 8)`, ta dùng `if (diem >= 8)` để in ra toàn bộ học sinh giỏi.
+* **Thống kê:** Bằng cách gộp vòng lặp duyệt mảng với một biến `tong = 0` và biến `dem = 0`, ta có thể tính ra Tổng doanh thu, số lượng hóa đơn, và tính được giá trị Trung bình (Tổng / Số lượng).
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Tìm đối tượng có giá trị lớn nhất (Max)**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct SanPham { string ten; int gia; };
+
+void timSanPhamDatNhat(vector<SanPham> ds) {
+    if (ds.size() == 0) return; // Bảo vệ nếu danh sách trống
+    
+    int viTriMax = 0; // Giả sử SP đầu tiên (index 0) là đắt nhất
+    
+    for (int i = 1; i < ds.size(); i++) {
+        // So sánh giá của phần tử i với giá của phần tử đang giữ kỷ lục
+        if (ds[i].gia > ds[viTriMax].gia) {
+            viTriMax = i; // Cập nhật lại kỷ lục mới
+        }
+    }
+    
+    cout << "San pham dat nhat la: " << ds[viTriMax].ten 
+         << " voi gia " << ds[viTriMax].gia << " VND\n";
+}
+
+```
+
+* **Ví dụ 2: Lọc dữ liệu thỏa điều kiện (Filter)**
+
+```cpp
+void locSanPhamGiaRe(vector<SanPham> ds) {
+    int mucGia;
+    cout << "Ban muon tim SP duoi muc gia bao nhieu? "; 
+    cin >> mucGia;
+    
+    cout << "--- CAC SAN PHAM PHU HOP ---\n";
+    for (int i = 0; i < ds.size(); i++) {
+        if (ds[i].gia <= mucGia) {
+            cout << ds[i].ten << " - Gia: " << ds[i].gia << "\n";
+        }
+    }
+}
+
+```
+
+* **Ví dụ 3: Đếm và tính trung bình**
+
+```cpp
+void thongKeGiaTri(vector<SanPham> ds) {
+    if (ds.size() == 0) {
+        cout << "Kho hang trong!\n"; return;
+    }
+    
+    double tongGia = 0;
+    for (int i = 0; i < ds.size(); i++) {
+        tongGia = tongGia + ds[i].gia;
+    }
+    
+    double trungBinh = tongGia / ds.size();
+    cout << "Tong so luong san pham: " << ds.size() << "\n";
+    cout << "Tong gia tri kho hang: " << tongGia << "\n";
+    cout << "Gia trung binh 1 SP: " << trungBinh << "\n";
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết hàm tìm Học sinh có điểm thấp nhất (Min) trong `vector<HocSinh>`. In ra tên và điểm của học sinh đó.
+* **Bài 2:** Viết hàm thống kê (Lọc): Duyệt qua danh sách học sinh và đếm xem có bao nhiêu bạn phải thi lại (Điểm < 5.0).
+* **Bài 3:** Kết hợp lại: Tìm và in ra điểm trung bình của toàn bộ lớp, sau đó in ra danh sách những bạn có điểm LỚN HƠN điểm trung bình của lớp.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Tích hợp hàm `thongKe()` vào Project "Quản lý Sinh Viên". Khi chọn menu "Thống kê", in ra: Sinh viên điểm cao nhất, Sinh viên điểm thấp nhất, Điểm trung bình của lớp, và Số lượng sinh viên Khá, Giỏi.
+
+**6. Checklist cuối buổi**
+
+* [ ] Tại sao ta nên gán `viTriMax = 0` (lấy vị trí đầu tiên) thay vì gán `max = 0`? (Gợi ý: Nhỡ danh sách toàn số âm thì sao?).
+* [ ] Sự khác biệt giữa Tìm kiếm theo tên và Lọc dữ liệu theo điểm số là gì?
+
+---
+
+### Buổi 27 - Bubble Sort chi tiết
+
+**1. Mục tiêu buổi học**
+
+* Hiểu Bubble Sort so sánh từng cặp phần tử liền kề.
+
+
+* Biết đổi chỗ khi sai thứ tự.
+
+
+* Biết số vòng lặp ngoài và vòng lặp trong.
+
+
+* Biết tối ưu nhỏ bằng biến swapped.
+
+
+* Biết sắp xếp vector theo điểm/giá.
+
+
+* Học sinh viết được Bubble Sort tăng dần, giảm dần và giải thích từng bước.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Cơ chế Nổi Bọt trên Struct:** Ở Buổi 13, ta sắp xếp một mảng các con số. Giờ đây, ta sắp xếp một danh sách các "đối tượng" (như Sản phẩm). Nguyên lý không đổi: Ta đem *Giá* của Sản phẩm `j` so sánh với *Giá* của Sản phẩm `j+1`. Nếu sai thứ tự, ta sẽ lấy 2 cái hộp Sản phẩm nguyên vẹn tráo đổi chỗ cho nhau (chứ không chỉ tráo cái nhãn giá tiền).
+> `[📸 Hình ảnh ví dụ: Minh họa Bubble Sort trên danh sách Struct: 2 Khối hộp chứa toàn bộ dữ liệu (Mã, Tên, Điểm) bị nhấc lên và hoán đổi vị trí nguyên khối cho nhau khi Điểm của khối bên trái lớn hơn khối bên phải]`
+
+
+* **Vòng lặp trong và ngoài:**
+* Vòng `i` (ngoài): Đi bao nhiêu lượt? (Cần đi `n-1` lượt để mảng được sắp xếp).
+* Vòng `j` (trong): Đi so sánh cặp liền kề. Chú ý điều kiện `j < n - i - 1` vì sau mỗi lượt `i`, những con số lớn nhất (hoặc nhỏ nhất) đã nằm gọn ở cuối mảng, ta không cần so sánh lại phần đuôi đó nữa.
+
+
+* **Tối ưu với `swapped`:** Nếu danh sách đã được xếp đúng ngay từ đầu, vòng lặp chạy sẽ rất phí thời gian. Ta tạo một cờ hiệu `bool swapped`. Nếu qua 1 lượt vòng lặp mà không có cặp nào bị đổi chỗ (`swapped == false`), nghĩa là mảng đã hoàn hảo, ta cho dừng thuật toán ngay lập tức.
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Bubble Sort xếp Học Sinh theo Điểm Tăng Dần**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct HocSinh { string ten; double diem; };
+
+void sapXepTangDan(vector<HocSinh> &ds) {
+    int n = ds.size();
+    
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            // So sánh tiêu chí: Điểm số
+            if (ds[j].diem > ds[j+1].diem) { 
+                // Sai thứ tự -> Hoán đổi toàn bộ CẤU TRÚC struct
+                HocSinh tam = ds[j];
+                ds[j] = ds[j+1];
+                ds[j+1] = tam;
+            }
+        }
+    }
+    cout << "Da sap xep danh sach tang dan theo diem!\n";
+}
+
+```
+
+* **Ví dụ 2: Bubble Sort Tối ưu (Xếp giảm dần)**
+
+```cpp
+void sapXepGiamDan_ToiUu(vector<HocSinh> &ds) {
+    int n = ds.size();
+    bool daDoiCho; // Cờ hiệu tối ưu
+    
+    for (int i = 0; i < n - 1; i++) {
+        daDoiCho = false; 
+        
+        for (int j = 0; j < n - i - 1; j++) {
+            if (ds[j].diem < ds[j+1].diem) { // Đổi dấu < để xếp giảm dần
+                HocSinh tam = ds[j];
+                ds[j] = ds[j+1];
+                ds[j+1] = tam;
+                daDoiCho = true; // Ghi nhận là có sự đổi chỗ
+            }
+        }
+        
+        // Nếu duyệt qua 1 vòng mà không đổi chỗ ai, mảng đã đúng thứ tự
+        if (daDoiCho == false) {
+            break; 
+        }
+    }
+    cout << "Da sap xep danh sach giam dan toi uu!\n";
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình quản lý Điện thoại (`struct DienThoai` gồm Mã, Tên, Giá). Khởi tạo mảng có 4 điện thoại. Dùng thuật toán Bubble Sort sắp xếp giá từ Rẻ nhất đến Đắt nhất và in ra màn hình.
+* **Bài 2:** (Thử thách thay đổi tiêu chí) Thay vì sắp xếp theo Giá, hãy chỉnh sửa điều kiện `if` để chương trình sắp xếp điện thoại dựa theo "Tên" của chúng (theo bảng chữ cái). Gợi ý: C++ hỗ trợ so sánh chuỗi bằng dấu `>`.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Thêm tính năng "4. Bảng xếp hạng" vào Project Quản lý Sinh Viên. Sử dụng Bubble Sort để tự động xếp sinh viên điểm từ Cao xuống Thấp trước khi gọi vòng lặp in danh sách ra màn hình.
+
+**6. Checklist cuối buổi**
+
+* [ ] Khi hoán đổi (swap) 2 struct, ta dùng biến trung gian kiểu gì? (Kiểu `int` hay kiểu `Struct`)?
+* [ ] Biến `swapped` giúp thuật toán Bubble Sort thông minh hơn ở điểm nào?
+
+---
+
+### Buổi 28 - Selection Sort và Insertion Sort
+
+**1. Mục tiêu buổi học**
+
+* Hiểu Selection Sort chọn phần tử nhỏ/lớn nhất đưa về đúng vị trí.
+
+
+* Hiểu Insertion Sort chèn phần tử vào dãy đã sắp xếp.
+
+
+* Biết so sánh hai cách sắp xếp bằng mô phỏng từng bước.
+
+
+* Biết sắp xếp danh sách số và danh sách struct.
+
+
+* Biết khi nào code sắp xếp tự viết giúp học sinh hiểu bản chất.
+
+
+* Học sinh viết được Selection Sort và Insertion Sort cơ bản.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Selection Sort (Sắp xếp chọn):** Nếu Bubble Sort là đổi chỗ liên tục các cặp đứng cạnh nhau, thì Selection Sort tĩnh lặng hơn. Nó dùng vòng lặp nhìn lướt qua toàn bộ mảng để TÌM ra phần tử nhỏ nhất. Sau đó, nó mới tiến hành đổi chỗ phần tử đó với vị trí đầu tiên. Cứ như thế tìm cái nhỏ nhì, nhỏ ba... Thuật toán này số lần hoán đổi (Swap) ít hơn hẳn Bubble Sort.
+* **Insertion Sort (Sắp xếp chèn):** Đây là cách bạn chơi bài Tiến Lên. Khi bạn rút một lá bài mới lên, bạn nhìn dãy bài đang có trên tay, trượt lá bài mới dọc theo dãy, và "nhét" nó vào đúng khe hở giữa hai lá bài sao cho giữ nguyên thứ tự.
+> `[📸 Hình ảnh ví dụ: Mô phỏng người chơi bài Tiến lên. Trên tay cầm dãy bài (3, 5, 8). Rút được lá bài 6. Lá bài 6 được trượt qua số 8 và chèn vào khe giữa số 5 và số 8 (Minh họa Insertion Sort)]`
+
+
+* **So sánh:**
+* *Bubble Sort:* Dễ viết nhất, nhưng chạy chậm nhất nếu mảng bị ngược hoàn toàn.
+* *Selection Sort:* Dễ tư duy (Tìm Min -> Swap), số lần tráo đổi ít, tốt cho mảng mà việc "nhấc lên hạ xuống" tốn sức.
+* *Insertion Sort:* Chạy cực nhanh (gần như tức thì) nếu mảng *gần như đã sắp xếp xong*.
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Selection Sort trên Struct (Xếp Giảm dần theo Điểm)**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct HocSinh { string ten; double diem; };
+
+void selectionSortGiamDan(vector<HocSinh> &ds) {
+    int n = ds.size();
+    
+    // Chỉ cần đi đến phần tử kế cuối
+    for (int i = 0; i < n - 1; i++) {
+        int viTriMax = i; // Đặt niềm tin ban đầu
+        
+        // Đi tìm phần tử có điểm cao nhất trong phần còn lại
+        for (int j = i + 1; j < n; j++) {
+            if (ds[j].diem > ds[viTriMax].diem) {
+                viTriMax = j; // Cập nhật người cao điểm hơn
+            }
+        }
+        
+        // Hoán đổi 1 lần duy nhất sau khi đã duyệt xong
+        if (viTriMax != i) {
+            HocSinh tam = ds[i];
+            ds[i] = ds[viTriMax];
+            ds[viTriMax] = tam;
+        }
+    }
+}
+
+```
+
+* **Ví dụ 2: Insertion Sort Cơ bản (Xếp Tăng dần theo Điểm)**
+
+```cpp
+void insertionSortTangDan(vector<HocSinh> &ds) {
+    int n = ds.size();
+    
+    // Bắt đầu từ lá bài thứ hai (index 1)
+    for (int i = 1; i < n; i++) {
+        HocSinh baiRutLen = ds[i]; // Rút lá bài i lên
+        int j = i - 1;
+        
+        // Dời các lá bài lớn hơn về bên phải để tạo khe trống
+        while (j >= 0 && ds[j].diem > baiRutLen.diem) {
+            ds[j + 1] = ds[j]; // Trượt bài sang phải
+            j = j - 1;
+        }
+        
+        // Nhét lá bài vừa rút vào khe hở tìm được
+        ds[j + 1] = baiRutLen; 
+    }
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Tạo một mảng lưu giá của 5 món hàng `vector<int> gia = {45, 12, 89, 5, 23};`. Hãy áp dụng thuật toán Selection Sort để sắp xếp mảng này tăng dần. Đừng quên đặt lệnh `cout` in mảng ra sau mỗi vòng lặp `i` để quan sát dòng chảy của thuật toán.
+* **Bài 2:** Dùng mảng ở Bài 1, nhưng thay bằng code Insertion Sort.
+* **Bài 3:** So sánh hiệu năng: Theo em, nếu mảng đầu vào là `{1, 2, 3, 4, 5}`, thuật toán Selection Sort có đi làm thao tác "Tìm Max" không? Còn Insertion Sort thì sao?
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Thay vì dùng Bubble Sort cho "Bảng Xếp Hạng", em hãy viết riêng một hàm `taoBangXepHang_SelectionSort(vector<SinhVien> ds)`. Hàm này nhận tham số là "Tham trị" (không có dấu `&`) để nó âm thầm photocopy mảng, sắp xếp trên bản copy và in ra, không làm thay đổi thứ tự danh sách gốc.
+
+**6. Checklist cuối buổi**
+
+* [ ] Selection Sort tìm ra cái lớn nhất/nhỏ nhất rồi mới làm động tác gì?
+* [ ] Ý tưởng "Chơi bài Tiến Lên" thuộc về thuật toán sắp xếp nào?
+* [ ] Em đã hiểu lý do tại sao lập trình viên cần biết tự viết code sắp xếp thủ công trước khi học các lệnh sắp xếp tự động của C++ chưa?
+
+
+
+
+Dưới đây là nội dung chi tiết từ **Buổi 29 đến Buổi 34**, giúp khép lại hoàn chỉnh **Giai đoạn 3 - Tìm kiếm, Sắp xếp và Xử lý danh sách**. Định dạng đã được thiết kế tối ưu để bạn sao chép thẳng vào Microsoft Word, kèm theo các khung gợi ý hình ảnh trực quan `[📸 Hình ảnh ví dụ: ...]`.
+
+---
+
+### Buổi 29 - Binary Search (Tìm kiếm nhị phân)
+
+**1. Mục tiêu buổi học**
+
+* Hiểu Binary Search chỉ dùng khi dữ liệu đã sắp xếp.
+
+
+* Biết biến left, right, mid.
+
+
+* Biết cập nhật khoảng tìm kiếm sau mỗi lần so sánh.
+
+
+* Biết xử lý tìm thấy và không tìm thấy.
+
+
+* Biết so sánh Binary Search với Linear Search.
+
+
+* Học sinh viết được Binary Search trên mảng/vector số đã sắp xếp.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* 
+**Điều kiện bắt buộc:** Binary Search (Tìm kiếm nhị phân) chạy cực kỳ nhanh, nhưng nó có một điểm yếu chí mạng: Dữ liệu bắt buộc phải được sắp xếp trước đó thì thuật toán mới hoạt động đúng.
+
+
+* **Ý tưởng thuật toán:** Tương tự như cách bạn tra từ điển. Nếu muốn tìm từ "Lập trình", bạn không lật từng trang từ đầu đến cuối (Linear Search). Bạn mở ngay giữa cuốn sách (biến `mid`). Nếu trang giữa là vần "M", bạn biết chắc chữ "L" nằm ở nửa bên trái. Bạn lập tức xé bỏ nửa bên phải (cập nhật lại `right`), và tiếp tục chia đôi nửa bên trái.
+
+
+> `[📸 Hình ảnh ví dụ: Mô phỏng Binary Search: Một cuốn từ điển đang được lật mở ở chính giữa. Các biến Left (chỉ trang đầu), Right (chỉ trang cuối) và Mid (chỉ trang giữa) đang di chuyển thu hẹp phạm vi tìm kiếm]`
+
+
+* **Ba biến kiểm soát:**
+* 
+`left`: Vị trí đầu tiên của phạm vi tìm kiếm.
+
+
+* 
+`right`: Vị trí cuối cùng của phạm vi tìm kiếm.
+
+
+* 
+`mid`: Vị trí nằm ngay chính giữa (`(left + right) / 2`).
+
+
+
+
+* **Vòng lặp:** Quá trình chia đôi lặp lại chừng nào `left <= right`. Nếu `left` vượt qua `right`, nghĩa là phạm vi tìm kiếm đã thu hẹp đến mức biến mất (không tìm thấy).
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Cài đặt Binary Search trên danh sách số**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int binarySearch(vector<int> ds, int x) {
+    int left = 0;
+    int right = ds.size() - 1;
+    
+    // Lặp khi phạm vi tìm kiếm vẫn còn hợp lệ
+    while (left <= right) {
+        int mid = (left + right) / 2; // Tìm điểm giữa
+        
+        if (ds[mid] == x) {
+            return mid; // Tìm thấy, trả về vị trí
+        } else if (ds[mid] < x) {
+            left = mid + 1; // x lớn hơn số ở giữa, vứt bỏ nửa bên trái
+        } else {
+            right = mid - 1; // x nhỏ hơn số ở giữa, vứt bỏ nửa bên phải
+        }
+    }
+    return -1; // Không tìm thấy
+}
+
+int main() {
+    // Mảng bắt buộc phải có thứ tự tăng dần
+    vector<int> danhSach = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
+    int soCanTim = 23;
+    
+    int ketQua = binarySearch(danhSach, soCanTim);
+    if (ketQua != -1) cout << "Tim thay " << soCanTim << " tai vi tri " << ketQua << "\n";
+    else cout << "Khong tim thay!\n";
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết chương trình có mảng `{10, 20, 30, 40, 50, 60}`. Yêu cầu người dùng nhập số cần tìm và dùng Binary Search để tìm.
+* **Bài 2:** Thử xáo trộn mảng ở Bài 1 thành `{50, 20, 60, 10, 30, 40}`. Chạy lại Binary Search và quan sát xem hàm có tìm ra kết quả đúng không để hiểu rõ lý do phải sắp xếp trước.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Viết chương trình quản lý kho hàng. Kho hàng có hàng ngàn mã sản phẩm đã được xếp tăng dần. Nhập `vector<int> maSP = {101, 105, 109, 200, 250, ...}`. Viết hàm Binary Search để tìm xem mã người dùng nhập có tồn tại hay không. So sánh với cách Linear Search.
+
+**6. Checklist cuối buổi**
+
+* [ ] Binary Search bắt buộc phải có điều kiện gì trước khi chạy?
+* [ ] Tại sao Binary Search lại được gọi là thuật toán "Chia để trị"?
+* [ ] Việc tính `mid = (left + right) / 2` có tác dụng gì?
+
+---
+
+### Buổi 30 - std::sort và comparator
+
+**1. Mục tiêu buổi học**
+
+* Biết dùng std::sort để sắp xếp nhanh trong C++.
+
+
+* Biết sort vector số tăng dần, giảm dần.
+
+
+* Biết viết comparator cho struct.
+
+
+* Biết sắp xếp theo một tiêu chí: điểm, tên, giá.
+
+
+* Hiểu std::sort là công cụ thực tế sau khi đã hiểu sắp xếp cơ bản.
+
+
+* Học sinh viết được sắp xếp danh sách học sinh/sản phẩm bằng std::sort.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* 
+**Tại sao cần `std::sort`?** Những thuật toán Bubble Sort hay Selection Sort rất tuyệt để rèn luyện tư duy thuật toán. Tuy nhiên, trong môi trường làm việc thực tế, dữ liệu có thể lên tới hàng triệu dòng. Các lập trình viên C++ luôn sử dụng hàm `std::sort` có sẵn vì nó siêu tốc và ổn định.
+
+
+* **Thư viện `<algorithm>`:** Để gọi được `std::sort`, bắt buộc phải include thư viện này.
+* **Cú pháp cơ bản:** `sort(vector.begin(), vector.end());` (Tự động sắp xếp tăng dần).
+* **Hàm so sánh (Comparator):** Khi sắp xếp những con số, C++ biết số 5 lớn hơn 3. Nhưng khi bạn sắp xếp một Danh sách `HocSinh` (Struct), C++ sẽ bị bối rối vì không biết nên xếp theo Điểm, xếp theo Mã hay xếp theo Tên. Lúc này ta phải tự viết một hàm "trọng tài" (Comparator) để dạy C++ cách so sánh 2 học sinh.
+
+
+> `[📸 Hình ảnh ví dụ: Một cái cân đĩa (Comparator) đang đặt 2 khối Struct HocSinh lên 2 bên. Hình ảnh minh họa việc lập trình viên đang dạy chiếc cân đó chỉ quan tâm đến trọng lượng của hộp (Điểm số) để quyết định bên nào nặng hơn]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Dùng sort cơ bản với danh sách số**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm> // Thư viện bắt buộc
+using namespace std;
+
+int main() {
+    vector<int> diem = {8, 2, 9, 4, 6};
+    
+    // Sort tự động từ điểm đầu đến điểm cuối (Tăng dần mặc định)
+    sort(diem.begin(), diem.end());
+    
+    cout << "Mang tang dan: ";
+    for (int i = 0; i < diem.size(); i++) cout << diem[i] << " ";
+    return 0;
+}
+
+```
+
+* **Ví dụ 2: Dùng Comparator xếp Danh sách Struct**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+struct SanPham { string ten; int gia; };
+
+// Hàm Trọng Tài (Comparator) dạy C++ cách so sánh 2 SP
+// Quy tắc: Return true nếu muốn SP a đứng trước SP b
+bool soSanhTheoGiaTangDan(SanPham a, SanPham b) {
+    return a.gia < b.gia; 
+}
+
+bool soSanhTheoGiaGiamDan(SanPham a, SanPham b) {
+    return a.gia > b.gia; // Đổi dấu > để xếp giảm dần
+}
+
+int main() {
+    vector<SanPham> ds = { {"Chuot", 150}, {"Ban Phim", 400}, {"Tai nghe", 250} };
+    
+    // Truyền tên hàm trọng tài vào làm tham số thứ 3
+    sort(ds.begin(), ds.end(), soSanhTheoGiaGiamDan);
+    
+    cout << "--- DANH SACH SAN PHAM (Giam dan) ---\n";
+    for (int i = 0; i < ds.size(); i++) {
+        cout << ds[i].ten << " - " << ds[i].gia << "\n";
+    }
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết hàm comparator `soSanhTheoTen` để dạy C++ sắp xếp cấu trúc `SanPham` dựa trên bảng chữ cái tên sản phẩm (Gợi ý: `return a.ten < b.ten;`). Áp dụng nó vào danh sách `vector`.
+
+
+* **Bài 2:** (Thử nghiệm) Thử xóa bỏ hàm Comparator ở tham số thứ 3 trong hàm `sort` khi đang truyền `ds.begin(), ds.end()`. Đọc thông báo lỗi dài ngoằng của trình biên dịch để hiểu tại sao Struct bắt buộc phải có Comparator.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Nâng cấp bảng xếp hạng của Project Quản lý Sinh Viên: Xóa bỏ Bubble Sort đã viết ở Buổi 27. Khai báo thư viện `<algorithm>`, viết một comparator tên là `xepDiemGiamDan` và thay thế toàn bộ bằng `std::sort`. Chạy lại chương trình để cảm nhận sự gọn gàng của code.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Hàm `std::sort` mặc định sắp xếp mảng theo thứ tự nào?
+* [ ] Hàm Comparator (Trọng tài) luôn trả về kiểu dữ liệu gì? (Gợi ý: `bool`).
+* [ ] Dấu hiệu nào trong hàm Comparator quyết định danh sách sẽ giảm dần?
+
+---
+
+### Buổi 31 - Lọc dữ liệu và thống kê
+
+**1. Mục tiêu buổi học**
+
+* Biết in báo cáo thống kê gọn, dễ đọc.
+
+
+* Biết kết hợp lọc với tìm kiếm và sắp xếp.
+
+
+* Biết kiểm tra danh sách rỗng trước khi thống kê.
+
+
+* Học sinh viết được chức năng báo cáo thống kê cho mini app.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Thống kê chuyên sâu:** Khi ứng dụng quản lý đã lớn, người chủ không muốn xem danh sách hàng ngàn sản phẩm. Họ chỉ muốn xem: "Có bao nhiêu món dưới 100k?", "Tổng tiền hàng hiện tại là bao nhiêu?".
+* **Kiểm tra rỗng:** Nguyên tắc sinh tồn khi viết hàm thống kê: Luôn luôn kiểm tra `if (ds.size() == 0) { báo lỗi và return; }` ngay dòng đầu tiên. Nếu mảng trống mà ta lại đem chia cho số lượng để tìm Trung bình, phần mềm sẽ báo lỗi chia cho 0 và sập ngay lập tức.
+
+
+* 
+**In báo cáo (Reporting):** Báo cáo phải gọn gàng, chia thành các phần rõ rệt, kết hợp những đường viền đẹp mắt bằng các dấu `=` hay `-` trên màn hình console.
+
+
+> `[📸 Hình ảnh ví dụ: Một mẫu Dashboard (bảng điều khiển) mini bằng giao diện đen trắng Console. Hiển thị dòng viền ngang ============, Tổng doanh thu, Số lượng SP và Trung bình giá nằm canh hàng dọc ngăn nắp]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Viết module Báo cáo Thống kê An toàn**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct SanPham { string ten; int gia; int soLuong; };
+
+void inBaoCaoThongKe(vector<SanPham> ds) {
+    // 1. Kiểm tra mảng rỗng
+    if (ds.size() == 0) {
+        cout << "Kho hang dang trong, khong the thong ke!\n";
+        return; 
+    }
+    
+    // 2. Tính toán
+    double tongGiaTriKho = 0;
+    int spGiaRe = 0; // Đếm số sản phẩm dưới 50k
+    
+    for (int i = 0; i < ds.size(); i++) {
+        tongGiaTriKho += (ds[i].gia * ds[i].soLuong);
+        if (ds[i].gia < 50000) spGiaRe++;
+    }
+    
+    // 3. Trình bày gọn, dễ đọc
+    cout << "\n====================================\n";
+    cout << "       BAO CAO THONG KE KHO        \n";
+    cout << "====================================\n";
+    cout << "- Tong mat hang: " << ds.size() << "\n";
+    cout << "- Tong gia tri kho: " << tongGiaTriKho << " VND\n";
+    cout << "- So luong mat hang gia re (< 50k): " << spGiaRe << "\n";
+    cout << "====================================\n";
+}
+
+```
+
+* **Ví dụ 2: Kết hợp Lọc và Sắp xếp**
+
+```cpp
+#include <algorithm> // Để gọi lệnh sort
+// Viết comparator sắp xếp số lượng giảm dần
+bool theoSoLuong(SanPham a, SanPham b) { return a.soLuong > b.soLuong; }
+
+void thongKeTonKhoNhieu(vector<SanPham> ds) {
+    // 1. Lọc: Nhét các sản phẩm thỏa điều kiện vào một danh sách tạm
+    vector<SanPham> dsLoc;
+    for (int i = 0; i < ds.size(); i++) {
+        if (ds[i].soLuong > 100) { // Tồn kho lớn
+            dsLoc.push_back(ds[i]);
+        }
+    }
+    
+    // 2. Sắp xếp danh sách tạm đó
+    sort(dsLoc.begin(), dsLoc.end(), theoSoLuong);
+    
+    // 3. In ra Báo cáo
+    cout << "\n--- TOP HANG TON KHO NHIEU ---\n";
+    for (int i = 0; i < dsLoc.size(); i++) {
+        cout << dsLoc[i].ten << " (Ton: " << dsLoc[i].soLuong << ")\n";
+    }
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Khởi tạo một `vector<HocSinh>` chứa danh sách 5 bạn (Mã, Tên, Điểm). Viết hàm thống kê in ra màn hình Bảng báo cáo gồm: Tổng số học sinh Khá Giỏi (>= 6.5), Tổng số học sinh cần Cố gắng (< 6.5), và Điểm trung bình của toàn lớp.
+
+
+* 
+**Bài 2:** Thử truyền một `vector` trống không có phần tử nào vào hàm ở Bài 1, quan sát xem hàm báo lỗi an toàn (nhờ `size() == 0`) hay bị sập (crash).
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Cập nhật tính năng Menu Thống kê cho Project cá nhân. Yêu cầu báo cáo phải sử dụng các dấu `====` và `----` để căn chỉnh giao diện console trông như một tờ hóa đơn siêu thị.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Việc đầu tiên khi viết một hàm Thống Kê Toán Học lên danh sách là gì?
+* [ ] Muốn Lọc + Sắp xếp kết hợp, ta nên sắp xếp ngay trên mảng gốc hay tạo ra một mảng `vector` kết quả tạm thời?
+
+---
+
+### Buổi 32 - Sắp xếp nhiều tiêu chí
+
+**1. Mục tiêu buổi học**
+
+* Biết sắp xếp theo giá tăng dần, nếu bằng giá thì mã tăng dần.
+
+
+* Biết trình bày kết quả sau sắp xếp.
+
+
+* Biết tránh comparator sai logic.
+
+
+* Học sinh viết được sắp xếp danh sách struct theo 2 tiêu chí.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Xung đột khi xếp hạng:** Trong thực tế, có rất nhiều học sinh đạt cùng 9.0 điểm. Nếu chỉ sắp xếp theo điểm, thứ tự của các bạn đồng điểm sẽ lộn xộn. Lúc này ta cần Tiêu chí phụ (Tiêu chí 2): "Xếp theo điểm từ cao xuống thấp. Nhưng nếu 2 bạn bằng điểm nhau, thì xét tên theo bảng chữ cái A-Z".
+* **Xây dựng Logic Comparator:** Ta dùng cấu trúc `if - else if` bên trong hàm Comparator.
+* `if (diem khác nhau)` -> Xếp theo điểm.
+* 
+`if (diem bằng nhau)` -> Đi xem xét đến tên.
+
+
+
+
+* **Lỗi logic kinh điển (Sai Luật Trọng Tài):** Hàm Trọng tài phải trả về `false` nếu a và b hoàn toàn giống nhau. Đừng bao giờ viết `return a.diem >= b.diem;`. Chỉ được dùng dấu `>` hoặc `<` nghiêm ngặt, tuyệt đối không dùng `>=` hay `<=` trong Comparator của `std::sort`. Nếu cố tình dùng, chương trình sẽ báo lỗi "Segmentation Fault" (Lỗi bộ nhớ).
+
+
+> `[📸 Hình ảnh ví dụ: Sơ đồ luồng (Flowchart) của Comparator nhiều tiêu chí. Kim cương 1: So sánh Điểm -> Nếu bằng nhau rẽ sang Kim cương 2: So sánh Tên -> Trả về Kết quả True/False]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Comparator 2 tiêu chí (Giá tăng dần, Mã tăng dần)**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+struct SanPham { int ma; string ten; int gia; };
+
+// Trọng tài xử lý 2 tiêu chí
+bool soSanh2TieuChi(SanPham a, SanPham b) {
+    if (a.gia != b.gia) {
+        // Tiêu chí 1: Nếu giá khác nhau, xếp giá tăng dần
+        return a.gia < b.gia; 
+    } else {
+        // Tiêu chí 2: Nếu giá bằng nhau, xếp theo Mã số tăng dần
+        return a.ma < b.ma; 
+    }
+}
+
+int main() {
+    vector<SanPham> ds = {
+        {105, "Vo tap", 10000},
+        {101, "But bi", 5000},
+        {103, "But chi", 5000}, // Đồng giá với Bút bi
+        {102, "Gom", 8000}
+    };
+    
+    sort(ds.begin(), ds.end(), soSanh2TieuChi);
+    
+    cout << "--- DANH SACH SAU KHI XEP ---\n";
+    for (int i = 0; i < ds.size(); i++) {
+        // In định dạng thẳng cột, dễ nhìn
+        cout << "- Ma: " << ds[i].ma << " | Gia: " << ds[i].gia << " | Ten: " << ds[i].ten << "\n";
+    }
+    return 0;
+}
+
+```
+
+*Giải thích:* Nhờ Comparator nhiều tiêu chí, sản phẩm `But bi` (Mã 101) sẽ được xếp tự động nằm trên `But chi` (Mã 103) mặc dù cả 2 đồng giá 5000.
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Viết Comparator xếp danh sách Sinh viên: Tiêu chí 1 là Điểm số Giảm Dần. Nếu Điểm số bằng nhau, xét Tiêu chí 2 là Tên Tăng Dần (A->Z).
+* **Bài 2:** (Tìm lỗi) Cho đoạn code `bool cmp(HocSinh a, HocSinh b) { return a.diem >= b.diem; }`. Hãy chỉ ra tại sao nó sai logic và sửa lại cho đúng quy tắc của C++.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Tạo một danh sách 5 mặt hàng tạp hóa (Mã SP, Tên SP, Giá tiền, Số lượng). Viết Comparator để sắp xếp ưu tiên hiển thị những món "Gần hết hàng" lên trên (Số lượng tăng dần). Nếu 2 món có số lượng bằng nhau, ưu tiên đưa món "Giá trị cao" lên trước (Giá giảm dần).
+
+**6. Checklist cuối buổi**
+
+* [ ] Làm sao để C++ biết khi nào thì cần xét đến tiêu chí thứ 2?
+* [ ] Ký hiệu tuyệt đối bị cấm sử dụng trong Comparator `std::sort` là gì?
+
+---
+
+### Buổi 33 - Tích hợp mini app quản lý
+
+**1. Mục tiêu buổi học**
+
+* Biết gom các chức năng đã học thành một chương trình quản lý.
+
+
+* Có menu: thêm, hiển thị, tìm kiếm, sửa, xóa, sắp xếp, thống kê, thoát.
+
+
+* Biết tách code thành các hàm riêng.
+
+
+* Biết dùng vector làm dữ liệu chính.
+
+
+* Biết kiểm tra lỗi nhập cơ bản.
+
+
+* Học sinh hoàn thành mini app quản lý phiên bản đầu.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Lắp ráp mô hình (Integration):** 32 buổi trước, chúng ta luyện tập rèn rũa từng mảnh ghép rời rạc: Hàm thêm, Hàm xóa, Cấu trúc `if-else`, Vòng lặp. Buổi hôm nay là lúc lắp ráp toàn bộ chúng lại thành một cỗ máy Mini App chạy hoàn chỉnh.
+
+
+* **Quản lý dữ liệu tập trung:** Tạo duy nhất một biến `vector<Struct> dataMain;` ở bên trong hàm `main()`. Sau đó, truyền tham chiếu biến này vào mọi nhánh của chức năng thông qua Menu.
+
+
+* **Bắt lỗi cơ bản (Validation):** Không được để người dùng nhập Giá tiền là số âm, hoặc nhập Mã là chữ. Trước khi đẩy struct vào mảng bằng `push_back()`, phải dùng lệnh `if` để chặn các thông tin vô lý đó lại.
+
+
+> `[📸 Hình ảnh ví dụ: Một bản vẽ lắp ráp Robot. Các bộ phận rời rạc (Hàm Thêm, Hàm Xóa, Hàm Thống Kê) kết nối vào khung trục trung tâm (Hàm Main chứa Switch-Case) để tạo thành một Mini App hoàn chỉnh]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Khung sườn Mini App hoàn chỉnh**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+struct MonAn { int ma; string ten; }; // Dữ liệu chính
+
+// Các hàm tách biệt (Ví dụ viết ngắn gọn, thực tế viết dài như các bài trước)
+void themMon(vector<MonAn> &ds) {
+    MonAn m;
+    cout << "Nhap Ma: "; cin >> m.ma;
+    if (m.ma < 0) { // Bắt lỗi cơ bản
+        cout << "Ma khong duoc am!\n"; return; 
+    }
+    cin.ignore();
+    cout << "Nhap Ten: "; getline(cin, m.ten);
+    ds.push_back(m);
+    cout << "Da them!\n";
+}
+
+void xemDanhSach(vector<MonAn> ds) {
+    if(ds.empty()) { cout << "Rong!\n"; return; }
+    for(int i=0; i<ds.size(); i++) cout << ds[i].ma << " - " << ds[i].ten << "\n";
+}
+
+int main() {
+    vector<MonAn> thucDon; // Trái tim của ứng dụng
+    int chon;
+    
+    do {
+        cout << "\n=== APP QUAN LY THUC DON ===\n";
+        cout << "1. Them Mon\n2. Xem Danh Sach\n3. Thoat\n";
+        cout << "Chon: "; cin >> chon;
+        
+        // Điều phối dữ liệu qua các hàm
+        switch(chon) {
+            case 1: themMon(thucDon); break;
+            case 2: xemDanhSach(thucDon); break;
+            case 3: cout << "Dang thoat...\n"; break;
+            default: cout << "Loi, chon lai!\n";
+        }
+    } while (chon != 3);
+    
+    return 0;
+}
+
+```
+
+*Ghi chú:* Nhấn mạnh với học sinh rằng một Mini App thực tế sẽ có `case` kéo dài từ 1 đến 8 (bao gồm cả Sửa, Xóa, Sắp xếp, Thống kê).
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Dành 45 phút hoàn thiện lại mã nguồn của Project "Quản lý Sinh Viên/Sản phẩm" mà học sinh đã làm lẻ tẻ từ buổi 23 đến nay. Gom tất cả vào chung một file `.cpp`.
+* **Bài 2:** Thêm validation (Kiểm tra lỗi nhập) vào hàm `them()`: Điểm số của sinh viên không được phép vượt ra khỏi giới hạn `0 - 10`. Nếu người dùng nhập sai, in ra "Điểm không hợp lệ, hủy thêm mới".
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Tự kiểm thử (Test) ứng dụng của mình. Hãy chạy ứng dụng lên, nhập liên tục các tùy chọn sai (ví dụ: đòi xóa một mã không tồn tại, đòi xem danh sách khi danh sách chưa có gì). Ghi chép lại các lỗi gặp phải để buổi sau xử lý.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Hàm `main()` của bạn có vượt quá 50 dòng code không? (Nếu có là bạn quên "tách hàm" rồi đấy!)
+* [ ] Ứng dụng có bị sập khi người dùng đòi In thống kê trong lúc danh sách chưa có dữ liệu không?
+
+---
+
+### Buổi 34 - Ôn tập và sửa lỗi logic
+
+**1. Mục tiêu buổi học**
+
+* Ôn tập toàn bộ xử lý danh sách, tìm kiếm, sắp xếp.
+
+
+* Biết phân biệt lỗi biên dịch và lỗi logic.
+
+
+* Biết dùng cout trung gian để debug.
+
+
+* Biết tạo bộ test nhỏ để kiểm tra chương trình.
+
+
+* Biết sửa lỗi sai điều kiện, sai chỉ số, sai thứ tự sắp xếp.
+
+
+* Học sinh sửa được mini app để chạy ổn định hơn.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Lỗi biên dịch (Syntax Error):** Là những lỗi chữ màu ĐỎ do viết sai ngữ pháp (quên dấu chấm phẩy, khai báo biến sai tên). Trình biên dịch C++ sẽ cấm không cho bạn chạy. Lỗi này rất dễ sửa vì máy tính đã chỉ điểm đích danh số dòng bị lỗi.
+
+
+* **Lỗi Logic (Bugs):** Đây là ác mộng thực sự. Chương trình không hiện lỗi đỏ, chạy bình thường, nhưng kết quả tính toán sai bét (ví dụ: Tính tổng 2+2 lại ra 5). Lỗi này do chính tư duy con người bị sai (sai điều kiện `if`, sai công thức, sai chỉ số `i`).
+
+
+* **Kỹ thuật Debug bằng `cout`:** Để truy bắt lỗi Logic, lập trình viên sẽ chèn các lệnh `cout` (đóng vai trò như các trạm kiểm soát) vào giữa các hàm. Việc này giúp theo dõi xem biến dữ liệu đang mang giá trị bao nhiêu tại một thời điểm cụ thể.
+
+
+* **Test Case nhỏ:** Đừng bao giờ nhập 100 thông tin để test ứng dụng. Hãy tạo sẵn một bộ 3 dữ liệu Test siêu nhỏ bằng cách code cứng (hardcode) trực tiếp vào `vector` trong `main`. Test xong thấy code đúng thì mới xóa bộ test đó đi và đưa cho người dùng nhập thật.
+
+
+> `[📸 Hình ảnh ví dụ: Một thám tử cầm kính lúp (đại diện cho lệnh cout trung gian) soi vào một đường ống (Luồng dữ liệu code) để tìm ra một con bọ (Bug/Lỗi logic) đang làm tắc đường ống]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Truy bắt lỗi logic bằng `cout` trung gian**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n = 5;
+    int tong = 1; // BUG LOGIC: Đáng ra tổng phải bắt đầu từ 0
+    
+    cout << "--- KHOI DONG DEBUG ---\n";
+    for (int i = 1; i <= n; i++) {
+        tong = tong + i;
+        // Chèn cout vào để nhìn xuyên thấu dữ liệu
+        cout << "[DEBUG] Vong lap " << i << ": tong hien tai = " << tong << "\n";
+    }
+    
+    cout << "Ket qua cuoi cung: " << tong << "\n"; 
+    return 0;
+}
+
+```
+
+*Giải thích:* Khi chạy, lập trình viên sẽ thấy `[DEBUG] Vong lap 1: tong hien tai = 2`. Từ đó lập tức phát hiện ra lỗi bất thường vì `1 + 1` không thể ra `2` nếu tổng ban đầu là `0`, từ đó sửa lại `int tong = 0;`.
+
+* **Ví dụ 2: Tạo bộ test nhỏ (Hardcode) đỡ tốn công gõ phím**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Mon { int id; };
+
+int main() {
+    // TẠO BỘ TEST ĐỂ KIỂM TRA HÀM (Đỡ phải mất 5p nhập tay từng món)
+    vector<Mon> testDB = { {1}, {5}, {3} }; 
+    
+    // Gọi hàm sắp xếp cần test
+    // sapXep(testDB); 
+    
+    cout << "Neu in ra 1 3 5 thi ham SapXep viet dung: \n";
+    for(int i=0; i<testDB.size(); i++) cout << testDB[i].id << " ";
+    
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Giáo viên cung cấp một đoạn code tính điểm trung bình (cố tình viết sai công thức cộng dồn). Học sinh phải chèn lệnh `cout` vào trong vòng lặp để tìm ra dòng code gây lỗi.
+* 
+**Bài 2:** Dùng bộ test cứng (hardcode), kiểm tra chéo các hàm Xóa `erase()` của mình xem có bị lỗi "Xóa sai chỉ số" không (vd nhập xóa vị trí 1 nhưng máy tính lại bay mất vị trí 0).
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Chuẩn bị tinh thần và làm sạch toàn bộ Code của Mini App cá nhân. Khắc phục tất cả những lỗi vặt (nhập sai chữ, sai khoảng trắng, rớt phần mềm) để ứng dụng có thể chạy mượt mà, không bao giờ bị Crash.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Lỗi logic nguy hiểm hơn lỗi cú pháp (biên dịch) ở chỗ nào?
+* [ ] Làm sao để biết một vòng lặp `for` có đang chạy đúng số vòng hay không mà không cần đoán? (Dùng `cout`!).
+* [ ] Chúc mừng! Giai đoạn 3 đã hoàn tất. Bạn đã sở hữu một phần mềm quản lý chạy được trên console rồi đấy! Sẵn sàng bảo vệ dự án nhé.
+
+
+
+Dưới đây là nội dung chi tiết cho **Giai đoạn 4 - Dự án Demo và Bảo vệ sản phẩm** (từ Buổi 35 đến Buổi 40), cũng là chặng đường cuối cùng của khóa học. Giai đoạn này tập trung hoàn toàn vào kỹ năng làm phần mềm thực tế, kỹ năng thuyết trình và hoàn thiện tư duy logic.
+
+Các định dạng và khung hình ảnh minh họa `[📸 Hình ảnh ví dụ: ...]` tiếp tục được giữ nguyên để bạn dễ dàng sao chép và trình bày vào Microsoft Word.
+
+---
+
+## ============================================================
+
+## GIAI ĐOẠN 4 - DỰ ÁN DEMO VÀ BẢO VỆ SẢN PHẨM
+
+## ============================================================
+
+### Buổi 35 - Chọn đề tài dự án cuối khóa
+
+**1. Mục tiêu buổi học**
+
+* Hiểu yêu cầu cuối khóa là phải có một sản phẩm demo chạy được và có thể bảo vệ được trước lớp.
+
+
+* Biết cách chọn đề tài vừa sức với học sinh 15 tuổi: quản lý học sinh, quản lý sách, quản lý sản phẩm, quản lý chi tiêu, hoặc làm một ứng dụng quiz (câu hỏi trắc nghiệm) trên console.
+
+
+* Biết xác định rõ đối tượng người dùng, kiểu dữ liệu cần lưu, và các chức năng chính.
+
+
+* Biết chắt lọc, chọn ra 4 đến 6 chức năng cần làm nhất để tránh dự án bị quá tải.
+
+
+* Biết cách viết một đoạn mô tả ngắn cho sản phẩm.
+
+
+* Cuối buổi, học sinh chốt được đề tài và danh sách chức năng phù hợp.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* 
+**Tại sao phải làm dự án cuối khóa?** Học lập trình không chỉ là học thuộc code, mà là dùng code để giải quyết vấn đề thực tế. Dự án giúp em tổng hợp tất cả kiến thức từ Buổi 1 đến nay.
+
+
+* **Xác định bài toán (Scope of Work):** Đừng làm phần mềm quá to (như làm game đồ họa hay làm mạng xã hội). Hãy làm phần mềm nhỏ nhưng chạy hoàn hảo.
+* **Mô hình 3 câu hỏi cốt lõi:**
+1. *Phần mềm này dành cho ai?* (Ví dụ: Dành cho thủ thư thư viện).
+2. *Dữ liệu lưu cái gì?* (Ví dụ: Lưu Mã sách, Tên sách, Tác giả).
+3. *Họ có thể làm gì với dữ liệu đó?* (Ví dụ: Thêm sách, Xóa sách, Tìm kiếm sách).
+
+
+> `[📸 Hình ảnh ví dụ: Bảng Canvas đơn giản chia làm 3 cột: Người dùng (Hình người) - Dữ liệu (Hình kho dữ liệu) - Tính năng (Hình bánh răng)]`
+
+
+
+**3. Ví dụ minh họa (Bản mô tả dự án mẫu)**
+
+* **Dự án: Ứng dụng Quản lý Chi tiêu Cá nhân**
+* **Mô tả ngắn:** "Đây là ứng dụng console giúp học sinh ghi chép lại số tiền tiêu vặt mỗi ngày để quản lý tài chính tốt hơn."
+* **Cấu trúc Dữ liệu (`Struct`):**
+* `int id` (Mã giao dịch)
+* `string tenGiaoDich` (Ví dụ: Mua trà sữa, Mua bút)
+* `int soTien`
+* `string loai` (Thu hoặc Chi)
+
+
+* **Danh sách 5 chức năng chính:**
+1. Xem lịch sử giao dịch.
+2. Thêm khoản thu/chi mới.
+3. Xóa một giao dịch bị nhập sai (theo ID).
+4. Thống kê tổng tiền hiện có (Tổng Thu - Tổng Chi).
+5. Sắp xếp các giao dịch theo số tiền từ cao xuống thấp.
+
+
+
+**4. Bài tập thực hành trên lớp**
+
+* **Bài 1:** Dựa trên ví dụ mẫu, em hãy tự viết ra giấy một bản nháp mô tả cho dự án "Quản lý Thư viện Sách" của trường em. Liệt kê 5 chức năng chính.
+
+
+* **Bài 2:** Trình bày ý tưởng ngắn gọn (Elevator pitch) trong 2 phút với giáo viên hoặc bạn ngồi cạnh.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Suy nghĩ nghiêm túc và viết ra Bản kế hoạch chốt Đề tài cuối khóa của chính em. Liệt kê rõ: Tên ứng dụng, mô tả ngắn, danh sách các biến trong `struct`, và ít nhất 4 chức năng chính sẽ code.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Em đã hiểu sản phẩm demo cuối khóa yêu cầu giao diện gì chưa? (Giao diện Console C++) .
+
+
+* [ ] Đề tài em chọn có nằm trong giới hạn 4 đến 6 chức năng không?.
+
+
+
+---
+
+### Buổi 36 - Thiết kế tính năng và cấu trúc file code
+
+**1. Mục tiêu buổi học**
+
+* Biết chia sản phẩm thành các phần logic: phần chứa dữ liệu, phần chứa hàm xử lý, phần menu hiển thị, và file lưu trữ txt.
+
+
+* Biết thiết kế `struct` phù hợp với đề tài đã chọn.
+
+
+* Biết lập danh sách các hàm cần có trước khi code.
+
+
+* Biết vẽ luồng chạy của chương trình bằng các bước tuần tự.
+
+
+* Biết tạo file code ban đầu (skeleton code) có bộ khung rõ ràng.
+
+
+* Học sinh tự tạo được bộ khung code `skeleton` cho dự án cuối khóa của mình.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Quy tắc Kiến trúc phần mềm:** Đừng viết một mạch từ trên xuống dưới trong hàm `main()`. Hãy chia code ra thành 3 khu vực (Blocks):
+* *Khu vực 1:* Khai báo thư viện và `struct`.
+* *Khu vực 2:* Khai báo tên các hàm (Prototype) và viết thân hàm.
+* *Khu vực 3:* Hàm `main()` chỉ chứa Menu và lệnh gọi hàm.
+> `[📸 Hình ảnh ví dụ: Sơ đồ hình khối minh họa Cấu trúc file Code. Khối đỉnh: Libraries & Struct. Khối giữa: Functions (Thêm, Sửa, Xóa). Khối đáy: Main Menu (Switch-case)]`
+
+
+
+
+* **Skeleton Code (Code khung xương):** Là viết sẵn vỏ bọc của các hàm nhưng bên trong chưa có logic tính toán. Việc này giúp chương trình chạy được Menu ngay lập tức mà chưa cần code chi tiết.
+
+**3. Ví dụ minh họa (Tạo Skeleton Code)**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// 1. DỮ LIỆU
+struct Sach { int ma; string ten; };
+vector<Sach> thuVien;
+
+// 2. KHUNG HÀM (Chưa có ruột)
+void hienThiMenu() {
+    cout << "\n--- QUAN LY THU VIEN ---\n";
+    cout << "1. Xem sach\n2. Them sach\n0. Thoat\n";
+    cout << "Chon: ";
+}
+
+void xemSach() {
+    cout << "[He thong]: Dang in danh sach...\n"; // Thông báo giả
+}
+
+void themSach() {
+    cout << "[He thong]: Dang mo chuc nang them...\n";
+}
+
+// 3. MAIN (Điều phối)
+int main() {
+    int chon;
+    do {
+        hienThiMenu();
+        cin >> chon;
+        switch (chon) {
+            case 1: xemSach(); break;
+            case 2: themSach(); break;
+            case 0: cout << "Tam biet!\n"; break;
+            default: cout << "Nhap sai!\n"; break;
+        }
+    } while (chon != 0);
+    return 0;
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* 
+**Bài 1:** Áp dụng Lý thuyết thiết kế file code, em hãy gõ toàn bộ khung xương (Skeleton code) cho đề tài dự án của em vào máy tính.
+
+
+* **Bài 2:** Chạy thử chương trình. Bấm lần lượt các phím số trong Menu xem các dòng chữ "[Hệ thống]: Đang..." có hiện ra đúng như thiết kế không.
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Bổ sung toàn bộ các biến cấu trúc vào `struct` dự án của em cho đầy đủ. (Ví dụ: `Sach` thì thêm `tacGia`, `namXuatBan`, `giaTien`).
+
+**6. Checklist cuối buổi**
+
+* [ ] Skeleton code (Code khung xương) có lợi ích gì khi làm dự án lớn?
+* [ ] Em đã hoàn thiện việc lập danh sách các hàm cần có cho đề tài của mình chưa?.
+
+
+
+---
+
+### Buổi 37 - Xây chức năng chính của sản phẩm
+
+**1. Mục tiêu buổi học**
+
+* Biết ưu tiên thời gian làm các chức năng cốt lõi trước (Core features).
+
+
+* Biết viết hoàn chỉnh chức năng thêm, hiển thị, tìm kiếm cho dự án.
+
+
+* Biết cách tự kiểm tra sau khi code xong mỗi chức năng nhỏ.
+
+
+* Biết tách hàm để code không bị quá dài, dễ nhìn.
+
+
+* Biết lưu ý đặt tên biến, tên hàm rõ ràng để dễ bảo vệ trước giáo viên.
+
+
+* Học sinh có được phiên bản demo đầu tiên chạy được với chức năng chính.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Làm Core Feature trước:** Nếu ứng dụng của bạn không thể "Thêm" dữ liệu và "Xem" dữ liệu, thì các chức năng Sắp xếp hay Thống kê hoàn toàn vô nghĩa. Do đó, phải làm Thêm và Xem trước tiên.
+
+
+* **Kỹ thuật Đổ Bê Tông (Code Từng Phần):** Code xong hàm `themDuLieu()`, đừng viết tiếp hàm `xoaDuLieu()` vội. Hãy chạy thử phần mềm, tự tay nhập 3 món dữ liệu xem chương trình có bị lỗi (Crash) hay không. Chắc chắn đúng rồi mới đi làm hàm tiếp theo.
+
+
+* **Quy tắc Tên biến bảo vệ:** Khi lên bảo vệ dự án, giáo viên sẽ hỏi "Biến này dùng làm gì?". Nếu bạn đặt tên `int x;`, `string y;`, bạn sẽ tự làm khó mình. Hãy đặt `int maSinhVien;`, `string tenSanPham;` để nhìn vào là tự trả lời được.
+
+
+> `[📸 Hình ảnh ví dụ: Bảng so sánh 2 đoạn code: Một bên dùng tên biến a, b, c lộn xộn. Một bên dùng tên biến soTien, hoTen rõ ràng. Có dấu tick xanh ủng hộ bên rõ ràng]`
+
+
+
+**3. Ví dụ minh họa (Hướng dẫn cách ráp ruột vào Skeleton)**
+
+```cpp
+// Lấy hàm themSach() từ Buổi 36 và "đắp thịt" vào khung xương
+void themSach(vector<Sach> &ds) {
+    Sach sMoi;
+    cout << "\n--- NHAP THONG TIN SACH MOI ---\n";
+    cout << "Nhap ma sach (So): "; 
+    cin >> sMoi.ma;
+    
+    cin.ignore(); // Tránh trôi lệnh
+    
+    cout << "Nhap ten sach: "; 
+    getline(cin, sMoi.ten);
+    
+    ds.push_back(sMoi); // Lưu vào kho
+    cout << "=> Them sach thanh cong!\n";
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* 
+**Bài 1:** Dành 1 tiếng trên lớp để tập trung lập trình hoàn chỉnh phần "Ruột" cho 2 chức năng quan trọng nhất của em: Hàm Thêm dữ liệu và Hàm In dữ liệu ra màn hình.
+
+
+* **Bài 2:** Liên tục biên dịch (Compile) và dùng thử. Dùng lệnh `cout` trung gian để bắt các lỗi logic nếu có.
+
+
+
+**5. Bài tập về nhà**
+
+* 
+**Bài 1:** Hoàn thiện nốt chức năng Tìm kiếm (Theo Mã hoặc Theo Tên) và chức năng Xóa (theo Mã). Tới đây, em đã có một ứng dụng CRUD hoàn chỉnh.
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Tại sao không nên gõ code 10 hàm cùng một lúc rồi mới chạy thử?.
+
+
+* [ ] Phiên bản Demo của em hiện tại đã cho phép Thêm và Xem dữ liệu trơn tru chưa?.
+
+
+
+---
+
+### Buổi 38 - Kiểm tra dữ liệu nhập và làm đẹp output
+
+**1. Mục tiêu buổi học**
+
+* Biết kiểm tra dữ liệu đầu vào: dữ liệu rỗng, sai kiểu, hoặc nằm ngoài khoảng cho phép.
+
+
+* Biết xử lý khi người dùng chọn sai Menu.
+
+
+* Biết in danh sách thành dạng bảng kẻ khung gọn gàng, dễ nhìn.
+
+
+* Biết thêm các thông báo thành công/thất bại rõ ràng cho người dùng.
+
+
+* Biết cách tự test các trường hợp người dùng cố tình nhập sai.
+
+
+* Học sinh làm cho sản phẩm dễ dùng hơn và dễ lấy điểm cao khi demo.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Validate Dữ Liệu (Phòng chống phá hoại):** Một ứng dụng "sống" được ngoài đời là ứng dụng không bị sập khi khách hàng cố tình nhập sai. Nếu ứng dụng yêu cầu nhập "Điểm (0-10)" mà khách nhập số `-5` hoặc `99`, phần mềm phải biết từ chối và bắt nhập lại bằng vòng lặp `while`.
+
+
+* **Trải nghiệm người dùng (UX):** Sau khi xóa dữ liệu, đừng để màn hình im lặng. Hãy in ra dòng chữ xanh/đỏ "Đã xóa thành công!" hoặc "Lỗi: Mã không tồn tại!".
+
+
+* **Giao diện bảng (UI Console):** Sử dụng các ký tự đặc biệt như `|` và `=` kết hợp với khoảng cách để tạo thành một bảng tính giả lập trên màn hình đen. Điều này làm tăng độ chuyên nghiệp lên rất nhiều.
+
+
+> `[📸 Hình ảnh ví dụ: Màn hình Console hiển thị một bảng thông tin được căn chỉnh lề hoàn hảo bằng các dấu gạch ngang (---) và dấu sổ dọc (|), trông giống như một bảng Excel thu nhỏ]`
+
+
+
+**3. Ví dụ minh họa**
+
+* **Ví dụ 1: Vòng lặp bắt lỗi nhập dữ liệu**
+
+```cpp
+void themDiemChoHocSinh() {
+    double diem;
+    // Bắt người dùng nhập đến khi nào đúng thì thôi
+    while (true) {
+        cout << "Nhap diem (0.0 den 10.0): ";
+        cin >> diem;
+        if (diem >= 0.0 && diem <= 10.0) {
+            break; // Hợp lệ, thoát vòng lặp
+        }
+        cout << "=> LOI: Diem phai nam trong khoang 0-10. Moi nhap lai!\n";
+    }
+    // Code lưu điểm ở đây...
+}
+
+```
+
+* **Ví dụ 2: Trình bày Output dạng Bảng**
+
+```cpp
+void inDanhSachDep() {
+    cout << "\n============================================\n";
+    cout << "| MA SP | TEN SAN PHAM         | GIA TIEN  |\n";
+    cout << "============================================\n";
+    
+    // Giả sử có 1 dòng dữ liệu
+    cout << "| 101   | Ban phim co Logitech | 1500000   |\n";
+    cout << "| 102   | Chuot may tinh       | 500000    |\n";
+    
+    cout << "============================================\n";
+}
+
+```
+
+**4. Bài tập thực hành trên lớp**
+
+* 
+**Bài 1:** Áp dụng vòng lặp kiểm tra lỗi cho dự án của em: Không cho phép nhập tuổi là số âm, không cho phép nhập giá tiền nhỏ hơn 0.
+
+
+* 
+**Bài 2:** Thiết kế lại hàm `hienThiDanhSach()` của em sao cho kết quả in ra được nằm gọn gàng trong các đường viền `===` và `|`.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Cố tình nhập sai Menu, nhập sai ID khi tìm kiếm, nhập chữ vào nơi yêu cầu số. Sửa hết các lỗi vặt đó để hoàn thiện 100% mã nguồn dự án. (Đây là buổi cuối cùng được động vào code).
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Ứng dụng của em có báo lỗi thân thiện khi người dùng nhập sai ID không?.
+
+
+* [ ] Danh sách in ra màn hình có dễ nhìn và thẳng cột chưa?.
+
+
+
+---
+
+### Buổi 39 - Chuẩn bị kịch bản demo
+
+**1. Mục tiêu buổi học**
+
+* Biết chuẩn bị dữ liệu mẫu (Hardcode hoặc File) cho phần demo.
+
+
+* Biết viết kịch bản demo theo thứ tự: giới thiệu, chức năng, tình huống sử dụng, kết quả.
+
+
+* Biết chọn 3 đến 5 tính năng nổi bật nhất để trình bày.
+
+
+* Biết chuẩn bị phương án dự phòng nếu chương trình bất ngờ bị lỗi khi đang demo.
+
+
+* Biết giải thích code ở mức tổng quan (dùng struct nào, vector là gì, hàm gì, thuật toán tìm kiếm/sắp xếp).
+
+
+* Học sinh có kịch bản demo trên tay và bắt đầu tập trình bày sản phẩm.
+
+
+
+**2. Lý thuyết chi tiết**
+
+* **Đừng bắt khán giả chờ đợi:** Khi lên bục demo, đừng dành 5 phút chỉ để hì hục gõ tay thêm 10 sinh viên vào danh sách. Hãy dùng File Text (như học ở Buổi 22) để tự động nạp sẵn 10 sinh viên ngay khi bật chương trình. Bạn chỉ cần nhập bằng tay 1 sinh viên duy nhất để biểu diễn chức năng Thêm.
+
+
+* **Kịch bản Demo (Demo Script):** * *Mở đầu:* Lời chào, Tên em là, Tên dự án là, Nó giải quyết vấn đề gì?
+* *Trình diễn:* Trình bày "Tình huống" thay vì đọc tính năng. (Đừng nói: "Sau đây em bấm phím số 2 để tìm". Hãy nói: "Giả sử thủ thư muốn tìm quyển sách Đắc Nhân Tâm, em sẽ nhập tên vào đây...").
+* *Kết thúc:* Kết quả dữ liệu thay đổi, Cảm ơn.
+
+
+* **Tâm lý phòng ngự:** Lập trình viên luôn có rủi ro "Hiệu ứng Demo" (Code ở nhà chạy, lên lớp thì lỗi). Nếu máy báo lỗi, hãy bình tĩnh nói: "Phần này đang có chút lỗi nhỏ do em nhập sai định dạng, em xin phép bỏ qua chức năng này để đi tiếp sang phần Thống kê". Đừng đứng khóc hay hoảng loạn.
+
+
+> `[📸 Hình ảnh ví dụ: Một nam học sinh đứng tự tin bên cạnh màn hình máy chiếu, tay cầm một tờ giấy Note (Kịch bản Demo), tay kia chỉ vào màn hình giao diện Console]`
+
+
+
+**3. Ví dụ minh họa (Bản thảo Kịch bản Demo)**
+
+* 
+**Học sinh:** "Xin chào thầy và các bạn. Em tên là Nam. Dự án của em là App Quản Lý Kho Giày. Phần mềm giúp chủ shop biết đôi nào sắp hết để nhập thêm.".
+
+
+* **Học sinh:** "Đầu tiên, hệ thống đã tự nạp sẵn 5 đôi giày. Em xin mở Danh sách để mọi người xem (Bấm phím 1)..."
+* 
+**Học sinh:** "Bây giờ có lô hàng mới về, em sẽ dùng chức năng Thêm (Bấm phím 2). Em nhập tên giày là Nike, giá là 2 triệu. Mọi người thấy hệ thống đã báo thành công.".
+
+
+* 
+**Học sinh:** "Đặc biệt nhất, phần mềm của em có thuật toán Sắp xếp theo giá (Bấm phím 4). Như mọi người thấy, đôi Nike 2 triệu đã tự động được đẩy xuống cuối danh sách.".
+
+
+
+**4. Bài tập thực hành trên lớp**
+
+* 
+**Bài 1:** Tự thiết lập sẵn một file `data.txt` chứa thông tin 5 đối tượng mẫu để phần mềm đọc tự động lúc khởi chạy.
+
+
+* **Bài 2:** Viết kịch bản ra giấy. Lên bục giảng, cắm máy tính vào máy chiếu và tập demo nháp với giáo viên trong vòng 3 phút.
+
+
+
+**5. Bài tập về nhà**
+
+* **Bài 1:** Tập nói trước gương hoặc quay video lại bài thuyết trình. Tập luyện trả lời 3 câu hỏi: "Em dùng kiểu dữ liệu gì để lưu?", "Em dùng vòng lặp gì để tìm kiếm?", "Đâu là thuật toán Sắp xếp em dùng?".
+
+
+
+**6. Checklist cuối buổi**
+
+* [ ] Em đã chuẩn bị sẵn dữ liệu mẫu để không phải nhập tay quá nhiều chưa?.
+
+
+* [ ] Kịch bản demo của em có độ dài hợp lý (3 - 5 phút) không?.
+
+
+
+---
+
+### Buổi 40 - Bảo vệ sản phẩm cuối khóa
+
+**1. Mục tiêu buổi học**
+
+* Học sinh tự tin demo được sản phẩm chạy trực tiếp trên máy tính.
+
+
+* Học sinh giải thích được bài toán, cấu trúc dữ liệu, chức năng và các đoạn code chính.
+
+
+* Học sinh trả lời được các câu hỏi chất vấn: dùng struct nào, vector lưu gì, hàm nào quan trọng, tìm kiếm/sắp xếp ở đâu.
+
+
+* Học sinh trình bày được những lỗi (Bugs) đã gặp phải trong quá trình làm và cách tự sửa lỗi.
+
+
+* Học sinh nêu được điểm mạnh, hạn chế của app và hướng phát triển tiếp theo (nếu có thời gian).
+
+
+* Hoàn thiện 100% yêu cầu sản phẩm cuối khóa: code chạy được, menu rõ ràng, có dữ liệu mẫu, demo ổn định và phần bảo vệ ngắn gọn.
+
+
+
+**2. Tiêu chí chấm điểm Bảo vệ (Giáo viên phổ biến)**
+
+* **Kỹ năng Lập trình (50%):** Code chạy không bị văng lỗi (Crash). Có sử dụng đủ `struct`, `vector`, `hàm`, và 1 thuật toán Sắp xếp / Tìm kiếm.
+
+
+* 
+**Kỹ năng Trình bày (30%):** Demo rõ ràng, nói to, đúng trọng tâm kịch bản.
+
+
+* **Kỹ năng Hỏi - Đáp (20%):** Hiểu mình đang code gì, không copy bài trên mạng. Trả lời được cách khắc phục lỗi.
+
+
+> `[📸 Hình ảnh ví dụ: Một bảng tiêu chí chấm điểm (Rubric) với 3 cột: Kỹ năng Lập trình, Kỹ năng Trình bày, Kỹ năng Hỏi đáp cùng các thang điểm minh họa]`
+
+
+
+**3. Khung câu hỏi thường gặp khi Bảo vệ (Dành cho học sinh ôn tập)**
+
+* **Câu 1:** "Hàm tìm kiếm của em trả về giá trị gì?" -> Trả lời: Trả về vị trí (index `i`) của phần tử trong mảng `vector`, nếu không thấy thì trả về `-1`.
+
+
+* **Câu 2:** "Em gặp khó khăn gì lớn nhất khi làm dự án này?" -> Trả lời: Em hay bị lỗi Trôi lệnh khi nhập chữ và số xen kẽ. Sau đó em đã tự sửa bằng cách thêm `cin.ignore()`.
+
+
+* **Câu 3:** "Nếu sau này có nhiều thời gian hơn, em muốn cải tiến gì?" -> Trả lời: Em muốn làm thêm một chức năng lọc danh sách theo ngày tháng, và làm giao diện màu sắc hơn thay vì chỉ toàn chữ trắng đen.
+
+
+
+**4. Nội dung thực hành (Diễn ra trên lớp)**
+
+* Các học sinh lần lượt lên bục giảng trình bày sản phẩm qua máy chiếu.
+* Thời gian quy định: 5 phút Demo  + 5 phút Hỏi Đáp.
+
+
+* Cả lớp vỗ tay chúc mừng và giáo viên nhận xét, tổng kết khóa học.
+
+**5. Lời kết khóa học**
+
+* Hành trình 40 buổi học C++ cơ bản đã chính thức khép lại. Từ việc không biết biến là gì ở Buổi 1, giờ đây các bạn đã sở hữu một phần mềm quản lý của riêng mình. Đây chính là bước đệm vững chắc nhất để các bạn bước tiếp vào thế giới Công nghệ thông tin rộng lớn!
+
+**6. Checklist tổng kết cuối cùng**
+
+* [ ] Em đã demo xong và nhận được điểm số.
+* [ ] Em đã trả lời được các câu hỏi hiểu bản chất code.
+* [ ] Đã đến lúc nghỉ ngơi và tự hào về bản thân!
+
+---
+
+*Ghi chú cho người dùng: Toàn bộ 40 buổi học, từ cấu trúc nền tảng đến dự án cuối khóa đã được biên soạn đầy đủ, cực kỳ chi tiết, chuẩn sư phạm và phù hợp với học sinh 15 tuổi. Bạn hãy sao chép (copy) tất cả các đoạn nội dung này, dán (paste) vào file Microsoft Word của bạn và chèn hình ảnh vào các khung có sẵn để ra được cuốn giáo trình hoàn mỹ nhất nhé!*
+
+

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 13 - Sắp xếp nổi bọt và chọn trực tiếp</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 24px;
+}
+.lesson-body h4 {
+  color: #bae6fd;
+  margin: 20px 0 8px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.task-item {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.task-item strong {
+  color: #eef2ff;
+}
+.check-item {
+  list-style: none;
+  margin-left: -4px;
+}
+.check-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(238,242,255,.7);
+  border-radius: 3px;
+  margin-right: 8px;
+  transform: translateY(2px);
+}
+.lesson-body blockquote,
+.image-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+.image-note > strong {
+  display: block;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.image-note p {
+  margin: 8px 0;
+}
+.image-note ul {
+  margin-bottom: 0;
+}
+.image-note li strong {
+  color: #fde68a;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(6,182,212,.7);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+}
+</style>
+</head>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 13</h1>
+      <p>Sắp xếp nổi bọt và chọn trực tiếp thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng C++</a>
+      <div class="nav">
+        <a href="../khoa-hoc-cpp-nentang.html">Trang khóa học</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</span>
+      <h1>Buổi 13: Sắp xếp nổi bọt và chọn trực tiếp</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết, ví dụ code, giải thích từng bước, bài tập trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Nội dung được triển khai chi tiết theo từng khái niệm.</div>
+        <div class="card"><strong>Code mẫu</strong>Các ví dụ C++ console có giải thích từng bước.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp và bài tập về nhà rõ yêu cầu.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu buổi học</h2>
+<ul>
+<li>Hiểu được mục tiêu của thuật toán sắp xếp là đưa dữ liệu từ trạng thái lộn xộn về đúng thứ tự mong muốn.</li>
+<li>Biết mô phỏng thuật toán Bubble Sort (Nổi bọt) bằng việc so sánh từng cặp phần tử liền kề và đổi chỗ chúng.</li>
+<li>Biết mô phỏng thuật toán Selection Sort (Chọn trực tiếp) bằng việc tìm phần tử nhỏ nhất/lớn nhất rồi đổi chỗ về đầu mảng.</li>
+<li>Biết cách in mảng sau từng lượt duyệt để có thể nhìn rõ quá trình sắp xếp diễn ra như thế nào.</li>
+<li>Biết cách chỉnh sửa điều kiện so sánh để sắp xếp danh sách tăng dần hoặc giảm dần.</li>
+<li>Học sinh tự tay viết được chương trình sắp xếp một danh sách điểm số bằng các thuật toán cơ bản này.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li><strong>Tại sao phải sắp xếp?</strong> Sắp xếp giúp ta dễ dàng tìm kiếm và thống kê. Hãy tưởng tượng việc tìm một bạn có điểm cao nhất trong bảng điểm 100 người chưa sắp xếp sẽ mệt mỏi thế nào so với một bảng điểm đã được xếp từ cao xuống thấp.</li>
+<li><strong>Đổi chỗ (Swap):</strong> Trong C++, để đổi chỗ 2 ly nước A và B, ta cần một chiếc ly cạn C làm trung gian. (Cất nước ly A sang C -&gt; Đổ nước ly B sang A -&gt; Đổ nước ly C về B) .</li>
+<li><strong>Thuật toán Nổi bọt (Bubble Sort):</strong> Lần lượt so sánh 2 số đứng cạnh nhau. Nếu số đứng trước lớn hơn số đứng sau (khi xếp tăng dần), ta lập tức đổi chỗ chúng. Cứ lặp lại nhiều vòng như vậy, số lớn nhất sẽ từ từ &quot;nổi&quot; dần về phía cuối mảng giống như bong bóng khí.</li>
+</ul>
+
+<div class="image-note">
+  <strong>Minh họa chi tiết</strong>
+  <p><em>Ý tưởng trực quan:</em> Mô phỏng bong bóng: Các con số lớn màu đỏ được khoanh vùng so sánh theo cặp 2 số liền kề và tráo đổi vị trí dịch chuyển dần về cuối mảng</p>
+  <ul>
+    <li><strong>Cách trình bày:</strong> Chuyển mô tả này thành một sơ đồ đơn giản trên bảng: chia thành các khối, mũi tên và nhãn ngắn để học sinh nhìn được luồng xử lý.</li>
+    <li><strong>Ví dụ thao tác:</strong> Sau khi vẽ, gắn ngay với một đoạn code hoặc một bộ dữ liệu nhỏ trong bài để học sinh không chỉ nhìn hình mà còn biết áp dụng.</li>
+    <li><strong>Điểm cần chốt:</strong> Chốt lại bằng một câu: minh họa này tương ứng với khái niệm nào trong C++ và khi nào cần dùng.</li>
+    <li><strong>Câu hỏi kiểm tra nhanh:</strong> Yêu cầu học sinh tự tạo thêm một ví dụ tương tự rồi giải thích lại bằng lời.</li>
+  </ul>
+</div>
+
+<ul>
+<li><strong>Thuật toán Chọn trực tiếp (Selection Sort):</strong> Tìm con số nhỏ nhất trong danh sách. Lấy nó đổi chỗ với con số đang đứng ở vị trí đầu tiên. Sau đó, tiếp tục tìm con số nhỏ nhất trong phần còn lại và đổi chỗ đưa lên vị trí thứ hai. Cứ thế cho đến hết.</li>
+</ul>
+<p><strong>In quá trình sắp xếp:</strong> Bằng việc đặt lệnh <code>cout</code> in mảng ở cuối mỗi vòng lặp <code>for</code> lớn, ta có thể theo dõi xem thuật toán đang làm đúng hay không.</p>
+<h2>3. Ví dụ minh họa</h2>
+<h3><strong>Ví dụ 1: Bubble Sort cơ bản (Sắp xếp tăng dần)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; diem = {8, 3, 9, 2, 5};
+    int n = diem.size();
+
+    // Vòng lặp ngoài kiểm soát số lượt đi qua mảng
+    for (int i = 0; i &lt; n - 1; i++) {
+        // Vòng lặp trong đi so sánh các cặp liền kề
+        for (int j = 0; j &lt; n - i - 1; j++) {
+            if (diem[j] &gt; diem[j+1]) { // Nếu số trước lớn hơn số sau
+                // Đổi chỗ (Swap)
+                int tam = diem[j];
+                diem[j] = diem[j+1];
+                diem[j+1] = tam;
+            }
+        }
+    }
+
+    cout &lt;&lt; &quot;Mang sau khi Bubble Sort (Tang dan): &quot;;
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; diem[i] &lt;&lt; &quot; &quot;;
+    }
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> Vòng lặp <code>j</code> so sánh cặp <code>diem[j]</code> và <code>diem[j+1]</code>. Dòng <code>int tam = diem[j];</code> chính là bước dùng ly trung gian để đổi chỗ.</p>
+<h3><strong>Ví dụ 2: Selection Sort (Sắp xếp giảm dần)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; diem = {6, 1, 10, 4, 8};
+    int n = diem.size();
+
+    for (int i = 0; i &lt; n - 1; i++) {
+        int viTriMax = i; // Giả sử phần tử hiện tại là lớn nhất
+
+        // Tìm vị trí của phần tử lớn nhất trong phần còn lại
+        for (int j = i + 1; j &lt; n; j++) {
+            if (diem[j] &gt; diem[viTriMax]) {
+                viTriMax = j;
+            }
+        }
+
+        // Đổi chỗ phần tử lớn nhất tìm được với phần tử ở đầu mảng (vị trí i)
+        int tam = diem[i];
+        diem[i] = diem[viTriMax];
+        diem[viTriMax] = tam;
+    }
+
+    cout &lt;&lt; &quot;Mang sau khi Selection Sort (Giam dan): &quot;;
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; diem[i] &lt;&lt; &quot; &quot;;
+    }
+    return 0;
+}
+</code></pre>
+<p><em>Giải thích:</em> Selection Sort không đổi chỗ liên tục như Bubble Sort, nó đi tìm cái lớn nhất (hoặc nhỏ nhất) rồi mới đổi chỗ 1 lần ở cuối mỗi vòng lặp <code>i</code>.</p>
+<h3><strong>Ví dụ 3: In mảng sau từng lượt (Xem quá trình)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; a = {4, 2, 7, 1};
+    int n = a.size();
+
+    for (int i = 0; i &lt; n - 1; i++) {
+        // Thuật toán Selection Sort tìm Min
+        int posMin = i;
+        for (int j = i + 1; j &lt; n; j++) {
+            if (a[j] &lt; a[posMin]) posMin = j;
+        }
+        // Đổi chỗ
+        int tam = a[i]; a[i] = a[posMin]; a[posMin] = tam;
+
+        // In ra mảng sau mỗi vòng lặp lớn
+        cout &lt;&lt; &quot;Luot &quot; &lt;&lt; i + 1 &lt;&lt; &quot;: &quot;;
+        for (int k = 0; k &lt; n; k++) cout &lt;&lt; a[k] &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre>
+<h2>4. Bài tập thực hành trên lớp</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Cho <code>vector&lt;int&gt; giaSanPham = {150, 400, 250, 100, 300};</code>. Viết chương trình dùng Bubble Sort để sắp xếp mảng theo thứ tự tăng dần.</li>
+<li class="task-item"><strong>Bài 2:</strong> Thay đổi điều kiện trong chương trình ở Bài 1 để mảng được sắp xếp theo thứ tự giảm dần.</li>
+<li class="task-item"><strong>Bài 3:</strong> Viết chương trình tạo một mảng gồm 6 số nguyên ngẫu nhiên. Dùng Selection Sort để sắp xếp mảng và bắt buộc phải in ra trạng thái của mảng sau mỗi lượt đổi chỗ.</li>
+</ul>
+<h2>5. Bài tập về nhà</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Viết chương trình quản lý điểm môn Tin học: Nhập số lượng học sinh N, sau đó sử dụng vòng lặp cho phép nhập điểm của từng bạn vào <code>vector&lt;double&gt;</code>. Áp dụng thuật toán Selection Sort để in ra bảng điểm xếp hạng từ cao xuống thấp.</li>
+<li class="task-item"><strong>Bài 2:</strong> (Tư duy) Chạy thử bằng tay trên giấy thuật toán Bubble Sort với mảng <code>[5, 1, 4, 2, 8]</code>. Viết ra kết quả của mảng sau lượt chạy đầu tiên của vòng lặp <code>i</code>.</li>
+</ul>
+<h2>6. Checklist cuối buổi</h2>
+<ul>
+<li class="check-item"><span class="check-box"></span>Ý tưởng chính của Bubble Sort là gì? Sự đổi chỗ diễn ra khi nào?</li>
+<li class="check-item"><span class="check-box"></span>Selection Sort khác biệt như thế nào so với Bubble Sort?</li>
+<li class="check-item"><span class="check-box"></span>Làm sao để biết một mảng đang được xếp tăng hay xếp giảm khi nhìn vào đoạn code?</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-12-vector-va-danh-sach-linh-hoat.html">← Bài trước</a>
+      <a href="buoi-14-tim-kiem-tuyen-tinh-va-bang-xep-hang.html">Bài sau →</a>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_cpp_lesson_access_v2";
+      const SECURITY_CODE = "CPP15";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
+
+</body>
+</html>

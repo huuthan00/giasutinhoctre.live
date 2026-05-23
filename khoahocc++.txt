@@ -1,0 +1,411 @@
+KHOA HOC C++ CHO HOC SINH 15 TUOI
+Danh sach bai hoc va noi dung kien thuc moi buoi can dat
+
+Thong tin chung:
+- Doi tuong: hoc sinh khoang 15 tuoi, moi hoc lap trinh hoac da biet rat it.
+- Thoi luong moi buoi: 90 phut.
+- Muc tieu khoa hoc: hoc C++ tu nen tang, biet tu viet chuong trinh console, biet xu ly du lieu dang danh sach, biet tim kiem va sap xep co ban, cuoi khoa co san pham demo va bao ve san pham.
+- Pham vi thuat toan: chi can cac thuat toan tim kiem va sap xep co ban. Khong dua noi dung nang cao nhu quy hoach dong, do thi, de quy nang cao, cay, heap, backtracking.
+- Yeu cau khi viet bai giang chi tiet cho moi buoi:
+  1. Co ly thuyet chi tiet, giai thich bang ngon ngu de hieu cho hoc sinh 15 tuoi.
+  2. Moi kien thuc quan trong can co vi du minh hoa rieng.
+  3. Co 3 den 4 vi du code C++ day du, moi vi du co giai thich tung buoc.
+  4. Co 3 den 4 bai tap thuc hanh tren lop.
+  5. Co bai tap ve nha.
+  6. Code dung C++ console, uu tien ro rang, de doc, de sua loi.
+
+============================================================
+GIAI DOAN 1 - NEN TANG C++
+============================================================
+
+Buoi 01 - Lam quen C++ va moi truong lap trinh
+Kien thuc can dat:
+- Hieu file .cpp la file ma nguon C++.
+- Hieu qua trinh viet code, bien dich, chay chuong trinh.
+- Biet cau truc chuong trinh C++ toi thieu: #include <iostream>, using namespace std, int main(), return 0.
+- Biet dung cout, endl, \n de in thong tin ra man hinh.
+- Biet doc va sua loi co ban: thieu dau ;, thieu ngoac, sai chu hoa chu thuong.
+- Hoc sinh tu viet duoc chuong trinh in thong tin ca nhan va giai thich tung dong code.
+
+Buoi 02 - Nhap du lieu, bien va kieu du lieu
+Kien thuc can dat:
+- Hieu bien la noi luu du lieu tam trong chuong trinh.
+- Biet khai bao va su dung int, double, char, string, bool.
+- Biet dung cin de nhap so, dung getline de nhap chuoi co khoang trang.
+- Hieu loi thuong gap khi dung cin truoc getline va cach dung cin.ignore().
+- Biet dat ten bien ro nghia.
+- Hoc sinh viet duoc chuong trinh nhap thong tin hoc vien, san pham, diem so va in lai co nhan.
+
+Buoi 03 - Toan tu so hoc va bieu thuc
+Kien thuc can dat:
+- Biet dung +, -, *, / trong cac bai toan tinh toan.
+- Hieu thu tu uu tien cua phep tinh va vai tro cua dau ngoac.
+- Phan biet chia so nguyen va chia so thuc.
+- Biet dung bien trung gian de code de doc.
+- Biet chon double cho diem so, tien, dien tich, ket qua co phan le.
+- Hoc sinh viet duoc chuong trinh tinh diem trung binh, hoa don, chu vi, dien tich.
+
+Buoi 04 - Chia nguyen, chia du va bai toan chan le
+Kien thuc can dat:
+- Hieu phep chia nguyen / khi hai toan hang la so nguyen.
+- Hieu phep chia du % va y nghia phan du.
+- Biet kiem tra so chan le bang n % 2.
+- Biet kiem tra chia het, xu ly truong hop mau so bang 0.
+- Biet ung dung / va % de doi thoi gian, tach chu so, chia nhom.
+- Hoc sinh viet duoc cac bai: chan le, chia het, doi giay sang gio-phut-giay.
+
+Buoi 05 - Re nhanh if/else co ban
+Kien thuc can dat:
+- Hieu dieu kien dung/sai trong C++.
+- Biet viet if, if/else de ra quyet dinh.
+- Biet cac toan tu so sanh: ==, !=, >, <, >=, <=.
+- Biet test du lieu bien, vi du diem 5.0, 6.5, 8.0.
+- Biet tranh loi nham = voi ==.
+- Hoc sinh viet duoc chuong trinh kiem tra dau/rot, so duong/am/0, diem hop le.
+
+Buoi 06 - else-if, switch va dieu kien nhieu nhanh
+Kien thuc can dat:
+- Hieu khi nao dung else-if cho nhieu muc phan loai.
+- Biet sap xep dieu kien tu chat den rong hoac tu cao xuong thap.
+- Biet dung switch cho menu co lua chon roi rac.
+- Hieu vai tro cua break va default trong switch.
+- Biet ket hop dieu kien bang &&, ||, !.
+- Hoc sinh viet duoc menu may tinh don gian va chuong trinh xep loai hoc luc.
+
+Buoi 07 - Vong lap for va bai toan lap biet truoc so lan
+Kien thuc can dat:
+- Hieu vong lap for gom khoi tao, dieu kien lap, cap nhat.
+- Biet dung for khi biet truoc so lan lap.
+- Biet tinh tong, dem so luong, in day so.
+- Biet theo doi gia tri bien dem qua tung vong lap.
+- Biet tranh loi lap thieu, lap thua mot lan.
+- Hoc sinh viet duoc chuong trinh tinh tong 1..n, dem so chan, in bang cuu chuong.
+
+Buoi 08 - while, do-while va lap chua biet truoc so lan
+Kien thuc can dat:
+- Hieu while dung khi chua biet truoc so lan lap.
+- Hieu do-while chay it nhat mot lan.
+- Biet lap den khi nguoi dung nhap dung du lieu.
+- Biet viet menu lap lai den khi chon thoat.
+- Biet tranh vong lap vo han.
+- Hoc sinh viet duoc chuong trinh nhap mat khau, menu lap lai, nhap diem den khi hop le.
+
+Buoi 09 - Mang mot chieu
+Kien thuc can dat:
+- Hieu mang mot chieu luu nhieu gia tri cung kieu.
+- Biet khai bao mang, nhap mang, in mang.
+- Hieu chi so mang bat dau tu 0.
+- Biet duyet mang bang for.
+- Biet tinh tong, trung binh, dem, tim phan tu trong mang.
+- Hoc sinh viet duoc chuong trinh quan ly danh sach diem hoac danh sach so.
+
+Buoi 10 - Ham co ban va mini game doan so
+Kien thuc can dat:
+- Hieu ham giup tach chuong trinh thanh cac phan nho.
+- Biet khai bao ham, goi ham, tham so, gia tri tra ve.
+- Biet viet ham tinh toan don gian: tong, max, kiem tra chan le.
+- Hieu void va ham co return.
+- Biet tach mini game doan so thanh cac ham nho.
+- Hoc sinh viet duoc mini game doan so co gioi han so lan thu.
+
+============================================================
+GIAI DOAN 2 - CAU TRUC DU LIEU CO BAN
+============================================================
+
+Buoi 11 - Mang hai chieu va ma tran
+Kien thuc can dat:
+- Hieu mang hai chieu luu du lieu dang bang gom dong va cot.
+- Biet khai bao, nhap, in mang hai chieu.
+- Biet duyet mang hai chieu bang hai vong lap long nhau.
+- Biet tinh tong theo dong, theo cot.
+- Biet tim gia tri lon nhat, nho nhat trong bang.
+- Hoc sinh viet duoc chuong trinh xu ly bang diem nhieu hoc sinh va nhieu mon.
+
+Buoi 12 - Vector va danh sach linh hoat
+Kien thuc can dat:
+- Hieu vector la danh sach co kich thuoc linh hoat.
+- Biet khai bao vector, push_back, size, truy cap theo chi so.
+- Biet duyet vector bang for.
+- Biet them du lieu khi chua biet truoc so luong.
+- Biet so sanh vector voi mang tinh.
+- Hoc sinh viet duoc chuong trinh nhap danh sach diem hoac san pham den khi nguoi dung dung lai.
+
+Buoi 13 - Sap xep noi bot va chon truc tiep
+Kien thuc can dat:
+- Hieu muc tieu cua sap xep la dua du lieu ve thu tu mong muon.
+- Biet mo phong Bubble Sort bang viec so sanh cap lien ke va doi cho.
+- Biet mo phong Selection Sort bang viec tim phan tu nho nhat/lon nhat roi doi cho.
+- Biet in mang sau tung luot de nhin qua trinh sap xep.
+- Biet sap xep tang dan, giam dan voi so.
+- Hoc sinh viet duoc chuong trinh sap xep danh sach diem bang thuat toan co ban.
+
+Buoi 14 - Tim kiem tuyen tinh va bang xep hang
+Kien thuc can dat:
+- Hieu tim kiem tuyen tinh la duyet tung phan tu tu dau den cuoi.
+- Biet tim vi tri cua gia tri trong mang/vector.
+- Biet xu ly truong hop tim thay va khong tim thay.
+- Biet tim nhieu ket qua thoa dieu kien.
+- Biet ket hop tim kiem voi danh sach diem de tao bang xep hang don gian.
+- Hoc sinh viet duoc chuong trinh tim hoc sinh theo diem hoac ten ngan.
+
+Buoi 15 - String co ban va nhap chuoi
+Kien thuc can dat:
+- Hieu string dung de luu van ban.
+- Biet nhap chuoi bang cin va getline.
+- Biet lay do dai chuoi bang length/size.
+- Biet truy cap tung ky tu trong chuoi bang chi so.
+- Biet noi chuoi, so sanh chuoi co ban.
+- Hoc sinh viet duoc chuong trinh nhap ho ten, kiem tra do dai, in tung ky tu.
+
+Buoi 16 - Xu ly chuoi va Caesar Cipher
+Kien thuc can dat:
+- Biet duyet tung ky tu trong string.
+- Biet kiem tra chu cai, chu so, khoang trang o muc co ban.
+- Biet chuyen chu hoa/chu thuong neu can.
+- Hieu y tuong ma hoa Caesar: dich ky tu trong bang chu cai.
+- Biet xu ly chuoi thanh mot mini tool don gian.
+- Hoc sinh viet duoc chuong trinh ma hoa/giai ma Caesar co ban.
+
+Buoi 17 - Ham nang cao va tach chuong trinh
+Kien thuc can dat:
+- Biet tach chuong trinh thanh nhieu ham theo nhiem vu.
+- Biet thiet ke ham co ten ro nghia, tham so ro nghia.
+- Hieu ham nen lam mot viec chinh.
+- Biet dung prototype neu ham viet sau main.
+- Biet tai su dung ham trong nhieu bai.
+- Hoc sinh viet duoc chuong trinh co cac ham nhap, xu ly, in ket qua rieng.
+
+Buoi 18 - Kiem thu ham va menu console
+Kien thuc can dat:
+- Hieu can test ham bang du lieu mau.
+- Biet viet menu console co nhieu chuc nang.
+- Biet tach moi lua chon trong menu thanh mot ham.
+- Biet xu ly lua chon sai.
+- Biet lap menu den khi nguoi dung chon thoat.
+- Hoc sinh viet duoc menu quan ly nho co 3-4 chuc nang.
+
+Buoi 19 - Tham chieu va truyen tham so
+Kien thuc can dat:
+- Hieu truyen tham tri va truyen tham chieu khac nhau nhu the nao.
+- Biet khi nao dung dau & trong tham so ham.
+- Biet viet ham hoan doi hai so bang tham chieu.
+- Biet truyen vector vao ham de xu ly.
+- Biet tranh sua du lieu ngoai y muon.
+- Hoc sinh viet duoc ham nhap vector, sua gia tri, tinh tong bang tham so.
+
+Buoi 20 - Bo nho nhap mon va xu ly vector trong ham
+Kien thuc can dat:
+- Hieu co ban ve bien, vung nho, gia tri duoc luu trong bien.
+- Hieu vector co the thay doi kich thuoc.
+- Biet truyen vector vao ham bang tham chieu de tranh copy khong can thiet.
+- Biet them, xoa, sua du lieu trong vector o muc co ban.
+- Biet kiem tra chi so hop le truoc khi truy cap.
+- Hoc sinh viet duoc cac ham xu ly danh sach diem/san pham bang vector.
+
+Buoi 21 - Struct co ban
+Kien thuc can dat:
+- Hieu struct gom nhieu thong tin lien quan vao mot kieu du lieu moi.
+- Biet khai bao struct Student/Product.
+- Biet tao bien struct, nhap va in struct.
+- Biet dung vector<Struct> de luu danh sach doi tuong.
+- Biet truy cap truong bang dau cham.
+- Hoc sinh viet duoc danh sach hoc sinh/san pham voi ma, ten, diem/gia.
+
+Buoi 22 - File I/O va on tap giai doan 2
+Kien thuc can dat:
+- Biet doc va ghi file text co ban bang ifstream/ofstream.
+- Biet luu danh sach ra file va doc lai danh sach.
+- Biet kiem tra file mo thanh cong hay khong.
+- On tap vector, struct, ham, menu.
+- Biet chia chuong trinh quan ly thanh cac ham ro rang.
+- Hoc sinh viet duoc mini app luu doc danh sach don gian.
+
+============================================================
+GIAI DOAN 3 - TIM KIEM, SAP XEP, XU LY DANH SACH
+============================================================
+
+Buoi 23 - Thiet ke du lieu dang danh sach
+Kien thuc can dat:
+- Hieu truoc khi code can xac dinh doi tuong can quan ly.
+- Biet chon cac truong du lieu can co: ma, ten, diem, gia, so luong...
+- Biet dung struct ket hop vector de tao danh sach.
+- Biet ve luong du lieu: them, xem, tim, sua, xoa.
+- Biet dat ten bien, ten ham theo bai toan.
+- Hoc sinh thiet ke duoc cau truc du lieu cho mini app quan ly.
+
+Buoi 24 - Them, sua, xoa phan tu trong danh sach
+Kien thuc can dat:
+- Biet them phan tu moi vao vector.
+- Biet tim phan tu can sua hoac xoa theo ma.
+- Biet sua tung truong du lieu cua mot phan tu.
+- Biet xoa phan tu bang erase.
+- Biet kiem tra ma co ton tai truoc khi thao tac.
+- Hoc sinh viet duoc chuc nang them, sua, xoa cho danh sach struct.
+
+Buoi 25 - Tim kiem tuyen tinh theo ma va ten
+Kien thuc can dat:
+- Biet tim kiem tuyen tinh tren vector<struct>.
+- Biet tim theo ma chinh xac.
+- Biet tim theo ten o muc co ban.
+- Biet tra ve vi tri phan tu tim thay.
+- Biet xu ly khong tim thay va tim thay nhieu ket qua.
+- Hoc sinh viet duoc chuc nang tim hoc sinh/san pham theo ma hoac ten.
+
+Buoi 26 - Tim min, max va loc du lieu
+Kien thuc can dat:
+- Biet tim gia tri lon nhat, nho nhat trong danh sach.
+- Biet tim doi tuong co diem/gia cao nhat hoac thap nhat.
+- Biet loc cac phan tu thoa dieu kien.
+- Biet dem so luong phan tu thoa dieu kien.
+- Biet tinh trung binh tren danh sach.
+- Hoc sinh viet duoc thong ke co ban cho danh sach du lieu.
+
+Buoi 27 - Bubble Sort chi tiet
+Kien thuc can dat:
+- Hieu Bubble Sort so sanh tung cap phan tu lien ke.
+- Biet doi cho khi sai thu tu.
+- Biet so vong lap ngoai va vong lap trong.
+- Biet toi uu nho bang bien swapped.
+- Biet sap xep vector<struct> theo diem/gia.
+- Hoc sinh viet duoc Bubble Sort tang dan, giam dan va giai thich tung buoc.
+
+Buoi 28 - Selection Sort va Insertion Sort
+Kien thuc can dat:
+- Hieu Selection Sort chon phan tu nho/lon nhat dua ve dung vi tri.
+- Hieu Insertion Sort chen phan tu vao day da sap xep.
+- Biet so sanh hai cach sap xep bang mo phong tung buoc.
+- Biet sap xep danh sach so va danh sach struct.
+- Biet khi nao code sap xep tu viet giup hoc sinh hieu ban chat.
+- Hoc sinh viet duoc Selection Sort va Insertion Sort co ban.
+
+Buoi 29 - Binary Search
+Kien thuc can dat:
+- Hieu Binary Search chi dung khi du lieu da sap xep.
+- Biet bien left, right, mid.
+- Biet cap nhat khoang tim kiem sau moi lan so sanh.
+- Biet xu ly tim thay va khong tim thay.
+- Biet so sanh Binary Search voi Linear Search.
+- Hoc sinh viet duoc Binary Search tren mang/vector so da sap xep.
+
+Buoi 30 - std::sort va comparator
+Kien thuc can dat:
+- Biet dung std::sort de sap xep nhanh trong C++.
+- Biet sort vector so tang dan, giam dan.
+- Biet viet comparator cho struct.
+- Biet sap xep theo mot tieu chi: diem, ten, gia.
+- Hieu std::sort la cong cu thuc te sau khi da hieu sap xep co ban.
+- Hoc sinh viet duoc sap xep danh sach hoc sinh/san pham bang std::sort.
+
+Buoi 31 - Loc du lieu va thong ke
+Kien thuc can dat:
+- Biet loc danh sach theo dieu kien: diem >= 8, gia trong khoang, so luong > 0.
+- Biet tinh tong, trung binh, so luong theo nhom.
+- Biet in bao cao thong ke gon, de doc.
+- Biet ket hop loc voi tim kiem va sap xep.
+- Biet kiem tra danh sach rong truoc khi thong ke.
+- Hoc sinh viet duoc chuc nang bao cao thong ke cho mini app.
+
+Buoi 32 - Sap xep nhieu tieu chi
+Kien thuc can dat:
+- Hieu sap xep nhieu tieu chi la khi tieu chi 1 bang nhau thi xet tieu chi 2.
+- Biet viet comparator theo diem giam dan, neu bang diem thi ten tang dan.
+- Biet sap xep theo gia tang dan, neu bang gia thi ma tang dan.
+- Biet trinh bay ket qua sau sap xep.
+- Biet tranh comparator sai logic.
+- Hoc sinh viet duoc sap xep danh sach struct theo 2 tieu chi.
+
+Buoi 33 - Tich hop mini app quan ly
+Kien thuc can dat:
+- Biet gom cac chuc nang da hoc thanh mot chuong trinh quan ly.
+- Co menu: them, hien thi, tim kiem, sua, xoa, sap xep, thong ke, thoat.
+- Biet tach code thanh cac ham rieng.
+- Biet dung vector<struct> lam du lieu chinh.
+- Biet kiem tra loi nhap co ban.
+- Hoc sinh hoan thanh mini app quan ly phien ban dau.
+
+Buoi 34 - On tap va sua loi logic
+Kien thuc can dat:
+- On tap toan bo xu ly danh sach, tim kiem, sap xep.
+- Biet phan biet loi bien dich va loi logic.
+- Biet dung cout trung gian de debug.
+- Biet tao bo test nho de kiem tra chuong trinh.
+- Biet sua loi sai dieu kien, sai chi so, sai thu tu sap xep.
+- Hoc sinh sua duoc mini app de chay on dinh hon.
+
+============================================================
+GIAI DOAN 4 - DU AN DEMO VA BAO VE SAN PHAM
+============================================================
+
+Buoi 35 - Chon de tai du an cuoi khoa
+Kien thuc can dat:
+- Hieu yeu cau cuoi khoa la co san pham demo chay duoc va bao ve duoc.
+- Biet chon de tai vua suc: quan ly hoc sinh, quan ly sach, quan ly san pham, quan ly chi tieu, quiz console.
+- Biet xac dinh nguoi dung, du lieu, chuc nang chinh.
+- Biet chon 4 den 6 chuc nang can lam.
+- Biet viet mo ta ngan cho san pham.
+- Hoc sinh chot duoc de tai va danh sach chuc nang phu hop.
+
+Buoi 36 - Thiet ke tinh nang va cau truc file code
+Kien thuc can dat:
+- Biet chia san pham thanh cac phan: du lieu, ham xu ly, menu, file luu tru.
+- Biet thiet ke struct phu hop voi de tai.
+- Biet lap danh sach ham can co.
+- Biet ve luong chay cua chuong trinh bang cac buoc.
+- Biet tao file code ban dau co khung ro rang.
+- Hoc sinh co skeleton code cho du an cuoi khoa.
+
+Buoi 37 - Xay chuc nang chinh cua san pham
+Kien thuc can dat:
+- Biet uu tien lam chuc nang cot loi truoc.
+- Biet viet chuc nang them, hien thi, tim kiem cho du an.
+- Biet kiem tra sau moi chuc nang nho.
+- Biet tach ham de code khong qua dai.
+- Biet luu y ten bien, ten ham de de bao ve.
+- Hoc sinh co phien ban demo chay duoc voi chuc nang chinh.
+
+Buoi 38 - Kiem tra du lieu nhap va lam dep output
+Kien thuc can dat:
+- Biet kiem tra du lieu rong, sai kieu, ngoai khoang.
+- Biet xu ly lua chon menu khong hop le.
+- Biet in danh sach theo bang gon, de nhin.
+- Biet them thong bao thanh cong/that bai ro rang.
+- Biet test cac truong hop nguoi dung nhap sai.
+- Hoc sinh lam san pham de dung va de demo hon.
+
+Buoi 39 - Chuan bi kich ban demo
+Kien thuc can dat:
+- Biet chuan bi du lieu mau cho phan demo.
+- Biet viet kich ban demo theo thu tu: gioi thieu, chuc nang, tinh huong su dung, ket qua.
+- Biet chon 3 den 5 tinh nang noi bat de trinh bay.
+- Biet du phong neu chuong trinh loi khi demo.
+- Biet giai thich code o muc tong quan: struct, vector, ham, menu, tim kiem/sap xep.
+- Hoc sinh co kich ban demo va tap trinh bay san pham.
+
+Buoi 40 - Bao ve san pham cuoi khoa
+Kien thuc can dat:
+- Hoc sinh demo duoc san pham chay truc tiep.
+- Hoc sinh giai thich duoc bai toan, du lieu, chuc nang va cach code chinh.
+- Hoc sinh tra loi duoc cau hoi: dung struct nao, vector luu gi, ham nao quan trong, tim kiem/sap xep o dau.
+- Hoc sinh trinh bay duoc nhung loi da gap va cach sua.
+- Hoc sinh neu duoc diem manh, han che va huong phat trien tiep theo.
+- San pham cuoi khoa can co: code chay duoc, menu ro rang, du lieu mau, demo on dinh, phan bao ve ngan gon.
+
+============================================================
+GOI Y DE GEMINI TAO NOI DUNG CHI TIET
+============================================================
+
+Voi moi buoi, hay tao noi dung theo format:
+1. Muc tieu buoi hoc.
+2. Ly thuyet chi tiet, giai thich tung khai niem bang ngon ngu de hieu.
+3. Vi du minh hoa 1, 2, 3, 4: moi vi du co code C++ day du va giai thich tung buoc.
+4. Bai tap thuc hanh tren lop: 3 den 4 bai, co yeu cau ro rang.
+5. Bai tap ve nha: 2 den 3 bai.
+6. Checklist cuoi buoi: hoc sinh can tu tra loi duoc nhung gi.
+
+Luu y:
+- Viet noi dung bang tieng Viet.
+- Vi du gan voi hoc sinh: diem so, lich hoc, san pham, thu vien sach, quan ly chi tieu, quiz, mini app console.
+- Khong viet noi dung chung chung. Moi ly thuyet phai co minh hoa hoac vi du code.
+- Moi buoi phai phu hop 90 phut, khong qua nang.
+
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mục lục bài giảng C++</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 24px;
+}
+.lesson-body h4 {
+  color: #bae6fd;
+  margin: 20px 0 8px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.task-item {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.task-item strong {
+  color: #eef2ff;
+}
+.check-item {
+  list-style: none;
+  margin-left: -4px;
+}
+.check-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(238,242,255,.7);
+  border-radius: 3px;
+  margin-right: 8px;
+  transform: translateY(2px);
+}
+.lesson-body blockquote,
+.image-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+.image-note > strong {
+  display: block;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.image-note p {
+  margin: 8px 0;
+}
+.image-note ul {
+  margin-bottom: 0;
+}
+.image-note li strong {
+  color: #fde68a;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(6,182,212,.7);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="../khoa-hoc-cpp-nentang.html">GiaSuTHT · Khóa C++</a>
+      <div class="nav">
+        <a href="../index.html">Trang chủ</a>
+        <a href="../khoa-hoc-cpp-nentang.html">Trang khóa học</a>
+      </div>
+    </div>
+    <header class="hero">
+      <span class="badge">Bộ bài giảng HTML</span>
+      <h1>Nền tảng C++ &amp; tư duy lập trình</h1>
+      <p class="note">Bộ bài giảng chi tiết cho từng buổi học 90 phút, đi từ nền tảng C++ đến sản phẩm demo cuối khóa.</p>
+    </header>
+    <section>
+      <h2>Mục lục</h2>
+      <table>
+        <thead><tr><th>Buổi</th><th>Bài học</th><th>Giai đoạn</th></tr></thead>
+        <tbody><tr><td>Buổi 01</td><td><a href="buoi-01-lam-quen-c-va-moi-truong-lap-trinh.html">Làm quen C++ và môi trường lập trình</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 02</td><td><a href="buoi-02-nhap-du-lieu-bien-va-kieu-du-lieu.html">Nhập dữ liệu, biến và kiểu dữ liệu</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 03</td><td><a href="buoi-03-toan-tu-so-hoc-va-bieu-thuc.html">Toán tử số học và biểu thức</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 04</td><td><a href="buoi-04-chia-nguyen-chia-du-va-bai-toan-chan-le.html">Chia nguyên, chia dư và bài toán chẵn lẻ</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 05</td><td><a href="buoi-05-re-nhanh-if-else-co-ban.html">Rẽ nhánh if/else cơ bản</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 06</td><td><a href="buoi-06-else-if-switch-va-ieu-kien-nhieu-nhanh.html">else-if, switch và điều kiện nhiều nhánh</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 07</td><td><a href="buoi-07-vong-lap-for-va-bai-toan-lap-biet-truoc-so-lan.html">Vòng lặp for và bài toán lặp biết trước số lần</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 08</td><td><a href="buoi-08-while-do-while-va-lap-chua-biet-truoc-so-lan.html">while, do-while và lặp chưa biết trước số lần</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 09</td><td><a href="buoi-09-mang-mot-chieu.html">Mảng một chiều</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 10</td><td><a href="buoi-10-ham-co-ban-va-mini-game-oan-so.html">Hàm cơ bản và mini game đoán số</a></td><td>Giai đoạn 1 - Nền tảng C++</td></tr><tr><td>Buổi 11</td><td><a href="buoi-11-mang-hai-chieu-va-ma-tran.html">Mảng hai chiều và ma trận</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 12</td><td><a href="buoi-12-vector-va-danh-sach-linh-hoat.html">Vector và danh sách linh hoạt</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 13</td><td><a href="buoi-13-sap-xep-noi-bot-va-chon-truc-tiep.html">Sắp xếp nổi bọt và chọn trực tiếp</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 14</td><td><a href="buoi-14-tim-kiem-tuyen-tinh-va-bang-xep-hang.html">Tìm kiếm tuyến tính và bảng xếp hạng</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 15</td><td><a href="buoi-15-string-co-ban-va-nhap-chuoi.html">String cơ bản và nhập chuỗi</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 16</td><td><a href="buoi-16-xu-ly-chuoi-va-caesar-cipher.html">Xử lý chuỗi và Caesar Cipher</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 17</td><td><a href="buoi-17-ham-nang-cao-va-tach-chuong-trinh.html">Hàm nâng cao và tách chương trình</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 18</td><td><a href="buoi-18-kiem-thu-ham-va-menu-console.html">Kiểm thử hàm và menu console</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 19</td><td><a href="buoi-19-tham-chieu-va-truyen-tham-so.html">Tham chiếu và truyền tham số</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 20</td><td><a href="buoi-20-bo-nho-nhap-mon-va-xu-ly-vector-trong-ham.html">Bộ nhớ nhập môn và xử lý vector trong hàm</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 21</td><td><a href="buoi-21-struct-co-ban.html">Struct cơ bản</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 22</td><td><a href="buoi-22-file-i-o-va-on-tap-giai-oan-2.html">File I/O và ôn tập giai đoạn 2</a></td><td>Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</td></tr><tr><td>Buổi 23</td><td><a href="buoi-23-thiet-ke-du-lieu-dang-danh-sach.html">Thiết kế dữ liệu dạng danh sách</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 24</td><td><a href="buoi-24-them-sua-xoa-phan-tu-trong-danh-sach.html">Thêm, sửa, xóa phần tử trong danh sách</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 25</td><td><a href="buoi-25-tim-kiem-tuyen-tinh-theo-ma-va-ten.html">Tìm kiếm tuyến tính theo mã và tên</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 26</td><td><a href="buoi-26-tim-min-max-va-loc-du-lieu.html">Tìm min, max và lọc dữ liệu</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 27</td><td><a href="buoi-27-bubble-sort-chi-tiet.html">Bubble Sort chi tiết</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 28</td><td><a href="buoi-28-selection-sort-va-insertion-sort.html">Selection Sort và Insertion Sort</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 29</td><td><a href="buoi-29-binary-search.html">Binary Search</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 30</td><td><a href="buoi-30-std-sort-va-comparator.html">std::sort và comparator</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 31</td><td><a href="buoi-31-loc-du-lieu-va-thong-ke.html">Lọc dữ liệu và thống kê</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 32</td><td><a href="buoi-32-sap-xep-nhieu-tieu-chi.html">Sắp xếp nhiều tiêu chí</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 33</td><td><a href="buoi-33-tich-hop-mini-app-quan-ly.html">Tích hợp mini app quản lý</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 34</td><td><a href="buoi-34-on-tap-va-sua-loi-logic.html">Ôn tập và sửa lỗi logic</a></td><td>Giai đoạn 3 - Tìm kiếm, sắp xếp, xử lý danh sách</td></tr><tr><td>Buổi 35</td><td><a href="buoi-35-chon-e-tai-du-an-cuoi-khoa.html">Chọn đề tài dự án cuối khóa</a></td><td>Giai đoạn 4 - Dự án demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 36</td><td><a href="buoi-36-thiet-ke-tinh-nang-va-cau-truc-file-code.html">Thiết kế tính năng và cấu trúc file code</a></td><td>Giai đoạn 4 - Dự án demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 37</td><td><a href="buoi-37-xay-chuc-nang-chinh-cua-san-pham.html">Xây chức năng chính của sản phẩm</a></td><td>Giai đoạn 4 - Dự án demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 38</td><td><a href="buoi-38-kiem-tra-du-lieu-nhap-va-lam-ep-output.html">Kiểm tra dữ liệu nhập và làm đẹp output</a></td><td>Giai đoạn 4 - Dự án demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 39</td><td><a href="buoi-39-chuan-bi-kich-ban-demo.html">Chuẩn bị kịch bản demo</a></td><td>Giai đoạn 4 - Dự án demo và bảo vệ sản phẩm</td></tr><tr><td>Buổi 40</td><td><a href="buoi-40-bao-ve-san-pham-cuoi-khoa.html">Bảo vệ sản phẩm cuối khóa</a></td><td>Giai đoạn 4 - Dự án demo và bảo vệ sản phẩm</td></tr></tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>

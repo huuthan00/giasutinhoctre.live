@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 22 - File I/O và ôn tập giai đoạn 2</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 24px;
+}
+.lesson-body h4 {
+  color: #bae6fd;
+  margin: 20px 0 8px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.task-item {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.task-item strong {
+  color: #eef2ff;
+}
+.check-item {
+  list-style: none;
+  margin-left: -4px;
+}
+.check-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(238,242,255,.7);
+  border-radius: 3px;
+  margin-right: 8px;
+  transform: translateY(2px);
+}
+.lesson-body blockquote,
+.image-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+.image-note > strong {
+  display: block;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.image-note p {
+  margin: 8px 0;
+}
+.image-note ul {
+  margin-bottom: 0;
+}
+.image-note li strong {
+  color: #fde68a;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(6,182,212,.7);
+  box-shadow: 0 0 0 3px rgba(6,182,212,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+}
+</style>
+</head>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 22</h1>
+      <p>File I/O và ôn tập giai đoạn 2 thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng C++</a>
+      <div class="nav">
+        <a href="../khoa-hoc-cpp-nentang.html">Trang khóa học</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 2 - Cấu trúc dữ liệu cơ bản</span>
+      <h1>Buổi 22: File I/O và ôn tập giai đoạn 2</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết, ví dụ code, giải thích từng bước, bài tập trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Nội dung được triển khai chi tiết theo từng khái niệm.</div>
+        <div class="card"><strong>Code mẫu</strong>Các ví dụ C++ console có giải thích từng bước.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp và bài tập về nhà rõ yêu cầu.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu buổi học</h2>
+<ul>
+<li>Biết đọc và ghi file text cơ bản bằng ifstream/ofstream và biết lưu danh sách ra file, đọc lại danh sách.</li>
+<li>Biết kiểm tra file mở thành công hay không và ôn tập toàn bộ kiến thức vector, struct, hàm, menu.</li>
+<li>Biết chia chương trình quản lý thành các hàm rõ ràng và học sinh viết được mini app lưu/đọc danh sách đơn giản.</li>
+<li>Tổng hợp kiến thức kết thúc Giai đoạn 2 của khóa học.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li><strong>Tại sao phải dùng File?</strong> Mọi biến <code>int</code>, <code>vector</code> đều nằm trên RAM. Nếu bạn tắt cửa sổ console (màn hình đen), toàn bộ dữ liệu bạn nhập nãy giờ sẽ bốc hơi. Để dữ liệu tồn tại vĩnh viễn, ta phải lưu chúng xuống ổ cứng dưới dạng tệp văn bản (<code>.txt</code>).</li>
+<li>Thư viện <code>&lt;fstream&gt;</code> (File Stream): Cung cấp 2 công cụ chính:</li>
+<li><code>ofstream</code> (Output File Stream): Luồng xuất, dùng để <strong>GHI</strong> dữ liệu từ RAM xuống file txt. (Cách dùng giống hệt <code>cout</code>).</li>
+<li><code>ifstream</code> (Input File Stream): Luồng nhập, dùng để <strong>ĐỌC</strong> dữ liệu từ file txt đưa ngược lên RAM. (Cách dùng giống hệt <code>cin</code>).</li>
+<li><strong>Quy trình 3 bước:</strong></li>
+</ul>
+<ol>
+<li>Mở file. (Nhớ kiểm tra xem mở có thành công không, lỡ file bị xóa thì sao?).</li>
+<li>Thực hiện thao tác Ghi hoặc Đọc.</li>
+<li>ĐÓNG file (<code>.close()</code>). Đây là thao tác bắt buộc để hệ điều hành lưu file lại an toàn.</li>
+</ol>
+
+<div class="image-note">
+  <strong>Minh họa chi tiết</strong>
+  <p><em>Ý tưởng trực quan:</em> Minh họa quy trình: RAM máy tính -&gt; Mở đường ống nước (ofstream) -&gt; Nước (Data) chảy vào bể chứa (File .txt trên ổ cứng) -&gt; Đóng van (close)</p>
+  <ul>
+    <li><strong>Cách trình bày:</strong> Vẽ dữ liệu từ RAM chảy qua ống <code>ofstream</code> vào file <code>.txt</code>; chiều ngược lại dùng <code>ifstream</code>.</li>
+    <li><strong>Ví dụ thao tác:</strong> Minh họa ghi một danh sách 3 học sinh ra file rồi đọc lại để in lên console.</li>
+    <li><strong>Điểm cần chốt:</strong> Chốt rằng file giúp dữ liệu không mất sau khi tắt chương trình, nhưng phải kiểm tra mở file thành công.</li>
+    <li><strong>Câu hỏi kiểm tra nhanh:</strong> Nếu file không mở được, chương trình nên tiếp tục xử lý hay báo lỗi?</li>
+  </ul>
+</div>
+
+<h2>3. Ví dụ minh họa</h2>
+<h3><strong>Ví dụ 1: Ghi thông tin xuống file (Save)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt; // Bắt buộc
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    // 1. Mở file để ghi (Nếu file chưa có, nó sẽ tự tạo)
+    ofstream fileGhi(&quot;data.txt&quot;);
+
+    if (fileGhi.is_open()) {
+        // 2. Ghi dữ liệu giống y hệt cout
+        fileGhi &lt;&lt; &quot;Ban dang hoc bai File trong C++\n&quot;;
+        fileGhi &lt;&lt; &quot;Diem so: &quot; &lt;&lt; 10 &lt;&lt; endl;
+
+        // 3. Đóng file
+        fileGhi.close();
+        cout &lt;&lt; &quot;Da luu xuong o cung thanh cong!\n&quot;;
+    } else {
+        cout &lt;&lt; &quot;Loi tao file!\n&quot;;
+    }
+
+    return 0;
+}
+</code></pre>
+<p><em>Ghi chú:</em> Sau khi chạy code, hướng dẫn học sinh vào thư mục chứa code mở tệp <code>data.txt</code> bằng Notepad để tận mắt nhìn thấy dữ liệu.</p>
+<h3><strong>Ví dụ 2: Đọc thông tin từ file (Load)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    // 1. Mở file để đọc
+    ifstream fileDoc(&quot;data.txt&quot;);
+    string dongChu;
+
+    // Kiểm tra file có tồn tại không
+    if (fileDoc.is_open()) {
+        // 2. Đọc từng dòng cho đến khi hết file
+        while (getline(fileDoc, dongChu)) {
+            cout &lt;&lt; dongChu &lt;&lt; endl; // In lên màn hình
+        }
+
+        // 3. Đóng file
+        fileDoc.close();
+    } else {
+        cout &lt;&lt; &quot;File khong ton tai hoac bi loi!\n&quot;;
+    }
+    return 0;
+}
+</code></pre>
+<h3><strong>Ví dụ 3: Ôn tập - Lưu danh sách Struct (Mini App Đọc/Ghi)</strong></h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+struct SanPham { int ma; int gia; };
+
+void luuDanhSach(vector&lt;SanPham&gt; &amp;ds) {
+    ofstream f(&quot;sanpham.txt&quot;);
+    if (f.is_open()) {
+        f &lt;&lt; ds.size() &lt;&lt; &quot;\n&quot;; // Lưu số lượng trước để sau này dễ đọc
+        for (int i = 0; i &lt; ds.size(); i++) {
+            f &lt;&lt; ds[i].ma &lt;&lt; &quot; &quot; &lt;&lt; ds[i].gia &lt;&lt; &quot;\n&quot;;
+        }
+        f.close();
+        cout &lt;&lt; &quot;Luu file xong!\n&quot;;
+    }
+}
+
+int main() {
+    vector&lt;SanPham&gt; ds = {{101, 5000}, {102, 7500}};
+    luuDanhSach(ds); // Sẽ sinh ra file txt chứa số liệu
+    return 0;
+}
+</code></pre>
+<h2>4. Bài tập thực hành trên lớp</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Viết chương trình tạo ra file <code>nhatky.txt</code>. Hãy ghi một vài dòng tâm sự của bạn trong ngày hôm nay vào file đó thông qua lệnh <code>ofstream</code>.</li>
+<li class="task-item"><strong>Bài 2:</strong> (Ôn tập Vector + Hàm) Viết một hàm tính tổng của mảng. Nhưng thay vì in tổng ra console bằng <code>cout</code>, hãy truyền <code>ofstream</code> vào và in cái tổng đó ra file kết quả.</li>
+<li class="task-item"><strong>Bài 3:</strong> Chạy thử Ví dụ 2 với một tên file không hề tồn tại (vd: <code>loi.txt</code>). Quan sát lệnh kiểm tra <code>is_open()</code> bắt lỗi như thế nào.</li>
+</ul>
+<h2>5. Bài tập về nhà</h2>
+<ul class="task-list">
+<li class="task-item"><strong>Bài 1:</strong> Xây dựng phần mềm Quản lý điểm cá nhân Mini. Cấu trúc <code>struct HocSinh { string ten; double diem; }</code>. Khi chương trình khởi động, tự động đọc dữ liệu từ tệp <code>hocsinh.txt</code> (nếu có) lên <code>vector</code>. Khi người dùng thêm điểm xong và chọn &quot;0. Thoát&quot; ở Menu, gọi hàm để ghi đè danh sách mới nhất ngược trở lại <code>hocsinh.txt</code> để sao lưu.</li>
+</ul>
+<h2>6. Checklist cuối buổi</h2>
+<ul>
+<li class="check-item"><span class="check-box"></span>Dùng thư viện gì để tương tác với tệp văn bản? Lệnh nào chuyên dụng để ghi, lệnh nào chuyên đọc?</li>
+<li class="check-item"><span class="check-box"></span>Thao tác quan trọng nhất trước khi kết thúc làm việc với File là gì? (Gợi ý: <code>.close()</code>)</li>
+<li class="check-item"><span class="check-box"></span>Tổng kết Giai đoạn 2: Bạn đã làm chủ được Vector, Hàm, và Struct chưa? Sẵn sàng bước vào giai đoạn thuật toán nhé!</li>
+</ul>
+<h2>============================================================</h2>
+<p>GIAI ĐOẠN 3 - TÌM KIẾM, SẮP XẾP, XỬ LÝ DANH SÁCH</p>
+<h2>============================================================</h2>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-21-struct-co-ban.html">← Bài trước</a>
+      <a href="buoi-23-thiet-ke-du-lieu-dang-danh-sach.html">Bài sau →</a>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_cpp_lesson_access_v2";
+      const SECURITY_CODE = "CPP15";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
+
+</body>
+</html>

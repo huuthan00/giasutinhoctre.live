@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gia sư Tin Học Trẻ 1-kèm-1: Scratch cho bé cấp 1, Python cho cấp 2, C++ luyện thi Tin Học Trẻ cấp 3 và hỗ trợ đồ án giải thuật cho sinh viên. Dạy cá nhân hóa, cam kết đầu ra.">
+    <meta name="keywords" content="gia sư tin học trẻ, gia sư lập trình, gia sư scratch, gia sư python, gia sư c++, học lập trình trẻ em, gia sư thuật toán, gia sư sinh viên cntt, giasutinhoctre.live">
+    
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Gia Sư Tin Học Trẻ - Dạy Scratch, Python, C++ & Hỗ Trợ Sinh Viên 1-Kèm-1">
+    <meta property="og:description" content="Gia sư lập trình cá nhân hóa: Scratch cho cấp 1, Python cho cấp 2, C++ luyện thi Tin Học Trẻ cấp 3, hỗ trợ đồ án sinh viên CNTT. Học 1-kèm-1 cam kết đầu ra.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://giasutinhoctre.live">
+    
+    <title>Gia Sư Tin Học Trẻ - Dạy Scratch, Python, C++ Cho Học Sinh Cấp 1, 2, 3 & Sinh Viên</title>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-chalkboard-user logo-icon"></i>
+                <span class="logo-text">GiaSu<span class="accent-text">THT</span></span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#why-us" class="nav-link">Vì sao chọn</a>
+                <a href="#pathways" class="nav-link">Lộ trình học</a>
+                <a href="#calculator" class="nav-link">Tính học phí</a>
+                <a href="#testimonials" class="nav-link">Đánh giá</a>
+                <a href="#register" class="nav-btn-mobile">Đăng Ký Học Thử</a>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="theme-toggle-btn" id="themeToggleBtn" title="Chuyển chế độ Sáng / Tối">
+                    <i class="fa-solid fa-moon moon-icon"></i>
+                    <i class="fa-solid fa-sun sun-icon"></i>
+                </button>
+                
+                <a href="#register" class="cta-nav-btn">Học Thử Miễn Phí</a>
+                
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="ambient-glow bg-glow-1"></div>
+        <div class="ambient-glow bg-glow-2"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <i class="fa-solid fa-chalkboard-user"></i> GIA SƯ TIN HỌC TRẺ — DẠY 1-KÈM-1 CÁ NHÂN HÓA
+                </div>
+                <h1 class="hero-title">
+                    Khai Phá Tư Duy Công Nghệ <br>
+                    Cùng Gia Sư <span class="typing-text" id="typingText"></span>
+                </h1>
+                <p class="hero-desc">
+                    Chương trình đào tạo lập trình thực chiến cá nhân hóa từ Scratch cho trẻ cấp 1, Python cho cấp 2, C++ luyện thi HSG cấp 3 và hỗ trợ giải thuật chuyên sâu cho Sinh viên CNTT.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#register" class="hero-btn primary-btn">
+                        Đăng Ký Học Thử Ngay <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#pathways" class="hero-btn secondary-btn">
+                        Khám Phá Lộ Trình <i class="fa-solid fa-compass"></i>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>Học viên tiến bộ vượt bậc</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h3>5+</h3>
+                        <p>Năm kinh nghiệm giảng dạy</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h3>200+</h3>
+                        <p>Học sinh đã được đào tạo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="tech-graphic-container">
+                    <div class="code-box">
+                        <div class="code-box-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="file-name">learning_path.py</span>
+                        </div>
+                        <div class="code-box-body">
+                            <pre><code><span class="keyword">def</span> <span class="func">future_developer</span>(age, goals):
+    mindset = <span class="string">"Computational Logic"</span>
+    skills = []
+    
+    <span class="keyword">if</span> age &lt; <span class="number">11</span>:
+        skills.append(<span class="string">"Scratch Logic"</span>)
+    <span class="keyword">elif</span> age &lt; <span class="number">16</span>:
+        skills.append(<span class="string">"Python Automation"</span>)
+    <span class="keyword">else</span>:
+        skills.append(<span class="string">"C++ Algorithms"</span>)
+        
+    <span class="keyword">return</span> skills + [mindset]
+
+<span class="comment"># Khởi chạy lộ trình tối ưu tương lai</span>
+print(future_developer(<span class="number">12</span>, <span class="string">"Winner"</span>))</code></pre>
+                        </div>
+                    </div>
+                    <div class="floating-badge badge-1">
+                        <i class="fa-brands fa-python python-icon"></i>
+                        <div>
+                            <h4>Python</h4>
+                            <p>Cực hấp dẫn</p>
+                        </div>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <i class="fa-solid fa-cubes scratch-icon"></i>
+                        <div>
+                            <h4>Scratch</h4>
+                            <p>Tư duy trực quan</p>
+                        </div>
+                    </div>
+                    <div class="floating-badge badge-3">
+                        <i class="fa-solid fa-code cplus-icon"></i>
+                        <div>
+                            <h4>C++ / Algorithms</h4>
+                            <p>Luyện thi HSG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section" id="why-us">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">GIÁ TRỊ VƯỢT TRỘI</span>
+                <h2 class="section-title">Tại Sao Chọn Gia Sư Tin Học Trẻ?</h2>
+                <p class="section-desc">Tôi tập trung vào tư duy logic chứ không chỉ cú pháp khô khan — mỗi buổi học được thiết kế riêng cho tốc độ tiếp thu của từng bạn.</p>
+            </div>
+            
+            <div class="grid-layout cols-3">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3>Lộ Trình Cá Nhân Hóa</h3>
+                    <p>Khảo sát trình độ ban đầu, thiết kế giáo án riêng biệt phù hợp tốc độ tiếp thu của từng học viên nhằm tối ưu kết quả.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3>Học Thực Chiến 1-Kèm-1</h3>
+                    <p>Tương tác thời gian thực, học viên tự code 80% thời gian học thông qua các dự án thực tế sinh động như làm game, app.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3>Hỗ Trợ Ngoài Giờ 24/7</h3>
+                    <p>Đặc quyền hỗ trợ giải đáp bài tập trên trường, gỡ lỗi dự án cá nhân ngoài giờ học qua Zalo/Discord hoàn toàn miễn phí.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING PATHWAYS -->
+    <section class="section alt-bg" id="pathways">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">CHƯƠNG TRÌNH ĐÀO TẠO</span>
+                <h2 class="section-title">Các Khóa Học Lập Trình 1-Kèm-1</h2>
+                <p class="section-desc">Chọn khóa học theo ngôn ngữ và mục tiêu: Scratch cho tư duy trực quan, Python cho nền tảng viết code, C++ cho nền tảng thuật toán và sản phẩm demo cuối khóa.</p>
+            </div>
+            
+            <!-- Course Selector Tabs -->
+            <div class="pathway-tabs">
+                <button class="tab-btn" data-tab="python">
+                    <i class="fa-brands fa-python"></i> Python
+                </button>
+                <button class="tab-btn active" data-tab="cpp">
+                    <i class="fa-solid fa-code"></i> C++
+                </button>
+                <button class="tab-btn" data-tab="scratch">
+                    <i class="fa-solid fa-cubes"></i> Scratch
+                </button>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="tab-content-container">
+                <!-- Khóa Scratch -->
+                <div class="tab-pane" id="tab-scratch">
+                    <div class="pathway-card">
+                        <div class="pathway-info">
+                            <div class="pathway-icon-main"><i class="fa-solid fa-cubes"></i></div>
+                            <h3>Lập Trình Trực Quan Scratch (Từ 7 - 11 tuổi)</h3>
+                            <p class="sub-lead">Khơi gợi đam mê logic, tư duy hình học và xây dựng những dự án phần mềm đầu đời một cách trực quan sinh động.</p>
+                            
+                            <ul class="pathway-list">
+                                <li><i class="fa-solid fa-check"></i> <strong>Cốt lõi Scratch:</strong> Kéo thả khối lệnh, làm quen vòng lặp, điều kiện, tọa độ không gian.</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Sáng tạo Game & Hoạt hình:</strong> Tự thiết kế game hứng táo, Flappy Bird, phim hoạt hình ngắn tự kể chuyện.</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Phát triển Tư duy:</strong> Chuyển từ người chơi game thụ động thành người kiến tạo trò chơi thông minh.</li>
+                            </ul>
+                            <div class="pathway-badge-row">
+                                <span class="path-badge">Học phần: 2 học phần</span>
+                                <span class="path-badge">Hình thức: 1 kèm 1 online/offline</span>
+                            </div>
+                        </div>
+                        <div class="pathway-roadmap">
+                            <div class="roadmap-step">
+                                <div class="step-num">01</div>
+                                <div>
+                                    <h4>Scratch Basic (12 buổi)</h4>
+                                    <p>Tư duy khối lệnh, thuật toán rẽ nhánh, biến số đơn giản và chuyển động nhân vật cơ bản.</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-step">
+                                <div class="step-num">02</div>
+                                <div>
+                                    <h4>Scratch Advanced (12 buổi)</h4>
+                                    <p>Tạo khối lệnh tự định nghĩa, clone nhân vật, tương tác vật lý game và lập trình cơ chế lưu điểm số cao.</p>
+                                </div>
+                            </div>
+                            <a href="#register" class="pathway-detail-btn">
+                                <i class="fa-solid fa-calendar-check"></i> Tư Vấn Lộ Trình Scratch →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khóa Python -->
+                <div class="tab-pane" id="tab-python">
+                    <div class="pathway-card">
+                        <div class="pathway-info">
+                            <div class="pathway-icon-main"><i class="fa-brands fa-python"></i></div>
+                            <h3>Lập Trình Python Tư Duy (Từ 12 - 15 tuổi)</h3>
+                            <p class="sub-lead">Bước chuyển giao từ kéo thả sang viết mã dòng lệnh thực thụ bằng Python - ngôn ngữ phổ biến và dễ tiếp cận nhất thế giới.</p>
+                            
+                            <ul class="pathway-list">
+                                <li><i class="fa-solid fa-check"></i> <strong>Cú pháp Python thực chiến:</strong> Biến, kiểu dữ liệu, cấu trúc lặp For/While, mảng (Lists) và hàm.</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Giải Toán & Logic:</strong> Áp dụng toán học trường lớp vào code, tự viết script giải các phương trình, vẽ hình học quy luật (Turtle graphics).</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Ứng dụng & Game đơn giản:</strong> Lập trình game text-based, mini-game Pygame, tự động hóa tác vụ cơ bản.</li>
+                            </ul>
+                            <div class="pathway-badge-row">
+                                <span class="path-badge">Học phần: 3 học phần</span>
+                                <span class="path-badge">Độ dài: 24 - 36 buổi</span>
+                            </div>
+                        </div>
+                        <div class="pathway-roadmap">
+                            <div class="roadmap-step">
+                                <div class="step-num">01</div>
+                                <div>
+                                    <h4>Python Cơ Bản (12 buổi)</h4>
+                                    <p>Cú pháp viết tay, tư duy luồng dữ liệu, xử lý chuỗi ký tự và hàm toán học logic.</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-step">
+                                <div class="step-num">02</div>
+                                <div>
+                                    <h4>Python Cấu trúc Dữ liệu & Pygame (12 buổi)</h4>
+                                    <p>Học Dictionary, Tuples, thao tác File Text, và xây dựng đồ họa chuyển động 2D Pygame.</p>
+                                </div>
+                            </div>
+                            <a href="#register" class="pathway-detail-btn">
+                                <i class="fa-solid fa-calendar-check"></i> Tư Vấn Lộ Trình Python →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khóa C++ -->
+                <div class="tab-pane active" id="tab-cpp">
+                    <div class="pathway-card">
+                        <div class="pathway-info">
+                            <div class="pathway-icon-main"><i class="fa-solid fa-code"></i></div>
+                            <h3>Nền Tảng C++ &amp; Tư Duy Lập Trình</h3>
+                            <p class="sub-lead">Lộ trình 40 buổi vừa thiết kế cho học sinh muốn học C++ nghiêm túc: đi từ cú pháp nền tảng, tìm kiếm/sắp xếp cơ bản đến tự làm và bảo vệ sản phẩm demo cuối khóa.</p>
+                            
+                            <ul class="pathway-list">
+                                <li><i class="fa-solid fa-check"></i> <strong>Nền tảng C++ chắc:</strong> Làm quen môi trường, biến, nhập xuất, toán tử, điều kiện, vòng lặp, mảng, chuỗi và hàm.</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Thuật toán vừa sức:</strong> Tập trung tìm kiếm tuyến tính, nhị phân, sắp xếp Bubble/Selection/Insertion và <code>std::sort</code>.</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Sản phẩm cuối khóa:</strong> Xây mini app console có dữ liệu, menu, tìm kiếm, sắp xếp, thống kê và kịch bản bảo vệ sản phẩm.</li>
+                            </ul>
+                            <div class="pathway-badge-row">
+                                <span class="path-badge course-duration"><i class="fa-solid fa-clock"></i> 40 buổi · 90 phút/buổi</span>
+                                <span class="path-badge price-badge"><i class="fa-solid fa-tags"></i> Học phí trọn khóa <strong>13.000.000đ</strong></span>
+                                <span class="path-badge discount-badge"><i class="fa-solid fa-gift"></i> Giảm 10% cho học viên cũ</span>
+                            </div>
+                        </div>
+                        <div class="pathway-roadmap">
+                            <div class="roadmap-step">
+                                <div class="step-num">01</div>
+                                <div>
+                                    <h4>Buổi 01-22: Nền tảng C++</h4>
+                                    <p>Từ chương trình đầu tiên đến vector, struct, file I/O, hàm và menu console.</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-step">
+                                <div class="step-num">02</div>
+                                <div>
+                                    <h4>Buổi 23-40: Danh sách, thuật toán cơ bản & demo</h4>
+                                    <p>Thiết kế dữ liệu, thêm/sửa/xóa, tìm kiếm, sắp xếp, thống kê và bảo vệ sản phẩm cuối khóa.</p>
+                                </div>
+                            </div>
+                            <a href="khoa-hoc-cpp-nentang.html" class="pathway-detail-btn">
+                                <i class="fa-solid fa-book-open"></i> Xem Trang Khóa C++ →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE TUITION CALCULATOR -->
+    <section class="section" id="calculator">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">CÔNG CỤ TƯƠNG TÁC</span>
+                <h2 class="section-title">Tính Học Phí & Đề Xuất Lộ Trình</h2>
+                <p class="section-desc">Lựa chọn các thông tin của học viên để xem giáo trình đào tạo phù hợp kèm chi phí gia sư dự kiến tức thì.</p>
+            </div>
+            
+            <div class="calculator-box">
+                <div class="calc-inputs">
+                    <h3>Thông Tin Học Viên</h3>
+                    
+                    <div class="input-group">
+                        <label>1. Khóa học quan tâm</label>
+                        <div class="radio-tiles">
+                            <label class="tile-radio">
+                                <input type="radio" name="student_level" value="cap1" checked>
+                                <span class="tile-radio-card">
+                                    <i class="fa-solid fa-puzzle-piece"></i>
+                                    <strong>Scratch</strong>
+                                    <span>Tư duy kéo thả</span>
+                                </span>
+                            </label>
+                            <label class="tile-radio">
+                                <input type="radio" name="student_level" value="cap2">
+                                <span class="tile-radio-card">
+                                    <i class="fa-brands fa-python"></i>
+                                    <strong>Python</strong>
+                                    <span>Tư duy code</span>
+                                </span>
+                            </label>
+                            <label class="tile-radio">
+                                <input type="radio" name="student_level" value="cap3">
+                                <span class="tile-radio-card">
+                                    <i class="fa-solid fa-code"></i>
+                                    <strong>C++</strong>
+                                    <span>Nền tảng thuật toán</span>
+                                </span>
+                            </label>
+                            <label class="tile-radio">
+                                <input type="radio" name="student_level" value="sinhvien">
+                                <span class="tile-radio-card">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                    <strong>Sinh viên</strong>
+                                    <span>CNTT / đồ án</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="course_package">2. Gói chương trình đào tạo</label>
+                        <select id="course_package" class="styled-select">
+                            <!-- Sẽ được fill bằng javascript dựa vào khóa học -->
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>3. Số buổi học mỗi tuần</label>
+                        <div class="btn-group-toggle" id="sessionsPerWeek">
+                            <button type="button" class="toggle-btn" data-val="1">1 Buổi / tuần</button>
+                            <button type="button" class="toggle-btn active" data-val="2">2 Buổi / tuần</button>
+                            <button type="button" class="toggle-btn" data-val="3">3 Buổi / tuần</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calc-results">
+                    <div class="result-header">
+                        <h3>Đề Xuất Chương Trình</h3>
+                    </div>
+                    
+                    <div class="result-body">
+                        <div class="course-suggestion">
+                            <h4 id="suggestedCourseTitle">Lập Trình Scratch Cho Trẻ Em</h4>
+                            <p id="suggestedCourseDesc">Phát triển tư duy logic, sáng tạo trò chơi trực quan cho học sinh cấp 1 bằng công cụ kéo thả Scratch khối lệnh chuẩn MIT.</p>
+                        </div>
+                        
+                        <hr class="calc-hr">
+                        
+                        <div class="pricing-metrics">
+                            <div class="metric-row">
+                                <span>Đơn giá gia sư 1-kèm-1:</span>
+                                <strong id="hourlyRate">200,000 đ <span class="unit">/ giờ</span></strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Độ dài buổi học:</span>
+                                <strong>1.5 giờ <span class="unit">/ buổi</span></strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Học phí mỗi buổi:</span>
+                                <strong id="sessionRate">300,000 đ <span class="unit">/ buổi</span></strong>
+                            </div>
+                            <div class="metric-row total-row">
+                                <span>Học phí dự kiến tháng:</span>
+                                <div class="total-price-box">
+                                    <span id="monthlyTotal">2,400,000 đ</span>
+                                    <span class="sub-label">Đã bao gồm tài liệu & hỗ trợ 24/7</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#register" class="calc-cta-btn">
+                            Đăng Ký Học Thử Ngay <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="section" id="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Ý KIẾN PHỤ HUYNH & HỌC VIÊN</span>
+                <h2 class="section-title">Câu Chuyện Thành Công Thực Tế</h2>
+                <p class="section-desc">Hơn 500+ học viên đã bứt phá tư duy và có những sản phẩm ứng dụng thực tế sau khóa học của chúng tôi.</p>
+            </div>
+            
+            <div class="testimonial-slider-container">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide active">
+                        <div class="testimonial-quote">
+                            <i class="fa-solid fa-quote-left quote-icon"></i>
+                            <p>“Con trai tôi lúc đầu chỉ thích chơi game điện tử cả ngày. Từ lúc học gia sư Scratch của GiaSuTHT, cháu tự mày mò vẽ nhân vật và lập trình ra trò chơi của riêng mình. Giờ cháu còn đòi học thêm Python. Gia sư của trung tâm rất nhiệt tình, giảng bài kiên nhẫn.”</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar author-1">MH</div>
+                            <div>
+                                <h4>Chị Mai Hương</h4>
+                                <p>Phụ huynh bé Hoàng Anh (Lớp 4 - Cầu Giấy, HN)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-quote">
+                            <i class="fa-solid fa-quote-left quote-icon"></i>
+                            <p>“Em từng thi trượt môn Kỹ thuật lập trình C++ ở trường đại học vì không hiểu con trỏ và danh sách liên kết. Nhờ học kèm 1-1 cấp tốc 12 buổi cùng anh Đức tại GiaSuTHT, em không những hiểu bản chất sâu của bộ nhớ RAM mà còn thi lại đạt điểm A môn Cấu trúc dữ liệu giải thuật. Rất cảm ơn anh!”</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar author-2">QD</div>
+                            <div>
+                                <h4>Phạm Quốc Duy</h4>
+                                <p>Sinh viên năm 2 ĐH Giao thông Vận tải</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-quote">
+                            <i class="fa-solid fa-quote-left quote-icon"></i>
+                            <p>“Được gia sư Minh Đức định hướng ôn luyện C++ giải thuật từ lớp 11, em đã tích lũy được nhiều thuật toán quy hoạch động và đồ thị nâng cao. Đầu năm nay, em đã xuất sắc đạt giải Nhì kỳ thi Học sinh giỏi Tin học lớp 12 cấp Tỉnh. Đây là bệ phóng lớn cho em xét tuyển thẳng đại học.”</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar author-3">TL</div>
+                            <div>
+                                <h4>Trần Huy Lâm</h4>
+                                <p>Học sinh lớp 12 chuyên Tin - Nam Định</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTRATION / CONTACT FORM -->
+    <section class="section alt-bg" id="register">
+        <div class="ambient-glow bg-glow-3"></div>
+        <div class="section-container">
+            <div class="registration-box">
+                <div class="registration-info">
+                    <h2>Bắt Đầu Hành Trình Lập Trình Ngay Hôm Nay</h2>
+                    <p>Đăng ký ngay hôm nay để nhận quyền lợi kiểm tra đánh giá tư duy logic lập trình ban đầu và trải nghiệm <strong>1 buổi học thử 1-kèm-1 hoàn toàn miễn phí</strong> cùng đội ngũ gia sư hàng đầu.</p>
+                    
+                    <div class="offer-list">
+                        <div class="offer-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div>
+                                <h4>Miễn phí 100% buổi đầu</h4>
+                                <p>Đánh giá năng lực và học thử trải nghiệm giáo án cá nhân.</p>
+                            </div>
+                        </div>
+                        <div class="offer-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div>
+                                <h4>Tặng tài liệu giáo trình chuẩn</h4>
+                                <p>Tặng trọn bộ tài liệu ôn luyện thuật toán C++ hoặc Python khi đăng ký khóa học chính thức.</p>
+                            </div>
+                        </div>
+                        <div class="offer-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div>
+                                <h4>Cam Kết Tự Làm Được Sản Phẩm</h4>
+                                <p>Cuối khóa học viên tự tay hoàn thành sản phẩm / đề tài thực tế của khóa học — game Scratch, ứng dụng Python hoặc bài thi thuật toán C++ — không cần nhờ ai.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="registration-form-card">
+                    <h3>Đăng Ký Tư Vấn & Học Thử</h3>
+                    <form id="leadForm" novalidate>
+                        <div class="form-group">
+                            <label for="parent_name">Họ tên Phụ huynh / Học viên</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="parent_name" placeholder="Ví dụ: Nguyễn Văn A" required>
+                            </div>
+                            <span class="error-msg" id="parentNameError">Họ tên không được để trống</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone_number">Số điện thoại liên hệ</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="phone_number" placeholder="Ví dụ: 0987654321" required>
+                            </div>
+                            <span class="error-msg" id="phoneError">Vui lòng nhập số điện thoại hợp lệ (10 chữ số)</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email_address">Địa chỉ Email</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="email_address" placeholder="name@example.com" required>
+                            </div>
+                            <span class="error-msg" id="emailError">Vui lòng nhập địa chỉ email hợp lệ</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="child_level">Cấp lớp hiện tại của Học viên</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                <select id="child_level" class="styled-select">
+                                    <option value="cap1">Học sinh cấp 1 (Lớp 1 - Lớp 5)</option>
+                                    <option value="cap2">Học sinh cấp 2 (Lớp 6 - Lớp 9)</option>
+                                    <option value="cap3">Học sinh cấp 3 (Lớp 10 - Lớp 12)</option>
+                                    <option value="sinhvien">Sinh viên Đại Học</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Yêu cầu riêng biệt (nếu có)</label>
+                            <textarea id="notes" rows="3" placeholder="Ví dụ: Cần học gấp thuật toán đồ thị ôn thi HSG, học offline tại nhà..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            Gửi Đăng Ký Học Thử <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-chalkboard-user logo-icon"></i>
+                    <span class="logo-text">GiaSu<span class="accent-text">THT</span></span>
+                </a>
+                <p class="footer-desc">Gia sư lập trình 1-kèm-1 chuyên sâu: Scratch (cấp 1), Python (cấp 2), C++ Tin Học Trẻ (cấp 3) và hỗ trợ đồ án sinh viên CNTT. Cam kết đầu ra rõ ràng.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Github"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" aria-label="Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Khóa Học</h4>
+                <a href="#pathways">Scratch Lớp 1 - 5</a>
+                <a href="#pathways">Python Lớp 6 - 9</a>
+                <a href="#pathways">C++ Tin Học Trẻ Lớp 10 - 12</a>
+                <a href="#pathways">Cấu trúc dữ liệu Đại Học</a>
+                <a href="#pathways">Đồ án Web Fullstack</a>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Hỗ Trợ</h4>
+                <a href="#calculator">Tính phí dự kiến</a>
+                <a href="#why-us">Vì sao chọn tôi?</a>
+                <a href="#testimonials">Đánh giá học viên</a>
+                <a href="#register">Đăng ký học thử</a>
+                <a href="#">Câu hỏi thường gặp</a>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Liên Hệ</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Đại Học Bách Khoa Hà Nội, Hai Bà Trưng, HN</p>
+                <p><i class="fa-solid fa-phone"></i> Hotline: <a href="tel:0987654321">0987.654.321</a></p>
+                <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:contact@giasutinhoctre.live">contact@giasutinhoctre.live</a></p>
+                <p><i class="fa-solid fa-clock"></i> Làm việc: 8:00 - 22:00 (Mỗi ngày)</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 GiaSuTHT - Gia Sư Tin Học Trẻ. Bảo lưu mọi quyền.</p>
+                <p>Địa chỉ website: <a href="https://giasutinhoctre.live" style="color:var(--primary)">giasutinhoctre.live</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div class="success-modal-overlay" id="successModalOverlay">
+        <div class="success-modal">
+            <div class="success-icon-box">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>Đăng Ký Thành Công!</h2>
+            <p>Cảm ơn bạn đã quan tâm. Gia Sư Tin Học Trẻ đã ghi nhận thông tin đăng ký học thử của bạn.</p>
+            <div class="modal-data-box">
+                <p><strong>Người liên hệ:</strong> <span id="modalParentName"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="modalPhone"></span></p>
+                <p><strong>Cấp lớp đăng ký:</strong> <span id="modalLevel"></span></p>
+            </div>
+            <p class="modal-tip">Gia sư trực thuộc chuyên môn sẽ chủ động liên hệ trực tiếp với bạn qua Zalo/Điện thoại trong vòng 30 phút để lên lịch học thử.</p>
+            <button class="modal-close-btn" id="modalCloseBtn">Đóng & Tiếp Tục</button>
+        </div>
+    </div>
+
+    <!-- MAIN JAVASCRIPT -->
+    <script src="app.js"></script>
+</body>
+</html>
