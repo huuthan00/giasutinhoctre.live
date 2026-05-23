@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 10 - Xử lý list số</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(34,197,94,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(34,197,94,.7);
+  box-shadow: 0 0 0 3px rgba(34,197,94,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 10</h1>
+      <p>Xử lý list số thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
+      <div class="nav">
+        <a href="../index.html#pathways">Khóa Python</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 2 - Dữ liệu, chuỗi, danh sách và Turtle</span>
+      <h1>Buổi 10: Xử lý list số</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh mới học lập trình.</div>
+        <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu bài học</h2>
+<ul>
+<li>Biết cách nhập nhiều số và đưa vào list (thông qua vòng lặp).</li>
+<li>Sử dụng các hàm có sẵn để xử lý số: sum() (tính tổng), max() (lớn nhất), min() (nhỏ nhất).</li>
+<li>Biết cách tính trung bình cộng của một list số.</li>
+<li>Biết cách đếm các phần tử thỏa mãn điều kiện (số chẵn, số lẻ, số lớn hơn một mốc).</li>
+<li>Tránh lỗi chia cho 0 khi list rỗng.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Danh sách toàn số: List không chỉ chứa chữ mà còn chứa số (ví dụ: danh sách điểm kiểm tra, danh sách tiền tiết kiệm). Khi list toàn là số, Python cung cấp cho ta những &quot;phép thuật&quot; tính toán siêu nhanh mà không cần viết vòng lặp dài dòng.</li>
+<li>Bộ 3 phép thuật:</li>
+<li>sum(list): Tính tổng tất cả các số trong list.</li>
+<li>max(list): Tìm ra con số khổng lồ nhất (lớn nhất).</li>
+<li>min(list): Tìm ra con số bé hạt tiêu nhất (nhỏ nhất).</li>
+<li>Tính trung bình: Trong toán học, trung bình cộng = Tổng các số / Số lượng các số. Trong Python, ta kết hợp: sum(list) / len(list). Cần dùng lệnh <code>if</code> kiểm tra len(list) &gt; 0 trước khi chia để tránh lỗi chia cho 0.</li>
+</ul>
+<h2>3. Ví dụ minh họa (Gõ code cùng giáo viên)</h2>
+<h3 class="example-title">Ví dụ 1: Tìm Max, Min và Tổng</h3>
+<pre><code class="language-python">diem = [7, 9, 5, 10, 8]
+print(&quot;Tổng điểm:&quot;, sum(diem))
+print(&quot;Điểm cao nhất:&quot;, max(diem))
+print(&quot;Điểm thấp nhất:&quot;, min(diem))</code></pre>
+<p>Các hàm sum, max, min giúp tính toán trong nháy mắt mà không cần viết vòng lặp for phức tạp.</p>
+<h3 class="example-title">Ví dụ 2: Tính điểm trung bình an toàn</h3>
+<pre><code class="language-python">diem = [8, 9, 7]
+if len(diem) &gt; 0:
+tb = sum(diem) / len(diem)
+print(&quot;Trung bình:&quot;, tb)
+else:
+print(&quot;Danh sách rỗng!&quot;)</code></pre>
+<p>Luôn kiểm tra len(diem) &gt; 0. Nếu list rỗng [] mà đem chia cho len() (tức là chia cho 0) thì chương trình sẽ bị sập.</p>
+<pre><code class="language-python">Ví dụ 3: Đếm số lượng điểm Giỏi (&gt;= 8)
+diem = [7, 9, 5, 10, 8]
+dem_gioi = 0
+for d in diem:
+if d &gt;= 8:
+dem_gioi = dem_gioi + 1
+print(&quot;Số bạn học giỏi là:&quot;, dem_gioi)</code></pre>
+<p>Kết hợp vòng lặp for và lệnh if để duyệt qua từng số, nếu thỏa mãn điều kiện thì tăng biến đếm lên 1.</p>
+<h2>4. Lỗi thường gặp &amp; Cách khắc phục</h2>
+<ul>
+<li>Lỗi: ZeroDivisionError khi tính trung bình:</li>
+<li>Nguyên nhân: Xảy ra khi dùng công thức sum(list) / len(list) nhưng list lại chưa có dữ liệu nào (rỗng).</li>
+<li>Cách sửa: Bọc công thức tính toán vào trong lệnh if len(list) &gt; 0: như Ví dụ 2.</li>
+</ul>
+<h2>5. Bài tập thực hành trên lớp</h2>
+<ol>
+<li>Cấp độ 1: Tạo list gồm các số: [15, 20, 5, 40, 10]. In ra màn hình số lớn nhất và số nhỏ nhất.</li>
+<li>Cấp độ 2 (Thủ quỹ lớp): Em thu tiền quỹ của 5 bạn, lưu vào list (ví dụ: [10, 20, 10, 50, 10] ngàn đồng). Hãy tính và in ra: Tổng số tiền thu được, và số tiền đóng trung bình của mỗi bạn.</li>
+</ol>
+<pre><code class="language-python">3. Cấp độ 3 (Lọc số chẵn): Cho list so_ngau_nhien = [1, 4, 7, 10, 13, 16]. Viết vòng lặp duyệt qua list, dùng phép chia lấy dư % 2 để kiểm tra và chỉ in ra các số chẵn.</code></pre>
+<h2>6. Bài tập về nhà</h2>
+<ul>
+<li>Phân tích điểm thi: Hãy tạo một list chứa điểm kiểm tra của 6 môn học của em (số thực từ 0 đến 10). Viết chương trình:</li>
+</ul>
+<ol>
+<li>In ra điểm cao nhất để khoe bố mẹ.</li>
+<li>In ra điểm thấp nhất để nhắc nhở bản thân.</li>
+<li>Tính điểm trung bình 6 môn.</li>
+<li>Dùng vòng lặp đếm xem có bao nhiêu môn em được điểm tuyệt đối (10 điểm).</li>
+</ol>
+<h2>7. Học sinh cần tự nói lại được gì?</h2>
+<ul>
+<li>&quot;Muốn tìm số lớn nhất/nhỏ nhất trong list, mình dùng hàm max() và min().&quot;</li>
+<li>&quot;Tính điểm trung bình bằng cách lấy sum(list) chia cho len(list).&quot;</li>
+<li>&quot;Phải cẩn thận với lỗi chia cho 0 khi list không có phần tử nào.&quot;</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-09-list-co-ban.html">← Bài trước</a>
+      <a href="buoi-11-chuoi-string-co-ban.html">Bài sau →</a>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_python_lessons_unlocked";
+      const SECURITY_CODE = "PYTHON";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
+
+</body>
+</html>

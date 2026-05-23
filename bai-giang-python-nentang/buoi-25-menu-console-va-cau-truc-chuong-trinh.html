@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 25 - Menu console và cấu trúc chương trình</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(34,197,94,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(34,197,94,.7);
+  box-shadow: 0 0 0 3px rgba(34,197,94,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 25</h1>
+      <p>Menu console và cấu trúc chương trình thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
+      <div class="nav">
+        <a href="../index.html#pathways">Khóa Python</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</span>
+      <h1>Buổi 25: Menu console và cấu trúc chương trình</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh mới học lập trình.</div>
+        <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu bài học</h2>
+<ul>
+<li>Biết cách thiết kế một chương trình phần mềm có giao diện điều khiển bằng văn bản (Menu Console).</li>
+<li>Hiểu cách tổ chức chương trình thành các Hàm (def) riêng biệt để code không bị rối rắm.</li>
+<li>Kết hợp vòng lặp while True và cấu trúc if/elif để điều hướng lựa chọn của người dùng.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Giao diện Menu Nhà Hàng: Phần mềm chuyên nghiệp không bao giờ tự động chạy tuồn tuột từ đầu đến cuối rồi tắt. Nó sẽ in ra một cái Menu giống như trong nhà hàng: &quot;1. Xem món, 2. Gọi món, 3. Thanh toán (Thoát)&quot;. Người dùng gõ phím nào thì nó làm việc đó.</li>
+<li>Vòng lặp bất tử chờ lệnh: Vòng lặp while True giúp tạo vòng chơi vô tận. Máy tính sẽ liên tục in lại cái Menu và chờ em ra lệnh, cho đến khi em chọn chức năng dùng lệnh break để thoát.</li>
+<li>Tư duy Kiến trúc sư (Gói code vào Hàm): Nếu em viết tất cả lệnh thêm, xóa, sửa vào chung một chỗ while True, file code sẽ dài hàng trăm dòng, rất dễ lỗi. Tư duy đúng là: Chức năng Thêm tách ra một def them(), chức năng In tách ra một def in_danh_sach(). Ở trong while, ta chỉ việc gọi tên các hàm đó. Code sẽ cực kỳ sạch sẽ!</li>
+</ul>
+<h2>3. Ví dụ minh họa (Gõ code cùng giáo viên)</h2>
+<h3 class="example-title">Bước 1: Thiết kế các tính năng (def)</h3>
+<pre><code class="language-python">def xem():
+print(&quot;Đang mở kho xem đồ...&quot;)</code></pre>
+<pre><code class="language-python">def them():
+print(&quot;Đang nhét đồ mới vào kho...&quot;)</code></pre>
+<p>Mỗi tính năng gói vào một hộp hàm gọn gàng, không dính líu đến nhau. Dễ kiểm tra, dễ sửa lỗi.</p>
+<h3 class="example-title">Bước 2: Xây dựng Menu tổng điều khiển</h3>
+<pre><code class="language-python">while True:
+print(&quot;\n--- MENU ---&quot;)
+print(&quot;1. Xem  2. Thêm  3. Thoát&quot;)
+chon = input(&quot;Mời chọn: &quot;)
+if chon == &#x27;1&#x27;:</code></pre>
+<p>xem()</p>
+<pre><code class="language-python">elif chon == &#x27;2&#x27;:</code></pre>
+<p>them()</p>
+<pre><code class="language-python">elif chon == &#x27;3&#x27;:
+break</code></pre>
+<p>Vòng lặp liên tục hiển thị Menu. Dùng if/elif để chuyển hướng. Gọi hàm tương ứng khi người dùng nhập số.</p>
+<h2>4. Lỗi thường gặp &amp; Cách khắc phục</h2>
+<ul>
+<li>Lỗi: Gọi hàm bên dưới Menu báo NameError (Không tìm thấy hàm).</li>
+<li>Cách sửa: Trong Python, em phải chế tạo máy (viết def) ở TRÊN CÙNG của file code, rồi mới được sử dụng nó (chạy vòng lặp while) ở BÊN DƯỚI. Nếu đảo ngược, Python không nhìn thấy.</li>
+</ul>
+<h2>5. Bài tập thực hành trên lớp</h2>
+<ol>
+<li>Cấp độ 1: Viết 3 hàm siêu ngắn: def xin_chao(), def tam_biet(), def chui_mang(). Trong mỗi hàm chỉ cần dùng lệnh print một câu phù hợp.</li>
+<li>Cấp độ 2: Dựng một khung Menu while True hiển thị: &quot;1. Khen, 2. Chửi, 3. Chào thoát&quot;.</li>
+<li>Cấp độ 3: Nối kết: Cài đặt điều kiện if/elif để khi người dùng gõ phím 1, máy gọi hàm xin_chao(), tương tự cho phím 2 và 3.</li>
+</ol>
+<h2>6. Bài tập về nhà</h2>
+<ul>
+<li>Máy ATM mini: Khởi tạo một biến so_du = 50000. Thiết kế một Menu ATM gồm 3 chức năng:</li>
+</ul>
+<ol>
+<li>Kiểm tra số dư (In ra so_du).</li>
+<li>Nạp tiền (Dùng input() hỏi số tiền nạp, ép kiểu int(), cộng vào so_du).</li>
+<li>Rút thẻ (Thoát chương trình).</li>
+</ol>
+<h2>7. Học sinh cần tự nói lại được gì?</h2>
+<ul>
+<li>&quot;Phần mềm luôn chạy trong vòng lặp vô hạn while True để chờ mình ra lệnh.&quot;</li>
+<li>&quot;Mỗi tính năng của phần mềm phải được gói gọn vào một Hàm def để dễ quản lý.&quot;</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-24-luu-va-doc-du-lieu-ung-dung-voi-json.html">← Bài trước</a>
+      <a href="buoi-26-mini-app-quan-ly-danh-sach-hoc-tap-to-do-list.html">Bài sau →</a>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_python_lessons_unlocked";
+      const SECURITY_CODE = "PYTHON";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
+
+</body>
+</html>

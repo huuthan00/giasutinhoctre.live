@@ -11,8 +11,11 @@ from generate_cpp_lessons import STYLE
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "Slide"
-OUT_DIR = ROOT / "bai-giang-python-11-12"
+OUT_DIR = ROOT / "bai-giang-python-nentang"
 LESSON_COUNT = 32
+PROTECTED_FROM_LESSON = 10
+SECURITY_CODE = "PYTHON"
+LOCK_STORAGE_KEY = "giasutht_python_lessons_unlocked"
 
 LESSON_RE = re.compile(r"^Buổi\s+(\d{2}):\s*(.+?)\s*$", re.MULTILINE)
 SECTION_RE = re.compile(r"^([1-7])\.\s+(.+)$")
@@ -84,6 +87,77 @@ EXTRA_STYLE = """
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(34,197,94,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(34,197,94,.7);
+  box-shadow: 0 0 0 3px rgba(34,197,94,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
 }
 .example-title {
   border-left: 3px solid var(--accent);
@@ -325,11 +399,94 @@ def render_body(markdownish: str) -> str:
     return "\n".join(parts)
 
 
+def is_protected(index: int) -> bool:
+    return index >= PROTECTED_FROM_LESSON
+
+
+def render_lock_screen(index: int, title: str) -> str:
+    if not is_protected(index):
+        return ""
+
+    return f"""
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài {index:02d}</h1>
+      <p>{html.escape(title)} thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+"""
+
+
+def render_lock_script(index: int) -> str:
+    if not is_protected(index):
+        return ""
+
+    return f"""
+  <script>
+    (() => {{
+      const ACCESS_KEY = "{html.escape(LOCK_STORAGE_KEY)}";
+      const SECURITY_CODE = "{html.escape(SECURITY_CODE)}";
+
+      const unlock = () => {{
+        try {{
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        }} catch (error) {{}}
+        document.body.classList.remove("lesson-locked");
+      }};
+
+      const initLessonLock = () => {{
+        try {{
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {{
+            unlock();
+            return;
+          }}
+        }} catch (error) {{}}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {{
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {{
+            unlock();
+            return;
+          }}
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        }});
+      }};
+
+      if (document.readyState === "loading") {{
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      }} else {{
+        initLessonLock();
+      }}
+    }})();
+  </script>
+"""
+
+
 def render_lesson(index: int, title: str, body_html: str, titles: dict[int, str]) -> str:
     prev_link = lesson_filename(index - 1, titles[index - 1]) if index > 1 else None
     next_link = lesson_filename(index + 1, titles[index + 1]) if index < LESSON_COUNT else None
     prev_html = f'<a href="{prev_link}">← Bài trước</a>' if prev_link else "<span></span>"
     next_html = f'<a href="{next_link}">Bài sau →</a>' if next_link else "<span></span>"
+    body_class = ' class="lesson-protected lesson-locked"' if is_protected(index) else ""
+    lock_screen = render_lock_screen(index, title)
+    lock_script = render_lock_script(index)
 
     return f"""<!DOCTYPE html>
 <html lang="vi">
@@ -339,7 +496,8 @@ def render_lesson(index: int, title: str, body_html: str, titles: dict[int, str]
   <title>Buổi {index:02d} - {html.escape(title)}</title>
   <style>{STYLE}{EXTRA_STYLE}</style>
 </head>
-<body>
+<body{body_class}>
+{lock_screen}
   <div class="wrap">
     <div class="topbar">
       <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
@@ -369,6 +527,7 @@ def render_lesson(index: int, title: str, body_html: str, titles: dict[int, str]
       {next_html}
     </div>
   </div>
+{lock_script}
 </body>
 </html>
 """

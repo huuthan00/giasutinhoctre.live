@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buổi 27 - Nâng cấp mini app - Thống kê và Sắp xếp</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --panel: #111827;
+  --panel-2: #162033;
+  --border: rgba(255,255,255,.1);
+  --text: #eef2ff;
+  --muted: #9ca3af;
+  --primary: #06b6d4;
+  --accent: #22c55e;
+  --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(6,182,212,.12), transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+.topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 30px; }
+.brand { font-weight: 800; color: var(--primary); }
+.nav a { color: var(--muted); margin-left: 14px; font-size: 14px; }
+.hero { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(99,102,241,.08)); border: 1px solid var(--border); border-radius: 18px; padding: 34px; margin-bottom: 24px; }
+.badge { display: inline-flex; color: var(--primary); border: 1px solid rgba(6,182,212,.3); background: rgba(6,182,212,.08); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 18px 0 12px; }
+h2 { font-size: 24px; margin: 0 0 14px; }
+h3 { margin: 18px 0 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.card, section { background: rgba(17,24,39,.82); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+.card strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.mini-card h3 { margin-top: 0; color: var(--primary); font-size: 17px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.concept { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.concept strong { color: var(--primary); display: block; margin-bottom: 6px; }
+.concept-detail { background: rgba(255,255,255,.035); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 14px; }
+.concept-detail h4 { margin: 0 0 8px; color: var(--primary); font-size: 18px; }
+.quick-table td:nth-child(2) { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.teacher-note { border-left: 3px solid var(--warn); background: rgba(245,158,11,.08); padding: 12px 14px; border-radius: 10px; margin-top: 12px; color: var(--text); }
+.timeline { list-style: none; padding-left: 0; }
+.timeline li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.time { color: var(--warn); font-weight: 800; }
+.example-block { border: 1px solid var(--border); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.035); margin-top: 16px; }
+.example-block h3 { margin-top: 0; color: var(--accent); }
+.example-meta { margin: 10px 0 14px; }
+.example-meta th { width: 120px; }
+.example-explain { background: rgba(6,182,212,.06); border: 1px solid rgba(6,182,212,.18); border-radius: 12px; padding: 12px 16px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.practice { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.practice strong { color: var(--accent); display: block; margin-bottom: 6px; }
+.checklist li { list-style: square; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 8px; }
+.theory li { margin-bottom: 14px; }
+pre { background: #050816; border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-x: auto; }
+code { color: #bae6fd; font-family: Consolas, 'Courier New', monospace; }
+.homework li { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.04); }
+.note { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid var(--border); padding: 12px; text-align: left; }
+th { color: var(--primary); }
+@media (max-width: 760px) {
+  .grid, .two-col, .concept-grid, .practice-grid { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; }
+  .topbar, .pager { flex-direction: column; align-items: stretch; }
+  .hero { padding: 24px; }
+}
+
+.lesson-body {
+  padding: 28px;
+}
+.lesson-body h2 {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--primary);
+}
+.lesson-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.lesson-body h3 {
+  color: var(--accent);
+  margin-top: 26px;
+}
+.lesson-body p {
+  margin: 10px 0 14px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  margin: 10px 0 18px;
+}
+.lesson-body li {
+  margin-bottom: 10px;
+}
+.lesson-body pre {
+  margin: 14px 0 18px;
+}
+.lesson-body code {
+  white-space: pre-wrap;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.lesson-locked {
+  overflow: hidden;
+}
+.lesson-locked .wrap {
+  display: none;
+}
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top left, rgba(34,197,94,.16), transparent 38%), rgba(5,8,22,.96);
+}
+.lock-card {
+  width: min(460px, 100%);
+  background: rgba(17,24,39,.96);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.34);
+}
+.lock-card h1 {
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+.lock-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.lock-form {
+  display: grid;
+  gap: 12px;
+}
+.lock-form label {
+  color: var(--text);
+  font-weight: 700;
+}
+.lock-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: rgba(34,197,94,.7);
+  box-shadow: 0 0 0 3px rgba(34,197,94,.12);
+}
+.lock-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.lock-error {
+  min-height: 22px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+.lesson-protected:not(.lesson-locked) .lock-screen {
+  display: none;
+}
+.example-title {
+  border-left: 3px solid var(--accent);
+  background: rgba(34,197,94,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.project-note {
+  border-left: 3px solid var(--warn);
+  background: rgba(245,158,11,.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.lesson-index-table td:first-child {
+  width: 96px;
+  color: var(--warn);
+  font-weight: 800;
+}
+@media (max-width: 760px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .lesson-body { padding: 20px; }
+  .lesson-index-table thead { display: none; }
+  .lesson-index-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .lesson-index-table td { display: block; border-bottom: 0; padding: 4px 0; }
+}
+</style>
+</head>
+<body class="lesson-protected lesson-locked">
+
+  <div class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <span class="badge">Nội dung bảo mật</span>
+      <h1 id="lock-title">Nhập mã để xem bài 27</h1>
+      <p>Nâng cấp mini app - Thống kê và Sắp xếp thuộc phần bài giảng cần mã truy cập.</p>
+      <form class="lock-form" data-lock-form>
+        <label for="lesson-passcode">Mã bảo mật</label>
+        <input id="lesson-passcode" data-lock-input type="password" autocomplete="current-password" placeholder="Nhập mã bảo mật">
+        <button type="submit">Mở bài học</button>
+        <div class="lock-error" data-lock-error aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">GiaSuTHT · Bài giảng Python</a>
+      <div class="nav">
+        <a href="../index.html#pathways">Khóa Python</a>
+        <a href="index.html">Mục lục</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <span class="badge">Giai đoạn 4 - Mini app, sản phẩm demo và bảo vệ sản phẩm</span>
+      <h1>Buổi 27: Nâng cấp mini app - Thống kê và Sắp xếp</h1>
+      <p class="note">Bài giảng chi tiết cho tiết học 90 phút: lý thuyết dễ hiểu, ví dụ code Python, lỗi thường gặp, thực hành trên lớp và bài tập về nhà.</p>
+      <div class="summary-grid">
+        <div class="card"><strong>Lý thuyết</strong>Diễn giải bằng ngôn ngữ gần gũi cho học sinh mới học lập trình.</div>
+        <div class="card"><strong>Code mẫu</strong>Ví dụ Python 3 có giải thích từng bước, ưu tiên rõ ràng và dễ sửa.</div>
+        <div class="card"><strong>Thực hành</strong>Bài tập trên lớp, bài tập về nhà và mục học sinh tự nói lại.</div>
+      </div>
+    </header>
+
+    <section class="lesson-body">
+      <h2>1. Mục tiêu bài học</h2>
+<ul>
+<li>Cập nhật thông tin trong ứng dụng (Chuyển trạng thái &quot;Chưa xong&quot; thành &quot;Đã xong&quot;).</li>
+<li>Tích hợp tính năng Thống kê (Đếm số lượng công việc đã hoàn thành).</li>
+<li>Áp dụng tính năng Sắp xếp để đẩy các việc đã xong xuống cuối danh sách.</li>
+</ul>
+<h2>2. Lý thuyết chi tiết</h2>
+<ul>
+<li>Cập nhật (Update): Để sửa một công việc, ta hỏi số thứ tự vị trí trong List (ví dụ [0]). Sau đó gọi trực tiếp vào tủ đồ ở vị trí đó và sửa lại Nhãn: danh_sach[0][&quot;trang_thai&quot;] = &quot;Xong&quot;.</li>
+<li>Thống kê: Dùng kỹ thuật Lọc và Đếm đã học ở Buổi 21. Tạo một biến dem = 0, cho vòng lặp duyệt qua List, cứ thấy công việc nào có nhãn &quot;Đã xong&quot; thì dem = dem + 1.</li>
+<li>Trải nghiệm người dùng: Một phần mềm tốt là khi người dùng nhìn vào, các việc chưa làm sẽ nằm ở trên cùng để nhắc nhở, các việc làm rồi tự động trôi xuống dưới. Ta sẽ dùng lệnh .sort() để hỗ trợ.</li>
+</ul>
+<h2>3. Ví dụ minh họa (Gõ code cùng giáo viên)</h2>
+<p>Hàm Đánh dấu Hoàn thành</p>
+<pre><code class="language-python">def hoan_thanh():</code></pre>
+<p>in_danh_sach()</p>
+<pre><code class="language-python">vt = int(input(&quot;Nhập số thứ tự đã làm xong: &quot;))
+danh_sach[vt][&quot;trang_thai&quot;] = &quot;Đã xong&quot;
+print(&quot;Giỏi quá, đã tick xanh!&quot;)</code></pre>
+<p>Cho người dùng xem danh sách để biết số thứ tự. Lấy vị trí vt, chui vào đúng ngăn kéo chứa trạng thái và đổi chữ.</p>
+<p>Hàm Thống kê độ chăm chỉ</p>
+<pre><code class="language-python">def thong_ke():
+dem = 0
+for v in danh_sach:
+if v[&quot;trang_thai&quot;] == &quot;Đã xong&quot;:
+dem = dem + 1
+print(f&quot;Bạn đã hoàn thành {dem} việc!&quot;)</code></pre>
+<p>Bộ đếm hoạt động bằng cách quét qua List và soi điều kiện.</p>
+<h2>4. Lỗi thường gặp &amp; Cách khắc phục</h2>
+<ul>
+<li>Lỗi: IndexError (Trượt khỏi đoàn tàu) khi đánh dấu hoàn thành.</li>
+<li>Nguyên nhân: Danh sách chỉ có 2 việc (số 0 và số 1). Người dùng lại cố tình nhập số 5.</li>
+<li>Cách sửa: Hiện tại nhắc nhở học sinh gõ cẩn thận. Buổi sau ta sẽ học cách đeo &quot;mũ bảo hiểm&quot; chống lại người gõ sai.</li>
+</ul>
+<h2>5. Bài tập thực hành trên lớp</h2>
+<ol>
+<li>Bổ sung def hoan_thanh() vào Mini App To-do List của buổi trước và gắn nó vào Menu số 4.</li>
+<li>Bổ sung def thong_ke() và gắn nó vào Menu số 5.</li>
+<li>Chạy thử phần mềm: Thêm 3 việc, đánh dấu xong 2 việc, in Thống kê để xem máy có đếm ra số 2 không.</li>
+</ol>
+<h2>6. Bài tập về nhà</h2>
+<ul>
+<li>Bảo vệ dữ liệu: Hiện tại tắt máy đi ứng dụng của chúng ta vẫn bị mất sạch công việc. Em hãy vận dụng kỹ thuật JSON (Buổi 24), viết thêm tính năng LƯU và TẢI vào ứng dụng To-do List.</li>
+<li>Gợi ý 1: Khi khởi động chương trình, tự động tìm và bóc file todo.txt nạp vào danh_sach.</li>
+<li>Gợi ý 2: Khi chọn phím &quot;Thoát&quot;, trước khi break, hãy dùng json.dumps để đóng gói và lưu cái danh_sach vào todo.txt.</li>
+</ul>
+<h2>7. Học sinh cần tự nói lại được gì?</h2>
+<ul>
+<li>&quot;Để thay đổi dữ liệu, mình cần biết vị trí index của nó trong List, sau đó gán lại Giá trị mới bằng dấu =.&quot;</li>
+<li>&quot;Đếm số lượng là đếm các trường hợp thỏa mãn điều kiện if trong vòng lặp.&quot;</li>
+</ul>
+    </section>
+
+    <div class="pager">
+      <a href="buoi-26-mini-app-quan-ly-danh-sach-hoc-tap-to-do-list.html">← Bài trước</a>
+      <a href="buoi-28-kiem-tra-du-lieu-nhap-va-sua-loi-try-except.html">Bài sau →</a>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ACCESS_KEY = "giasutht_python_lessons_unlocked";
+      const SECURITY_CODE = "PYTHON";
+
+      const unlock = () => {
+        try {
+          localStorage.setItem(ACCESS_KEY, "unlocked");
+        } catch (error) {}
+        document.body.classList.remove("lesson-locked");
+      };
+
+      const initLessonLock = () => {
+        try {
+          if (localStorage.getItem(ACCESS_KEY) === "unlocked") {
+            unlock();
+            return;
+          }
+        } catch (error) {}
+
+        const form = document.querySelector("[data-lock-form]");
+        const input = document.querySelector("[data-lock-input]");
+        const error = document.querySelector("[data-lock-error]");
+
+        if (input) input.focus();
+        if (!form || !input || !error) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (input.value.trim() === SECURITY_CODE) {
+            unlock();
+            return;
+          }
+
+          error.textContent = "Mã bảo mật không đúng. Vui lòng thử lại.";
+          input.value = "";
+          input.focus();
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLessonLock);
+      } else {
+        initLessonLock();
+      }
+    })();
+  </script>
+
+</body>
+</html>
