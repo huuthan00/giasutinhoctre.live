@@ -16,20 +16,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cấu hình các phần thưởng theo thứ tự các góc trên wheel (mỗi góc 60 độ)
     // Wheel chia làm 6 phần, bắt đầu từ 0-60 độ, 60-120, ... theo chiều kim đồng hồ
     const segments = [
-        "Giảm 10% Học Phí",
-        "Giảm 20% Học Phí",
-        "Học Thử 2 Buổi Miễn Phí",
-        "Chúc Bạn May Mắn Lần Sau",
-        "Giảm 5% Học Phí",
-        "Áo Thun Gia Sư THT"
+        "Bim bim Oishi",
+        "Ly sinh tố mát lạnh",
+        "Tiền mặt 10K",
+        "Chúc bạn may mắn lần sau",
+        "Tiền mặt 20K",
+        "Tiền mặt 50K"
     ];
 
     let currentRotation = 0;
     let isSpinning = false;
     let validatedCode = null;
 
-    // Giả lập danh sách mã hợp lệ (có thể mở rộng hoặc kết nối API)
-    const validCodes = ['THT2026', 'GIASUVIP', 'HOCCODE', 'PYTHON50', 'CPLUS100'];
+    let validCodes = [];
+
+    // Tải danh sách mã hợp lệ từ file codes.json
+    fetch('codes.json')
+        .then(response => response.json())
+        .then(data => {
+            validCodes = data.valid_codes;
+        })
+        .catch(err => console.error("Lỗi khi tải codes.json:", err));
 
     if (btnVerifyCode) {
         btnVerifyCode.addEventListener('click', () => {
@@ -39,16 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Trong môi trường production, bước này nên gọi API. Ở đây giả lập tĩnh.
             if (!validCodes.includes(code)) {
                 showMessage('Mã quay thưởng không hợp lệ hoặc không tồn tại.', 'error');
                 return;
             }
 
-            // Kiểm tra mã đã được sử dụng chưa (sử dụng localStorage để demo)
+            // Kiểm tra mã đã được sử dụng chưa (sử dụng localStorage để lưu lịch sử đã dùng)
             const usedCodes = JSON.parse(localStorage.getItem('usedSpinCodes') || '[]');
             if (usedCodes.includes(code)) {
-                showMessage('Mã này đã được sử dụng. Vui lòng nhập mã khác.', 'error');
+                showMessage('Mã này đã được sử dụng. Vui lòng xin thầy mã khác nha!', 'error');
                 return;
             }
 
