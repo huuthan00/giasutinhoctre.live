@@ -13,13 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const rewardModalCloseBtn = document.getElementById('rewardModalCloseBtn');
     const rewardResult = document.getElementById('rewardResult');
 
-    // Cấu hình các phần thưởng theo thứ tự các góc trên wheel (mỗi góc 60 độ)
-    // Wheel chia làm 6 phần, bắt đầu từ 0-60 độ, 60-120, ... theo chiều kim đồng hồ
+    // Cấu hình các phần thưởng theo thứ tự các góc trên wheel (mỗi góc 72 độ)
+    // Wheel chia làm 5 phần, bắt đầu từ 0-72 độ, 72-144, ... theo chiều kim đồng hồ
     const segments = [
         "Bim bim Oishi",
         "Ly sinh tố mát lạnh",
         "Tiền mặt 10K",
-        "Chúc bạn may mắn lần sau",
         "Tiền mặt 20K",
         "Tiền mặt 50K"
     ];
@@ -92,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Vùng chiếu vào mũi tên sẽ là vùng có góc ban đầu bị kéo ngược lại.
             const normalizedDegree = (360 - (currentRotation % 360)) % 360;
             
-            // Mỗi đoạn là 60 độ
-            const winningIndex = Math.floor(normalizedDegree / 60);
+            // Mỗi đoạn là 72 độ
+            const winningIndex = Math.floor(normalizedDegree / 72);
             const reward = segments[winningIndex];
 
             // Đánh dấu mã đã sử dụng vào localStorage
