@@ -1,0 +1,214 @@
+/* ==========================================================================
+   VÒNG QUAY PHẦN THƯỞNG - CSS
+   ========================================================================== */
+
+.spin-hero {
+    min-height: 90vh;
+    padding-top: 150px;
+}
+
+.spin-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    max-width: 500px;
+}
+
+.spin-input-group input {
+    flex: 1;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background: rgba(17, 24, 39, 0.7);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: var(--transition-normal);
+}
+
+body.light-mode .spin-input-group input {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.spin-input-group input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.2);
+    outline: none;
+}
+
+.spin-input-group input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.spin-msg {
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 20px;
+    margin-top: 5px;
+}
+
+.spin-msg.error {
+    color: #ef4444;
+}
+
+.spin-msg.success {
+    color: #10b981;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* Wheel Layout */
+.spin-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wheel-container {
+    position: relative;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 12px solid var(--bg-surface-solid);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+    transition: transform 5s cubic-bezier(0.2, 0.8, 0.2, 1.05); /* For the spin animation */
+}
+
+body.light-mode .wheel {
+    border-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+.wheel-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    /* conic gradient for 6 segments (60deg each) */
+    background: conic-gradient(
+        #ef4444 0deg 60deg,
+        #f59e0b 60deg 120deg,
+        #10b981 120deg 180deg,
+        #3b82f6 180deg 240deg,
+        #6366f1 240deg 300deg,
+        #ec4899 300deg 360deg
+    );
+}
+
+.wheel-segment {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 140px;
+    height: 50%; /* radius */
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(calc(var(--i) * 60deg + 30deg));
+    display: flex;
+    justify-content: center;
+    padding-top: 40px; /* distance from outer edge */
+    z-index: 10;
+}
+
+.segment-text {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.3;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+}
+
+.wheel-pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 55px;
+    background: #e11d48;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    z-index: 20;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+}
+
+.wheel-center-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: #111827;
+    border: 5px solid var(--border-color);
+    border-radius: 50%;
+    z-index: 15;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.light-mode .wheel-center-dot {
+    background: #ffffff;
+}
+
+.wheel-center-dot::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .spin-input-group {
+        flex-direction: column;
+    }
+    .spin-input-group input, .spin-input-group button {
+        width: 100%;
+    }
+    .wheel-container {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .wheel-container {
+        width: 320px;
+        height: 320px;
+    }
+    .wheel-segment {
+        width: 100px;
+        padding-top: 25px;
+    }
+    .segment-text {
+        font-size: 14px;
+    }
+    .wheel-center-dot {
+        width: 50px;
+        height: 50px;
+    }
+    .wheel-center-dot::after {
+        width: 16px;
+        height: 16px;
+    }
+}
